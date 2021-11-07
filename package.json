@@ -1,0 +1,25 @@
+{
+  "name": "mwr-react",
+  "version": "1.0.0",
+  "description": "1. give users the ability to submit Maintenance Work      Requests to the database.   2. Display a \"leader board\" that shows submitters name and number of submits they have completed.    3. Display a MWR dashboard that shows all submitted MWR's and their status (in progress, denied, pending).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZediWards/MWR-React.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZediWards/MWR-React/issues"
+  },
+  "homepage": "https://github.com/ZediWards/MWR-React#readme",
+  "dependencies": {
+    "gatsby": "^4.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
