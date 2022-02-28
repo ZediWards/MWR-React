@@ -97,6 +97,7 @@ const IndexPage = () => {
     alert("hello")
   }
 
+
   return (
     <Layout>
       <div
@@ -105,7 +106,7 @@ const IndexPage = () => {
         }}
       >
         <MwrCards data={db} mwrTypes={mwrTypes} handleClick={handleClick} />
-        <div> Leaderbaord</div>
+        <div> Leaderboard</div>
         <div> Search/filter bar</div>
         <div> Full table g</div>
       </div>
