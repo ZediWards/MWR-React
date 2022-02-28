@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useState } from "react";
 
-import ModalMwrForm from "./modalMwrForm"
+import ModalMwrFormContainer from "./modalMwrFormContainer"
 import MwrForm from "./mwrForm"
 
 import * as style from "../css_modules/mwr-cards.module.css"
@@ -38,9 +38,8 @@ const MwrCard = ({ mwrType, unAssigned, assigned, completed }) => {
         Create
       </button>
 
-      <ModalMwrForm handleClose={() => setIsOpen(false)} isOpen={isOpen} mwrType={mwrType}>
-        {mwrType}
-      </ModalMwrForm>
+      <ModalMwrFormContainer handleClose={() => setIsOpen(false)} isOpen={isOpen} mwrType={mwrType} />
+
     </div>
 
 
