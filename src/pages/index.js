@@ -69,7 +69,6 @@ const IndexPage = () => {
       problem: "stuff is broke",
       solution: "fix it",
       status: "Unassigned"
-
     },
     {
       type: "Safety",
@@ -86,17 +85,15 @@ const IndexPage = () => {
       problem: "stuff is broke",
       solution: "fix it",
       status: "Completed"
-
     }
   ])
   const [mwrTypes, setMwrTypes] = useState(["General", "Urgent", "Safety"])
 
-  const handleClick = () => {
+  const handleClick = formData => {
     // example of adding item to the state array
-    // setMwrTypes([...mwrTypes, "another!"])
-    alert("hello")
+    setDb([...db, formData])
+    console.table(db)
   }
-
 
   return (
     <Layout>

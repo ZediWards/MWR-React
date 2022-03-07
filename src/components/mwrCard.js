@@ -1,18 +1,22 @@
 import * as React from "react"
-import { useState } from "react";
+import { useState } from "react"
 
 import ModalMwrFormContainer from "./modalMwrFormContainer"
-import MwrForm from "./mwrForm"
+// import MwrForm from "./mwrForm"
 
 import * as style from "../css_modules/mwr-cards.module.css"
 
-
-const MwrCard = ({ mwrType, unAssigned, assigned, completed }) => {
-
+const MwrCard = ({
+  data,
+  handleClick,
+  mwrType,
+  unAssigned,
+  assigned,
+  completed
+}) => {
   // state for modal
   // this needs to be added to each card, not the container
-  const [isOpen, setIsOpen] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <div key={mwrType.index}>
@@ -34,15 +38,22 @@ const MwrCard = ({ mwrType, unAssigned, assigned, completed }) => {
         </div>
       </div>
 
-      <button className={style.btn} onClick={() => setIsOpen(true)} type="button">
+      <button
+        className={style.btn}
+        onClick={() => setIsOpen(true)}
+        type="button"
+      >
         Create
       </button>
 
-      <ModalMwrFormContainer handleClose={() => setIsOpen(false)} isOpen={isOpen} mwrType={mwrType} />
-
+      <ModalMwrFormContainer
+        data={data}
+        handleClick={handleClick}
+        mwrType={mwrType}
+        handleClose={() => setIsOpen(false)}
+        isOpen={isOpen}
+      />
     </div>
-
-
   )
 }
 
