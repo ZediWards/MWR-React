@@ -3,6 +3,9 @@ import { useState } from "react"
 
 import Layout from "../components/layout"
 import MwrCards from "../components/mwrCards"
+import Leaderboard from "../components/leaderboard"
+import SearchBox from "../components/searchBox"
+import MainTable from "../components/mainTable"
 
 const IndexPage = () => {
   const [db, setDb] = useState([
@@ -12,7 +15,8 @@ const IndexPage = () => {
       name: "Jon Dooe",
       problem: "stuff is broke",
       solution: "fix it",
-      status: "Assigned"
+      status: "Assigned",
+      date: "h"
     },
     {
       type: "General",
@@ -20,7 +24,8 @@ const IndexPage = () => {
       name: "Jon Doe",
       problem: "stuff is broke 2",
       solution: "fix it 2",
-      status: "Assigned"
+      status: "Assigned",
+      date: "h"
     },
     {
       type: "Urgent",
@@ -28,7 +33,8 @@ const IndexPage = () => {
       name: "Jon Doe",
       problem: "stuff is broke",
       solution: "fix it",
-      status: "Assigned"
+      status: "Assigned",
+      date: "h"
     },
     {
       type: "Urgent",
@@ -36,7 +42,8 @@ const IndexPage = () => {
       name: "Jimmy Dodo",
       problem: "stuff is broke 2",
       solution: "fix it 2",
-      status: "Unassigned"
+      status: "Unassigned",
+      date: "h"
     },
     {
       type: "Urgent",
@@ -44,7 +51,8 @@ const IndexPage = () => {
       name: "Jon Doe",
       problem: "stuff is broke 3",
       solution: "fix it 3",
-      status: "Unassigned"
+      status: "Unassigned",
+      date: "h"
     },
     {
       type: "General",
@@ -52,7 +60,8 @@ const IndexPage = () => {
       name: "Jane Dee",
       problem: "stuff is broke",
       solution: "fix it",
-      status: "Unassigned"
+      status: "Unassigned",
+      date: "h"
     },
     {
       type: "General",
@@ -60,7 +69,8 @@ const IndexPage = () => {
       name: "Jane Dee",
       problem: "stuff is broke 2",
       solution: "fix it 2",
-      status: "Unassigned"
+      status: "Unassigned",
+      date: "h"
     },
     {
       type: "Safety",
@@ -68,7 +78,8 @@ const IndexPage = () => {
       name: "Jon Doe",
       problem: "stuff is broke",
       solution: "fix it",
-      status: "Unassigned"
+      status: "Unassigned",
+      date: "h"
     },
     {
       type: "Safety",
@@ -76,7 +87,8 @@ const IndexPage = () => {
       name: "Jane Dee",
       problem: "stuff is broke",
       solution: "fix it",
-      status: "Completed"
+      status: "Completed",
+      date: "h"
     },
     {
       type: "General",
@@ -84,7 +96,8 @@ const IndexPage = () => {
       name: "Jane Dee",
       problem: "stuff is broke",
       solution: "fix it",
-      status: "Completed"
+      status: "Completed",
+      date: "2019-06-28"
     }
   ])
   const [mwrTypes, setMwrTypes] = useState(["General", "Urgent", "Safety"])
@@ -103,9 +116,9 @@ const IndexPage = () => {
         }}
       >
         <MwrCards data={db} mwrTypes={mwrTypes} handleClick={handleClick} />
-        <div> Leaderboard</div>
-        <div> Search/filter bar</div>
-        <div> Full table g</div>
+        <Leaderboard data={db} />
+        <SearchBox data={db} />
+        <MainTable data={db} />
       </div>
     </Layout>
   )
