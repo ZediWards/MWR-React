@@ -102,10 +102,39 @@ const IndexPage = () => {
   ])
   const [mwrTypes, setMwrTypes] = useState(["General", "Urgent", "Safety"])
 
+  const [searchQuery, setSearchQuery] = useState("")
+  const [
+    columnsIncludedWithinSearch,
+    setColumnsIncludedWithinSearch
+  ] = useState(["type", "department", "problem", "status"])
+  // source for search https://github.com/devmentorlive/datatable-search-filter/blob/master/src/app/index.jsx
+  // .filter returns a new array with items that passed as true
+  // .some returns true/false. It does not modify the array
+  // gives us the keys or our db
+  function search(rows) {
+    return rows.filter(row =>
+      columnsIncludedWithinSearch.some(
+        column =>
+          row[column]
+            .toString()
+            .toLowerCase()
+            .indexOf(searchQuery.toLowerCase()) > -1
+      )
+    )
+  }
+
+  // FOR CHECKBOXES LATER
+  // const column = db[0] && Object.keys(db[0])
+
   const handleClick = formData => {
     // example of adding item to the state array
     setDb([...db, formData])
     console.table(db)
+  }
+
+  // will pass this as search component prop, calls and update state defined here
+  const updateQuery = e => {
+    setSearchQuery(e.target.value)
   }
 
   return (
@@ -117,8 +146,10 @@ const IndexPage = () => {
       >
         <MwrCards data={db} mwrTypes={mwrTypes} handleClick={handleClick} />
         <Leaderboard data={db} />
-        <SearchBox data={db} />
-        <MainTable data={db} />
+        {/* in search example the seach is in the app omponent with the db */}
+        <SearchBox data={db} searchQuery={searchQuery} updateQuery={updateQuery} />
+        {/* passes in the queried db to display in table */}
+        <MainTable data={search(db)} />
       </div>
     </Layout>
   )

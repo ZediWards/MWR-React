@@ -11,6 +11,22 @@ const FullTable = ({ data }) => {
   // html5 date picker returns a string. Need to use newDate(pass in the string) to convert it to number. Then sorting should work on date
   // const mwrDesendingDate = mwrEntries.sort((a, b) => b.date - a.date)
 
+  // generic function that takes array as paremeter to use for .map function
+  const genericTableBuild = function (arr) {
+    arr.map((item, index) => {
+      return (
+        <tr key={index}>
+          <td className={style.textCenter}>{item.date}</td>
+          <td className={style.textCenter}>{item.department}</td>
+          <td className={style.textCenter}>{item.problem}</td>
+          <td className={style.textCenter}>{item.status}</td>
+        </tr>
+      )
+    })
+  }
+
+  const buildTable = genericTableBuild(mwrEntries)
+
   // building table data
   const buildMainTable = mwrEntries.map((mwr, index) => {
     return (

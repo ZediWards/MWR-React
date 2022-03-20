@@ -2,18 +2,19 @@ import * as React from "react"
 
 import * as style from "../css_modules/searchBox.module.css"
 
-const SearchBox = () => (
+const SearchBox = ({ data, searchQuery, updateQuery }) => (
   <section className={style.searchContainer}>
-    <div>
+    <div className={style.inputContainer}>
       <label htmlFor="search" className={style.flex}>
         <p className={style.searchLabel}>Search:</p>
         <input
-          // onChange={e => setFormData({ ...formData, name: e.target.value })}
-          // value={formData.name}
           type="text"
+          value={searchQuery}
+          onChange={updateQuery}
           name="search"
           id="search"
           className={style.searchInput}
+          placeholder="searchable fields: type, department, problem, status"
         />
       </label>
     </div>

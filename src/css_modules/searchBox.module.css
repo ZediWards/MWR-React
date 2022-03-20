@@ -8,11 +8,16 @@
   padding-block: 0.5rem;
 }
 
+.input-container {
+  flex-grow: 1;
+}
 .search-label {
   margin: 0;
 }
 
 .search-input {
+  width: 100%;
+  color: rgb(187, 186, 186);
   border: 1px solid grey;
   border-radius: 10px;
 }
