@@ -3,7 +3,7 @@ import { useState } from "react"
 
 import * as style from "../css_modules/formStyles.module.css"
 
-const MwrForm = ({ data, handleClick, mwrType }) => {
+const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
   // console.table(data)
   const [formData, setFormData] = useState({
     type: "gemeral",
@@ -27,6 +27,7 @@ const MwrForm = ({ data, handleClick, mwrType }) => {
       solution: "",
       status: "unassigned"
     })
+    handleClose()
     // pass this as a function to set state from the child
     // setIsOpen(true)
   }
@@ -87,6 +88,8 @@ const MwrForm = ({ data, handleClick, mwrType }) => {
           name="problem"
           id="problem"
           className={style.formInput}
+          rows="5"
+          cols="75"
         ></textarea>
       </label>
 
@@ -98,6 +101,8 @@ const MwrForm = ({ data, handleClick, mwrType }) => {
           name="solution"
           id="solution"
           className={style.formInput}
+          rows="5"
+          cols="75"
         ></textarea>
       </label>
 

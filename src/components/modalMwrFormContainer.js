@@ -42,7 +42,12 @@ function ModalMwrFormContainer({
             Close
           </button>
           <div className="modal-content">
-            <MwrForm data={data} handleClick={handleClick} mwrType={mwrType} />
+            <MwrForm
+              data={data}
+              handleClick={handleClick}
+              mwrType={mwrType}
+              handleClose={handleClose}
+            />
           </div>
         </div>
       </CSSTransition>

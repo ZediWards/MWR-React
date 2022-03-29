@@ -16,3 +16,9 @@
   text-align: center;
   background-color: rgb(191, 211, 166);
 }
+
+.input-readable-disabled {
+  background-color: white;
+  color: black;
+  margin-bottom: 0.5rem;
+}
