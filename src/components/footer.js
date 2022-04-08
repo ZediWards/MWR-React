@@ -3,11 +3,11 @@ import * as React from "react"
 const Footer = () => (
   <footer
     style={{
-      background: `grey`,
+      background: `lightgrey`,
       marginTop: `1.45rem`
     }}
   >
-    This is the footer
+    {/* This is the footer */}
   </footer>
 )
 

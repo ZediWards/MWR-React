@@ -11,7 +11,8 @@ import ViewDetails from "./viewDetails"
 
 function ViewDetailsModalContainer({
   mwrDetails,
-  handleClick,
+  mwrIndex,
+  handleUpdate,
   children,
   isOpen,
   handleClose
@@ -38,13 +39,14 @@ function ViewDetailsModalContainer({
         nodeRef={nodeRef}
       >
         <div className="modal" ref={nodeRef}>
-          <button onClick={handleClose} className="close-btn">
-            Close
-          </button>
           <div className="details-modal-content">
+            <button onClick={handleClose} className="close-btn">
+              X
+            </button>
             <ViewDetails
               mwrDetails={mwrDetails}
-              handleClick={handleClick}
+              mwrIndex={mwrIndex}
+              handleUpdate={handleUpdate}
               handleClose={handleClose}
             />
           </div>

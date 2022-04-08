@@ -4,9 +4,9 @@ import ViewDetailsBtn from "./viewDetailsBtn"
 
 import * as style from "../css_modules/fullTable.module.css"
 
-const FullTable = ({ data, handleClick }) => {
+const FullTable = ({ data, handleUpdate }) => {
   // making a mutable varible of the db state
-  const mwrEntries = data
+  // const mwrEntries = data
   // console.log(typeof data[9].date)
 
   // sorting mwr enties by desending date????
@@ -30,7 +30,8 @@ const FullTable = ({ data, handleClick }) => {
   // const buildTable = genericTableBuild(mwrEntries)
 
   // building table data
-  const buildMainTable = mwrEntries.map((mwr, index) => {
+  //! ** might be able to use the state to map the table, since not mutating anything, won't need to worry about setState **
+  const buildMainTable = data.map((mwr, index) => {
     return (
       <tr key={index}>
         <td className={style.textCenter}>{mwr.date}</td>
@@ -39,7 +40,11 @@ const FullTable = ({ data, handleClick }) => {
         <td className={style.textCenter}>{mwr.status}</td>
         <td className={style.textCenter}>
           {/* button will be same as "create" btn on mwr card, modal pops up with fields to populate */}
-          <ViewDetailsBtn mwrDetails={mwr} handleClick={handleClick} />
+          <ViewDetailsBtn
+            mwrDetails={mwr}
+            mwrIndex={index}
+            handleUpdate={handleUpdate}
+          />
         </td>
       </tr>
     )

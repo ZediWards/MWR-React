@@ -6,26 +6,40 @@ import * as style from "../css_modules/formStyles.module.css"
 const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
   // console.table(data)
   const [formData, setFormData] = useState({
-    type: "gemeral",
+    // Employee section
+    type: "general",
     date: "",
     name: "",
     department: "",
     problem: "",
     solution: "",
-    status: "unassigned"
+    // Maininence Section
+    status: "unassigned",
+    workOrderNum: "",
+    workOrderDate: "",
+    workOrderTime: "",
+    projectNum: "",
+    scheduledDate: ""
   })
 
   const handleSubmit = e => {
     e.preventDefault()
     handleClick(formData)
     setFormData({
-      type: "gemeral",
+      // Employee section
+      type: "general",
       date: "",
       name: "",
       department: "",
       problem: "",
       solution: "",
-      status: "unassigned"
+      // Maininence Section
+      status: "unassigned",
+      workOrderNum: "",
+      workOrderDate: "",
+      workOrderTime: "",
+      projectNum: "",
+      scheduledDate: ""
     })
     handleClose()
     // pass this as a function to set state from the child

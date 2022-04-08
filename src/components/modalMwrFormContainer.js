@@ -39,7 +39,7 @@ function ModalMwrFormContainer({
       >
         <div className="modal" ref={nodeRef}>
           <button onClick={handleClose} className="close-btn">
-            Close
+            X
           </button>
           <div className="modal-content">
             <MwrForm

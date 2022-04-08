@@ -3,12 +3,10 @@ import * as React from "react"
 const Header = () => (
   <header
     style={{
-      background: `grey`,
+      background: `lightgrey`,
       marginBottom: `1.45rem`
     }}
-  >
-    This is the header
-  </header>
+  ></header>
 )
 
 export default Header

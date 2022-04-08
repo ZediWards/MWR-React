@@ -5,7 +5,7 @@ import ViewDetailsModalContainer from "./viewDetailsModalContainer"
 
 // import * as style from "../css_modules/mwr-cards.module.css"
 
-const ViewDetailsBtn = ({ mwrDetails, handleClick }) => {
+const ViewDetailsBtn = ({ mwrDetails, mwrIndex, handleUpdate }) => {
   // state for modal
   const [isOpen, setIsOpen] = useState(false)
 
@@ -16,12 +16,13 @@ const ViewDetailsBtn = ({ mwrDetails, handleClick }) => {
         onClick={() => setIsOpen(true)}
         type="button"
       >
-        working?
+        View Details
       </button>
 
       <ViewDetailsModalContainer
         mwrDetails={mwrDetails}
-        handleClick={handleClick}
+        mwrIndex={mwrIndex}
+        handleUpdate={handleUpdate}
         handleClose={() => setIsOpen(false)}
         isOpen={isOpen}
       />

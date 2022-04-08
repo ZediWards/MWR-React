@@ -13,8 +13,8 @@ const Layout = ({ children }) => {
         display: "grid",
         gridTemplateRows: "auto 1fr auto",
         padding: "0rem 3rem 0rem 3rem",
-        margin: "auto",
-        border: "solid 1px red"
+        margin: "auto"
+        // border: "solid 1px red"
       }}
     >
       <Header />

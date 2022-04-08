@@ -32,8 +32,8 @@ const MwrCards = ({ data, mwrTypes, handleClick }) => {
     <div
       style={{
         display: "flex",
-        justifyContent: "space-between",
-        border: "solid 1px red"
+        justifyContent: "space-between"
+        // border: "solid 1px red"
       }}
     >
       {card}
