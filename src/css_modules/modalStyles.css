@@ -57,7 +57,7 @@
 }
 
 .details-modal-content {
-  /* width: 70%; */
+  max-width: 70%;
   /* height: 70%; */
   background-color: #fff;
   /* border: 10px solid hotpink; */
