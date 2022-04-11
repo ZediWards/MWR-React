@@ -19,7 +19,7 @@ const IndexPage = () => {
       problem: "stuff is broke, details test",
       solution: "fix it",
       // Maininence Section
-      status: "Assigned",
+      status: "Unassigned",
       workOrderNum: "001",
       workOrderDate: "2021-11-21",
       workOrderTime: "12:00",
@@ -53,7 +53,7 @@ const IndexPage = () => {
       solution: "fix it 2",
       date: "10-24-2021",
       // Maininence Section
-      status: "Assigned",
+      status: "Unassigned",
       workOrderNum: "",
       workOrderDate: "",
       workOrderTime: "",
@@ -104,7 +104,7 @@ const IndexPage = () => {
       solution: "fix it",
       date: "2019-06-28",
       // Maininence Section
-      status: "Assigned",
+      status: "Unassigned",
       workOrderNum: "",
       workOrderDate: "",
       workOrderTime: "",
@@ -114,12 +114,14 @@ const IndexPage = () => {
   ])
   const [mwrTypes, setMwrTypes] = useState(["General", "Urgent", "Safety"])
 
+  // adds object to db state
   const handleClick = formData => {
     // example of adding item to the state array
     setDb([...db, formData])
     console.table(db)
   }
 
+  // updates an object already in db state
   const handleUpdate = (mwrData, mwrIndex) => {
     // logging correct item
     const updatedDb = db.map(item => {
@@ -128,14 +130,14 @@ const IndexPage = () => {
       }
       return item
     })
-    console.table(newDb)
+    // console.table(newDb)
     setDb([...updatedDb])
     //   // example of adding item to the state array
     //   // setDb([...db, mwrData[mwrIndex]])
     //   console.table(mwrData)
   }
 
-  // searching db
+  // searching state db
   const [searchQuery, setSearchQuery] = useState("")
 
   const [columnsIncludedWithinSearch, setColumnsIncludedWithinSearch] = useState(["type", "department", "problem", "status"])
@@ -145,17 +147,17 @@ const IndexPage = () => {
   // gives us the keys or our db
 
 
-  // function search(db) {
-  //   return db.filter(dataRow =>
-  //     columnsIncludedWithinSearch.some(
-  //       column =>
-  //         dataRow[column]
-  //           .toString()
-  //           .toLowerCase()
-  //           .indexOf(searchQuery.toLowerCase()) > -1
-  //     )
-  //   )
-  // }
+  function search(db) {
+    return db.filter(dataRow =>
+      columnsIncludedWithinSearch.some(
+        column =>
+          dataRow[column]
+            .toString()
+            .toLowerCase()
+            .indexOf(searchQuery.toLowerCase()) > -1
+      )
+    )
+  }
 
   // FOR CHECKBOXES LATER
   // const column = db[0] && Object.keys(db[0])
@@ -176,16 +178,17 @@ const IndexPage = () => {
       >
         <MwrCards data={db} mwrTypes={mwrTypes} handleClick={handleClick} />
         <Leaderboard data={db} />
-        {/* in search example the seach is in the app omponent with the db */}
-        {/* <SearchBox
+        {/* in search example the search is in the app component with the db */}
+        <SearchBox
           queriedData={search(db)}
           searchQuery={searchQuery}
           updateQuery={updateQuery}
-        /> */}
+        />
         {/* passes in the queried db to display in table */}
-        {/* <FullTable data={search(db)} handleUpdate={handleUpdate} /> */}
+        <FullTable data={search(db)} handleUpdate={handleUpdate} />
+
         {/* ! checking w/o serch(db) */}
-        <FullTable data={db} handleUpdate={handleUpdate} />
+        {/* <FullTable data={db} handleUpdate={handleUpdate} /> */}
 
       </div>
     </Layout>
