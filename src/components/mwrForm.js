@@ -7,14 +7,14 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
   // console.table(data)
   const [formData, setFormData] = useState({
     // Employee section
-    type: "general",
+    type: mwrType,
     date: "",
     name: "",
     department: "",
     problem: "",
     solution: "",
     // Maininence Section
-    status: "unassigned",
+    status: "Unassigned",
     workOrderNum: "",
     workOrderDate: "",
     workOrderTime: "",
@@ -27,14 +27,14 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
     handleClick(formData)
     setFormData({
       // Employee section
-      type: "general",
+      type: mwrType,
       date: "",
       name: "",
       department: "",
       problem: "",
       solution: "",
       // Maininence Section
-      status: "unassigned",
+      status: "Unassigned",
       workOrderNum: "",
       workOrderDate: "",
       workOrderTime: "",
