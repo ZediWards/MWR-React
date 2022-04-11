@@ -107,7 +107,7 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
           </div>
 
           <div className={style.empInputSectTwo}>
-            <label htmlFor="problem">
+            <label className={style.empInputSectTwoBlocks} htmlFor="problem">
               <p className={style.inputLabel}>Problem:</p>
               <textarea
                 // onChange={e => setFormData({ ...formData, problem: e.target.value })}
@@ -115,14 +115,14 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
                 value={mwrDetails.problem}
                 name="problem"
                 id="problem"
-                className={style.inputReadableDisabled}
+                className={style.empSecTwoTextAreaInputReadableDisabled}
                 disabled={true}
                 rows="5"
                 cols="75"
               ></textarea>
             </label>
 
-            <label htmlFor="solution">
+            <label className={style.empInputSectTwoBlocks} htmlFor="solution">
               <p className={style.inputLabel}>Solution:</p>
               <textarea
                 // onChange={e => setFormData({ ...formData, solution: e.target.value })}
@@ -130,7 +130,7 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
                 value={mwrDetails.solution}
                 name="solution"
                 id="solution"
-                className={style.inputReadableDisabled}
+                className={style.empSecTwoTextAreaInputReadableDisabled}
                 disabled={true}
                 rows="5"
                 cols="75"
