@@ -21,7 +21,7 @@
   gap: 1rem;
   padding: 1rem;
   /* to override user agent default style, was overflowing */
-  min-inline-size: inherit
+  min-inline-size: inherit;
 }
 
 .emp-input-sect-one {
@@ -39,7 +39,7 @@
 
 .emp-input-sect-two-blocks {
   max-width: 40%;
-} 
+}
 
 .emp-sec-two-text-area-input-readable-disabled {
   max-width: 100%;
@@ -75,13 +75,13 @@
   justify-content: space-between;
   gap: 1.25rem;
   margin-block: 1rem;
+  padding-inline: 3rem;
 }
 
 .flex {
-  display: flex;
-  /* justify-content: space-between; */
-  gap: 1.25rem;
-  margin-block: 1rem;
+  /* display: flex; */
+  /* gap: 1.25rem; */
+  /* margin-block: 1rem; */
 }
 
 .grow-one {
