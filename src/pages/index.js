@@ -24,7 +24,57 @@ const IndexPage = () => {
       workOrderDate: "2021-11-21",
       workOrderTime: "12:00",
       projectNum: "007",
-      scheduledDate: "2021-11-22"
+      scheduledDate: "2021-11-22",
+      // needs applied to all
+      openHistory: "",
+      problemType: "",
+      //
+      // left
+      daysToCOmplete: "",
+      // right
+      completedDate: "",
+      //
+      // left
+      dueDate: "",
+      estHours: "",
+      assetId: "",
+      assetDescription: "",
+      // right
+      downtime: "",
+      actHours: "",
+      //
+      // left
+      // department
+      site: "",
+      //
+      // left
+      requestNum: "",
+      // name: "",
+      // right
+      requestedByEmail: "",
+      //
+      // left
+      // assignType: "", making just type. No nned to duplicate data
+      assignTo: "",
+      // right
+      assistant: "",
+      maintenanceTeamMember: "",
+      //
+      // left
+      briefDiscription: "",
+      workDiscription: "",
+      //
+      // left
+      comments: "",
+      //
+      // full (left through right)
+      employeeComments: {
+        commentOne: "",
+        commentTwo: "",
+        commentThree: "",
+        commentsFive: "",
+        commentSix: ""
+      }
     },
     {
       id: 2,
@@ -140,12 +190,14 @@ const IndexPage = () => {
   // searching state db
   const [searchQuery, setSearchQuery] = useState("")
 
-  const [columnsIncludedWithinSearch, setColumnsIncludedWithinSearch] = useState(["type", "department", "problem", "status"])
+  const [
+    columnsIncludedWithinSearch,
+    setColumnsIncludedWithinSearch
+  ] = useState(["type", "department", "problem", "status"])
   // source for search https://github.com/devmentorlive/datatable-search-filter/blob/master/src/app/index.jsx
   // .filter returns a new array with items that passed as true
   // .some returns true/false. It does not modify the array
   // gives us the keys or our db
-
 
   function search(db) {
     return db.filter(dataRow =>
@@ -189,7 +241,6 @@ const IndexPage = () => {
 
         {/* ! checking w/o serch(db) */}
         {/* <FullTable data={db} handleUpdate={handleUpdate} /> */}
-
       </div>
     </Layout>
   )
