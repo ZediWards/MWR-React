@@ -1,11 +1,107 @@
 import * as React from "react"
 import { useState } from "react"
 
+import { PDFViewer } from "@react-pdf/renderer"
+// import { PdfDocument } from "./pdfTemplate"
+
 import * as style from "../css_modules/viewDetailsStyles.module.css"
 
-const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
+const ViewDetails = ({
+  mwrDetails,
+  mwrIndex,
+  handleUpdate,
+  handleClose,
+  mwrTypes
+}) => {
   console.table(mwrDetails)
   console.table(mwrDetails.id)
+
+  // **************** varibles for mapping inside form********************
+  const assignedDepartments = [
+    " Production Maintenance",
+    "Building Maintneance"
+  ]
+  const mappedAssignedDepartments = assignedDepartments.map(
+    (department, index) => {
+      return (
+        <option key={index} value={department}>
+          {department}
+        </option>
+      )
+    }
+  )
+
+  // production maintenance
+  const productionMaintenanceEmployees = ["Jon", "Bob", "Jim"]
+  const mappedProductionMaintenanceEmployees = productionMaintenanceEmployees.map(
+    (employee, index) => {
+      return (
+        <option key={index} value={employee}>
+          {employee}
+        </option>
+      )
+    }
+  )
+
+  // building maintenance
+  const buildingMaintenanceEmployees = ["Matt", "Sara"]
+  const mappedBuildingMaintenanceEmployees = buildingMaintenanceEmployees.map(
+    (employee, index) => {
+      return (
+        <option key={index} value={employee}>
+          {employee}
+        </option>
+      )
+    }
+  )
+
+  // all maintenance
+  const allMaintenanceEmployees = [
+    ...productionMaintenanceEmployees,
+    ...buildingMaintenanceEmployees
+  ]
+  const mappedAllMaintenanceEmployees = allMaintenanceEmployees.map(
+    (employee, index) => {
+      return (
+        <option key={index} value={employee}>
+          {employee}
+        </option>
+      )
+    }
+  )
+
+  // function that creats option map that can pass arr into
+  // job status change if department is not undefined
+  // open/history?
+
+  const problemType = ["Big", "Medium", "Small"]
+  const mappedProblemTypes = problemType.map((problemType, index) => {
+    return (
+      <option key={index} value={problemType}>
+        {problemType}
+      </option>
+    )
+  })
+
+  // mwrTypes from props
+  const mappedMwrTypes = mwrTypes.map((type, index) => {
+    return (
+      <option key={index} value={type}>
+        {type}
+      </option>
+    )
+  })
+
+  const jobStatus = ["Unassigned", "Assigned", "Completed"]
+  const mappedJobStatus = jobStatus.map((status, index) => {
+    return (
+      <option key={index} value={status}>
+        {status}
+      </option>
+    )
+  })
+
+  // **********************************************
 
   // destructured prop incase it was still attatched to original state. Now should be mutable then applied back to original state
   const [updateMwr, setUpdateMwr] = useState({
@@ -18,13 +114,16 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
     e.preventDefault()
     // debugging
     handleUpdate(updateMwr, mwrIndex)
-
     handleClose()
     // pass this as a function to set state from the child
     // setIsOpen(true)
   }
 
   //
+  // pdf generation
+  const handlePdf = e => {
+    e.preventDefault()
+  }
 
   //
   return (
@@ -246,9 +345,7 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
                   <option value="-" disabled={true}>
                     -
                   </option>
-                  <option value="Unassigned">Unassigned</option>
-                  <option value="Assigned">Assigned</option>
-                  <option value="Completed">Completed</option>
+                  {mappedJobStatus}
                 </select>
               </label>
 
@@ -268,9 +365,8 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
                     -
                   </option>
                   {/* TODO pass down mwrType from index.js and you can map through an create the option tags */}
-                  <option value="General">General</option>
-                  <option value="Urgent">Urgent</option>
-                  <option value="Safety">Safety</option>
+
+                  {mappedMwrTypes}
                 </select>
               </label>
 
@@ -293,9 +389,7 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
                     -
                   </option>
                   {/* TODO pass down mwrType from index.js and you can map through an create the option tags */}
-                  <option value="Big">Big</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Small">Small</option>
+                  {mappedProblemTypes}
                 </select>
               </label>
             </div>
@@ -349,20 +443,22 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
               </label>
               <label htmlFor="asset-description" className={style.flex}>
                 <p className={style.inputLabel}>Asset Description:</p>
-                <input
+                <textarea
                   onChange={e =>
                     setUpdateMwr({
                       ...updateMwr,
                       assetDescription: e.target.value
                     })
                   }
+                  // readOnly
                   value={updateMwr.assetDescription}
-                  type="text"
                   name="asset-description"
                   id="asset-description"
+                  // className={style.empSecTwoTextAreaInputReadableDisabled}
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  // disabled={true}
-                />
+                  rows="1"
+                  cols="50"
+                ></textarea>
               </label>
             </div>
             <div>
@@ -427,17 +523,19 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
             <div>
               <label htmlFor="site" className={style.flex}>
                 <p className={style.inputLabel}>Site:</p>
-                <input
+                <textarea
                   onChange={e =>
                     setUpdateMwr({ ...updateMwr, site: e.target.value })
                   }
+                  // readOnly
                   value={updateMwr.site}
-                  type="text"
                   name="site"
                   id="site"
+                  // className={style.empSecTwoTextAreaInputReadableDisabled}
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  // disabled={true}
-                />
+                  rows="1"
+                  cols="50"
+                ></textarea>
               </label>
             </div>
           </div>
@@ -471,7 +569,7 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
                   name="requested-by"
                   id="requested-by"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  // disabled={true}
+                  disabled={true}
                 />
               </label>
             </div>
@@ -534,19 +632,18 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
                   name="mwr-type"
                   id="mwr-type"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
+                  disabled={true}
                 >
                   <option value={updateMwr.type}>{`${updateMwr.type}`}</option>
                   <option value="" disabled={true}>
                     -
                   </option>
-                  <option value="General">General</option>
-                  <option value="Urgent">Urgent</option>
-                  <option value="Safety">Safety</option>
+                  {mappedMwrTypes}
                 </select>
               </label>
               <label htmlFor="assign-to" className={style.flex}>
                 <p className={style.inputLabel}>Assiged To:</p>
-                <input
+                <select
                   onChange={e =>
                     setUpdateMwr({
                       ...updateMwr,
@@ -554,18 +651,25 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
                     })
                   }
                   value={updateMwr.assignTo}
-                  type="email"
                   name="assign-to"
                   id="assign-to"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
                   // disabled={true}
-                />
+                >
+                  <option
+                    value={updateMwr.assignTo}
+                  >{`${updateMwr.assignTo}`}</option>
+                  <option value="" disabled={true}>
+                    -
+                  </option>
+                  {mappedAssignedDepartments}
+                </select>
               </label>
             </div>
             <div>
               <label htmlFor="assistant" className={style.flex}>
                 <p className={style.inputLabel}>Assistant:</p>
-                <input
+                <select
                   onChange={e =>
                     setUpdateMwr({
                       ...updateMwr,
@@ -573,16 +677,23 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
                     })
                   }
                   value={updateMwr.assistant}
-                  type="email"
                   name="assistant"
                   id="assistant"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
                   // disabled={true}
-                />
+                >
+                  <option
+                    value={updateMwr.assistant}
+                  >{`${updateMwr.assistant}`}</option>
+                  <option value="" disabled={true}>
+                    -
+                  </option>
+                  {mappedAllMaintenanceEmployees}
+                </select>
               </label>
               <label htmlFor="maintenance-team-member" className={style.flex}>
                 <p className={style.inputLabel}>Maintenance Team Member:</p>
-                <input
+                <select
                   onChange={e =>
                     setUpdateMwr({
                       ...updateMwr,
@@ -590,12 +701,19 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
                     })
                   }
                   value={updateMwr.maintenanceTeamMember}
-                  type="email"
                   name="maintenance-team-member"
                   id="maintenance-team-member"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
                   // disabled={true}
-                />
+                >
+                  <option
+                    value={updateMwr.maintenanceTeamMember}
+                  >{`${updateMwr.maintenanceTeamMember}`}</option>
+                  <option value="" disabled={true}>
+                    -
+                  </option>
+                  {mappedAllMaintenanceEmployees}
+                </select>
               </label>
             </div>
           </div>
@@ -604,28 +722,44 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
           <hr />
 
           <div className={style.empInputSectTwo}>
-            <label className={style.empInputSectTwoBlocks} htmlFor="problem">
+            <label
+              className={style.empInputSectTwoBlocks}
+              htmlFor="brief-discription"
+            >
               <p className={style.inputLabel}>Brief Discription:</p>
               <textarea
-                // onChange={e => setFormData({ ...formData, problem: e.target.value })}
-                readOnly
-                value={mwrDetails.problem}
-                name="problem"
-                id="problem"
+                onChange={e =>
+                  setUpdateMwr({
+                    ...updateMwr,
+                    briefDiscription: e.target.value
+                  })
+                }
+                // readOnly
+                value={updateMwr.briefDiscription}
+                name="brief-discription"
+                id="brief-discription"
                 className={style.empSecTwoTextAreaInputReadableDisabled}
                 rows="5"
                 cols="75"
               ></textarea>
             </label>
 
-            <label className={style.empInputSectTwoBlocks} htmlFor="solution">
+            <label
+              className={style.empInputSectTwoBlocks}
+              htmlFor="work-discription"
+            >
               <p className={style.inputLabel}>Work Discription:</p>
               <textarea
-                // onChange={e => setFormData({ ...formData, solution: e.target.value })}
-                readOnly
-                value={mwrDetails.solution}
-                name="solution"
-                id="solution"
+                onChange={e =>
+                  setUpdateMwr({
+                    ...updateMwr,
+                    workDiscription: e.target.value
+                  })
+                }
+                // readOnly
+                value={updateMwr.workDiscription}
+                name="work-discription"
+                id="work-discription"
                 className={style.empSecTwoTextAreaInputReadableDisabled}
                 rows="5"
                 cols="75"
@@ -636,6 +770,26 @@ const ViewDetails = ({ mwrDetails, mwrIndex, handleUpdate, handleClose }) => {
       </div>
 
       <input type="submit" value="Submit" className={style.formBtn} />
+      <button type="button"> create pdf </button>
+
+      {/* ******************************************* */}
+      {/* {
+        <PDFDownloadLink
+          document={<PdfDocument data={updateMwr} />}
+          fileName="mwr.pdf"
+          style={{
+            textDecoration: "none",
+            padding: "10px",
+            color: "#4a4a4a",
+            backgroundColor: "#f2f2f2",
+            border: "1px solid #4a4a4a"
+          }}
+        >
+          {({ blob, url, loading, error }) =>
+            loading ? "Loading document..." : "Download Pdf"
+          }
+        </PDFDownloadLink>
+      } */}
     </form>
   )
 }

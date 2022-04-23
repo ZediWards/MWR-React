@@ -237,7 +237,11 @@ const IndexPage = () => {
           updateQuery={updateQuery}
         />
         {/* passes in the queried db to display in table */}
-        <FullTable data={search(db)} handleUpdate={handleUpdate} />
+        <FullTable
+          data={search(db)}
+          mwrTypes={mwrTypes}
+          handleUpdate={handleUpdate}
+        />
 
         {/* ! checking w/o serch(db) */}
         {/* <FullTable data={db} handleUpdate={handleUpdate} /> */}

@@ -11,6 +11,7 @@ import ViewDetails from "./viewDetails"
 
 function ViewDetailsModalContainer({
   mwrDetails,
+  mwrTypes,
   handleUpdate,
   children,
   isOpen,
@@ -44,6 +45,7 @@ function ViewDetailsModalContainer({
             </button>
             <ViewDetails
               mwrDetails={mwrDetails}
+              mwrTypes={mwrTypes}
               handleUpdate={handleUpdate}
               handleClose={handleClose}
             />

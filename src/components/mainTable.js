@@ -4,7 +4,7 @@ import ViewDetailsBtn from "./viewDetailsBtn"
 
 import * as style from "../css_modules/fullTable.module.css"
 
-const FullTable = ({ data, handleUpdate }) => {
+const FullTable = ({ data, mwrTypes, handleUpdate }) => {
   // making a mutable varible of the db state
   // const mwrEntries = data
   // console.log(typeof data[9].date)
@@ -43,6 +43,7 @@ const FullTable = ({ data, handleUpdate }) => {
           <ViewDetailsBtn
             mwrDetails={mwr}
             mwrIndex={index}
+            mwrTypes={mwrTypes}
             handleUpdate={handleUpdate}
           />
         </td>
