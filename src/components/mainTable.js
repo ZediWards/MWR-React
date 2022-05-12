@@ -1,8 +1,46 @@
 import * as React from "react"
+import styled from "styled-components"
 
+import SearchBox from "./searchBox"
 import ViewDetailsBtn from "./viewDetailsBtn"
 
 import * as style from "../css_modules/fullTable.module.css"
+
+// ******* Styled Components ***************
+const SectionForTableStyled = styled.section`
+  margin-top: 1.45rem;
+
+  .header-search-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 1px solid blue; */
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.725rem;
+  }
+
+  h2 {
+    /* border: 1px solid purple; */
+    margin: 0;
+  }
+
+  .main-table {
+    td {
+      text-align: center;
+    }
+    th {
+      background-color: hsl(var(--general-mwr-hue), 50%, 90%);
+      text-align: center;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      /* background-color: coral; */
+      background-color: rgba(255, 127, 80, 0.25);
+    }
+  }
+`
 
 const FullTable = ({ data, mwrTypes, handleUpdate }) => {
   // making a mutable varible of the db state
@@ -31,7 +69,7 @@ const FullTable = ({ data, mwrTypes, handleUpdate }) => {
 
   // building table data
   //! ** might be able to use the state to map the table, since not mutating anything, won't need to worry about setState **
-  const buildMainTable = data.map((mwr, index) => {
+  const buildTableBody = data.map((mwr, index) => {
     return (
       <tr key={index}>
         <td className={style.textCenter}>{mwr.date}</td>
@@ -52,13 +90,12 @@ const FullTable = ({ data, mwrTypes, handleUpdate }) => {
   })
 
   return (
-    <section
-      style={{
-        marginTop: `1.45rem`
-      }}
-    >
-      <h2>MWR Submitions</h2>
-      <table className={style.tableWidth}>
+    <SectionForTableStyled>
+      <div className={"header-search-container"}>
+        <h2>MWR Submitions</h2>
+        <SearchBox />
+      </div>
+      <table className={"main-table"}>
         <thead>
           <tr>
             <th className={style.textCenter}>Date</th>
@@ -69,9 +106,9 @@ const FullTable = ({ data, mwrTypes, handleUpdate }) => {
             <th className={style.textCenter}>Detials</th>
           </tr>
         </thead>
-        <tbody>{buildMainTable}</tbody>
+        <tbody>{buildTableBody}</tbody>
       </table>
-    </section>
+    </SectionForTableStyled>
   )
 }
 

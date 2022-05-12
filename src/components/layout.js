@@ -1,26 +1,29 @@
 import * as React from "react"
+import styled from "styled-components"
 
 import Header from "./header"
 import Footer from "./footer"
 
-import "./layout.css"
+// some sort of css reset file
+import "../css_global/layout.css"
+
+const PageContainer = styled.div`
+  min-height: 100vh;
+  maxWidth: 1600px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 0rem 3rem 0rem 3rem;
+  margin: auto;
+  /* border: solid 1px red; */
+`
 
 const Layout = ({ children }) => {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "grid",
-        gridTemplateRows: "auto 1fr auto",
-        padding: "0rem 3rem 0rem 3rem",
-        margin: "auto"
-        // border: "solid 1px red"
-      }}
-    >
+    <PageContainer>
       <Header />
       <main>{children}</main>
       <Footer />
-    </div>
+    </PageContainer>
   )
 }
 

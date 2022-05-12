@@ -7,5 +7,7 @@ module.exports = {
     siteUrl: "https://www.lolaedgar.com",
     title: "Lola-Edgar",
   },
-  plugins: [],
+  plugins: [
+    `gatsby-plugin-styled-components`
+  ],
 };

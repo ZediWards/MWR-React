@@ -1,14 +1,15 @@
 import * as React from "react"
+import styled from "styled-components"
+
+
+const FooterStyled = styled.footer`
+  /* margin-top: 1.45rem; */
+`
 
 const Footer = () => (
-  <footer
-    style={{
-      background: `lightgrey`,
-      marginTop: `1.45rem`
-    }}
-  >
+  <FooterStyled>
     {/* This is the footer */}
-  </footer>
+  </FooterStyled>
 )
 
 export default Footer

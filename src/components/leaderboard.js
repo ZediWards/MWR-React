@@ -1,6 +1,34 @@
 import * as React from "react"
+import styled from "styled-components"
 
 import * as style from "../css_modules/leaderboard.module.css"
+
+// ******* Styled COmponents ************
+const LeaderboardContainerStyled = styled.section`
+  margin-top: 3rem;
+  /* makes table responsive */
+  overflow-x: auto;
+`
+
+// global table styles are in layout.css
+const TableStyled = styled.table`
+  td {
+    text-align: center;
+  }
+  th {
+    /* background-color: #04aa6d; */
+    /* background-color: hsl(0, 0%, 85%); */
+    background-color: hsl(var(--general-mwr-hue), 50%, 90%);
+    /* color: white; */
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  tr:hover {
+    /* background-color: coral; */
+    background-color: rgba(255, 127, 80, 0.25);
+  }
+`
 
 const Leaderboard = ({ data }) => {
   // making a mutable varible of the db state
@@ -39,31 +67,27 @@ const Leaderboard = ({ data }) => {
   const buildLeaderBoardTable = desendingOrder.map((person, index) => {
     return (
       <tr key={index}>
-        <td className={style.textCenter}>
+        <td>
           {index + 1}. {person.name}
         </td>
-        <td className={style.textCenter}>{person.numberOfSubmitions}</td>
+        <td>{person.numberOfSubmitions}</td>
       </tr>
     )
   })
 
   return (
-    <section
-      style={{
-        marginTop: `1.45rem`
-      }}
-    >
+    <LeaderboardContainerStyled>
       <h2>Leaderboard</h2>
-      <table className={style.tableWidth}>
+      <TableStyled>
         <thead>
           <tr>
-            <th className={style.textCenter}>Name</th>
-            <th className={style.textCenter}># Submited</th>
+            <th style={{ textAlign: "center" }}>Name</th>
+            <th style={{ textAlign: "center" }}># Submited</th>
           </tr>
         </thead>
         <tbody>{buildLeaderBoardTable}</tbody>
-      </table>
-    </section>
+      </TableStyled>
+    </LeaderboardContainerStyled>
   )
 }
 
