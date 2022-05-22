@@ -224,21 +224,23 @@ const IndexPage = () => {
       <div
         style={
           {
-            // border: "solid 1px red"
+            maxWidth: "100%"
           }
         }
       >
         <MwrCards data={db} mwrTypes={mwrTypes} handleClick={handleClick} />
         <Leaderboard data={db} />
         {/* in search example the search is in the app component with the db */}
-        <SearchBox
+        {/* <SearchBox
           queriedData={search(db)}
           searchQuery={searchQuery}
           updateQuery={updateQuery}
-        />
+        /> */}
         {/* passes in the queried db to display in table */}
         <FullTable
-          data={search(db)}
+          queriedData={search(db)}
+          searchQuery={searchQuery}
+          updateQuery={updateQuery}
           mwrTypes={mwrTypes}
           handleUpdate={handleUpdate}
         />

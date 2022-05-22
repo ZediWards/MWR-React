@@ -21,6 +21,10 @@ const SearchBoxContainerStyled = styled.section`
     padding: 0.75rem 0.75rem 0 0.75rem;
   }
 
+  @media (max-width: 756px) {
+      justify-content: right;
+    }
+
   .input-container {
     flex-grow: 1;
     display: flex;
@@ -44,6 +48,9 @@ const SearchBoxContainerStyled = styled.section`
     @media (max-width: 1294px) {
       flex-grow: 1;
     }
+    @media (max-width: 668px) {
+      min-width: 10ch;
+    }
   }
 
   .filter-container {
@@ -55,6 +62,9 @@ const SearchBoxContainerStyled = styled.section`
     margin-bottom: 0;
     @media (max-width: 1054px) {
       margin: 0.5rem auto;
+    }
+    @media (max-width: 756px) {
+      margin: 0.5rem 0;
     }
   }
 
