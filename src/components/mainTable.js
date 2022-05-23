@@ -9,8 +9,7 @@ import * as style from "../css_modules/fullTable.module.css"
 // ******* Styled Components ***************
 const SectionForTableStyled = styled.section`
   margin-top: 1.45rem;
-  /* overflow-x: hidden; */
-
+  overflow-x: hidden;
 
   .header-search-container {
     display: flex;
@@ -33,6 +32,7 @@ const SectionForTableStyled = styled.section`
 
   .main-table {
     /* overflow-x: scroll; */
+
     td {
       text-align: center;
     }

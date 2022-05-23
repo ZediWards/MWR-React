@@ -240,7 +240,7 @@ const ViewDetails = ({
                   name="work-order-num"
                   id="work-order-num"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
+                  // disabled={true}
                 />
               </label>
               <label htmlFor="work-order-date" className={style.flex}>
@@ -258,7 +258,7 @@ const ViewDetails = ({
                   id="work-order-date"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
 
-                // disabled={true}
+                  // disabled={true}
                 />
               </label>
               <label htmlFor="work-order-time" className={style.flex}>
@@ -275,7 +275,7 @@ const ViewDetails = ({
                   name="work-order-time"
                   id="work-order-time"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
+                  // disabled={true}
                 />
               </label>
               <label htmlFor="project-num" className={style.flex}>
@@ -290,7 +290,7 @@ const ViewDetails = ({
                   id="project-num"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
 
-                // disabled={true}
+                  // disabled={true}
                 />
               </label>
               <label htmlFor="scheduled-date" className={style.flex}>
@@ -308,7 +308,7 @@ const ViewDetails = ({
                   id="scheduled-date"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
 
-                // disabled={true}
+                  // disabled={true}
                 />
               </label>
             </div>
@@ -410,7 +410,7 @@ const ViewDetails = ({
                   name="due-date"
                   id="due-date"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
+                  // disabled={true}
                 />
               </label>
               <label htmlFor="est-hours" className={style.flex}>
@@ -424,7 +424,7 @@ const ViewDetails = ({
                   name="est-hours"
                   id="est-hours"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
+                  // disabled={true}
                 />
               </label>
               <label htmlFor="asset-id" className={style.flex}>
@@ -438,7 +438,7 @@ const ViewDetails = ({
                   name="asset-id"
                   id="asset-id"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
+                  // disabled={true}
                 />
               </label>
               <label htmlFor="asset-description" className={style.flex}>
@@ -473,7 +473,7 @@ const ViewDetails = ({
                   name="downtime"
                   id="downtime"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
+                  // disabled={true}
                 />
               </label>
               <label htmlFor="act-hours" className={style.flex}>
@@ -487,7 +487,7 @@ const ViewDetails = ({
                   name="act-hours"
                   id="act-hours"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
+                  // disabled={true}
                 />
               </label>
             </div>
@@ -555,7 +555,7 @@ const ViewDetails = ({
                   name="request-num"
                   id="request-num"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
+                  // disabled={true}
                 />
               </label>
               <label htmlFor="requested-by" className={style.flex}>
@@ -589,7 +589,7 @@ const ViewDetails = ({
                   name="requested-by-email"
                   id="requested-by-email"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
+                  // disabled={true}
                 />
               </label>
             </div>
@@ -654,7 +654,7 @@ const ViewDetails = ({
                   name="assign-to"
                   id="assign-to"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
+                  // disabled={true}
                 >
                   <option
                     value={updateMwr.assignTo}
@@ -680,7 +680,7 @@ const ViewDetails = ({
                   name="assistant"
                   id="assistant"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
+                  // disabled={true}
                 >
                   <option
                     value={updateMwr.assistant}
@@ -704,7 +704,7 @@ const ViewDetails = ({
                   name="maintenance-team-member"
                   id="maintenance-team-member"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
+                  // disabled={true}
                 >
                   <option
                     value={updateMwr.maintenanceTeamMember}

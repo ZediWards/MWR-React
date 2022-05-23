@@ -21,10 +21,6 @@ const SearchBoxContainerStyled = styled.section`
     padding: 0.75rem 0.75rem 0 0.75rem;
   }
 
-  @media (max-width: 756px) {
-      justify-content: right;
-    }
-
   .input-container {
     flex-grow: 1;
     display: flex;
@@ -48,9 +44,6 @@ const SearchBoxContainerStyled = styled.section`
     @media (max-width: 1294px) {
       flex-grow: 1;
     }
-    @media (max-width: 668px) {
-      min-width: 10ch;
-    }
   }
 
   .filter-container {
@@ -63,18 +56,38 @@ const SearchBoxContainerStyled = styled.section`
     @media (max-width: 1054px) {
       margin: 0.5rem auto;
     }
-    @media (max-width: 756px) {
-      margin: 0.5rem 0;
-    }
   }
 
   .filter-item {
+    text-align: center;
     padding-inline: 1rem;
     padding-block: 0;
     border: 1px solid grey;
     border-radius: 10px;
     margin-bottom: 0;
   }
+
+  @media (max-width: 786px) {
+      .search-input {
+        min-width: 10ch;
+      }
+      .filter-container {
+        margin: 0.5rem 0;
+        margin-left: auto;
+        flex-wrap: wrap;
+      }
+      
+      .filter-item {
+        flex-grow: 1;
+      }
+    }
+    @media (max-width: 394px) {
+      .input-container {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      
+    }
 `
 
 const SearchBox = ({ queriedData, searchQuery, updateQuery }) => {

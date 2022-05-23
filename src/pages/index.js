@@ -4,7 +4,7 @@ import { useState } from "react"
 import Layout from "../components/layout"
 import MwrCards from "../components/mwrCards"
 import Leaderboard from "../components/leaderboard"
-import SearchBox from "../components/searchBox"
+// import SearchBox from "../components/searchBox"
 import FullTable from "../components/mainTable"
 
 const IndexPage = () => {
@@ -221,13 +221,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <div
-        style={
-          {
-            maxWidth: "100%"
-          }
-        }
-      >
+      <div>
         <MwrCards data={db} mwrTypes={mwrTypes} handleClick={handleClick} />
         <Leaderboard data={db} />
         {/* in search example the search is in the app component with the db */}
