@@ -103,7 +103,7 @@ const SearchBoxContainerStyled = styled.section`
 //   return searchQuery(e.target.value)
 // }
 
-const SearchBox = ({ queriedData, searchQuery, updateQuery, updateStatusFilterBtnValue }) => {
+const SearchBox = ({ queriedData, searchQuery, updateQuery, updatePrimaryFilter }) => {
   console.log("here here here")
   console.table(queriedData)
   console.log(searchQuery)
@@ -122,7 +122,7 @@ const SearchBox = ({ queriedData, searchQuery, updateQuery, updateStatusFilterBt
         />
       </label>
 
-      <ul className={"filter-container"} onClick={updateStatusFilterBtnValue}>
+      <ul className={"filter-container"} onClick={updatePrimaryFilter}>
         <li className={"filter-item"}>
           <button value="assigned">assigned</button>
         </li>

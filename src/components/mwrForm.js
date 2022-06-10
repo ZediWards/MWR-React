@@ -105,7 +105,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
     problem: "",
     solution: "",
     // Maininence Section
-    status: "Unassigned",
+    status: "unassigned",
     workOrderNum: "",
     workOrderDate: "",
     workOrderTime: "",
@@ -125,7 +125,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
       problem: "",
       solution: "",
       // Maininence Section
-      status: "Unassigned",
+      status: "unassigned",
       workOrderNum: "",
       workOrderDate: "",
       workOrderTime: "",

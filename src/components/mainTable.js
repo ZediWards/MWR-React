@@ -50,11 +50,7 @@ const SectionForTableStyled = styled.section`
   }
 `
 
-const FullTable = ({ queriedData, searchQuery, updateQuery, mwrTypes, handleUpdate, statusFilterData, updateStatusFilterBtnValue }) => {
-  console.log(statusFilterData)
-  console.log(statusFilterData)
-
-
+const FullTable = ({ queriedData, searchQuery, updateQuery, mwrTypes, handleUpdate, updatePrimaryFilter }) => {
   // making a mutable varible of the db state
   // const mwrEntries = data
   // console.log(typeof data[9].date)
@@ -81,7 +77,7 @@ const FullTable = ({ queriedData, searchQuery, updateQuery, mwrTypes, handleUpda
 
   // building table data
   //! ** might be able to use the state to map the table, since not mutating anything, won't need to worry about setState **
-  const buildTableBody = statusFilterData.map((mwr, index) => {
+  const buildTableBody = queriedData.map((mwr, index) => {
     return (
       <tr key={index}>
         <td className={style.textCenter}>{mwr.date}</td>
@@ -109,7 +105,7 @@ const FullTable = ({ queriedData, searchQuery, updateQuery, mwrTypes, handleUpda
           queriedData={queriedData}
           searchQuery={searchQuery}
           updateQuery={updateQuery}
-          updateStatusFilterBtnValue={updateStatusFilterBtnValue}
+          updatePrimaryFilter={updatePrimaryFilter}
         />
       </div>
       <div className={"table-container"}>
