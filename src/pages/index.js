@@ -19,7 +19,7 @@ const IndexPage = () => {
       problem: "stuff is broke, details test",
       solution: "fix it",
       // Maininence Section
-      status: "Unassigned",
+      status: "assigned",
       workOrderNum: "001",
       workOrderDate: "2021-11-21",
       workOrderTime: "12:00",
@@ -80,13 +80,13 @@ const IndexPage = () => {
       id: 2,
       // Employee section
       type: "General",
-      department: "compounding",
+      department: "comp",
       name: "Jon Doe",
       problem: "stuff is broke 2",
       solution: "fix it 2",
       date: "12-1-2021",
       // Maininence Section
-      status: "Assigned",
+      status: "scheduled",
       workOrderNum: "",
       workOrderDate: "",
       workOrderTime: "",
@@ -103,7 +103,7 @@ const IndexPage = () => {
       solution: "fix it 2",
       date: "10-24-2021",
       // Maininence Section
-      status: "Unassigned",
+      status: "unassigned",
       workOrderNum: "",
       workOrderDate: "",
       workOrderTime: "",
@@ -120,7 +120,7 @@ const IndexPage = () => {
       solution: "fix it",
       date: "09-13-2021",
       // Maininence Section
-      status: "Assigned",
+      status: "denied",
       workOrderNum: "",
       workOrderDate: "",
       workOrderTime: "",
@@ -137,7 +137,7 @@ const IndexPage = () => {
       solution: "fix it 2",
       date: "04-06-2022",
       // Maininence Section
-      status: "Assigned",
+      status: "assigned",
       workOrderNum: "",
       workOrderDate: "",
       workOrderTime: "",
@@ -154,7 +154,7 @@ const IndexPage = () => {
       solution: "fix it",
       date: "2019-06-28",
       // Maininence Section
-      status: "Unassigned",
+      status: "unassigned",
       workOrderNum: "",
       workOrderDate: "",
       workOrderTime: "",
@@ -189,25 +189,44 @@ const IndexPage = () => {
 
   // searching state db
   const [searchQuery, setSearchQuery] = useState("")
+  const [statusFilterBtnValue, setStatusFilterBtnValue] = useState("")
 
   const [
     columnsIncludedWithinSearch,
     setColumnsIncludedWithinSearch
   ] = useState(["type", "department", "problem", "status"])
   // source for search https://github.com/devmentorlive/datatable-search-filter/blob/master/src/app/index.jsx
-  // .filter returns a new array with items that passed as true
+  // .filter returns a new array with items that meet our condition.
   // .some returns true/false. It does not modify the array
   // gives us the keys or our db
 
+  // plain speak:
+  // return the {} in the [] from our db IF
+  // any of that objects keys that is in setColumnsIncludedWithinSearch [] AND
+  // that keys value gives a value > -1  with (.indexOf(searchQuery.toLowerCase()) > -1)
+
+  // *******************************works
   function search(db) {
     return db.filter(dataRow =>
       columnsIncludedWithinSearch.some(
         column =>
+          // i.e mwrItem.department, type, problem, status.toString().toLowerCase().indexOf(used to find match)
+          // if .some returns true then that item returns true for .filter
           dataRow[column]
             .toString()
             .toLowerCase()
+            // "Unassigned" wont come up in an "Assigned"  search but "Assigned' will come up on an "Unassigned" search 
             .indexOf(searchQuery.toLowerCase()) > -1
+
       )
+    )
+  }
+  console.log(`${db[0].status.indexOf(searchQuery.toLowerCase())} indexOf`)
+
+  // ~~~~~~~  statusFilterBtnValue
+  function statusFilter(db) {
+    return db.filter(mwr =>
+      mwr.status === statusFilterBtnValue
     )
   }
 
@@ -217,6 +236,11 @@ const IndexPage = () => {
   // will pass this as search component prop, calls and update state defined here
   const updateQuery = e => {
     setSearchQuery(e.target.value)
+  }
+
+  const updateStatusFilterBtnValue = e => {
+    setStatusFilterBtnValue(e.target.value)
+    console.log(`${statusFilterBtnValue} filter button value`)
   }
 
   return (
@@ -237,6 +261,8 @@ const IndexPage = () => {
           updateQuery={updateQuery}
           mwrTypes={mwrTypes}
           handleUpdate={handleUpdate}
+          statusFilterData={statusFilter(db)}
+          updateStatusFilterBtnValue={updateStatusFilterBtnValue}
         />
 
         {/* ! checking w/o serch(db) */}

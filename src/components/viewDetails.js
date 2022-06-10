@@ -1,10 +1,19 @@
 import * as React from "react"
 import { useState } from "react"
 
+import styled from "styled-components"
+
 // import { PDFViewer } from "@react-pdf/renderer"
 // import { PdfDocument } from "./pdfTemplate"
 
 import * as style from "../css_modules/viewDetailsStyles.module.css"
+
+// **** Styled Components ****
+const DetailsFormStyled = styled.form`
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+`
 
 const ViewDetails = ({
   mwrDetails,
@@ -127,8 +136,13 @@ const ViewDetails = ({
 
   //
   return (
-    <form className={style.detailsForm} onSubmit={handleSubmit}>
-      <h1 className={style.textCenter}>MWR Submition</h1>
+    <DetailsFormStyled onSubmit={handleSubmit}>
+      <header className={style.formHeaderFlex}>
+        <h1 className={style.textCenter}>MWR Submition</h1>
+        <button onClick={handleClose} className={style.closeBtn}>
+          X
+        </button>
+      </header>
 
       <div className={style.employeeInput}>
         {/* Employee Part */}
@@ -201,7 +215,7 @@ const ViewDetails = ({
                 className={style.empSecTwoTextAreaInputReadableDisabled}
                 disabled={true}
                 rows="5"
-                cols="75"
+                // cols="75"
               ></textarea>
             </label>
 
@@ -216,7 +230,7 @@ const ViewDetails = ({
                 className={style.empSecTwoTextAreaInputReadableDisabled}
                 disabled={true}
                 rows="5"
-                cols="75"
+                // cols="75"
               ></textarea>
             </label>
           </div>
@@ -226,8 +240,8 @@ const ViewDetails = ({
         <fieldset className={style.fieldsetFlex}>
           <legend>Maintenance:</legend>
 
-          <div className={style.flexTwo}>
-            {/* col 1 */}
+          <div className={style.flexContainer}>
+            {/* sec 1 */}
             <div>
               <label htmlFor="work-order-num" className={style.flex}>
                 <p className={style.inputLabel}>Work Order Number:</p>
@@ -313,7 +327,7 @@ const ViewDetails = ({
               </label>
             </div>
 
-            {/* col 2 */}
+            {/* sec 2 */}
             <div>
               <label htmlFor="open-history" className={style.flex}>
                 <p className={style.inputLabel}>Open/History</p>
@@ -397,7 +411,7 @@ const ViewDetails = ({
 
           {/* Row 2 */}
           <hr />
-          <div className={style.flexTwo}>
+          <div className={style.flexContainer}>
             <div>
               <label htmlFor="due-date" className={style.flex}>
                 <p className={style.inputLabel}>Due Date:</p>
@@ -455,9 +469,10 @@ const ViewDetails = ({
                   name="asset-description"
                   id="asset-description"
                   // className={style.empSecTwoTextAreaInputReadableDisabled}
+                  // lesson learned: multiple classes
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
                   rows="1"
-                  cols="50"
+                  // cols="50"
                 ></textarea>
               </label>
             </div>
@@ -495,7 +510,7 @@ const ViewDetails = ({
 
           {/* Row 3 */}
           <hr />
-          <div className={style.flexTwo}>
+          <div className={style.flexContainer}>
             <div>
               <label htmlFor="department" className={style.flex}>
                 <p className={style.inputLabel}>Department:</p>
@@ -534,7 +549,7 @@ const ViewDetails = ({
                   // className={style.empSecTwoTextAreaInputReadableDisabled}
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
                   rows="1"
-                  cols="50"
+                  // cols="50"
                 ></textarea>
               </label>
             </div>
@@ -542,7 +557,7 @@ const ViewDetails = ({
 
           {/* Row 4 */}
           <hr />
-          <div className={style.flexTwo}>
+          <div className={style.flexContainer}>
             <div>
               <label htmlFor="request-num" className={style.flex}>
                 <p className={style.inputLabel}>Request #:</p>
@@ -597,7 +612,7 @@ const ViewDetails = ({
 
           {/* Row 5 */}
           <hr />
-          <div className={style.flexTwo}>
+          <div className={style.flexContainer}>
             <div>
               {/* <select
                 onChange={e =>
@@ -740,7 +755,7 @@ const ViewDetails = ({
                 id="brief-discription"
                 className={style.empSecTwoTextAreaInputReadableDisabled}
                 rows="5"
-                cols="75"
+                // cols="75"
               ></textarea>
             </label>
 
@@ -762,7 +777,7 @@ const ViewDetails = ({
                 id="work-discription"
                 className={style.empSecTwoTextAreaInputReadableDisabled}
                 rows="5"
-                cols="75"
+                // cols="75"
               ></textarea>
             </label>
           </div>
@@ -790,7 +805,7 @@ const ViewDetails = ({
           }
         </PDFDownloadLink>
       } */}
-    </form>
+    </DetailsFormStyled>
   )
 }
 

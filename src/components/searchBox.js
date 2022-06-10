@@ -59,40 +59,54 @@ const SearchBoxContainerStyled = styled.section`
   }
 
   .filter-item {
+  }
+
+  .filter-item > button {
     text-align: center;
     padding-inline: 1rem;
     padding-block: 0;
-    border: 1px solid grey;
+    border: 1px solid var(--gray-light);
+    box-shadow: 0px 2px 1px var(--gray-light);
     border-radius: 10px;
     margin-bottom: 0;
+    background-color: transparent;
+    transition: all 0.35s ease-Out;
+    cursor: pointer;
+    :hover {
+      background-color: hsl(var(--safety-mwr-hue), 50%, 90%);
+    }
   }
 
   @media (max-width: 786px) {
-      .search-input {
-        min-width: 10ch;
-      }
-      .filter-container {
-        margin: 0.5rem 0;
-        margin-left: auto;
-        flex-wrap: wrap;
-      }
-      
-      .filter-item {
-        flex-grow: 1;
-      }
+    .search-input {
+      min-width: 10ch;
     }
-    @media (max-width: 394px) {
-      .input-container {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-      
+    .filter-container {
+      margin: 0.5rem 0;
+      margin-left: auto;
+      flex-wrap: wrap;
     }
-`
 
-const SearchBox = ({ queriedData, searchQuery, updateQuery }) => {
+    .filter-item {
+      flex-grow: 1;
+    }
+  }
+  @media (max-width: 394px) {
+    .input-container {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
+`
+// function filterBtn(e) {
+//   console.log(`bubbled from target ${e.target.value}`)
+//   return searchQuery(e.target.value)
+// }
+
+const SearchBox = ({ queriedData, searchQuery, updateQuery, updateStatusFilterBtnValue }) => {
   console.log("here here here")
   console.table(queriedData)
+  console.log(searchQuery)
   return (
     <SearchBoxContainerStyled>
       <label htmlFor="search" className={"input-container"}>
@@ -108,11 +122,19 @@ const SearchBox = ({ queriedData, searchQuery, updateQuery }) => {
         />
       </label>
 
-      <ul className={"filter-container"}>
-        <li className={"filter-item"}>assigned</li>
-        <li className={"filter-item"}>unassigned</li>
-        <li className={"filter-item"}>scheduled</li>
-        <li className={"filter-item"}>denied</li>
+      <ul className={"filter-container"} onClick={updateStatusFilterBtnValue}>
+        <li className={"filter-item"}>
+          <button value="assigned">assigned</button>
+        </li>
+        <li className={"filter-item"}>
+          <button value="unassigned">unassigned</button>
+        </li>
+        <li className={"filter-item"}>
+          <button value="scheduled">scheduled</button>
+        </li>
+        <li className={"filter-item"}>
+          <button value="denied">denied</button>
+        </li>
       </ul>
     </SearchBoxContainerStyled>
   )

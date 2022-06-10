@@ -40,9 +40,9 @@ function ViewDetailsModalContainer({
       >
         <div className="modal" ref={nodeRef}>
           <div className="details-modal-content">
-            <button onClick={handleClose} className="close-btn">
+            {/* <button onClick={handleClose} className="close-btn">
               X
-            </button>
+            </button> */}
             <ViewDetails
               mwrDetails={mwrDetails}
               mwrTypes={mwrTypes}

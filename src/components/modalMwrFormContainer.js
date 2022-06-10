@@ -1,4 +1,5 @@
 import * as React from "react"
+import styled from "styled-components"
 // for modal
 import { useEffect, useRef } from "react"
 import { CSSTransition } from "react-transition-group"
@@ -7,6 +8,26 @@ import "../css_modules/modalStyles.css"
 //
 
 import MwrForm from "./mwrForm"
+
+const StyledModalContent = styled.div`
+  /* width: 70%; */
+  /* height: 70%; */
+  /* background-color: #282c34; */
+  background-color: #ffffff;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* font-size: 1.5rem; */
+  padding: 1.5rem;
+
+  @media (max-width: 670px) {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+`
 
 function ModalMwrFormContainer({
   data,
@@ -38,17 +59,14 @@ function ModalMwrFormContainer({
         nodeRef={nodeRef}
       >
         <div className="modal" ref={nodeRef}>
-          <button onClick={handleClose} className="close-btn">
-            X
-          </button>
-          <div className="modal-content">
+          <StyledModalContent>
             <MwrForm
               data={data}
               handleClick={handleClick}
               mwrType={mwrType}
               handleClose={handleClose}
             />
-          </div>
+          </StyledModalContent>
         </div>
       </CSSTransition>
     </ReactPortal>

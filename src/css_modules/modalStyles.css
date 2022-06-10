@@ -15,6 +15,12 @@
   transform: scale(0.4);
 }
 
+@media (max-width: 650px) {
+  .modal {
+    padding: 0;
+  }
+}
+
 .modal-enter-done {
   opacity: 1;
   pointer-events: auto;
@@ -71,10 +77,16 @@
   overflow: scroll;
 }
 
-.close-btn {
+@media (max-width: 940px) {
+  .details-modal-content {
+    max-width: 100%;
+  }
+}
+
+/* .close-btn {
   display: block;
   background-color: red;
   align-self: flex-end;
   padding-block: 0.25rem;
   padding-inline: 0.5rem;
-}
+} */

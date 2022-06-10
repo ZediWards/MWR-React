@@ -16,19 +16,20 @@ const DetailsBtn = styled.button`
   cursor: pointer;
   /* width: 100%; */
   min-width: min-content;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
+  margin: auto;
   font-size: 16px;
   border-radius: 10px;
   display: block;
   :hover {
-    background-color: var(--color-primary);
-    color: var(--light-background);
+    background-color: hsl(var(--general-mwr-hue), 50%, 90%);
+    /* color: var(--light-background); */
     /* border: none; */
   }
 
   @media (max-width: 1000px) {
-      min-width: max-content;
-    }
+    min-width: max-content;
+  }
 `
 
 const ViewDetailsBtn = ({ mwrDetails, mwrTypes, handleUpdate }) => {

@@ -15,15 +15,16 @@ const StyledMwrCard = styled.div`
   /* max-width: 25%; */
   flex-grow: 1;
   border-radius: 10px;
-  /* border: 2px solid purple; */
+  border: 1px solid var(--gray-light);
+  box-shadow: 0px 2px 1px var(--gray-light);
   padding: 1.5rem;
   background-color: var(--background-body);
   background-color: ${prop =>
     prop.mwrType === "General"
       ? "var(--background-general)"
       : prop.mwrType === "Safety"
-        ? "var(--background-safety)"
-        : "var(--background-urgent)"};
+      ? "var(--background-safety)"
+      : "var(--background-urgent)"};
 `
 
 const StyledMWRTitle = styled.h2`
@@ -85,6 +86,7 @@ const StyledButton = styled.button`
   border-radius: 10px;
   padding: 0.5rem 0.25rem;
   /*  */
+
   border: 1px solid var(--gray-light);
   box-shadow: 0px 2px 1px var(--gray-light);
   transition: all 0.35s ease-Out;
