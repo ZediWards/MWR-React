@@ -61,7 +61,8 @@ const SearchBoxContainerStyled = styled.section`
   .filter-item {
   }
 
-  .filter-item > button {
+  /* lesson learned: element selector is giving problems with wieght. applying a class to item still doesn't outweigh the element child selector */
+  /* .filter-item > button {
     text-align: center;
     padding-inline: 1rem;
     padding-block: 0;
@@ -75,7 +76,47 @@ const SearchBoxContainerStyled = styled.section`
     :hover {
       background-color: hsl(var(--safety-mwr-hue), 50%, 90%);
     }
+  } */
+  li {
+    margin-bottom: 0;
   }
+
+  .filter-item {
+    text-align: center;
+    padding-inline: 1rem;
+    padding-block: 0;
+    border: 1px solid var(--gray-light);
+    box-shadow: 0px 2px 1px var(--gray-light);
+    border-radius: 10px;
+    margin-bottom: 0;
+    background-color: transparent;
+    transition: all 0.35s ease-Out;
+    cursor: pointer;
+    :hover {
+      /* border: 1px solid hsl(var(--safety-mwr-hue), 50%, 90%);
+      box-shadow: 0px 2px 1px hsl(var(--safety-mwr-hue), 50%, 90%); */
+      background-color: hsl(var(--safety-mwr-hue), 50%, 90%);
+    }
+  }
+
+  .filter-item-selected {
+    text-align: center;
+    padding-inline: 1rem;
+    padding-block: 0;
+    border: 1px solid var(--gray-light);
+    box-shadow: 0px 2px 1px var(--gray-light);
+    border-radius: 10px;
+    margin-bottom: 0;
+    background-color: hsl(var(--safety-mwr-hue), 50%, 90%);
+    /* border: 1px solid hsl(var(--safety-mwr-hue), 50%, 90%);
+    box-shadow: 0px 2px 1px hsl(var(--safety-mwr-hue), 50%, 90%); */
+    transition: all 0.35s ease-Out;
+    cursor: pointer;
+    /* :hover {
+      background-color: transparent;
+    } */
+  }
+  
 
   @media (max-width: 786px) {
     .search-input {
@@ -98,10 +139,12 @@ const SearchBoxContainerStyled = styled.section`
     }
   }
 `
-// function filterBtn(e) {
-//   console.log(`bubbled from target ${e.target.value}`)
-//   return searchQuery(e.target.value)
-// }
+
+
+
+function updateBtnClassName(e) {
+  e.target.className = "selected-btn"
+}
 
 const SearchBox = ({ queriedData, searchQuery, updateQuery, updatePrimaryFilter }) => {
   console.log("here here here")
@@ -123,17 +166,25 @@ const SearchBox = ({ queriedData, searchQuery, updateQuery, updatePrimaryFilter 
       </label>
 
       <ul className={"filter-container"} onClick={updatePrimaryFilter}>
-        <li className={"filter-item"}>
-          <button value="assigned">assigned</button>
+        <li>
+          <button className={"filter-item"} value="assigned">
+            assigned
+          </button>
         </li>
-        <li className={"filter-item"}>
-          <button value="unassigned">unassigned</button>
+        <li>
+          <button className={"filter-item"} value="unassigned">
+            unassigned
+          </button>
         </li>
-        <li className={"filter-item"}>
-          <button value="scheduled">scheduled</button>
+        <li>
+          <button className={"filter-item"} value="scheduled">
+            scheduled
+          </button>
         </li>
-        <li className={"filter-item"}>
-          <button value="denied">denied</button>
+        <li>
+          <button className={"filter-item"} value="denied">
+            denied
+          </button>
         </li>
       </ul>
     </SearchBoxContainerStyled>

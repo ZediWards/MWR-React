@@ -217,22 +217,36 @@ const IndexPage = () => {
   // return the {} in the [] from our db IF
   // any of that objects keys that is in setColumnsIncludedWithinSearch [] AND
   // that keys value gives a positve value with (.indexOf(searchQuery.toLowerCase()) > -1)
-
   // ******** Primary Filter States
   const [primaryFilter, setPrimaryFilter] = useState("")
   const [primaryFilterBool, setPrimaryFilterBool] = useState(false)
 
   // pass this down to the btns in searchbar component
   const updatePrimaryFilter = e => {
-    if (primaryFilter === e.target.value) {
-      setPrimaryFilter("")
-      setPrimaryFilterBool(false)
-      // css unselected color
-    }
-    setPrimaryFilter(e.target.value)
-    setPrimaryFilterBool(true)
-    // css selected color
+    // setPrimaryFilter("")
+    // setPrimaryFilterBool(false)
+    e.target.parentElement.parentElement.childNodes.forEach(item => {
+      if (
+        e.target.value === item.textContent &&
+        e.target.value !== primaryFilter
+      ) {
+        setPrimaryFilter(e.target.value)
+        setPrimaryFilterBool(true)
+        item.children[0].className = "filter-item-selected"
+      } else if (
+        e.target.value === item.textContent &&
+        e.target.value === primaryFilter
+      ) {
+        item.children[0].className = "filter-item"
+        setPrimaryFilter("")
+        setPrimaryFilterBool(false)
+        item.children[0].className = "filter-item"
+      } else {
+        item.children[0].className = "filter-item"
+      }
+    })
   }
+
 
   // ********** Primary FIlter included in search(db) function  ***WORKS***
   function search(db) {
