@@ -23,6 +23,7 @@ const DetailsBtn = styled.button`
   display: block;
   :hover {
     background-color: hsl(var(--general-mwr-hue), 50%, 90%);
+    /* border: 1px solid #fff; */
     /* color: var(--light-background); */
     /* border: none; */
   }

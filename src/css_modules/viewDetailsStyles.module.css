@@ -51,17 +51,17 @@
 .fieldset-flex > div > label > input,
 select {
   width: 100%;
-  background: pink;
+  background: #fff;
 }
 
 .fieldset-flex > div > div > label > input {
   width: 100%;
-  background: pink;
+  /* background: pink; */
 }
 
 .fieldset-flex > div > div > label > select {
   width: 100%;
-  background: pink;
+  /* background: pink; */
 }
 
 .emp-input-sect-one {
@@ -144,7 +144,7 @@ select {
   flex-wrap: wrap;
   /* gap: 1.5rem; */
   gap: 2rem;
-  border: 1px dashed black;
+  /* border: 1px dashed black; */
 }
 
 .flex-container > div > label {

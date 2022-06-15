@@ -782,7 +782,7 @@ const ViewDetails = ({
       </div>
 
       <input type="submit" value="Submit" className={style.formBtn} />
-      <button type="button"> create pdf </button>
+      {/* <button type="button"> create pdf </button> */}
 
       {/* ******************************************* */}
       {/* {

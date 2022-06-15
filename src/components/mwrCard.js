@@ -23,8 +23,8 @@ const StyledMwrCard = styled.div`
     prop.mwrType === "General"
       ? "var(--background-general)"
       : prop.mwrType === "Safety"
-      ? "var(--background-safety)"
-      : "var(--background-urgent)"};
+        ? "var(--background-safety)"
+        : "var(--background-urgent)"};
 `
 
 const StyledMWRTitle = styled.h2`
@@ -83,6 +83,7 @@ const StyledButton = styled.button`
   width: 90%;
   margin-top: 1.5rem;
   background-color: var(--light-background);
+  border: 1px solid var(--gray-light);
   border-radius: 10px;
   padding: 0.5rem 0.25rem;
   /*  */
@@ -93,6 +94,10 @@ const StyledButton = styled.button`
   cursor: pointer;
   &:hover {
     background-color: var(--transparent-light-background);
+    border: 1px solid #fff;
+    /* box-shadow: 0px 2px 1px #fff; */
+
+
     /* color: var(--light-background); */
     /* border: none; */
   }

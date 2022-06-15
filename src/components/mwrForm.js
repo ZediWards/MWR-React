@@ -78,7 +78,7 @@ const MwrFormStyled = styled.form`
     .problem-input,
     .solution-input {
       width: 100%;
-      background-color: pink;
+      /* background-color: pink; */
     }
   }
 

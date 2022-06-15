@@ -96,6 +96,7 @@ const SearchBoxContainerStyled = styled.section`
       /* border: 1px solid hsl(var(--safety-mwr-hue), 50%, 90%);
       box-shadow: 0px 2px 1px hsl(var(--safety-mwr-hue), 50%, 90%); */
       background-color: hsl(var(--safety-mwr-hue), 50%, 90%);
+      /* box-shadow: 0px 2px 1px #fff; */
     }
   }
 
@@ -158,7 +159,7 @@ const SearchBox = ({ queriedData, searchQuery, updateQuery, updatePrimaryFilter 
           onChange={updateQuery}
           name="search"
           id="search"
-          placeholder="searchable fields: type, department, problem, status"
+          placeholder="type, department, problem, status"
         />
       </label>
 
