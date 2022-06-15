@@ -326,5 +326,6 @@ const IndexPage = () => {
     </Layout>
   )
 }
+// comment for testing
 
 export default IndexPage
