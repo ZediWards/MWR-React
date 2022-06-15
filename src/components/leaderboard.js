@@ -62,8 +62,6 @@ const Leaderboard = ({ data }) => {
     (a, b) => b.numberOfSubmitions - a.numberOfSubmitions
   )
 
-  // console.log(desendingOrder)
-
   const buildLeaderBoardTable = desendingOrder.map((person, index) => {
     return (
       <tr key={index}>

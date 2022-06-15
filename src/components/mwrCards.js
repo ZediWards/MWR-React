@@ -22,9 +22,6 @@ const CardsFlexContainer = styled.div`
 `
 
 const MwrCards = ({ data, mwrTypes, handleClick }) => {
-  console.log(data.length)
-  console.table(data)
-
   const card = mwrTypes.map((type, index) => {
     const mwrType = data.filter(mwr => mwr.type === type)
     const unAssignedMwrType = mwrType.filter(mwr => mwr.status === "Unassigned")

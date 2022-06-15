@@ -147,9 +147,6 @@ function updateBtnClassName(e) {
 }
 
 const SearchBox = ({ queriedData, searchQuery, updateQuery, updatePrimaryFilter }) => {
-  console.log("here here here")
-  console.table(queriedData)
-  console.log(searchQuery)
   return (
     <SearchBoxContainerStyled>
       <label htmlFor="search" className={"input-container"}>

@@ -95,7 +95,6 @@ let problemTextAreaClasses = ["problem-input form-input"]
 let solutionTextAreaClasses = ["solution-input form-input"]
 
 const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
-  // console.table(data)
   const [formData, setFormData] = useState({
     // Employee section
     type: mwrType,

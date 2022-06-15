@@ -182,7 +182,6 @@ const IndexPage = () => {
   const handleClick = formData => {
     // example of adding item to the state array
     setDb([...db, formData])
-    console.table(db)
   }
 
   // updates an object already in db state
@@ -194,11 +193,7 @@ const IndexPage = () => {
       }
       return item
     })
-    // console.table(newDb)
     setDb([...updatedDb])
-    //   // example of adding item to the state array
-    //   // setDb([...db, mwrData[mwrIndex]])
-    //   console.table(mwrData)
   }
 
   // searching state db
