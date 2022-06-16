@@ -78,7 +78,8 @@ const MwrFormStyled = styled.form`
     .problem-input,
     .solution-input {
       width: 100%;
-      /* background-color: pink; */
+      /* background: pink; */
+      background: #fff;
     }
   }
 
@@ -94,9 +95,15 @@ const MwrFormStyled = styled.form`
 let problemTextAreaClasses = ["problem-input form-input"]
 let solutionTextAreaClasses = ["solution-input form-input"]
 
+function uniqueID() {
+  return Math.floor(Math.random() * Date.now())
+}
+
 const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
+  // console.table(data)
   const [formData, setFormData] = useState({
     // Employee section
+    id: uniqueID(),
     type: mwrType,
     date: "",
     name: "",
@@ -117,6 +124,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
     handleClick(formData)
     setFormData({
       // Employee section
+      id: uniqueID(),
       type: mwrType,
       date: "",
       name: "",
@@ -131,6 +139,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
       projectNum: "",
       scheduledDate: ""
     })
+    console.log(formData)
     handleClose()
     // pass this as a function to set state from the child
     // setIsOpen(true)

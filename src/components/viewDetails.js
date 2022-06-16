@@ -13,6 +13,17 @@ const DetailsFormStyled = styled.form`
   display: flex;
   max-width: 100%;
   flex-direction: column;
+
+  .legend {
+    background-color: hsl(var(--general-mwr-hue), 50%, 90%);
+    padding-inline: 0.5rem;
+  }
+
+  .flex-row-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 `
 
 const ViewDetails = ({
@@ -22,6 +33,8 @@ const ViewDetails = ({
   handleClose,
   mwrTypes
 }) => {
+  // console.table(mwrDetails)
+  // console.table(mwrDetails.id)
 
   // **************** varibles for mapping inside form********************
   const assignedDepartments = [
@@ -114,6 +127,7 @@ const ViewDetails = ({
   const [updateMwr, setUpdateMwr] = useState({
     ...mwrDetails
   })
+  console.table(updateMwr)
 
   // This will need to locate and update the specific object within the main state
   const handleSubmit = e => {
@@ -144,7 +158,7 @@ const ViewDetails = ({
       <div className={style.employeeInput}>
         {/* Employee Part */}
         <fieldset className={style.fieldsetFlex}>
-          <legend>Employee Inputs:</legend>
+          <legend className={"legend"}>Employee Inputs (read only):</legend>
 
           <div className={style.empInputSectOne}>
             <label htmlFor="date">
@@ -231,11 +245,45 @@ const ViewDetails = ({
               ></textarea>
             </label>
           </div>
+
+          <div className={"flex-row-wrap"}>
+            <label htmlFor="request-num" className={style.flex}>
+              <p className={style.inputLabel}>Request #:</p>
+              <input
+                onChange={e =>
+                  setUpdateMwr({ ...updateMwr, requestNum: e.target.value })
+                }
+                value={updateMwr.requestNum}
+                type="text"
+                name="request-num"
+                id="request-num"
+                className={`${style.inputReadableDisabled} ${style.growOne}`}
+                disabled={true}
+              />
+            </label>
+            <label htmlFor="requested-by-email" className={style.flex}>
+              <p className={style.inputLabel}>Requested By Email:</p>
+              <input
+                onChange={e =>
+                  setUpdateMwr({
+                    ...updateMwr,
+                    requestedByEmail: e.target.value
+                  })
+                }
+                value={updateMwr.requestedByEmail}
+                type="email"
+                name="requested-by-email"
+                id="requested-by-email"
+                className={`${style.inputReadableDisabled} ${style.growOne}`}
+                disabled={true}
+              />
+            </label>
+          </div>
         </fieldset>
 
         {/* Maintenence Part */}
         <fieldset className={style.fieldsetFlex}>
-          <legend>Maintenance:</legend>
+          <legend className={"legend"}>Maintenance:</legend>
 
           <div className={style.flexContainer}>
             {/* sec 1 */}
@@ -304,6 +352,9 @@ const ViewDetails = ({
                 // disabled={true}
                 />
               </label>
+            </div>
+
+            <div>
               <label htmlFor="scheduled-date" className={style.flex}>
                 <p className={style.inputLabel}>Scheduled Date:</p>
                 <input
@@ -320,23 +371,6 @@ const ViewDetails = ({
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
 
                 // disabled={true}
-                />
-              </label>
-            </div>
-
-            {/* sec 2 */}
-            <div>
-              <label htmlFor="open-history" className={style.flex}>
-                <p className={style.inputLabel}>Open/History</p>
-                <input
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, openHistory: e.target.value })
-                  }
-                  value={updateMwr.openHistory}
-                  type="text"
-                  name="open-history"
-                  id="open-history"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
                 />
               </label>
               <label htmlFor="job-status" className={style.flex}>
@@ -438,6 +472,36 @@ const ViewDetails = ({
                 // disabled={true}
                 />
               </label>
+              <label htmlFor="act-hours" className={style.flex}>
+                <p className={style.inputLabel}>Actual Hours:</p>
+                <input
+                  onChange={e =>
+                    setUpdateMwr({ ...updateMwr, actHours: e.target.value })
+                  }
+                  value={updateMwr.actHours}
+                  type="text"
+                  name="act-hours"
+                  id="act-hours"
+                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                // disabled={true}
+                />
+              </label>
+              <label htmlFor="downtime" className={style.flex}>
+                <p className={style.inputLabel}>Downtime:</p>
+                <input
+                  onChange={e =>
+                    setUpdateMwr({ ...updateMwr, downtime: e.target.value })
+                  }
+                  value={updateMwr.downtime}
+                  type="text"
+                  name="downtime"
+                  id="downtime"
+                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                // disabled={true}
+                />
+              </label>
+            </div>
+            <div>
               <label htmlFor="asset-id" className={style.flex}>
                 <p className={style.inputLabel}>Asset Id:</p>
                 <input
@@ -473,40 +537,10 @@ const ViewDetails = ({
                 ></textarea>
               </label>
             </div>
-            <div>
-              <label htmlFor="downtime" className={style.flex}>
-                <p className={style.inputLabel}>Downtime:</p>
-                <input
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, downtime: e.target.value })
-                  }
-                  value={updateMwr.downtime}
-                  type="text"
-                  name="downtime"
-                  id="downtime"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
-                />
-              </label>
-              <label htmlFor="act-hours" className={style.flex}>
-                <p className={style.inputLabel}>Actual Hours:</p>
-                <input
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, actHours: e.target.value })
-                  }
-                  value={updateMwr.actHours}
-                  type="text"
-                  name="act-hours"
-                  id="act-hours"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
-                />
-              </label>
-            </div>
           </div>
 
-          {/* Row 3 */}
           <hr />
+
           <div className={style.flexContainer}>
             <div>
               <label htmlFor="department" className={style.flex}>
@@ -531,8 +565,7 @@ const ViewDetails = ({
                   <option value="Compounding">Compounding</option>
                 </select>
               </label>
-            </div>
-            <div>
+
               <label htmlFor="site" className={style.flex}>
                 <p className={style.inputLabel}>Site:</p>
                 <textarea
@@ -552,107 +585,12 @@ const ViewDetails = ({
             </div>
           </div>
 
-          {/* Row 4 */}
           <hr />
+
           <div className={style.flexContainer}>
             <div>
-              <label htmlFor="request-num" className={style.flex}>
-                <p className={style.inputLabel}>Request #:</p>
-                <input
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, requestNum: e.target.value })
-                  }
-                  value={updateMwr.requestNum}
-                  type="text"
-                  name="request-num"
-                  id="request-num"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
-                />
-              </label>
-              <label htmlFor="requested-by" className={style.flex}>
-                <p className={style.inputLabel}>Requested By:</p>
-                <input
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, name: e.target.value })
-                  }
-                  value={updateMwr.name}
-                  type="text"
-                  name="requested-by"
-                  id="requested-by"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  disabled={true}
-                />
-              </label>
-            </div>
-
-            <div>
-              <label htmlFor="requested-by-email" className={style.flex}>
-                <p className={style.inputLabel}>Requested By Email:</p>
-                <input
-                  onChange={e =>
-                    setUpdateMwr({
-                      ...updateMwr,
-                      requestedByEmail: e.target.value
-                    })
-                  }
-                  value={updateMwr.requestedByEmail}
-                  type="email"
-                  name="requested-by-email"
-                  id="requested-by-email"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
-                />
-              </label>
-            </div>
-          </div>
-
-          {/* Row 5 */}
-          <hr />
-          <div className={style.flexContainer}>
-            <div>
-              {/* <select
-                onChange={e =>
-                  setUpdateMwr({ ...updateMwr, department: e.target.value })
-                }
-                value={updateMwr.department}
-                name="department"
-                id="department"
-                className={`${style.inputReadableDisabled} ${style.growOne}`}
-              >
-                <option
-                  value={updateMwr.department}
-                >{`${updateMwr.department}`}</option>
-                <option value="" disabled={true}>
-                  -
-                </option>
-                <option value="Shipping">Shipping</option>
-                <option value="Production">Production</option>
-                <option value="Compounding">Compounding</option>
-              </select> */}
               {/* ****************************************************************************************** */}
-              <label htmlFor="mwr-type" className={style.flex}>
-                <p className={style.inputLabel}>MWR Type:</p>
-                <select
-                  onChange={e =>
-                    setUpdateMwr({
-                      ...updateMwr,
-                      type: e.target.value
-                    })
-                  }
-                  value={updateMwr.type}
-                  name="mwr-type"
-                  id="mwr-type"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  disabled={true}
-                >
-                  <option value={updateMwr.type}>{`${updateMwr.type}`}</option>
-                  <option value="" disabled={true}>
-                    -
-                  </option>
-                  {mappedMwrTypes}
-                </select>
-              </label>
+
               <label htmlFor="assign-to" className={style.flex}>
                 <p className={style.inputLabel}>Assiged To:</p>
                 <select
@@ -677,32 +615,7 @@ const ViewDetails = ({
                   {mappedAssignedDepartments}
                 </select>
               </label>
-            </div>
-            <div>
-              <label htmlFor="assistant" className={style.flex}>
-                <p className={style.inputLabel}>Assistant:</p>
-                <select
-                  onChange={e =>
-                    setUpdateMwr({
-                      ...updateMwr,
-                      assistant: e.target.value
-                    })
-                  }
-                  value={updateMwr.assistant}
-                  name="assistant"
-                  id="assistant"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
-                >
-                  <option
-                    value={updateMwr.assistant}
-                  >{`${updateMwr.assistant}`}</option>
-                  <option value="" disabled={true}>
-                    -
-                  </option>
-                  {mappedAllMaintenanceEmployees}
-                </select>
-              </label>
+
               <label htmlFor="maintenance-team-member" className={style.flex}>
                 <p className={style.inputLabel}>Maintenance Team Member:</p>
                 <select
@@ -721,6 +634,31 @@ const ViewDetails = ({
                   <option
                     value={updateMwr.maintenanceTeamMember}
                   >{`${updateMwr.maintenanceTeamMember}`}</option>
+                  <option value="" disabled={true}>
+                    -
+                  </option>
+                  {mappedAllMaintenanceEmployees}
+                </select>
+              </label>
+
+              <label htmlFor="assistant" className={style.flex}>
+                <p className={style.inputLabel}>Assistant:</p>
+                <select
+                  onChange={e =>
+                    setUpdateMwr({
+                      ...updateMwr,
+                      assistant: e.target.value
+                    })
+                  }
+                  value={updateMwr.assistant}
+                  name="assistant"
+                  id="assistant"
+                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                // disabled={true}
+                >
+                  <option
+                    value={updateMwr.assistant}
+                  >{`${updateMwr.assistant}`}</option>
                   <option value="" disabled={true}>
                     -
                   </option>
@@ -782,7 +720,7 @@ const ViewDetails = ({
       </div>
 
       <input type="submit" value="Submit" className={style.formBtn} />
-      {/* <button type="button"> create pdf </button> */}
+      <button type="button"> create pdf </button>
 
       {/* ******************************************* */}
       {/* {
