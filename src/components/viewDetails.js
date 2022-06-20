@@ -249,27 +249,27 @@ const ViewDetails = ({
           <div className={"flex-row-wrap"}>
             <label htmlFor="request-num" className={style.flex}>
               <p className={style.inputLabel}>Request #:</p>
-              <input
+              {/* <input
                 onChange={e =>
-                  setUpdateMwr({ ...updateMwr, requestNum: e.target.value })
-                }
-                value={updateMwr.requestNum}
-                type="text"
-                name="request-num"
-                id="request-num"
-                className={`${style.inputReadableDisabled} ${style.growOne}`}
-                disabled={true}
+                  setUpdateMwr({ ...updateMwr, id: e.target.value })
+                } */}
+              value={updateMwr.id}
+              type="text"
+              name="request-num"
+              id="request-num"
+              className={`${style.inputReadableDisabled} ${style.growOne}`}
+              disabled={true}
               />
             </label>
             <label htmlFor="requested-by-email" className={style.flex}>
               <p className={style.inputLabel}>Requested By Email:</p>
               <input
-                onChange={e =>
-                  setUpdateMwr({
-                    ...updateMwr,
-                    requestedByEmail: e.target.value
-                  })
-                }
+                // onChange={e =>
+                //   setUpdateMwr({
+                //     ...updateMwr,
+                //     requestedByEmail: e.target.value
+                //   })
+                // }
                 value={updateMwr.requestedByEmail}
                 type="email"
                 name="requested-by-email"
