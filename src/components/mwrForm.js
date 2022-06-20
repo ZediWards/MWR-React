@@ -116,7 +116,33 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
     workOrderDate: "",
     workOrderTime: "",
     projectNum: "",
-    scheduledDate: ""
+    scheduledDate: "",
+    openHistory: "",
+    problemType: "",
+    daysToCOmplete: "",
+    completedDate: "",
+    dueDate: "",
+    estHours: "",
+    assetId: "",
+    assetDescription: "",
+    downtime: "",
+    actHours: "",
+    site: "",
+    requestNum: "",
+    requestedByEmail: "",
+    assignTo: "",
+    assistant: "",
+    maintenanceTeamMember: "",
+    briefDiscription: "",
+    workDiscription: "",
+    comments: "",
+    employeeComments: {
+      commentOne: "",
+      commentTwo: "",
+      commentThree: "",
+      commentsFive: "",
+      commentSix: ""
+    }
   })
 
   const handleSubmit = e => {
@@ -137,7 +163,33 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
       workOrderDate: "",
       workOrderTime: "",
       projectNum: "",
-      scheduledDate: ""
+      scheduledDate: "",
+      openHistory: "",
+      problemType: "",
+      daysToCOmplete: "",
+      completedDate: "",
+      dueDate: "",
+      estHours: "",
+      assetId: "",
+      assetDescription: "",
+      downtime: "",
+      actHours: "",
+      site: "",
+      requestNum: "",
+      requestedByEmail: "",
+      assignTo: "",
+      assistant: "",
+      maintenanceTeamMember: "",
+      briefDiscription: "",
+      workDiscription: "",
+      comments: "",
+      employeeComments: {
+        commentOne: "",
+        commentTwo: "",
+        commentThree: "",
+        commentsFive: "",
+        commentSix: ""
+      }
     })
     console.log(formData)
     handleClose()
