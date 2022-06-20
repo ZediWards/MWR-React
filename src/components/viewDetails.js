@@ -33,7 +33,7 @@ const ViewDetails = ({
   handleClose,
   mwrTypes
 }) => {
-  // console.table(mwrDetails)
+  console.table(mwrDetails)
   // console.table(mwrDetails.id)
 
   // **************** varibles for mapping inside form********************
@@ -112,7 +112,7 @@ const ViewDetails = ({
     )
   })
 
-  const jobStatus = ["Unassigned", "Assigned", "Completed"]
+  const jobStatus = ["unassigned", "assigned", "completed"]
   const mappedJobStatus = jobStatus.map((status, index) => {
     return (
       <option key={index} value={status}>
@@ -377,7 +377,7 @@ const ViewDetails = ({
                 <p className={style.inputLabel}>Job Status</p>
                 <select
                   onChange={e =>
-                    setUpdateMwr({ ...updateMwr, status: e.target.value })
+                    setUpdateMwr({ ...updateMwr, status: e.target.value.toLowerCase() })
                   }
                   value={updateMwr.status}
                   name="job-status"
