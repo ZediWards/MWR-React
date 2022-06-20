@@ -112,7 +112,7 @@ const ViewDetails = ({
     )
   })
 
-  const jobStatus = ["unassigned", "assigned", "completed"]
+  const jobStatus = ["unassigned", "assigned", "completed", "denied"]
   const mappedJobStatus = jobStatus.map((status, index) => {
     return (
       <option key={index} value={status}>

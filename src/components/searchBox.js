@@ -175,8 +175,8 @@ const SearchBox = ({ queriedData, searchQuery, updateQuery, updatePrimaryFilter 
           </button>
         </li>
         <li>
-          <button className={"filter-item"} value="scheduled">
-            scheduled
+          <button className={"filter-item"} value="completed">
+            completed
           </button>
         </li>
         <li>
