@@ -10,7 +10,8 @@
 // [X] details screen undefiened needs to be -
 //         - problem type, assigned to, maint. team member, assistant
   
-// [] why is prob/col in details a lighter text than other disabled fields?
+// [x] why is prob/col in details a lighter text than other disabled fields?
+      [x] color in stylesheet needed set to black
 
 // [] mwr types in details dropdown not lowercase. is it updating as lowercase?
 
