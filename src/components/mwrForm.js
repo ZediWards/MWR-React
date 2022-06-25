@@ -104,7 +104,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
   const [formData, setFormData] = useState({
     // Employee section
     id: uniqueID(),
-    type: mwrType,
+    type: mwrType.toLowerCase(),
     date: "",
     name: "",
     department: "",
@@ -151,7 +151,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
     setFormData({
       // Employee section
       id: uniqueID(),
-      type: mwrType,
+      type: mwrType.toLowerCase(),
       date: "",
       name: "",
       department: "",

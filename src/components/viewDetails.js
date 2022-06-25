@@ -94,7 +94,7 @@ const ViewDetails = ({
   // job status change if department is not undefined
   // open/history?
 
-  const problemType = ["Big", "Medium", "Small"]
+  const problemType = ["electrical", "structural", "plumbing", "outside contractor"]
   const mappedProblemTypes = problemType.map((problemType, index) => {
     return (
       <option key={index} value={problemType}>
@@ -106,8 +106,8 @@ const ViewDetails = ({
   // mwrTypes from props
   const mappedMwrTypes = mwrTypes.map((type, index) => {
     return (
-      <option key={index} value={type}>
-        {type}
+      <option key={index} value={type.toLowerCase()}>
+        {type.toLowerCase()}
       </option>
     )
   })
