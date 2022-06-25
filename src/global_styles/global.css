@@ -13,12 +13,8 @@
   --safety-mwr-hue: 2;
   --urgent-mwr-hue: 52;
 
-  /* Primary HUE */
-  --color-primary-hue: 340; /*purple*/
-  --color-primary: hsl(var(--color-primary-hue), 22%, 37%);
 
   /*  backgrounds  */
-  --background-body: hsl(var(--color-primary-hue), 5%, 98%);
   --background-general: hsl(var(--general-mwr-hue), 50%, 85%);
   --background-safety: hsl(var(--safety-mwr-hue), 50%, 85%);
   --background-urgent: hsl(var(--urgent-mwr-hue), 50%, 85%);
@@ -34,22 +30,13 @@
   --gray-light: hsl(var(--color-primary-hue), 15%, 90%);
   --gray-medium: hsl(var(--color-primary-hue), 15%, 75%);
 
-  /* Secondary HUE */
-  --color-secondary-hue: 132;
-  --color-secondary: hsl(var(--color-secondary-hue), 6%, 67%);
 
-  --secondary-gray-medium: hsl(var(--color-secondary-hue), 15%, 75%);
-  /* card shop link un-hovered color */
-  --secondary-gray-light: hsl(var(--color-secondary-hue), 15%, 90%);
 
-  /* ***************************************************************************** */
 
   /* Standard way of declaring colors */
   /* colors */
   --light-background: hsl(0, 0%, 99%);
   --text-black: hsl(0, 0%, 18%);
-  --dark-button-background: hsl(341, 22%, 37%);
-  --light-button-background: hsl(132, 6%, 67%);
 }
 
 /********************************* My resets 
@@ -59,6 +46,7 @@
   margin: 0;
   padding: 0;
   /* border: 1px solid red; */
+  color: var(--text-black);
 }
 
 /* html {
