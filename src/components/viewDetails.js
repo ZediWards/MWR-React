@@ -22,7 +22,7 @@ const DetailsFormStyled = styled.form`
   .flex-row-wrap {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 `
 
@@ -288,6 +288,23 @@ const ViewDetails = ({
           <div className={style.flexContainer}>
             {/* sec 1 */}
             <div>
+              <label htmlFor="project-num" className={style.flex}>
+                <p className={style.inputLabel}>Project Number:</p>
+                <input
+                  onChange={e =>
+                    setUpdateMwr({ ...updateMwr, projectNum: e.target.value })
+                  }
+                  value={updateMwr.projectNum}
+                  type="text"
+                  name="project-num"
+                  id="project-num"
+                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+
+                // disabled={true}
+                />
+              </label>
+            </div>
+            <div>
               <label htmlFor="work-order-num" className={style.flex}>
                 <p className={style.inputLabel}>Work Order Number:</p>
                 <input
@@ -337,21 +354,6 @@ const ViewDetails = ({
                 // disabled={true}
                 />
               </label>
-              <label htmlFor="project-num" className={style.flex}>
-                <p className={style.inputLabel}>Project Number:</p>
-                <input
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, projectNum: e.target.value })
-                  }
-                  value={updateMwr.projectNum}
-                  type="text"
-                  name="project-num"
-                  id="project-num"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-
-                // disabled={true}
-                />
-              </label>
             </div>
 
             <div>
@@ -373,26 +375,7 @@ const ViewDetails = ({
                 // disabled={true}
                 />
               </label>
-              <label htmlFor="job-status" className={style.flex}>
-                <p className={style.inputLabel}>Job Status</p>
-                <select
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, status: e.target.value.toLowerCase() })
-                  }
-                  value={updateMwr.status}
-                  name="job-status"
-                  id="job-status"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                >
-                  <option
-                    value={updateMwr.status}
-                  >{`${updateMwr.status}`}</option>
-                  <option value="-" disabled={true}>
-                    -
-                  </option>
-                  {mappedJobStatus}
-                </select>
-              </label>
+
 
               <label htmlFor="mwr-type" className={style.flex}>
                 <p className={style.inputLabel}>MWR Type</p>
@@ -435,6 +418,26 @@ const ViewDetails = ({
                   </option>
                   {/* TODO pass down mwrType from index.js and you can map through an create the option tags */}
                   {mappedProblemTypes}
+                </select>
+              </label>
+              <label htmlFor="job-status" className={style.flex}>
+                <p className={style.inputLabel}>Job Status</p>
+                <select
+                  onChange={e =>
+                    setUpdateMwr({ ...updateMwr, status: e.target.value.toLowerCase() })
+                  }
+                  value={updateMwr.status}
+                  name="job-status"
+                  id="job-status"
+                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                >
+                  <option
+                    value={updateMwr.status}
+                  >{`${updateMwr.status}`}</option>
+                  <option value="-" disabled={true}>
+                    -
+                  </option>
+                  {mappedJobStatus}
                 </select>
               </label>
             </div>
