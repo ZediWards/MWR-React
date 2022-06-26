@@ -145,7 +145,8 @@ const ViewDetails = ({
     e.preventDefault()
   }
 
-  //
+
+  // ******************************* JSX ************************************
   return (
     <DetailsFormStyled onSubmit={handleSubmit}>
       <header className={style.formHeaderFlex}>
@@ -155,14 +156,19 @@ const ViewDetails = ({
         </button>
       </header>
 
+      {/* FLEX COLUMN */}
       <div className={style.employeeInput}>
 
         {/* ****************** * Employee Part ********************** */}
 
+        {/* FLEX COLUMN */}
         <fieldset className={style.fieldsetFlex}>
           <legend className={"legend"}>Employee Inputs (read only):</legend>
 
+          {/* FLEX WRAP */}
           <div className={style.empInputSectOne}>
+
+            {/* Date */}
             <label htmlFor="date">
               <p className={style.inputLabel}>Date:</p>
               <input
@@ -179,6 +185,7 @@ const ViewDetails = ({
               />
             </label>
 
+            {/* Department */}
             <label htmlFor="department">
               <p className={style.inputLabel}>Department:</p>
               <select
@@ -201,6 +208,7 @@ const ViewDetails = ({
               </select>
             </label>
 
+            {/* Name */}
             <label htmlFor="name">
               <p className={style.inputLabel}>Name:</p>
               <input
@@ -216,7 +224,10 @@ const ViewDetails = ({
             </label>
           </div>
 
+          {/* FLEX WRAP */}
           <div className={style.empInputSectTwo}>
+
+            {/* Problem */}
             <label className={style.empInputSectTwoBlocks} htmlFor="problem">
               <p className={style.inputLabel}>Problem:</p>
               <textarea
@@ -232,6 +243,7 @@ const ViewDetails = ({
               ></textarea>
             </label>
 
+            {/* Solution */}
             <label className={style.empInputSectTwoBlocks} htmlFor="solution">
               <p className={style.inputLabel}>Solution:</p>
               <textarea
@@ -248,7 +260,10 @@ const ViewDetails = ({
             </label>
           </div>
 
+          {/* FLEX WRAP */}
           <div className={"flex-row-wrap"}>
+
+            {/* Request Number */}
             <label htmlFor="request-num" className={style.flex}>
               <p className={style.inputLabel}>Request #:</p>
               <input
@@ -263,6 +278,8 @@ const ViewDetails = ({
                 disabled={true}
               />
             </label>
+
+            {/* Email */}
             <label htmlFor="requested-by-email" className={style.flex}>
               <p className={style.inputLabel}>Requested By Email:</p>
               <input
