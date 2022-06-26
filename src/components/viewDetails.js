@@ -515,7 +515,60 @@ const ViewDetails = ({
 
           <hr />
 
-          {/************************** Section 3 ******************************/}
+          {/**************************** Section 3 ****************************/}
+          {/* FLEX */}
+          <div className={style.empInputSectTwo}>
+
+            {/* Brief Description */}
+            <label
+              className={style.empInputSectTwoBlocks}
+              htmlFor="brief-discription"
+            >
+              <p className={style.inputLabel}>Brief Discription:</p>
+              <textarea
+                onChange={e =>
+                  setUpdateMwr({
+                    ...updateMwr,
+                    briefDiscription: e.target.value
+                  })
+                }
+                // readOnly
+                value={updateMwr.briefDiscription}
+                name="brief-discription"
+                id="brief-discription"
+                className={style.empSecTwoTextAreaInputReadableDisabled}
+                rows="5"
+              // cols="75"
+              ></textarea>
+            </label>
+
+            {/* Work Description */}
+            <label
+              className={style.empInputSectTwoBlocks}
+              htmlFor="work-discription"
+            >
+              <p className={style.inputLabel}>Work Discription:</p>
+              <textarea
+                onChange={e =>
+                  setUpdateMwr({
+                    ...updateMwr,
+                    workDiscription: e.target.value
+                  })
+                }
+                // readOnly
+                value={updateMwr.workDiscription}
+                name="work-discription"
+                id="work-discription"
+                className={style.empSecTwoTextAreaInputReadableDisabled}
+                rows="5"
+              // cols="75"
+              ></textarea>
+            </label>
+          </div>
+
+          <hr />
+
+          {/************************** Section 4 ******************************/}
           {/* FLEX */}
           <div className={style.flexContainer}>
 
@@ -604,7 +657,7 @@ const ViewDetails = ({
 
           <hr />
 
-          {/************************** Section 4 ******************************/}
+          {/************************** Section 5 ******************************/}
           {/* FLEX */}
           <div className={style.flexContainer}>
 
@@ -717,58 +770,8 @@ const ViewDetails = ({
             </div>
           </div>
 
-          <hr />
 
-          {/**************************** Section 5 ****************************/}
-          {/* FLEX */}
-          <div className={style.empInputSectTwo}>
 
-            {/* Brief Description */}
-            <label
-              className={style.empInputSectTwoBlocks}
-              htmlFor="brief-discription"
-            >
-              <p className={style.inputLabel}>Brief Discription:</p>
-              <textarea
-                onChange={e =>
-                  setUpdateMwr({
-                    ...updateMwr,
-                    briefDiscription: e.target.value
-                  })
-                }
-                // readOnly
-                value={updateMwr.briefDiscription}
-                name="brief-discription"
-                id="brief-discription"
-                className={style.empSecTwoTextAreaInputReadableDisabled}
-                rows="5"
-              // cols="75"
-              ></textarea>
-            </label>
-
-            {/* Work Description */}
-            <label
-              className={style.empInputSectTwoBlocks}
-              htmlFor="work-discription"
-            >
-              <p className={style.inputLabel}>Work Discription:</p>
-              <textarea
-                onChange={e =>
-                  setUpdateMwr({
-                    ...updateMwr,
-                    workDiscription: e.target.value
-                  })
-                }
-                // readOnly
-                value={updateMwr.workDiscription}
-                name="work-discription"
-                id="work-discription"
-                className={style.empSecTwoTextAreaInputReadableDisabled}
-                rows="5"
-              // cols="75"
-              ></textarea>
-            </label>
-          </div>
         </fieldset>
       </div>
 
