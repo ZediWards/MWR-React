@@ -24,11 +24,10 @@ const MwrFormStyled = styled.form`
     border: 1px solid var(--gray-light);
     box-shadow: 0px 2px 1px var(--gray-light);
     color: var(--text-black);
-    /* transition: all 0.35s ease-Out; */
     cursor: pointer;
     padding: 0.25rem 0.5rem;
     border-radius: 10px;
-    /* display: block; */
+    align-self: center;
     :hover {
       border: 1px solid var(--background-safety);
       background-color: var(--light-background);
@@ -38,6 +37,10 @@ const MwrFormStyled = styled.form`
   label {
     flex-grow: 1;
   }
+
+  .select-styles {
+  padding-block: 0.12rem;
+}
 
   .problem-label,
   .solution-label {
@@ -52,6 +55,7 @@ const MwrFormStyled = styled.form`
 
   .form-input {
     margin-bottom: 0.5rem;
+    border: 1px solid threedlightshadow;
   }
 
   .form-btn {
@@ -60,7 +64,14 @@ const MwrFormStyled = styled.form`
     width: 100%;
     margin-block: 1rem;
     text-align: center;
-    background-color: rgb(191, 211, 166);
+    transition: all 0.35s ease-Out;
+    background-color: var(--btn-background-based-on-general);
+    border: 1px solid var(--background-general);
+    border-radius: 10px;
+    :hover {
+      cursor: pointer;
+      background-color: var(--background-general);
+    }
   }
 
   @media (max-width: 409px) {
@@ -231,6 +242,8 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
           className="form-input"
         />
       </label>
+
+      {/* Department */}
       <label htmlFor="department">
         <p className="input-label">Department:</p>
         <select
@@ -240,7 +253,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
           value={formData.department}
           name="department"
           id="department"
-          className="form-input"
+          className={`form-input select-styles`}
         >
           <option value="shipping">Shipping</option>
           <option value="production">Production</option>
@@ -271,6 +284,8 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
           cols="75"
         ></textarea>
       </label>
+
+      {/* Submit */}
       <input type="submit" value="Submit" className="form-btn" />
     </MwrFormStyled>
   )
