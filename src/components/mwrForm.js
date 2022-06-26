@@ -24,14 +24,14 @@ const MwrFormStyled = styled.form`
     border: 1px solid var(--gray-light);
     box-shadow: 0px 2px 1px var(--gray-light);
     color: var(--text-black);
-    transition: all 0.35s ease-Out;
+    /* transition: all 0.35s ease-Out; */
     cursor: pointer;
     padding: 0.25rem 0.5rem;
     border-radius: 10px;
     /* display: block; */
     :hover {
-      background-color: var(--background-safety);
-      color: var(--light-background);
+      border: 1px solid var(--background-safety);
+      background-color: var(--light-background);
     }
   }
 
