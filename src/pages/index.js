@@ -12,10 +12,10 @@ const IndexPage = () => {
     {
       id: 1,
       // Employee section
-      type: "General",
+      type: "general",
       date: "2021-11-12",
       name: "Jon Doe",
-      department: "Update Test",
+      department: "compounding",
       problem: "stuff is broke, details test",
       solution: "fix it",
       // Maininence Section
@@ -79,87 +79,69 @@ const IndexPage = () => {
     {
       id: 2,
       // Employee section
-      type: "General",
-      department: "compounding",
-      name: "Jon Doe",
-      problem: "stuff is broke 2",
-      solution: "fix it 2",
-      date: "12-1-2021",
-      // Maininence Section
-      status: "assigned",
-      workOrderNum: "",
-      workOrderDate: "",
-      workOrderTime: "",
-      projectNum: "",
-      scheduledDate: ""
-    },
-    {
-      id: 3,
-      // Employee section
-      type: "Urgent",
-      department: "Production Line 1",
-      name: "Jimmy Dodo",
-      problem: "stuff is broke 2",
-      solution: "fix it 2",
-      date: "10-24-2021",
-      // Maininence Section
-      status: "completed",
-      workOrderNum: "",
-      workOrderDate: "",
-      workOrderTime: "",
-      projectNum: "",
-      scheduledDate: ""
-    },
-    {
-      id: 4,
-      // Employee section
-      type: "Urgent",
-      department: "Production Line 2",
-      name: "Jane Dee",
-      problem: "stuff is broke",
-      solution: "fix it",
-      date: "09-13-2021",
-      // Maininence Section
-      status: "denied",
-      workOrderNum: "",
-      workOrderDate: "",
-      workOrderTime: "",
-      projectNum: "",
-      scheduledDate: ""
-    },
-    {
-      id: 5,
-      // Employee section
-      type: "General",
-      department: "Production Line 2",
-      name: "Jane Dee",
-      problem: "stuff is broke 2",
-      solution: "fix it 2",
-      date: "04-06-2022",
-      // Maininence Section
-      status: "assigned",
-      workOrderNum: "",
-      workOrderDate: "",
-      workOrderTime: "",
-      projectNum: "",
-      scheduledDate: ""
-    },
-    {
-      id: 6,
-      // Employee section
-      type: "Safety",
-      department: "compunding",
-      name: "Jane Dee",
-      problem: "stuff is broke",
-      solution: "fix it",
-      date: "2019-06-28",
+      type: "safety",
+      date: "2021-11-12",
+      name: "Jane Doe",
+      department: "production line 1",
+      problem: "still broke",
+      solution: "please fix it",
       // Maininence Section
       status: "unassigned",
-      workOrderNum: "",
-      workOrderDate: "",
-      workOrderTime: "",
-      projectNum: "",
-      scheduledDate: ""
+      workOrderNum: "002",
+      workOrderDate: "2021-12-21",
+      workOrderTime: "11:00",
+      projectNum: "008",
+      scheduledDate: "2021-12-22",
+      // needs applied to all
+      openHistory: "",
+      problemType: "",
+      //
+      // left
+      daysToCOmplete: "",
+      // right
+      completedDate: "",
+      //
+      // left
+      dueDate: "",
+      estHours: "",
+      assetId: "",
+      assetDescription: "",
+      // right
+      downtime: "",
+      actHours: "",
+      //
+      // left
+      // department
+      site: "",
+      //
+      // left
+      requestNum: "",
+      // name: "",
+      // right
+      requestedByEmail: "",
+      //
+      // left
+      // assignType: "", making just type. No nned to duplicate data
+      assignTo: "",
+      // right
+      assistant: "",
+      maintenanceTeamMember: "",
+      //
+      // left
+      briefDiscription: "",
+      workDiscription: "",
+      //
+      // left
+      comments: "",
+      //
+      // full (left through right)
+      employeeComments: {
+        commentOne: "",
+        commentTwo: "",
+        commentThree: "",
+        commentsFive: "",
+        commentSix: ""
+      }
     }
   ])
   const [mwrTypes, setMwrTypes] = useState(["General", "Urgent", "Safety"])
