@@ -255,9 +255,10 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
           id="department"
           className={`form-input select-styles`}
         >
-          <option value="shipping">Shipping</option>
-          <option value="production">Production</option>
-          <option value="compounding">Compounding</option>
+          <option value="shipping">shipping</option>
+          <option value="production line 1">production line 1</option>
+          <option value="production line 2">production line 2</option>
+          <option value="compounding">compounding</option>
         </select>
       </label>
       <label htmlFor="problem" className="problem-label">

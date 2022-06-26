@@ -199,9 +199,6 @@ const ViewDetails = ({
                 className={`${style.inputReadableDisabled} ${style.selectStyles}`}
                 disabled={true}
               >
-                {/* <option value="shipping">Shipping</option>
-                <option value="production">Production</option>
-                <option value="compounding">Compounding</option> */}
                 <option
                   value={mwrDetails.department}
                 >{`${mwrDetails.department}`}</option>
@@ -504,9 +501,10 @@ const ViewDetails = ({
                   <option value="" disabled={true}>
                     -
                   </option>
-                  <option value="Shipping">Shipping</option>
-                  <option value="Production">Production</option>
-                  <option value="Compounding">Compounding</option>
+                  <option value="shipping">shipping</option>
+                  <option value="production line 1">production line 1</option>
+                  <option value="production line 2">production line 2</option>
+                  <option value="compounding">compounding</option>
                 </select>
               </label>
 
