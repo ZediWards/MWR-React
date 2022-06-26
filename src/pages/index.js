@@ -19,7 +19,7 @@ const IndexPage = () => {
       problem: "stuff is broke, details test",
       solution: "fix it",
       // Maininence Section
-      status: "unassigned",
+      status: "assigned",
       workOrderNum: "001",
       workOrderDate: "2021-11-21",
       workOrderTime: "12:00",
