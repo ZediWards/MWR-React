@@ -159,7 +159,7 @@ const ViewDetails = ({
       {/* FLEX COLUMN */}
       <div className={style.employeeInput}>
 
-        {/* ****************** * Employee Part ********************** */}
+        {/* ************************* Employee Part ***************************/}
 
         {/* FLEX COLUMN */}
         <fieldset className={style.fieldsetFlex}>

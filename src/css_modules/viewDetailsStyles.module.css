@@ -93,7 +93,6 @@ select {
 
 .emp-input-sect-two-blocks {
   flex-grow: 1;
-  /* background: pink; */
 }
 
 @media (max-width: 1200px) {
@@ -104,6 +103,7 @@ select {
 
 .emp-sec-two-text-area-input-readable-disabled {
   width: 100%;
+  border: 1px solid threedlightshadow;
 }
 
 .input-label {
@@ -128,6 +128,7 @@ select {
 .input-readable-disabled {
   background-color: white;
   margin-bottom: 0.5rem;
+  border: 1px solid threedlightshadow;
 }
 
 /* ************************************** */
