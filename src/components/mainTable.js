@@ -50,6 +50,13 @@ const SectionForTableStyled = styled.section`
     }
   }
 `
+// Truncating problem string
+function truncateString(str, num) {
+  if (str.length <= num) {
+    return str
+  }
+  return str.slice(0, num) + '...'
+}
 
 const FullTable = ({ queriedData, searchQuery, updateQuery, mwrTypes, handleUpdate, updatePrimaryFilter }) => {
   // building table data
@@ -59,7 +66,7 @@ const FullTable = ({ queriedData, searchQuery, updateQuery, mwrTypes, handleUpda
       <tr key={index}>
         <td className={style.textCenter}>{mwr.date}</td>
         <td className={style.textCenter}>{mwr.department}</td>
-        <td className={style.textCenter}>{mwr.problem}</td>
+        <td className={style.textCenter}>{truncateString(mwr.problem, 30)}</td>
         <td className={style.textCenter}>{mwr.status}</td>
         <td className={style.textCenter}>
           {/* button will be same as "create" btn on mwr card, modal pops up with fields to populate */}
