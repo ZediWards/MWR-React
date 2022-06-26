@@ -14,7 +14,6 @@ const LayoutDiv = styled.div`
   grid-template-rows: auto 1fr auto;
   padding: 0rem 3rem 0rem 3rem;
   margin: auto;
-  border: solid 2px red;
   overflow: scroll;
   @media (max-width: 888px) {
     padding: 0rem 1rem 0rem 1rem;
