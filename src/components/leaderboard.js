@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import * as style from "../css_modules/leaderboard.module.css"
 
-// ******* Styled COmponents ************
+// ******* Styled Components ************
 const LeaderboardContainerStyled = styled.section`
   margin-top: 3rem;
   /* makes table responsive */
@@ -25,8 +25,8 @@ const TableStyled = styled.table`
     background-color: #f2f2f2;
   }
   tr:hover {
-    /* background-color: coral; */
-    background-color: rgba(255, 127, 80, 0.25);
+    transition: all 0.35s ease-Out;
+    background-color: var(--table-hover-background-color) ;
   }
 `
 

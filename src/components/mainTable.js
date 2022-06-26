@@ -44,8 +44,9 @@ const SectionForTableStyled = styled.section`
       background-color: #f2f2f2;
     }
     tr:hover {
-      /* background-color: coral; */
-      background-color: rgba(255, 127, 80, 0.25);
+    transition: all 0.35s ease-Out;
+    background-color: var(--table-hover-background-color) ;
+
     }
   }
 `
