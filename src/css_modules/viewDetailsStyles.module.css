@@ -32,6 +32,10 @@
   text-align: center;
 }
 
+.select-styles {
+  padding-block: 0.12rem;
+}
+
 .employee-input {
   display: flex;
   flex-direction: column;

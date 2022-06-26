@@ -196,7 +196,7 @@ const ViewDetails = ({
                 // value={mwrDetails.department}
                 name="department"
                 id="department"
-                className={style.inputReadableDisabled}
+                className={`${style.inputReadableDisabled} ${style.selectStyles}`}
                 disabled={true}
               >
                 {/* <option value="shipping">Shipping</option>
@@ -419,7 +419,7 @@ const ViewDetails = ({
                   value={updateMwr.type}
                   name="mwr-type"
                   id="mwr-type"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                  className={`${style.inputReadableDisabled} ${style.growOne} ${style.selectStyles}`}
                 >
                   <option value={updateMwr.type}>{`${updateMwr.type}`}</option>
                   <option value="-" disabled={true}>
@@ -441,7 +441,7 @@ const ViewDetails = ({
                   value={updateMwr.problemType}
                   name="problem-type"
                   id="problem-type"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                  className={`${style.inputReadableDisabled} ${style.growOne} ${style.selectStyles}`}
                 >
                   <option
                     value={updateMwr.problemType}
@@ -464,7 +464,7 @@ const ViewDetails = ({
                   value={updateMwr.status}
                   name="job-status"
                   id="job-status"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                  className={`${style.inputReadableDisabled} ${style.growOne} ${style.selectStyles}`}
                 >
                   <option
                     value={updateMwr.status}
@@ -496,7 +496,7 @@ const ViewDetails = ({
                   value={updateMwr.department}
                   name="department"
                   id="department"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                  className={`${style.inputReadableDisabled} ${style.growOne} ${style.selectStyles}`}
                 >
                   <option
                     value={updateMwr.department}
@@ -605,7 +605,7 @@ const ViewDetails = ({
                   value={updateMwr.assignTo}
                   name="assign-to"
                   id="assign-to"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                  className={`${style.inputReadableDisabled} ${style.growOne} ${style.selectStyles}`}
                 // disabled={true}
                 >
                   <option
@@ -631,7 +631,7 @@ const ViewDetails = ({
                   value={updateMwr.maintenanceTeamMember}
                   name="maintenance-team-member"
                   id="maintenance-team-member"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                  className={`${style.inputReadableDisabled} ${style.growOne} ${style.selectStyles}`}
                 // disabled={true}
                 >
                   <option
@@ -657,7 +657,7 @@ const ViewDetails = ({
                   value={updateMwr.assistant}
                   name="assistant"
                   id="assistant"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                  className={`${style.inputReadableDisabled} ${style.growOne} ${style.selectStyles}`}
                 // disabled={true}
                 >
                   <option
