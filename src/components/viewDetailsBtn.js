@@ -9,7 +9,7 @@ import ViewDetailsModalContainer from "./viewDetailsModalContainer"
 // **** Styled Components ****
 const DetailsBtn = styled.button`
   background-color: var(--light-background);
-  border: 1px solid var(--gray-light);
+  border: 1px solid var(--background-general);
   box-shadow: 0px 2px 1px var(--gray-light);
   color: var(--text-black);
   transition: all 0.35s ease-Out;
