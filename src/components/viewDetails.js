@@ -156,7 +156,9 @@ const ViewDetails = ({
       </header>
 
       <div className={style.employeeInput}>
-        {/* Employee Part */}
+
+        {/* ****************** * Employee Part ********************** */}
+
         <fieldset className={style.fieldsetFlex}>
           <legend className={"legend"}>Employee Inputs (read only):</legend>
 
@@ -281,13 +283,18 @@ const ViewDetails = ({
           </div>
         </fieldset>
 
-        {/* Maintenence Part */}
+        {/************************ Maintenance Part **************************/}
+
         <fieldset className={style.fieldsetFlex}>
           <legend className={"legend"}>Maintenance:</legend>
 
+          {/************************* Section 1  **************************** */}
+          {/* FLEX */}
           <div className={style.flexContainer}>
-            {/* sec 1 */}
+
+            {/* Flex Item */}
             <div>
+              {/* Project Number */}
               <label htmlFor="project-num" className={style.flex}>
                 <p className={style.inputLabel}>Project Number:</p>
                 <input
@@ -304,7 +311,10 @@ const ViewDetails = ({
                 />
               </label>
             </div>
+
+            {/* Flex Item */}
             <div>
+              {/* Work Order Number */}
               <label htmlFor="work-order-num" className={style.flex}>
                 <p className={style.inputLabel}>Work Order Number:</p>
                 <input
@@ -319,6 +329,8 @@ const ViewDetails = ({
                 // disabled={true}
                 />
               </label>
+
+              {/* Work Order Date */}
               <label htmlFor="work-order-date" className={style.flex}>
                 <p className={style.inputLabel}>Work Order Date:</p>
                 <input
@@ -337,6 +349,8 @@ const ViewDetails = ({
                 // disabled={true}
                 />
               </label>
+
+              {/* Work Order Time */}
               <label htmlFor="work-order-time" className={style.flex}>
                 <p className={style.inputLabel}>Work Order Time:</p>
                 <input
@@ -356,7 +370,9 @@ const ViewDetails = ({
               </label>
             </div>
 
+            {/* FLex Item */}
             <div>
+              {/* Scheduled Date */}
               <label htmlFor="scheduled-date" className={style.flex}>
                 <p className={style.inputLabel}>Scheduled Date:</p>
                 <input
@@ -376,7 +392,7 @@ const ViewDetails = ({
                 />
               </label>
 
-
+              {/* MWR Type */}
               <label htmlFor="mwr-type" className={style.flex}>
                 <p className={style.inputLabel}>MWR Type</p>
                 <select
@@ -398,7 +414,7 @@ const ViewDetails = ({
                 </select>
               </label>
 
-              {/* don't know what this field would have entered in it from maintenence */}
+              {/* Problem Type */}
               <label htmlFor="problem-type" className={style.flex}>
                 <p className={style.inputLabel}>Problem Type</p>
                 <select
@@ -420,6 +436,8 @@ const ViewDetails = ({
                   {mappedProblemTypes}
                 </select>
               </label>
+
+              {/* Job Status */}
               <label htmlFor="job-status" className={style.flex}>
                 <p className={style.inputLabel}>Job Status</p>
                 <select
@@ -443,109 +461,15 @@ const ViewDetails = ({
             </div>
           </div>
 
-          {/* Row 2 */}
-          <hr />
-          <div className={style.flexContainer}>
-            <div>
-              <label htmlFor="due-date" className={style.flex}>
-                <p className={style.inputLabel}>Due Date:</p>
-                <input
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, dueDate: e.target.value })
-                  }
-                  value={updateMwr.dueDate}
-                  type="date"
-                  name="due-date"
-                  id="due-date"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
-                />
-              </label>
-              <label htmlFor="est-hours" className={style.flex}>
-                <p className={style.inputLabel}>Est. Hours:</p>
-                <input
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, estHours: e.target.value })
-                  }
-                  value={updateMwr.estHours}
-                  type="text"
-                  name="est-hours"
-                  id="est-hours"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
-                />
-              </label>
-              <label htmlFor="act-hours" className={style.flex}>
-                <p className={style.inputLabel}>Actual Hours:</p>
-                <input
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, actHours: e.target.value })
-                  }
-                  value={updateMwr.actHours}
-                  type="text"
-                  name="act-hours"
-                  id="act-hours"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
-                />
-              </label>
-              <label htmlFor="downtime" className={style.flex}>
-                <p className={style.inputLabel}>Downtime:</p>
-                <input
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, downtime: e.target.value })
-                  }
-                  value={updateMwr.downtime}
-                  type="text"
-                  name="downtime"
-                  id="downtime"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
-                />
-              </label>
-            </div>
-            <div>
-              <label htmlFor="asset-id" className={style.flex}>
-                <p className={style.inputLabel}>Asset Id:</p>
-                <input
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, assetId: e.target.value })
-                  }
-                  value={updateMwr.assetId}
-                  type="text"
-                  name="asset-id"
-                  id="asset-id"
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                // disabled={true}
-                />
-              </label>
-              <label htmlFor="asset-description" className={style.flex}>
-                <p className={style.inputLabel}>Asset Description:</p>
-                <textarea
-                  onChange={e =>
-                    setUpdateMwr({
-                      ...updateMwr,
-                      assetDescription: e.target.value
-                    })
-                  }
-                  // readOnly
-                  value={updateMwr.assetDescription}
-                  name="asset-description"
-                  id="asset-description"
-                  // className={style.empSecTwoTextAreaInputReadableDisabled}
-                  // lesson learned: multiple classes
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  rows="1"
-                // cols="50"
-                ></textarea>
-              </label>
-            </div>
-          </div>
-
           <hr />
 
+          {/************************* Section 2 *******************************/}
+          {/* FLEX */}
           <div className={style.flexContainer}>
+
+            {/* Flex Item */}
             <div>
+              {/* Department */}
               <label htmlFor="department" className={style.flex}>
                 <p className={style.inputLabel}>Department:</p>
                 <select
@@ -569,6 +493,7 @@ const ViewDetails = ({
                 </select>
               </label>
 
+              {/* Site */}
               <label htmlFor="site" className={style.flex}>
                 <p className={style.inputLabel}>Site:</p>
                 <textarea
@@ -590,10 +515,14 @@ const ViewDetails = ({
 
           <hr />
 
+          {/************************** Section 3 ******************************/}
+          {/* FLEX */}
           <div className={style.flexContainer}>
-            <div>
-              {/* ****************************************************************************************** */}
 
+            {/* Flex Item */}
+            <div>
+
+              {/* Assigned To */}
               <label htmlFor="assign-to" className={style.flex}>
                 <p className={style.inputLabel}>Assiged To:</p>
                 <select
@@ -619,6 +548,7 @@ const ViewDetails = ({
                 </select>
               </label>
 
+              {/* Team Member */}
               <label htmlFor="maintenance-team-member" className={style.flex}>
                 <p className={style.inputLabel}>Maintenance Team Member:</p>
                 <select
@@ -644,6 +574,7 @@ const ViewDetails = ({
                 </select>
               </label>
 
+              {/* Assistant */}
               <label htmlFor="assistant" className={style.flex}>
                 <p className={style.inputLabel}>Assistant:</p>
                 <select
@@ -671,10 +602,128 @@ const ViewDetails = ({
             </div>
           </div>
 
-          {/* Row 6 */}
           <hr />
 
+          {/************************** Section 4 ******************************/}
+          {/* FLEX */}
+          <div className={style.flexContainer}>
+
+            {/* Flex Item */}
+            <div>
+              {/* Due Date */}
+              <label htmlFor="due-date" className={style.flex}>
+                <p className={style.inputLabel}>Due Date:</p>
+                <input
+                  onChange={e =>
+                    setUpdateMwr({ ...updateMwr, dueDate: e.target.value })
+                  }
+                  value={updateMwr.dueDate}
+                  type="date"
+                  name="due-date"
+                  id="due-date"
+                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                // disabled={true}
+                />
+              </label>
+
+              {/* Est. Hours */}
+              <label htmlFor="est-hours" className={style.flex}>
+                <p className={style.inputLabel}>Est. Hours:</p>
+                <input
+                  onChange={e =>
+                    setUpdateMwr({ ...updateMwr, estHours: e.target.value })
+                  }
+                  value={updateMwr.estHours}
+                  type="text"
+                  name="est-hours"
+                  id="est-hours"
+                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                // disabled={true}
+                />
+              </label>
+
+              {/* Act. Hours */}
+              <label htmlFor="act-hours" className={style.flex}>
+                <p className={style.inputLabel}>Actual Hours:</p>
+                <input
+                  onChange={e =>
+                    setUpdateMwr({ ...updateMwr, actHours: e.target.value })
+                  }
+                  value={updateMwr.actHours}
+                  type="text"
+                  name="act-hours"
+                  id="act-hours"
+                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                // disabled={true}
+                />
+              </label>
+
+              {/* Downtime */}
+              <label htmlFor="downtime" className={style.flex}>
+                <p className={style.inputLabel}>Downtime:</p>
+                <input
+                  onChange={e =>
+                    setUpdateMwr({ ...updateMwr, downtime: e.target.value })
+                  }
+                  value={updateMwr.downtime}
+                  type="text"
+                  name="downtime"
+                  id="downtime"
+                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                // disabled={true}
+                />
+              </label>
+            </div>
+
+            {/* Flex Item */}
+            <div>
+              {/* Asset ID */}
+              <label htmlFor="asset-id" className={style.flex}>
+                <p className={style.inputLabel}>Asset Id:</p>
+                <input
+                  onChange={e =>
+                    setUpdateMwr({ ...updateMwr, assetId: e.target.value })
+                  }
+                  value={updateMwr.assetId}
+                  type="text"
+                  name="asset-id"
+                  id="asset-id"
+                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                // disabled={true}
+                />
+              </label>
+
+              {/* Asset Description */}
+              <label htmlFor="asset-description" className={style.flex}>
+                <p className={style.inputLabel}>Asset Description:</p>
+                <textarea
+                  onChange={e =>
+                    setUpdateMwr({
+                      ...updateMwr,
+                      assetDescription: e.target.value
+                    })
+                  }
+                  // readOnly
+                  value={updateMwr.assetDescription}
+                  name="asset-description"
+                  id="asset-description"
+                  // className={style.empSecTwoTextAreaInputReadableDisabled}
+                  // lesson learned: multiple classes
+                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                  rows="1"
+                // cols="50"
+                ></textarea>
+              </label>
+            </div>
+          </div>
+
+          <hr />
+
+          {/**************************** Section 5 ****************************/}
+          {/* FLEX */}
           <div className={style.empInputSectTwo}>
+
+            {/* Brief Description */}
             <label
               className={style.empInputSectTwoBlocks}
               htmlFor="brief-discription"
@@ -697,6 +746,7 @@ const ViewDetails = ({
               ></textarea>
             </label>
 
+            {/* Work Description */}
             <label
               className={style.empInputSectTwoBlocks}
               htmlFor="work-discription"
