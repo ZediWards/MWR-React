@@ -144,6 +144,8 @@ const IndexPage = () => {
       }
     }
   ])
+
+  // Lesson learned: anytime referencing these to data{} need to add .toLowerCase()
   const [mwrTypes, setMwrTypes] = useState(["General", "Urgent", "Safety"])
 
   // local storage persistance setup

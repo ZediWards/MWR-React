@@ -23,10 +23,10 @@ const CardsFlexContainer = styled.div`
 
 const MwrCards = ({ data, mwrTypes, handleClick }) => {
   const card = mwrTypes.map((type, index) => {
-    const mwrType = data.filter(mwr => mwr.type === type)
-    const unAssignedMwrType = mwrType.filter(mwr => mwr.status === "Unassigned")
-    const assignedMwrType = mwrType.filter(mwr => mwr.status === "Assigned")
-    const completedMwrType = mwrType.filter(mwr => mwr.status === "Completed")
+    const mwrType = data.filter(mwr => mwr.type === type.toLowerCase())
+    const unAssignedMwrType = mwrType.filter(mwr => mwr.status === "unassigned")
+    const assignedMwrType = mwrType.filter(mwr => mwr.status === "assigned")
+    const completedMwrType = mwrType.filter(mwr => mwr.status === "completed")
 
     return (
       <MwrCard
