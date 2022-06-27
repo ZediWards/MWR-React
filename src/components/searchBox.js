@@ -85,20 +85,24 @@ const SearchBoxContainerStyled = styled.section`
     text-align: center;
     padding-inline: 1rem;
     padding-block: 0;
-    border: 1px solid var(--gray-light);
+    border: 1px solid threedlightshadow;
     box-shadow: 0px 2px 1px var(--gray-light);
     border-radius: 10px;
     margin-bottom: 0;
     background-color: transparent;
-    transition: all 0.35s ease-Out;
+    /* TODO how to have transition without the weird border effect? */
+    /* transition: all 0.35s ease-Out; */
     cursor: pointer;
-    :hover {
-      /* border: 1px solid hsl(var(--safety-mwr-hue), 50%, 90%);
-      box-shadow: 0px 2px 1px hsl(var(--safety-mwr-hue), 50%, 90%); */
+    /* :hover {
       background-color: hsl(var(--safety-mwr-hue), 50%, 90%);
-      /* box-shadow: 0px 2px 1px #fff; */
-    }
+    } */
   }
+
+  @media(hover: hover) and (pointer: fine) {
+    .filter-item:hover {
+      background-color: hsl(var(--safety-mwr-hue), 50%, 90%);
+    }
+}
 
   .filter-item-selected {
     text-align: center;
@@ -113,9 +117,6 @@ const SearchBoxContainerStyled = styled.section`
     box-shadow: 0px 2px 1px hsl(var(--safety-mwr-hue), 50%, 90%); */
     transition: all 0.35s ease-Out;
     cursor: pointer;
-    /* :hover {
-      background-color: transparent;
-    } */
   }
   
 
