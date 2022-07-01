@@ -3,8 +3,10 @@ import { useState } from "react"
 
 import styled from "styled-components"
 
-// import { PDFViewer } from "@react-pdf/renderer"
-// import { PdfDocument } from "./pdfTemplate"
+// ********** use for PDF ****************
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer"
+// import MyDocument from "./pdfTEST"
+import { PdfDocument } from "./pdfTemplate"
 
 import * as style from "../css_modules/viewDetailsStyles.module.css"
 
@@ -794,23 +796,17 @@ const ViewDetails = ({
       <button type="button"> create pdf </button>
 
       {/* ******************************************* */}
-      {/* {
+      <div>
         <PDFDownloadLink
-          document={<PdfDocument data={updateMwr} />}
-          fileName="mwr.pdf"
-          style={{
-            textDecoration: "none",
-            padding: "10px",
-            color: "#4a4a4a",
-            backgroundColor: "#f2f2f2",
-            border: "1px solid #4a4a4a"
-          }}
+          document={<PdfDocument data={mwrDetails} />}
+          fileName="somename.pdf"
         >
           {({ blob, url, loading, error }) =>
-            loading ? "Loading document..." : "Download Pdf"
+            loading ? "Loading document..." : "Download now!"
           }
         </PDFDownloadLink>
-      } */}
+      </div>
+
     </DetailsFormStyled>
   )
 }
