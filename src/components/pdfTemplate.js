@@ -1,11 +1,13 @@
 import * as React from "react"
 
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer"
+import { Page, Text, View, Document, StyleSheet, Font } from "@react-pdf/renderer"
 
 
 // Create styles
 const styles = StyleSheet.create({
   page: {
+    fontSize: 14,
+    fontFamily: "Courier",
     // flexDirection: "row",
     backgroundColor: "#E4E4E4"
   },
@@ -15,7 +17,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     margin: 10,
     padding: 10,
-    flexGrow: 1,
+    // flexGrow: 1,
     border: '1px solid red',
   },
   flexItemTextBox: {
@@ -26,10 +28,25 @@ const styles = StyleSheet.create({
     // width: "50%"
   },
   label: {
-    color: "green",
+    // color: "green",
+    fontFamily: "Helvetica-Bold",
+    color: "hsl(0, 0%, 18%)"
   },
   output: {
-    color: "red",
+    // color: "red",
+    marginTop: 4,
+    fontFamily: "Helvetica",
+    color: "hsl(0, 0%, 18%)"
+
+  },
+  marginTop: {
+    marginTop: 20
+  },
+  width100: {
+    width: "100%"
+  },
+  horizontalLine: {
+    borderBottom: "0.5 solid hsl(0, 0%, 18%)"
   }
 })
 
@@ -70,63 +87,188 @@ export function PdfDocument({ data }) {
             <Text style={styles.output}>{data.workOrderTime}</Text>
           </View>
         </View>
+
         {/* FLEX ROW */}
         <View style={styles.section}>
-          {/* sheduled date*/}
-          <Text>{data.scheduledDate}</Text>
+          {/* FLEX ITEM */}
+          {/* scheduled date*/}
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Scheduled Date:</Text>
+            <Text style={styles.output}>{data.scheduledDate}</Text>
+          </View>
           {/* mwr type */}
-          <Text>{data.type}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>MWR Type:</Text>
+            <Text style={styles.output}>{data.type}</Text>
+          </View>
           {/* problem type */}
-          <Text>{data.problemType}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Problem Type:</Text>
+            <Text style={styles.output}>{data.problemType}</Text>
+          </View>
           {/* job status*/}
-          <Text>{data.status}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Job Status:</Text>
+            <Text style={styles.output}>{data.status}</Text>
+          </View>
         </View>
 
         {/*  ************* LINE BREAK ************************** */}
+        <View style={styles.horizontalLine}></View>
+        {/* **************************************************** */}
+
         {/* FLEX ROW */}
         <View style={styles.section}>
+          {/* FLEX ITEM */}
           {/* department*/}
-          <Text>{data.department}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Department:</Text>
+            <Text style={styles.output}>{data.department}</Text>
+          </View>
           {/* site*/}
-          <Text>{data.site}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Site:</Text>
+            <Text style={styles.output}>{data.site}</Text>
+          </View>
           {/* */}
         </View>
+
         {/*  ************* LINE BREAK ************************** */}
-        {/* FLEX ROW */}
+        <View style={styles.horizontalLine}></View>
+        {/* **************************************************** */}
+
         <View style={styles.section}>
+          {/* FLEX ITEM */}
           {/* brief description */}
-          <Text>{data.briefDiscription}</Text>
+          <View style={[styles.flexItemTextBox, styles.width100]}>
+            <Text style={styles.label}>Brief Description:</Text>
+            <Text style={styles.output}>{data.briefDiscription}</Text>
+          </View>
           {/* work description*/}
-          <Text>{data.workDiscription}</Text>
+          <View style={[styles.width100, styles.flexItemTextBox, styles.marginTop]}>
+            <Text style={styles.label}>Work Description:</Text>
+            <Text style={styles.output}>{data.workDiscription}</Text>
+          </View>
         </View>
+
         {/*  ************* LINE BREAK ************************** */}
+        <View style={styles.horizontalLine}></View>
+        {/* **************************************************** */}
+
         {/* FLEX ROW */}
         <View style={styles.section}>
+          {/* FLEX ITEM */}
           {/* assigned to */}
-          <Text>{data.assignTo}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Assigned To:</Text>
+            <Text style={styles.output}>{data.assignTo}</Text>
+          </View>
           {/* maintenance team member*/}
-          <Text>{data.maintenanceTeamMember}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Maintenance Team Member:</Text>
+            <Text style={styles.output}>{data.maintenanceTeamMember}</Text>
+          </View>
           {/* assistant*/}
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Assistant:</Text>
+            <Text style={styles.output}>{data.assistant}</Text>
+          </View>
         </View>
+
         {/* FLEX ROW */}
         <View style={styles.section}>
+          {/* FLEX ITEM */}
           {/* due date*/}
-          <Text>{data.dueDate}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Due Date:</Text>
+            <Text style={styles.output}>{data.dueDate}</Text>
+          </View>
           {/* est hours*/}
-          <Text>{data.estHours}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Est. Hours:</Text>
+            <Text style={styles.output}>{data.estHours}</Text>
+          </View>
           {/* actual hours*/}
-          <Text>{data.actHours}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Actual Hours:</Text>
+            <Text style={styles.output}>{data.actHours}</Text>
+          </View>
           {/* downtime*/}
-          <Text>{data.downtime}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Downtime:</Text>
+            <Text style={styles.output}>{data.downtime}</Text>
+          </View>
         </View>
+
         {/*  ************* LINE BREAK ************************** */}
+        <View style={styles.horizontalLine}></View>
+        {/* **************************************************** */}
+
         {/* FLEX ROW */}
         <View style={styles.section}>
+          {/* FLEX ITEM */}
           {/* asset id*/}
-          <Text>{data.assetId}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Asset ID:</Text>
+            <Text style={styles.output}>{data.assetId}</Text>
+          </View>
           {/* asset descriptions*/}
-          <Text>{data.assetDescription}</Text>
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Asset Description:</Text>
+            <Text style={styles.output}>{data.assetDescription}</Text>
+          </View>
         </View>
+
+        {/*  ************* LINE BREAK ************************** */}
+        <View style={styles.horizontalLine}></View>
+        {/* **************************************************** */}
+
+        {/* FLEX ROW */}
+        <View style={styles.section}>
+          {/* FLEX ITEM */}
+          {/* MWR submition date*/}
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>MWR Submition Date:</Text>
+            <Text style={styles.output}>{data.date}</Text>
+          </View>
+          {/* department*/}
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Department:</Text>
+            <Text style={styles.output}>{data.department}</Text>
+          </View>
+          {/* request ID*/}
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Request ID:</Text>
+            <Text style={styles.output}>{data.id}</Text>
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          {/* name*/}
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Name:</Text>
+            <Text style={styles.output}>{data.name}</Text>
+          </View>
+          {/* Requested by Email */}
+          <View style={styles.flexItemTextBox}>
+            <Text style={styles.label}>Requested by Email:</Text>
+            <Text style={styles.output}>{data.requestedByEmail}</Text>
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          {/* Problem */}
+          <View style={[styles.flexItemTextBox, styles.width100]}>
+            <Text style={styles.label}>Problem:</Text>
+            <Text style={styles.output}>{data.problem}</Text>
+          </View>
+          {/* Solution*/}
+          <View style={[styles.flexItemTextBox, styles.width100, styles.marginTop]}>
+            <Text style={styles.label}>Solution:</Text>
+            <Text style={styles.output}>{data.solution}</Text>
+          </View>
+        </View>
+
       </Page>
     </Document>
   )
