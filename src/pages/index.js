@@ -51,7 +51,7 @@ const IndexPage = () => {
       requestNum: "",
       // name: "",
       // right
-      requestedByEmail: "",
+      requestedByEmail: "test@tesing.com",
       //
       // left
       // assignType: "", making just type. No nned to duplicate data
@@ -118,7 +118,7 @@ const IndexPage = () => {
       requestNum: "",
       // name: "",
       // right
-      requestedByEmail: "",
+      requestedByEmail: "test2@testing.com",
       //
       // left
       // assignType: "", making just type. No nned to duplicate data
