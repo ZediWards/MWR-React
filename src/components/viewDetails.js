@@ -40,7 +40,7 @@ const ViewDetails = ({
 
   // **************** varibles for mapping inside form********************
   const assignedDepartments = [
-    " Production Maintenance",
+    "Production Maintenance",
     "Building Maintneance"
   ]
   const mappedAssignedDepartments = assignedDepartments.map(
