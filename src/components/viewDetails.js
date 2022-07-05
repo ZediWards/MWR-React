@@ -4,7 +4,7 @@ import { useState } from "react"
 import styled from "styled-components"
 
 // ********** use for PDF ****************
-import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer"
+import { PDFDownloadLink } from "@react-pdf/renderer"
 // import MyDocument from "./pdfTEST"
 import { PdfDocument } from "./pdfTemplate"
 
@@ -263,7 +263,7 @@ const ViewDetails = ({
           <div className={"flex-row-wrap"}>
 
             {/* Request Number */}
-            <label htmlFor="request-num" className={style.flex}>
+            <label htmlFor="request-num" >
               <p className={style.inputLabel}>Request #:</p>
               <input
                 // onChange={e =>
@@ -279,7 +279,7 @@ const ViewDetails = ({
             </label>
 
             {/* Email */}
-            <label htmlFor="requested-by-email" className={style.flex}>
+            <label htmlFor="requested-by-email" >
               <p className={style.inputLabel}>Requested By Email:</p>
               <input
                 // onChange={e =>
@@ -311,7 +311,7 @@ const ViewDetails = ({
             {/* Flex Item */}
             <div>
               {/* Project Number */}
-              <label htmlFor="project-num" className={style.flex}>
+              <label htmlFor="project-num" >
                 <p className={style.inputLabel}>Project Number:</p>
                 <input
                   onChange={e =>
@@ -331,7 +331,7 @@ const ViewDetails = ({
             {/* Flex Item */}
             <div>
               {/* Work Order Number */}
-              <label htmlFor="work-order-num" className={style.flex}>
+              <label htmlFor="work-order-num" >
                 <p className={style.inputLabel}>Work Order Number:</p>
                 <input
                   onChange={e =>
@@ -347,7 +347,7 @@ const ViewDetails = ({
               </label>
 
               {/* Work Order Date */}
-              <label htmlFor="work-order-date" className={style.flex}>
+              <label htmlFor="work-order-date" >
                 <p className={style.inputLabel}>Work Order Date:</p>
                 <input
                   onChange={e =>
@@ -367,7 +367,7 @@ const ViewDetails = ({
               </label>
 
               {/* Work Order Time */}
-              <label htmlFor="work-order-time" className={style.flex}>
+              <label htmlFor="work-order-time" >
                 <p className={style.inputLabel}>Work Order Time:</p>
                 <input
                   onChange={e =>
@@ -389,7 +389,7 @@ const ViewDetails = ({
             {/* FLex Item */}
             <div>
               {/* Scheduled Date */}
-              <label htmlFor="scheduled-date" className={style.flex}>
+              <label htmlFor="scheduled-date" >
                 <p className={style.inputLabel}>Scheduled Date:</p>
                 <input
                   onChange={e =>
@@ -409,7 +409,7 @@ const ViewDetails = ({
               </label>
 
               {/* MWR Type */}
-              <label htmlFor="mwr-type" className={style.flex}>
+              <label htmlFor="mwr-type" >
                 <p className={style.inputLabel}>MWR Type</p>
                 <select
                   onChange={e =>
@@ -431,7 +431,7 @@ const ViewDetails = ({
               </label>
 
               {/* Problem Type */}
-              <label htmlFor="problem-type" className={style.flex}>
+              <label htmlFor="problem-type" >
                 <p className={style.inputLabel}>Problem Type</p>
                 <select
                   onChange={e =>
@@ -454,7 +454,7 @@ const ViewDetails = ({
               </label>
 
               {/* Job Status */}
-              <label htmlFor="job-status" className={style.flex}>
+              <label htmlFor="job-status" >
                 <p className={style.inputLabel}>Job Status</p>
                 <select
                   onChange={e =>
@@ -486,7 +486,7 @@ const ViewDetails = ({
             {/* Flex Item */}
             <div>
               {/* Department */}
-              <label htmlFor="department" className={style.flex}>
+              <label htmlFor="department" >
                 <p className={style.inputLabel}>Department:</p>
                 <select
                   onChange={e =>
@@ -511,7 +511,7 @@ const ViewDetails = ({
               </label>
 
               {/* Site */}
-              <label htmlFor="site" className={style.flex}>
+              <label htmlFor="site" >
                 <p className={style.inputLabel}>Site:</p>
                 <textarea
                   onChange={e =>
@@ -593,7 +593,7 @@ const ViewDetails = ({
             <div>
 
               {/* Assigned To */}
-              <label htmlFor="assign-to" className={style.flex}>
+              <label htmlFor="assign-to" >
                 <p className={style.inputLabel}>Assiged To:</p>
                 <select
                   onChange={e =>
@@ -619,7 +619,7 @@ const ViewDetails = ({
               </label>
 
               {/* Team Member */}
-              <label htmlFor="maintenance-team-member" className={style.flex}>
+              <label htmlFor="maintenance-team-member" >
                 <p className={style.inputLabel}>Maintenance Team Member:</p>
                 <select
                   onChange={e =>
@@ -645,7 +645,7 @@ const ViewDetails = ({
               </label>
 
               {/* Assistant */}
-              <label htmlFor="assistant" className={style.flex}>
+              <label htmlFor="assistant" >
                 <p className={style.inputLabel}>Assistant:</p>
                 <select
                   onChange={e =>
@@ -681,7 +681,7 @@ const ViewDetails = ({
             {/* Flex Item */}
             <div>
               {/* Due Date */}
-              <label htmlFor="due-date" className={style.flex}>
+              <label htmlFor="due-date" >
                 <p className={style.inputLabel}>Due Date:</p>
                 <input
                   onChange={e =>
@@ -697,7 +697,7 @@ const ViewDetails = ({
               </label>
 
               {/* Est. Hours */}
-              <label htmlFor="est-hours" className={style.flex}>
+              <label htmlFor="est-hours" >
                 <p className={style.inputLabel}>Est. Hours:</p>
                 <input
                   onChange={e =>
@@ -713,7 +713,7 @@ const ViewDetails = ({
               </label>
 
               {/* Act. Hours */}
-              <label htmlFor="act-hours" className={style.flex}>
+              <label htmlFor="act-hours" >
                 <p className={style.inputLabel}>Actual Hours:</p>
                 <input
                   onChange={e =>
@@ -729,7 +729,7 @@ const ViewDetails = ({
               </label>
 
               {/* Downtime */}
-              <label htmlFor="downtime" className={style.flex}>
+              <label htmlFor="downtime" >
                 <p className={style.inputLabel}>Downtime:</p>
                 <input
                   onChange={e =>
@@ -748,7 +748,7 @@ const ViewDetails = ({
             {/* Flex Item */}
             <div>
               {/* Asset ID */}
-              <label htmlFor="asset-id" className={style.flex}>
+              <label htmlFor="asset-id" >
                 <p className={style.inputLabel}>Asset Id:</p>
                 <input
                   onChange={e =>
@@ -764,7 +764,7 @@ const ViewDetails = ({
               </label>
 
               {/* Asset Description */}
-              <label htmlFor="asset-description" className={style.flex}>
+              <label htmlFor="asset-description" >
                 <p className={style.inputLabel}>Asset Description:</p>
                 <textarea
                   onChange={e =>
