@@ -220,6 +220,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
         </button>
       </div>
 
+      {/* Date */}
       <label htmlFor="date">
         <p className="input-label">Date:</p>
         <input
@@ -231,6 +232,8 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
           className="form-input"
         />
       </label>
+
+      {/* Name */}
       <label htmlFor="name">
         <p className="input-label">Name:</p>
         <input
@@ -239,6 +242,19 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
           type="text"
           name="name"
           id="name"
+          className="form-input"
+        />
+      </label>
+
+      {/* Email */}
+      <label htmlFor="email">
+        <p className="input-label">E-mail:</p>
+        <input
+          onChange={e => setFormData({ ...formData, requestedByEmail: e.target.value })}
+          value={formData.requestedByEmail}
+          type="email"
+          name="email"
+          id="email"
           className="form-input"
         />
       </label>

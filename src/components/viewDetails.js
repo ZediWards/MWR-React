@@ -3,8 +3,10 @@ import { useState } from "react"
 
 import styled from "styled-components"
 
-// import { PDFViewer } from "@react-pdf/renderer"
-// import { PdfDocument } from "./pdfTemplate"
+// ********** use for PDF ****************
+import { PDFDownloadLink } from "@react-pdf/renderer"
+// import MyDocument from "./pdfTEST"
+import { PdfDocument } from "./pdfTemplate"
 
 import * as style from "../css_modules/viewDetailsStyles.module.css"
 
@@ -33,12 +35,13 @@ const ViewDetails = ({
   handleClose,
   mwrTypes
 }) => {
-  console.table(mwrDetails)
+  // console.log(`vv this is mwrDetails state in viewDetails.js vv`)
+  // console.table(mwrDetails)
   // console.table(mwrDetails.id)
 
   // **************** varibles for mapping inside form********************
   const assignedDepartments = [
-    " Production Maintenance",
+    "Production Maintenance",
     "Building Maintneance"
   ]
   const mappedAssignedDepartments = assignedDepartments.map(
@@ -121,18 +124,20 @@ const ViewDetails = ({
     )
   })
 
-  // **********************************************
+  // ******************* end of mapping varibles ***************************
 
   // destructured prop incase it was still attatched to original state. Now should be mutable then applied back to original state
   const [updateMwr, setUpdateMwr] = useState({
     ...mwrDetails
   })
+  // console.log(`vv this is updateMwr state in viewDetails.js vv`)
   console.table(updateMwr)
 
   // This will need to locate and update the specific object within the main state
   const handleSubmit = e => {
     e.preventDefault()
     // debugging
+    console.log("submit is firing")
     handleUpdate(updateMwr, mwrIndex)
     handleClose()
     // pass this as a function to set state from the child
@@ -140,15 +145,19 @@ const ViewDetails = ({
   }
 
   //
+
   // pdf generation
-  const handlePdf = e => {
-    e.preventDefault()
+  const handlePdf = (e) => {
+    e.stopPropagation()
+    console.log("handle pdf is firing")
+    handleUpdate(updateMwr, mwrIndex)
+    handleClose()
   }
 
 
   // ******************************* JSX ************************************
   return (
-    <DetailsFormStyled onSubmit={handleSubmit}>
+    <DetailsFormStyled value="form" onSubmit={handleSubmit}>
       <header className={style.formHeaderFlex}>
         <h1 className={style.textCenter}>MWR Submition</h1>
         <button onClick={handleClose} className={style.closeBtn}>
@@ -261,7 +270,7 @@ const ViewDetails = ({
           <div className={"flex-row-wrap"}>
 
             {/* Request Number */}
-            <label htmlFor="request-num" className={style.flex}>
+            <label htmlFor="request-num" >
               <p className={style.inputLabel}>Request #:</p>
               <input
                 // onChange={e =>
@@ -277,7 +286,7 @@ const ViewDetails = ({
             </label>
 
             {/* Email */}
-            <label htmlFor="requested-by-email" className={style.flex}>
+            <label htmlFor="requested-by-email" >
               <p className={style.inputLabel}>Requested By Email:</p>
               <input
                 // onChange={e =>
@@ -309,7 +318,7 @@ const ViewDetails = ({
             {/* Flex Item */}
             <div>
               {/* Project Number */}
-              <label htmlFor="project-num" className={style.flex}>
+              <label htmlFor="project-num" >
                 <p className={style.inputLabel}>Project Number:</p>
                 <input
                   onChange={e =>
@@ -329,7 +338,7 @@ const ViewDetails = ({
             {/* Flex Item */}
             <div>
               {/* Work Order Number */}
-              <label htmlFor="work-order-num" className={style.flex}>
+              <label htmlFor="work-order-num" >
                 <p className={style.inputLabel}>Work Order Number:</p>
                 <input
                   onChange={e =>
@@ -345,7 +354,7 @@ const ViewDetails = ({
               </label>
 
               {/* Work Order Date */}
-              <label htmlFor="work-order-date" className={style.flex}>
+              <label htmlFor="work-order-date" >
                 <p className={style.inputLabel}>Work Order Date:</p>
                 <input
                   onChange={e =>
@@ -365,7 +374,7 @@ const ViewDetails = ({
               </label>
 
               {/* Work Order Time */}
-              <label htmlFor="work-order-time" className={style.flex}>
+              <label htmlFor="work-order-time" >
                 <p className={style.inputLabel}>Work Order Time:</p>
                 <input
                   onChange={e =>
@@ -387,7 +396,7 @@ const ViewDetails = ({
             {/* FLex Item */}
             <div>
               {/* Scheduled Date */}
-              <label htmlFor="scheduled-date" className={style.flex}>
+              <label htmlFor="scheduled-date" >
                 <p className={style.inputLabel}>Scheduled Date:</p>
                 <input
                   onChange={e =>
@@ -407,7 +416,7 @@ const ViewDetails = ({
               </label>
 
               {/* MWR Type */}
-              <label htmlFor="mwr-type" className={style.flex}>
+              <label htmlFor="mwr-type" >
                 <p className={style.inputLabel}>MWR Type</p>
                 <select
                   onChange={e =>
@@ -429,7 +438,7 @@ const ViewDetails = ({
               </label>
 
               {/* Problem Type */}
-              <label htmlFor="problem-type" className={style.flex}>
+              <label htmlFor="problem-type" >
                 <p className={style.inputLabel}>Problem Type</p>
                 <select
                   onChange={e =>
@@ -452,7 +461,7 @@ const ViewDetails = ({
               </label>
 
               {/* Job Status */}
-              <label htmlFor="job-status" className={style.flex}>
+              <label htmlFor="job-status" >
                 <p className={style.inputLabel}>Job Status</p>
                 <select
                   onChange={e =>
@@ -484,7 +493,7 @@ const ViewDetails = ({
             {/* Flex Item */}
             <div>
               {/* Department */}
-              <label htmlFor="department" className={style.flex}>
+              <label htmlFor="department" >
                 <p className={style.inputLabel}>Department:</p>
                 <select
                   onChange={e =>
@@ -509,7 +518,7 @@ const ViewDetails = ({
               </label>
 
               {/* Site */}
-              <label htmlFor="site" className={style.flex}>
+              <label htmlFor="site" >
                 <p className={style.inputLabel}>Site:</p>
                 <textarea
                   onChange={e =>
@@ -591,7 +600,7 @@ const ViewDetails = ({
             <div>
 
               {/* Assigned To */}
-              <label htmlFor="assign-to" className={style.flex}>
+              <label htmlFor="assign-to" >
                 <p className={style.inputLabel}>Assiged To:</p>
                 <select
                   onChange={e =>
@@ -617,7 +626,7 @@ const ViewDetails = ({
               </label>
 
               {/* Team Member */}
-              <label htmlFor="maintenance-team-member" className={style.flex}>
+              <label htmlFor="maintenance-team-member" >
                 <p className={style.inputLabel}>Maintenance Team Member:</p>
                 <select
                   onChange={e =>
@@ -643,7 +652,7 @@ const ViewDetails = ({
               </label>
 
               {/* Assistant */}
-              <label htmlFor="assistant" className={style.flex}>
+              <label htmlFor="assistant" >
                 <p className={style.inputLabel}>Assistant:</p>
                 <select
                   onChange={e =>
@@ -679,7 +688,7 @@ const ViewDetails = ({
             {/* Flex Item */}
             <div>
               {/* Due Date */}
-              <label htmlFor="due-date" className={style.flex}>
+              <label htmlFor="due-date" >
                 <p className={style.inputLabel}>Due Date:</p>
                 <input
                   onChange={e =>
@@ -695,7 +704,7 @@ const ViewDetails = ({
               </label>
 
               {/* Est. Hours */}
-              <label htmlFor="est-hours" className={style.flex}>
+              <label htmlFor="est-hours" >
                 <p className={style.inputLabel}>Est. Hours:</p>
                 <input
                   onChange={e =>
@@ -711,7 +720,7 @@ const ViewDetails = ({
               </label>
 
               {/* Act. Hours */}
-              <label htmlFor="act-hours" className={style.flex}>
+              <label htmlFor="act-hours" >
                 <p className={style.inputLabel}>Actual Hours:</p>
                 <input
                   onChange={e =>
@@ -727,7 +736,7 @@ const ViewDetails = ({
               </label>
 
               {/* Downtime */}
-              <label htmlFor="downtime" className={style.flex}>
+              <label htmlFor="downtime" >
                 <p className={style.inputLabel}>Downtime:</p>
                 <input
                   onChange={e =>
@@ -746,7 +755,7 @@ const ViewDetails = ({
             {/* Flex Item */}
             <div>
               {/* Asset ID */}
-              <label htmlFor="asset-id" className={style.flex}>
+              <label htmlFor="asset-id" >
                 <p className={style.inputLabel}>Asset Id:</p>
                 <input
                   onChange={e =>
@@ -762,7 +771,7 @@ const ViewDetails = ({
               </label>
 
               {/* Asset Description */}
-              <label htmlFor="asset-description" className={style.flex}>
+              <label htmlFor="asset-description" >
                 <p className={style.inputLabel}>Asset Description:</p>
                 <textarea
                   onChange={e =>
@@ -790,27 +799,24 @@ const ViewDetails = ({
         </fieldset>
       </div>
 
-      <input type="submit" value="Submit" className={style.formBtn} />
-      <button type="button"> create pdf </button>
+      {/* save btn */}
+      <input type="submit" value="Save" className={style.formBtn} />
 
-      {/* ******************************************* */}
-      {/* {
+      {/* save & generate pdf btn */}
+
+      <button className={style.pdfFormBtn} type="button" onClickCapture={handlePdf}>
         <PDFDownloadLink
+          className={style.pdfDownloadBtn}
           document={<PdfDocument data={updateMwr} />}
-          fileName="mwr.pdf"
-          style={{
-            textDecoration: "none",
-            padding: "10px",
-            color: "#4a4a4a",
-            backgroundColor: "#f2f2f2",
-            border: "1px solid #4a4a4a"
-          }}
+          fileName="somename.pdf"
         >
           {({ blob, url, loading, error }) =>
-            loading ? "Loading document..." : "Download Pdf"
+            loading ? "Loading document..." : "Save and Create PDF"
           }
         </PDFDownloadLink>
-      } */}
+      </button>
+
+
     </DetailsFormStyled>
   )
 }

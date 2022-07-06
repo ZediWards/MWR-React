@@ -121,12 +121,67 @@ select {
 }
 
 .form-btn {
-  display: block;
-  padding: 0.75rem;
+  /* display: block; */
+  /* padding: 0.75rem; */
   width: 100%;
-  margin-block: 1rem;
-  text-align: center;
-  background-color: rgb(191, 211, 166);
+  margin-bottom: 1rem;
+  /* margin-block: 1rem; */
+  /* text-align: center; */
+  /* background-color: rgb(191, 211, 166); */
+
+  background-color: var(--btn-background-based-on-general);
+  /* background-color: var(--light-background); */
+  border: 1px solid var(--background-general);
+  box-shadow: 0px 2px 1px var(--gray-light);
+  color: var(--text-black);
+  transition: all 0.35s ease-Out;
+  cursor: pointer;
+  /* width: 100%; */
+  min-width: min-content;
+  padding: 0.5rem;
+  margin-inline: auto;
+  font-size: 16px;
+  border-radius: 10px;
+  display: block;
+}
+
+.form-btn:hover {
+  background-color: hsl(var(--general-mwr-hue), 50%, 90%);
+}
+
+
+.pdf-form-btn {
+  /* display: block; */
+  /* padding: 0.75rem; */
+  width: 100%;
+  /* margin-block: 0.5rem; */
+  /* text-align: center; */
+  /* background-color: rgb(191, 211, 166); */
+
+  background-color: var(--light-background);
+  border: 1px solid var(--background-general);
+  box-shadow: 0px 2px 1px var(--gray-light);
+  color: var(--text-black);
+  transition: all 0.35s ease-Out;
+  cursor: pointer;
+  /* width: 100%; */
+  min-width: min-content;
+  /* padding: 0.5rem; */
+  margin: auto;
+  font-size: 16px;
+  border-radius: 10px;
+  display: block;
+}
+
+.pdf-form-btn:hover {
+  background-color: hsl(var(--general-mwr-hue), 50%, 90%);
+}
+
+.pdf-form-btn>a {
+  display: block;
+  width: 100%;
+  /* background-color: red; */
+  padding: 0.5rem;
 }
 
 .input-readable-disabled {

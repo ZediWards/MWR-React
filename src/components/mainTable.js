@@ -4,7 +4,6 @@ import styled from "styled-components"
 import SearchBox from "./searchBox"
 import ViewDetailsBtn from "./viewDetailsBtn"
 
-import * as style from "../css_modules/fullTable.module.css"
 
 // ******* Styled Components ***************
 const SectionForTableStyled = styled.section`
@@ -64,11 +63,11 @@ const FullTable = ({ queriedData, searchQuery, updateQuery, mwrTypes, handleUpda
   const buildTableBody = queriedData.map((mwr, index) => {
     return (
       <tr key={index}>
-        <td className={style.textCenter}>{mwr.date}</td>
-        <td className={style.textCenter}>{mwr.department}</td>
-        <td className={style.textCenter}>{truncateString(mwr.problem, 30)}</td>
-        <td className={style.textCenter}>{mwr.status}</td>
-        <td className={style.textCenter}>
+        <td>{mwr.date}</td>
+        <td>{mwr.department}</td>
+        <td>{truncateString(mwr.problem, 30)}</td>
+        <td>{mwr.status}</td>
+        <td>
           {/* button will be same as "create" btn on mwr card, modal pops up with fields to populate */}
           <ViewDetailsBtn
             mwrDetails={mwr}
@@ -96,12 +95,12 @@ const FullTable = ({ queriedData, searchQuery, updateQuery, mwrTypes, handleUpda
         <table className={"main-table"}>
           <thead>
             <tr>
-              <th className={style.textCenter}>Date</th>
-              <th className={style.textCenter}>Department</th>
-              <th className={style.textCenter}>Problem</th>
-              <th className={style.textCenter}>Status</th>
+              <th>Date</th>
+              <th>Department</th>
+              <th>Problem</th>
+              <th>Status</th>
               {/* later do ternary if logged in then display Details head item */}
-              <th className={style.textCenter}>Detials</th>
+              <th>Detials</th>
             </tr>
           </thead>
           <tbody>{buildTableBody}</tbody>
