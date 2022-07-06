@@ -128,7 +128,8 @@ export function PdfDocument({ data }) {
   // State
   const [companyHeader, setCompanyHeader] = useState("Company Name")
 
-  console.table(data)
+  console.log(`vv this is updateMwr state passed to PDF template vv`)
+  // console.table(data)
 
   return (
     <Document>

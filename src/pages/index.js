@@ -16,7 +16,7 @@ const IndexPage = () => {
       date: "2021-11-12",
       name: "Jon Doe",
       department: "compounding",
-      problem: "stuff is broke, details test",
+      problem: "details test",
       solution: "fix it",
       // Maininence Section
       status: "assigned",
@@ -27,7 +27,7 @@ const IndexPage = () => {
       scheduledDate: "2021-11-22",
       // needs applied to all
       openHistory: "",
-      problemType: "",
+      problemType: "electrical",
       //
       // left
       daysToCOmplete: "",
@@ -35,17 +35,17 @@ const IndexPage = () => {
       completedDate: "",
       //
       // left
-      dueDate: "",
-      estHours: "",
-      assetId: "",
-      assetDescription: "",
+      dueDate: "2022-07-07",
+      estHours: "2",
+      assetId: "123",
+      assetDescription: "a switch!",
       // right
-      downtime: "",
-      actHours: "",
+      downtime: "1",
+      actHours: "3",
       //
       // left
       // department
-      site: "",
+      site: "light switch",
       //
       // left
       requestNum: "",
@@ -55,14 +55,15 @@ const IndexPage = () => {
       //
       // left
       // assignType: "", making just type. No nned to duplicate data
-      assignTo: "",
+      assignTo: "Production Maintenance",
       // right
-      assistant: "",
-      maintenanceTeamMember: "",
+      assistant: "Bob",
+      maintenanceTeamMember: "Jon",
       //
       // left
-      briefDiscription: "",
-      workDiscription: "",
+      briefDiscription: "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
+
+      workDiscription: "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
       //
       // left
       comments: "",

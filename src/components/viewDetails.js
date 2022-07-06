@@ -35,7 +35,8 @@ const ViewDetails = ({
   handleClose,
   mwrTypes
 }) => {
-  console.table(mwrDetails)
+  // console.log(`vv this is mwrDetails state in viewDetails.js vv`)
+  // console.table(mwrDetails)
   // console.table(mwrDetails.id)
 
   // **************** varibles for mapping inside form********************
@@ -123,18 +124,20 @@ const ViewDetails = ({
     )
   })
 
-  // **********************************************
+  // ******************* end of mapping varibles ***************************
 
   // destructured prop incase it was still attatched to original state. Now should be mutable then applied back to original state
   const [updateMwr, setUpdateMwr] = useState({
     ...mwrDetails
   })
+  // console.log(`vv this is updateMwr state in viewDetails.js vv`)
   console.table(updateMwr)
 
   // This will need to locate and update the specific object within the main state
   const handleSubmit = e => {
     e.preventDefault()
     // debugging
+    console.log("submit is firing")
     handleUpdate(updateMwr, mwrIndex)
     handleClose()
     // pass this as a function to set state from the child
@@ -142,15 +145,19 @@ const ViewDetails = ({
   }
 
   //
+
   // pdf generation
-  const handlePdf = e => {
-    e.preventDefault()
+  const handlePdf = (e) => {
+    e.stopPropagation()
+    console.log("handle pdf is firing")
+    handleUpdate(updateMwr, mwrIndex)
+    handleClose()
   }
 
 
   // ******************************* JSX ************************************
   return (
-    <DetailsFormStyled onSubmit={handleSubmit}>
+    <DetailsFormStyled value="form" onSubmit={handleSubmit}>
       <header className={style.formHeaderFlex}>
         <h1 className={style.textCenter}>MWR Submition</h1>
         <button onClick={handleClose} className={style.closeBtn}>
@@ -792,20 +799,23 @@ const ViewDetails = ({
         </fieldset>
       </div>
 
-      <input type="submit" value="Submit" className={style.formBtn} />
-      <button type="button"> create pdf </button>
+      {/* save btn */}
+      <input type="submit" value="Save" className={style.formBtn} />
 
-      {/* ******************************************* */}
-      <div>
+      {/* save & generate pdf btn */}
+
+      <button className={style.pdfFormBtn} type="button" onClickCapture={handlePdf}>
         <PDFDownloadLink
-          document={<PdfDocument data={mwrDetails} />}
+          className={style.pdfDownloadBtn}
+          document={<PdfDocument data={updateMwr} />}
           fileName="somename.pdf"
         >
           {({ blob, url, loading, error }) =>
-            loading ? "Loading document..." : "Download now!"
+            loading ? "Loading document..." : "Save and Create PDF"
           }
         </PDFDownloadLink>
-      </div>
+      </button>
+
 
     </DetailsFormStyled>
   )
