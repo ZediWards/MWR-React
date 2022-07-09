@@ -1,6 +1,8 @@
 import * as React from "react"
 import { useState } from "react"
 
+import { mappedAssignedDepartments, mappedProductionMaintenanceEmployees, mappedBuildingMaintenanceEmployees, mappedAllMaintenanceEmployees, mappedProblemTypes, mappedJobStatus } from "../utils/settingsVariables"
+
 import styled from "styled-components"
 
 // ********** use for PDF ****************
@@ -40,73 +42,8 @@ const ViewDetails = ({
   // console.table(mwrDetails.id)
 
   // **************** varibles for mapping inside form********************
-  const assignedDepartments = [
-    "Production Maintenance",
-    "Building Maintneance"
-  ]
-  const mappedAssignedDepartments = assignedDepartments.map(
-    (department, index) => {
-      return (
-        <option key={index} value={department}>
-          {department}
-        </option>
-      )
-    }
-  )
-
-  // production maintenance
-  const productionMaintenanceEmployees = ["Jon", "Bob", "Jim"]
-  const mappedProductionMaintenanceEmployees = productionMaintenanceEmployees.map(
-    (employee, index) => {
-      return (
-        <option key={index} value={employee}>
-          {employee}
-        </option>
-      )
-    }
-  )
-
-  // building maintenance
-  const buildingMaintenanceEmployees = ["Matt", "Sara"]
-  const mappedBuildingMaintenanceEmployees = buildingMaintenanceEmployees.map(
-    (employee, index) => {
-      return (
-        <option key={index} value={employee}>
-          {employee}
-        </option>
-      )
-    }
-  )
-
-  // all maintenance
-  const allMaintenanceEmployees = [
-    ...productionMaintenanceEmployees,
-    ...buildingMaintenanceEmployees
-  ]
-  const mappedAllMaintenanceEmployees = allMaintenanceEmployees.map(
-    (employee, index) => {
-      return (
-        <option key={index} value={employee}>
-          {employee}
-        </option>
-      )
-    }
-  )
-
-  // function that creats option map that can pass arr into
-  // job status change if department is not undefined
-  // open/history?
-
-  const problemType = ["electrical", "structural", "plumbing", "outside contractor"]
-  const mappedProblemTypes = problemType.map((problemType, index) => {
-    return (
-      <option key={index} value={problemType}>
-        {problemType}
-      </option>
-    )
-  })
-
-  // mwrTypes from props
+  // mwrTypes from props (can't put in utils b/c mwrTypes is a prop)
+  //  TODO... make mwrTypes not a prop
   const mappedMwrTypes = mwrTypes.map((type, index) => {
     return (
       <option key={index} value={type.toLowerCase()}>
@@ -114,16 +51,6 @@ const ViewDetails = ({
       </option>
     )
   })
-
-  const jobStatus = ["unassigned", "assigned", "completed", "denied"]
-  const mappedJobStatus = jobStatus.map((status, index) => {
-    return (
-      <option key={index} value={status}>
-        {status}
-      </option>
-    )
-  })
-
   // ******************* end of mapping varibles ***************************
 
   // destructured prop incase it was still attatched to original state. Now should be mutable then applied back to original state
@@ -144,7 +71,10 @@ const ViewDetails = ({
     // setIsOpen(true)
   }
 
-  //
+
+
+
+
 
   // pdf generation
   const handlePdf = (e) => {
@@ -153,6 +83,10 @@ const ViewDetails = ({
     handleUpdate(updateMwr, mwrIndex)
     handleClose()
   }
+
+
+
+
 
 
   // ******************************* JSX ************************************

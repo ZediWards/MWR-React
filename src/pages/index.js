@@ -259,21 +259,6 @@ const IndexPage = () => {
     }
   }
 
-  // *******************************works
-  // function search(db) {
-  //   return db.filter(dataRow =>
-  //     columnsIncludedWithinSearch.some(
-  //       column =>
-  //         dataRow[column]
-  //           .toString()
-  //           .toLowerCase()
-  //           // positive number if there is a match
-  //           // try and length of value === length of indexOf...
-  //           .indexOf(searchQuery.toLowerCase()) > -1
-  //     )
-  //   )
-  // }
-
   // will pass this as search component prop, calls and update state defined here
   const updateQuery = e => {
     setSearchQuery(e.target.value)
