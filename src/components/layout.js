@@ -1,6 +1,8 @@
 import * as React from "react"
 import styled from "styled-components"
 
+import { dbContext } from "../../dbProvider"
+
 import Header from "./header"
 import Footer from "./footer"
 
@@ -21,20 +23,19 @@ const LayoutDiv = styled.div`
 `
 
 const Layout = ({ children }) => {
+
   return (
-    <LayoutDiv>
-      <Header />
-      <main
-        style={
-          {
-            // overflow: "scroll"
-          }
-        }
-      >
-        {children}
-      </main>
-      <Footer />
-    </LayoutDiv>
+    <dbContext.Consumer>
+      {dbContext =>
+      (
+        <LayoutDiv>
+          <p>{dbContext.print}</p>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </LayoutDiv>
+      )}
+    </dbContext.Consumer>
   )
 }
 
