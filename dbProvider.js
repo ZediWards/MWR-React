@@ -11,7 +11,7 @@ const DbProvider = props => {
     {
       id: 1,
       // Employee section
-      type: "General",
+      type: "CONTEXT DB",
       date: "2021-11-12",
       name: "Jon Doe",
       department: "Context Test"

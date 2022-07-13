@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useContext } from "react"
 import styled from "styled-components"
 
 import { dbContext } from "../../dbProvider"
@@ -23,6 +24,11 @@ const LayoutDiv = styled.div`
 `
 
 const Layout = ({ children }) => {
+
+  const { db, setDb } = useContext(dbContext)
+  const { print } = useContext(dbContext)
+  console.log(print)
+  console.table(db)
 
   return (
     <dbContext.Consumer>
