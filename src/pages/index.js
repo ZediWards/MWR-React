@@ -1,5 +1,7 @@
 import * as React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+
+import { dbContext } from "../../dbProvider"
 
 import Layout from "../components/layout"
 import MwrCards from "../components/mwrCards"
@@ -163,11 +165,21 @@ const IndexPage = () => {
     window.localStorage.setItem("localDb", JSON.stringify(db))
   }, [db])
 
+
+  // *********************************************
   // adds object to db state
   const handleClick = formData => {
     // example of adding item to the state array
     setDb([...db, formData])
   }
+
+  //  generalized
+  const addNewFormDataTwoState = (formData, state, setter) => {
+    // example of adding item to the state array
+    setter([...state, formData])
+  }
+
+  // ********************************************
 
   // updates an object already in db state
   const handleUpdate = (mwrData, mwrIndex) => {
@@ -180,6 +192,20 @@ const IndexPage = () => {
     })
     setDb([...updatedDb])
   }
+
+  // generalized
+  const updateStateObject = (updatedData, state, setter) => {
+    // creating new [] with the updated {}
+    const updatedDb = state.map(item => {
+      if (item.id === updatedData.id) {
+        return updatedData
+      }
+      return item
+    })
+    setter([...updatedDb])
+  }
+
+  // *******************************************
 
   // searching state db
   const [searchQuery, setSearchQuery] = useState("")

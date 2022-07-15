@@ -23,6 +23,7 @@ const DbProvider = props => {
     <dbContext.Provider
       value={{
         db,
+        setDb,
         handleClick: formData => setDb([...db, formData]),
         console: () => console.log("CONTEXT", db),
         print: "CONTEXT"
