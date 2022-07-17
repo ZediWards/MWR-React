@@ -1,6 +1,10 @@
 import * as React from "react"
-import { useState } from "react"
+import { useState, useContext } from "react"
+
+import { dbContext } from "../../dbProvider"
 import styled from "styled-components"
+
+import { addNewFormDataToState } from "../utils/updatingState"
 
 // import * as style from "../css_modules/formStyles.module.css"
 
@@ -102,6 +106,8 @@ const MwrFormStyled = styled.form`
   } */
 `
 
+
+
 // lesson learned: multiple classes
 let problemTextAreaClasses = ["problem-input form-input"]
 let solutionTextAreaClasses = ["solution-input form-input"]
@@ -111,7 +117,8 @@ function uniqueID() {
 }
 
 const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
-  // console.table(data)
+  const { db, setDb } = useContext(dbContext)
+
   const [formData, setFormData] = useState({
     // Employee section
     id: uniqueID(),
@@ -158,7 +165,8 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    handleClick(formData)
+    // handleClick(formData)
+    addNewFormDataToState(formData, db, setDb)
     setFormData({
       // Employee section
       id: uniqueID(),
@@ -203,6 +211,8 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
       }
     })
     console.log(formData)
+    // this does not print the newly added mwr. Just the ones before it
+    console.table(db)
     handleClose()
     // pass this as a function to set state from the child
     // setIsOpen(true)

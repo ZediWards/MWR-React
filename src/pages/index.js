@@ -2,6 +2,8 @@ import * as React from "react"
 import { useState, useEffect, useContext } from "react"
 
 import { dbContext } from "../../dbProvider"
+import { updateStateObject, addNewFormDataToState } from "../utils/updatingState"
+
 
 import Layout from "../components/layout"
 import MwrCards from "../components/mwrCards"
@@ -151,6 +153,8 @@ const IndexPage = () => {
   // Lesson learned: anytime referencing these to data{} need to add .toLowerCase()
   const [mwrTypes, setMwrTypes] = useState(["General", "Urgent", "Safety"])
 
+
+  // ****************************************************************
   // local storage persistance setup
   // setting second parameter of useEffect as [] means it will only run the first tome the page loads
   // on pageLoad, if lacaDb exists, then setdB to that, if not then setDb will be default
@@ -165,47 +169,8 @@ const IndexPage = () => {
     window.localStorage.setItem("localDb", JSON.stringify(db))
   }, [db])
 
+  // ***********************************************************
 
-  // *********************************************
-  // adds object to db state
-  const handleClick = formData => {
-    // example of adding item to the state array
-    setDb([...db, formData])
-  }
-
-  //  generalized
-  const addNewFormDataTwoState = (formData, state, setter) => {
-    // example of adding item to the state array
-    setter([...state, formData])
-  }
-
-  // ********************************************
-
-  // updates an object already in db state
-  const handleUpdate = (mwrData, mwrIndex) => {
-    // logging correct item
-    const updatedDb = db.map(item => {
-      if (item.id === mwrData.id) {
-        return mwrData
-      }
-      return item
-    })
-    setDb([...updatedDb])
-  }
-
-  // generalized
-  const updateStateObject = (updatedData, state, setter) => {
-    // creating new [] with the updated {}
-    const updatedDb = state.map(item => {
-      if (item.id === updatedData.id) {
-        return updatedData
-      }
-      return item
-    })
-    setter([...updatedDb])
-  }
-
-  // *******************************************
 
   // searching state db
   const [searchQuery, setSearchQuery] = useState("")
@@ -311,8 +276,6 @@ const IndexPage = () => {
           updatePrimaryFilter={updatePrimaryFilter}
         />
 
-        {/* ! checking w/o serch(db) */}
-        {/* <FullTable data={db} handleUpdate={handleUpdate} /> */}
       </div>
     </Layout>
   )
