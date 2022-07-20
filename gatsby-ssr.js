@@ -1,4 +1,7 @@
-// wrapping app with context provider
-import Provider from "./dbProvider"
+const React = require("react")
+const GlobalContextProvider = require("./src/context/GlobalContextProvider")
 
-export const wrapRootElement = Provider
+exports.wrapRootElement = ({ element }) => {
+  return <GlobalContextProvider>{element}</GlobalContextProvider>
+}
+

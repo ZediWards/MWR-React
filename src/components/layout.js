@@ -2,7 +2,9 @@ import * as React from "react"
 import { useContext } from "react"
 import styled from "styled-components"
 
-import { dbContext } from "../../dbProvider"
+import {
+  GlobalDispatchContext, GlobalStateContext
+} from "../context/GlobalContextProvider"
 
 import Header from "./header"
 import Footer from "./footer"
@@ -25,23 +27,18 @@ const LayoutDiv = styled.div`
 
 const Layout = ({ children }) => {
 
-  const { db, setDb } = useContext(dbContext)
-  const { print } = useContext(dbContext)
-  console.log(print)
-  console.table(db)
+  const dispatch = useContext(GlobalDispatchContext)
+  const state = useContext(GlobalStateContext)
+  console.log(state)
+  console.log(dispatch)
 
   return (
-    <dbContext.Consumer>
-      {dbContext =>
-      (
-        <LayoutDiv>
-          <p>{dbContext.print}</p>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </LayoutDiv>
-      )}
-    </dbContext.Consumer>
+    <LayoutDiv>
+      <p>{state[0].type}</p>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </LayoutDiv>
   )
 }
 

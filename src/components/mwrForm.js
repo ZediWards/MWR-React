@@ -2,6 +2,8 @@ import * as React from "react"
 import { useState, useContext } from "react"
 
 import { dbContext } from "../../dbProvider"
+import { ACTIONS } from "../context/GlobalContextProvider"
+
 import styled from "styled-components"
 
 import { addNewFormDataToState } from "../utils/updatingState"
@@ -166,7 +168,9 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
   const handleSubmit = e => {
     e.preventDefault()
     // handleClick(formData)
-    addNewFormDataToState(formData, db, setDb)
+    // addNewFormDataToState(formData, db, setDb)
+    dispatchEvent({ type: ACTIONS.NEWMWR, payload: { mwr: formData } })
+
     setFormData({
       // Employee section
       id: uniqueID(),
@@ -210,6 +214,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
         commentSix: ""
       }
     })
+
     console.log(formData)
     // this does not print the newly added mwr. Just the ones before it
     console.table(db)

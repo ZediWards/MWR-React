@@ -1,9 +1,10 @@
-// import "@fontsource/montserrat";
-// import "@fontsource/rasa";
-// import "./src/global_styles/normalize.css";
+import React from 'react'
+import GlobalContextProvider from './src/context/GlobalContextProvider'
+
 import "./src/global_styles/global.css"
 
-// wrapping app with context provider
-import Provider from "./dbProvider"
+export const wrapRootElement = ({ element }) => {
+  return <GlobalContextProvider>{element}</GlobalContextProvider>
+}
 
-export const wrapRootElement = Provider
+

@@ -9,9 +9,9 @@
 // [x] what you want primary filters to be.
 // [X] details screen undefiened needs to be -
 //         - problem type, assigned to, maint. team member, assistant
-  
+
 // [x] why is prob/col in details a lighter text than other disabled fields?
-      [x] color in stylesheet needed set to black
+[x] color in stylesheet needed set to black
 
 // [] mwr types in details dropdown not lowercase. is it updating as lowercase?
 
@@ -48,3 +48,38 @@
 // [] does my use case for useEffect neeed cleanup?
 
 // [] need auth to edit details modal
+
+
+// ******************************************************************************************
+// details modale
+// [] make close = exit w/o save
+// [] asyc save and then generate pdf
+
+
+// <!-- Context progress -->
+// [] new mwr from context dispatch
+// [] update from context dispatch
+// [] delete from context dispatch
+// [] clean up all un-needed props
+
+// <!-- React context in Gatsby high overview -->
+// we are wrapping root with the PROVIDER and its context data via the value prop
+// we can read the providers data inside any component with the context.consumer
+
+// <!-- context is a object that has two methods: provider, consumer. Both are components -->
+//  You can either use the consumer component directly or the useContext hook, depending on which pattern you prefer.
+//   *one or the other* hook seems the way to go
+
+// <!-- wrapping root in gatsby browser & ssr files -->
+// This lets the global state we set up persist throughout refreshes and page changes. Equivalent to wrapping the App components in plain React
+
+// <!-- useReducer -->
+// in our globalContextProvider that we wrap gatsby with:
+// - we will make two variables [state, dispatch] with passing our reducer "dispatch" function and outr initial state into React.useReducer
+
+// <!-- consuming component -->
+// - import our dispatch and state context from our file
+// - make dispatch and state variables using useContext()
+// - using dispatch reducer function
+//   - onclick={() => {dispatch({type: "ACTION"})}}
+//   - just passing the type action into the dispatch to use in it's switch statement

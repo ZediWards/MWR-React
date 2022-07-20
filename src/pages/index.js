@@ -153,6 +153,24 @@ const IndexPage = () => {
   // Lesson learned: anytime referencing these to data{} need to add .toLowerCase()
   const [mwrTypes, setMwrTypes] = useState(["General", "Urgent", "Safety"])
 
+  // *********** Handle Click **********************
+  // adds object to db state
+  const handleClick = formData => {
+    // example of adding item to the state array
+    setDb([...db, formData])
+  }
+  // ************ Handle Update *************************
+  // updates an object already in db state
+  const handleUpdate = (mwrData, mwrIndex) => {
+    // logging correct item
+    const updatedDb = db.map(item => {
+      if (item.id === mwrData.id) {
+        return mwrData
+      }
+      return item
+    })
+    setDb([...updatedDb])
+  }
 
   // ****************************************************************
   // local storage persistance setup
@@ -258,7 +276,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <div>
-        <MwrCards data={db} mwrTypes={mwrTypes} handleClick={handleClick} />
+        <MwrCards data={db} handleClick={handleClick} mwrTypes={mwrTypes} />
         <Leaderboard data={db} />
         {/* in search example the search is in the app component with the db */}
         {/* <SearchBox
