@@ -1,8 +1,9 @@
-import * as React from "react"
-import { useState } from "react"
-import styled from "styled-components"
+import * as React from "react";
+import { useState, useContext } from "react";
 
-import ViewDetailsModalContainer from "./viewDetailsModalContainer"
+import styled from "styled-components";
+
+import ViewDetailsModalContainer from "./viewDetailsModalContainer";
 
 // import * as style from "../css_modules/mwr-cards.module.css"
 
@@ -31,14 +32,11 @@ const DetailsBtn = styled.button`
   @media (max-width: 1000px) {
     min-width: max-content;
   }
-`
-
-
-
+`;
 
 const ViewDetailsBtn = ({ mwrDetails, mwrTypes, handleUpdate }) => {
   // state for modal
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
@@ -58,7 +56,7 @@ const ViewDetailsBtn = ({ mwrDetails, mwrTypes, handleUpdate }) => {
         isOpen={isOpen}
       />
     </div>
-  )
-}
+  );
+};
 
-export default ViewDetailsBtn
+export default ViewDetailsBtn;

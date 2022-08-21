@@ -1,8 +1,8 @@
-import * as React from "react"
-import { useState } from "react"
-import styled from "styled-components"
+import * as React from "react";
+import { useState } from "react";
+import styled from "styled-components";
 
-import ModalMwrFormContainer from "./modalMwrFormContainer"
+import ModalMwrFormContainer from "./modalMwrFormContainer";
 // import MwrForm from "./mwrForm"
 
 // import * as style from "../css_modules/mwr-cards.module.css"
@@ -19,22 +19,22 @@ const StyledMwrCard = styled.div`
   box-shadow: 0px 2px 1px var(--gray-light);
   padding: 1.5rem;
   background-color: var(--background-body);
-  background-color: ${prop =>
+  background-color: ${(prop) =>
     prop.mwrType === "General"
       ? "var(--background-general)"
       : prop.mwrType === "Safety"
         ? "var(--background-safety)"
         : "var(--background-urgent)"};
-`
+`;
 
 const StyledMWRTitle = styled.h2`
   text-align: center;
-`
+`;
 
 const StyledParagraph = styled.p`
   text-align: center;
   margin-bottom: 0.5rem;
-`
+`;
 
 const StyledStatsContainer = styled.div`
   display: flex;
@@ -65,7 +65,7 @@ const StyledStatsContainer = styled.div`
     max-width: max-content;
     margin: auto;
   }
-`
+`;
 
 const StyledStatContainer = styled.div`
   display: block;
@@ -75,7 +75,7 @@ const StyledStatContainer = styled.div`
     justify-content: space-between;
     gap: 1rem;
   } */
-`
+`;
 
 const StyledButton = styled.button`
   display: block;
@@ -97,11 +97,10 @@ const StyledButton = styled.button`
     border: 1px solid #fff;
     /* box-shadow: 0px 2px 1px #fff; */
 
-
     /* color: var(--light-background); */
     /* border: none; */
   }
-`
+`;
 
 // .details-button:hover {
 // background-color: var(--color-primary);
@@ -109,17 +108,10 @@ const StyledButton = styled.button`
 // /* border: none; */
 // }
 
-const MwrCard = ({
-  data,
-  handleClick,
-  mwrType,
-  unAssigned,
-  assigned,
-  completed
-}) => {
+const MwrCard = ({ mwrType, unAssigned, assigned, completed }) => {
   // state for modal
   // this needs to be added to each card, not the container
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <StyledMwrCard mwrType={mwrType}>
@@ -146,14 +138,12 @@ const MwrCard = ({
       </StyledButton>
 
       <ModalMwrFormContainer
-        data={data}
-        handleClick={handleClick}
         mwrType={mwrType}
         handleClose={() => setIsOpen(false)}
         isOpen={isOpen}
       />
     </StyledMwrCard>
-  )
-}
+  );
+};
 
-export default MwrCard
+export default MwrCard;

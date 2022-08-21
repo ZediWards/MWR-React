@@ -1,14 +1,21 @@
-import * as React from "react"
-import styled from "styled-components"
+import * as React from "react";
+import { useContext } from "react";
 
-import * as style from "../css_modules/leaderboard.module.css"
+import {
+  GlobalDispatchContext,
+  GlobalStateContext
+} from "../context/GlobalContextProvider";
+
+import styled from "styled-components";
+
+import * as style from "../css_modules/leaderboard.module.css";
 
 // ******* Styled Components ************
 const LeaderboardContainerStyled = styled.section`
   margin-top: 3rem;
   /* makes table responsive */
   overflow-x: auto;
-`
+`;
 
 // global table styles are in layout.css
 const TableStyled = styled.table`
@@ -26,41 +33,46 @@ const TableStyled = styled.table`
   }
   tr:hover {
     transition: all 0.35s ease-Out;
-    background-color: var(--table-hover-background-color) ;
+    background-color: var(--table-hover-background-color);
   }
-`
+`;
 
-const Leaderboard = ({ data }) => {
+const Leaderboard = () => {
+  // context variables
+  const state = useContext(GlobalStateContext);
+  console.log("state from leaderboard");
+  console.table(state);
+
   // making a mutable varible of the db state
-  const mwrEntries = data
+  // const mwrEntries = data;
 
   // variable of just the names value from the objects within the array
-  const namesFromData = mwrEntries.map(mwr => {
-    return mwr.name
-  })
+  const namesFromData = state.map((mwr) => {
+    return mwr.name;
+  });
 
   // returning no duplicates from the list of names
   const uniqueNames = namesFromData.filter((name, index) => {
-    return namesFromData.indexOf(name) === index
-  })
+    return namesFromData.indexOf(name) === index;
+  });
 
   // function that will count how many times a value appears within an array.
   const countOfNames = function (array, value) {
-    return array.reduce((n, x) => n + (x === value), 0)
-  }
+    return array.reduce((n, x) => n + (x === value), 0);
+  };
 
   // Using the reduce function above inside a mapping function of the unique names to return the number of times the unique name appears in the namesFromData array
-  const uniqueNamesAndSubmittionsNumber = uniqueNames.map(name => {
+  const uniqueNamesAndSubmittionsNumber = uniqueNames.map((name) => {
     return {
       name: name,
       numberOfSubmitions: countOfNames(namesFromData, name)
-    }
-  })
+    };
+  });
 
   // sorting by numberOfSubmitions in a decinding manner
   const desendingOrder = uniqueNamesAndSubmittionsNumber.sort(
     (a, b) => b.numberOfSubmitions - a.numberOfSubmitions
-  )
+  );
 
   const buildLeaderBoardTable = desendingOrder.map((person, index) => {
     return (
@@ -70,8 +82,8 @@ const Leaderboard = ({ data }) => {
         </td>
         <td>{person.numberOfSubmitions}</td>
       </tr>
-    )
-  })
+    );
+  });
 
   return (
     <LeaderboardContainerStyled>
@@ -86,7 +98,7 @@ const Leaderboard = ({ data }) => {
         <tbody>{buildLeaderBoardTable}</tbody>
       </TableStyled>
     </LeaderboardContainerStyled>
-  )
-}
+  );
+};
 
-export default Leaderboard
+export default Leaderboard;

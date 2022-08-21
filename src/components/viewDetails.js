@@ -1,16 +1,21 @@
-import * as React from "react"
-import { useState } from "react"
+import * as React from "react";
+import { useState, useContext } from "react";
 
-import { mappedAssignedDepartments, mappedProductionMaintenanceEmployees, mappedBuildingMaintenanceEmployees, mappedAllMaintenanceEmployees, mappedProblemTypes, mappedJobStatus } from "../utils/settingsVariables"
+import { ACTIONS } from "../context/GlobalContextProvider";
 
-import styled from "styled-components"
+import {
+  GlobalDispatchContext,
+  GlobalStateContext
+} from "../context/GlobalContextProvider";
+
+import styled from "styled-components";
 
 // ********** use for PDF ****************
-import { PDFDownloadLink } from "@react-pdf/renderer"
+import { PDFDownloadLink } from "@react-pdf/renderer";
 // import MyDocument from "./pdfTEST"
-import { PdfDocument } from "./pdfTemplate"
+import { PdfDocument } from "./pdfTemplate";
 
-import * as style from "../css_modules/viewDetailsStyles.module.css"
+import * as style from "../css_modules/viewDetailsStyles.module.css";
 
 // **** Styled Components ****
 const DetailsFormStyled = styled.form`
@@ -28,7 +33,7 @@ const DetailsFormStyled = styled.form`
     flex-wrap: wrap;
     gap: 1.5rem;
   }
-`
+`;
 
 const ViewDetails = ({
   mwrDetails,
@@ -37,57 +42,136 @@ const ViewDetails = ({
   handleClose,
   mwrTypes
 }) => {
+  // context variables
+  const dispatch = useContext(GlobalDispatchContext);
+  const state = useContext(GlobalStateContext);
+  console.log("state DETAILS");
+  console.table(state);
   // console.log(`vv this is mwrDetails state in viewDetails.js vv`)
   // console.table(mwrDetails)
   // console.table(mwrDetails.id)
 
   // **************** varibles for mapping inside form********************
-  // mwrTypes from props (can't put in utils b/c mwrTypes is a prop)
-  //  TODO... make mwrTypes not a prop
+  const assignedDepartments = [
+    "Production Maintenance",
+    "Building Maintneance"
+  ];
+  const mappedAssignedDepartments = assignedDepartments.map(
+    (department, index) => {
+      return (
+        <option key={index} value={department}>
+          {department}
+        </option>
+      );
+    }
+  );
+
+  // production maintenance
+  const productionMaintenanceEmployees = ["Jon", "Bob", "Jim"];
+  const mappedProductionMaintenanceEmployees = productionMaintenanceEmployees.map(
+    (employee, index) => {
+      return (
+        <option key={index} value={employee}>
+          {employee}
+        </option>
+      );
+    }
+  );
+
+  // building maintenance
+  const buildingMaintenanceEmployees = ["Matt", "Sara"];
+  const mappedBuildingMaintenanceEmployees = buildingMaintenanceEmployees.map(
+    (employee, index) => {
+      return (
+        <option key={index} value={employee}>
+          {employee}
+        </option>
+      );
+    }
+  );
+
+  // all maintenance
+  const allMaintenanceEmployees = [
+    ...productionMaintenanceEmployees,
+    ...buildingMaintenanceEmployees
+  ];
+  const mappedAllMaintenanceEmployees = allMaintenanceEmployees.map(
+    (employee, index) => {
+      return (
+        <option key={index} value={employee}>
+          {employee}
+        </option>
+      );
+    }
+  );
+
+  // function that creats option map that can pass arr into
+  // job status change if department is not undefined
+  // open/history?
+
+  const problemType = [
+    "electrical",
+    "structural",
+    "plumbing",
+    "outside contractor"
+  ];
+  const mappedProblemTypes = problemType.map((problemType, index) => {
+    return (
+      <option key={index} value={problemType}>
+        {problemType}
+      </option>
+    );
+  });
+
+  // mwrTypes from props
   const mappedMwrTypes = mwrTypes.map((type, index) => {
     return (
       <option key={index} value={type.toLowerCase()}>
         {type.toLowerCase()}
       </option>
-    )
-  })
+    );
+  });
+
+  const jobStatus = ["unassigned", "assigned", "completed", "denied"];
+  const mappedJobStatus = jobStatus.map((status, index) => {
+    return (
+      <option key={index} value={status}>
+        {status}
+      </option>
+    );
+  });
+
   // ******************* end of mapping varibles ***************************
 
   // destructured prop incase it was still attatched to original state. Now should be mutable then applied back to original state
   const [updateMwr, setUpdateMwr] = useState({
     ...mwrDetails
-  })
+  });
   // console.log(`vv this is updateMwr state in viewDetails.js vv`)
-  console.table(updateMwr)
+  console.table(updateMwr);
 
   // This will need to locate and update the specific object within the main state
-  const handleSubmit = e => {
-    e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault();
     // debugging
-    console.log("submit is firing")
-    handleUpdate(updateMwr, mwrIndex)
-    handleClose()
+    console.log("submit is firing with CONTEXT");
+    dispatch({ type: ACTIONS.UPDATE_MWR, payload: updateMwr });
+
+    // handleUpdate(updateMwr, mwrIndex);
+    handleClose();
     // pass this as a function to set state from the child
     // setIsOpen(true)
-  }
+  };
 
-
-
-
-
+  //
 
   // pdf generation
   const handlePdf = (e) => {
-    e.stopPropagation()
-    console.log("handle pdf is firing")
-    handleUpdate(updateMwr, mwrIndex)
-    handleClose()
-  }
-
-
-
-
-
+    e.stopPropagation();
+    console.log("handle pdf is firing");
+    handleUpdate(updateMwr, mwrIndex);
+    handleClose();
+  };
 
   // ******************************* JSX ************************************
   return (
@@ -101,7 +185,6 @@ const ViewDetails = ({
 
       {/* FLEX COLUMN */}
       <div className={style.employeeInput}>
-
         {/* ************************* Employee Part ***************************/}
 
         {/* FLEX COLUMN */}
@@ -110,7 +193,6 @@ const ViewDetails = ({
 
           {/* FLEX WRAP */}
           <div className={style.empInputSectOne}>
-
             {/* Date */}
             <label htmlFor="date">
               <p className={style.inputLabel}>Date:</p>
@@ -166,7 +248,6 @@ const ViewDetails = ({
 
           {/* FLEX WRAP */}
           <div className={style.empInputSectTwo}>
-
             {/* Problem */}
             <label className={style.empInputSectTwoBlocks} htmlFor="problem">
               <p className={style.inputLabel}>Problem:</p>
@@ -202,9 +283,8 @@ const ViewDetails = ({
 
           {/* FLEX WRAP */}
           <div className={"flex-row-wrap"}>
-
             {/* Request Number */}
-            <label htmlFor="request-num" >
+            <label htmlFor="request-num">
               <p className={style.inputLabel}>Request #:</p>
               <input
                 // onChange={e =>
@@ -220,7 +300,7 @@ const ViewDetails = ({
             </label>
 
             {/* Email */}
-            <label htmlFor="requested-by-email" >
+            <label htmlFor="requested-by-email">
               <p className={style.inputLabel}>Requested By Email:</p>
               <input
                 // onChange={e =>
@@ -248,14 +328,13 @@ const ViewDetails = ({
           {/************************* Section 1  **************************** */}
           {/* FLEX */}
           <div className={style.flexContainer}>
-
             {/* Flex Item */}
             <div>
               {/* Project Number */}
-              <label htmlFor="project-num" >
+              <label htmlFor="project-num">
                 <p className={style.inputLabel}>Project Number:</p>
                 <input
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({ ...updateMwr, projectNum: e.target.value })
                   }
                   value={updateMwr.projectNum}
@@ -272,10 +351,10 @@ const ViewDetails = ({
             {/* Flex Item */}
             <div>
               {/* Work Order Number */}
-              <label htmlFor="work-order-num" >
+              <label htmlFor="work-order-num">
                 <p className={style.inputLabel}>Work Order Number:</p>
                 <input
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({ ...updateMwr, workOrderNum: e.target.value })
                   }
                   value={updateMwr.workOrderNum}
@@ -288,10 +367,10 @@ const ViewDetails = ({
               </label>
 
               {/* Work Order Date */}
-              <label htmlFor="work-order-date" >
+              <label htmlFor="work-order-date">
                 <p className={style.inputLabel}>Work Order Date:</p>
                 <input
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
                       workOrderDate: e.target.value
@@ -308,10 +387,10 @@ const ViewDetails = ({
               </label>
 
               {/* Work Order Time */}
-              <label htmlFor="work-order-time" >
+              <label htmlFor="work-order-time">
                 <p className={style.inputLabel}>Work Order Time:</p>
                 <input
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
                       workOrderTime: e.target.value
@@ -330,10 +409,10 @@ const ViewDetails = ({
             {/* FLex Item */}
             <div>
               {/* Scheduled Date */}
-              <label htmlFor="scheduled-date" >
+              <label htmlFor="scheduled-date">
                 <p className={style.inputLabel}>Scheduled Date:</p>
                 <input
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
                       scheduledDate: e.target.value
@@ -350,10 +429,10 @@ const ViewDetails = ({
               </label>
 
               {/* MWR Type */}
-              <label htmlFor="mwr-type" >
+              <label htmlFor="mwr-type">
                 <p className={style.inputLabel}>MWR Type</p>
                 <select
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({ ...updateMwr, type: e.target.value })
                   }
                   value={updateMwr.type}
@@ -372,10 +451,10 @@ const ViewDetails = ({
               </label>
 
               {/* Problem Type */}
-              <label htmlFor="problem-type" >
+              <label htmlFor="problem-type">
                 <p className={style.inputLabel}>Problem Type</p>
                 <select
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({ ...updateMwr, problemType: e.target.value })
                   }
                   value={updateMwr.problemType}
@@ -395,11 +474,14 @@ const ViewDetails = ({
               </label>
 
               {/* Job Status */}
-              <label htmlFor="job-status" >
+              <label htmlFor="job-status">
                 <p className={style.inputLabel}>Job Status</p>
                 <select
-                  onChange={e =>
-                    setUpdateMwr({ ...updateMwr, status: e.target.value.toLowerCase() })
+                  onChange={(e) =>
+                    setUpdateMwr({
+                      ...updateMwr,
+                      status: e.target.value.toLowerCase()
+                    })
                   }
                   value={updateMwr.status}
                   name="job-status"
@@ -423,14 +505,13 @@ const ViewDetails = ({
           {/************************* Section 2 *******************************/}
           {/* FLEX */}
           <div className={style.flexContainer}>
-
             {/* Flex Item */}
             <div>
               {/* Department */}
-              <label htmlFor="department" >
+              <label htmlFor="department">
                 <p className={style.inputLabel}>Department:</p>
                 <select
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({ ...updateMwr, department: e.target.value })
                   }
                   value={updateMwr.department}
@@ -452,10 +533,10 @@ const ViewDetails = ({
               </label>
 
               {/* Site */}
-              <label htmlFor="site" >
+              <label htmlFor="site">
                 <p className={style.inputLabel}>Site:</p>
                 <textarea
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({ ...updateMwr, site: e.target.value })
                   }
                   // readOnly
@@ -476,7 +557,6 @@ const ViewDetails = ({
           {/**************************** Section 3 ****************************/}
           {/* FLEX */}
           <div className={style.empInputSectTwo}>
-
             {/* Brief Description */}
             <label
               className={style.empInputSectTwoBlocks}
@@ -484,7 +564,7 @@ const ViewDetails = ({
             >
               <p className={style.inputLabel}>Brief Discription:</p>
               <textarea
-                onChange={e =>
+                onChange={(e) =>
                   setUpdateMwr({
                     ...updateMwr,
                     briefDiscription: e.target.value
@@ -507,7 +587,7 @@ const ViewDetails = ({
             >
               <p className={style.inputLabel}>Work Discription:</p>
               <textarea
-                onChange={e =>
+                onChange={(e) =>
                   setUpdateMwr({
                     ...updateMwr,
                     workDiscription: e.target.value
@@ -529,15 +609,13 @@ const ViewDetails = ({
           {/************************** Section 4 ******************************/}
           {/* FLEX */}
           <div className={style.flexContainer}>
-
             {/* Flex Item */}
             <div>
-
               {/* Assigned To */}
-              <label htmlFor="assign-to" >
+              <label htmlFor="assign-to">
                 <p className={style.inputLabel}>Assiged To:</p>
                 <select
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
                       assignTo: e.target.value
@@ -560,10 +638,10 @@ const ViewDetails = ({
               </label>
 
               {/* Team Member */}
-              <label htmlFor="maintenance-team-member" >
+              <label htmlFor="maintenance-team-member">
                 <p className={style.inputLabel}>Maintenance Team Member:</p>
                 <select
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
                       maintenanceTeamMember: e.target.value
@@ -586,10 +664,10 @@ const ViewDetails = ({
               </label>
 
               {/* Assistant */}
-              <label htmlFor="assistant" >
+              <label htmlFor="assistant">
                 <p className={style.inputLabel}>Assistant:</p>
                 <select
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
                       assistant: e.target.value
@@ -618,14 +696,13 @@ const ViewDetails = ({
           {/************************** Section 5 ******************************/}
           {/* FLEX */}
           <div className={style.flexContainer}>
-
             {/* Flex Item */}
             <div>
               {/* Due Date */}
-              <label htmlFor="due-date" >
+              <label htmlFor="due-date">
                 <p className={style.inputLabel}>Due Date:</p>
                 <input
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({ ...updateMwr, dueDate: e.target.value })
                   }
                   value={updateMwr.dueDate}
@@ -638,10 +715,10 @@ const ViewDetails = ({
               </label>
 
               {/* Est. Hours */}
-              <label htmlFor="est-hours" >
+              <label htmlFor="est-hours">
                 <p className={style.inputLabel}>Est. Hours:</p>
                 <input
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({ ...updateMwr, estHours: e.target.value })
                   }
                   value={updateMwr.estHours}
@@ -654,10 +731,10 @@ const ViewDetails = ({
               </label>
 
               {/* Act. Hours */}
-              <label htmlFor="act-hours" >
+              <label htmlFor="act-hours">
                 <p className={style.inputLabel}>Actual Hours:</p>
                 <input
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({ ...updateMwr, actHours: e.target.value })
                   }
                   value={updateMwr.actHours}
@@ -670,10 +747,10 @@ const ViewDetails = ({
               </label>
 
               {/* Downtime */}
-              <label htmlFor="downtime" >
+              <label htmlFor="downtime">
                 <p className={style.inputLabel}>Downtime:</p>
                 <input
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({ ...updateMwr, downtime: e.target.value })
                   }
                   value={updateMwr.downtime}
@@ -689,10 +766,10 @@ const ViewDetails = ({
             {/* Flex Item */}
             <div>
               {/* Asset ID */}
-              <label htmlFor="asset-id" >
+              <label htmlFor="asset-id">
                 <p className={style.inputLabel}>Asset Id:</p>
                 <input
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({ ...updateMwr, assetId: e.target.value })
                   }
                   value={updateMwr.assetId}
@@ -705,10 +782,10 @@ const ViewDetails = ({
               </label>
 
               {/* Asset Description */}
-              <label htmlFor="asset-description" >
+              <label htmlFor="asset-description">
                 <p className={style.inputLabel}>Asset Description:</p>
                 <textarea
-                  onChange={e =>
+                  onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
                       assetDescription: e.target.value
@@ -727,9 +804,6 @@ const ViewDetails = ({
               </label>
             </div>
           </div>
-
-
-
         </fieldset>
       </div>
 
@@ -738,7 +812,11 @@ const ViewDetails = ({
 
       {/* save & generate pdf btn */}
 
-      <button className={style.pdfFormBtn} type="button" onClickCapture={handlePdf}>
+      <button
+        className={style.pdfFormBtn}
+        type="button"
+        onClickCapture={handlePdf}
+      >
         <PDFDownloadLink
           className={style.pdfDownloadBtn}
           document={<PdfDocument data={updateMwr} />}
@@ -749,10 +827,8 @@ const ViewDetails = ({
           }
         </PDFDownloadLink>
       </button>
-
-
     </DetailsFormStyled>
-  )
-}
+  );
+};
 
-export default ViewDetails
+export default ViewDetails;

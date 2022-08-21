@@ -1,10 +1,17 @@
-import * as React from "react"
-import styled from "styled-components"
+import * as React from "react";
+import { useContext } from "react";
+
+import {
+  GlobalDispatchContext,
+  GlobalStateContext
+} from "../context/GlobalContextProvider";
+
+import styled from "styled-components";
 
 // just for the card class
 // import * as style from "../css_modules/mwr-cards.module.css"
 
-import MwrCard from "./mwrCard"
+import MwrCard from "./mwrCard";
 
 // ************************************************ styled components ************************
 const CardsFlexContainer = styled.div`
@@ -19,29 +26,39 @@ const CardsFlexContainer = styled.div`
     align-items: flex-start;
     /* border: solid 2px pink; */
   }
-`
+`;
 
-const MwrCards = ({ data, mwrTypes, handleClick }) => {
+const MwrCards = ({ mwrTypes, data }) => {
+  // context variables
+  const state = useContext(GlobalStateContext);
+  console.log("state DOT FILTER");
+  console.table(state);
+
+  // mapping through the different mwrTypes to make corrisponding card
   const card = mwrTypes.map((type, index) => {
-    const mwrType = data.filter(mwr => mwr.type === type.toLowerCase())
-    const unAssignedMwrType = mwrType.filter(mwr => mwr.status === "unassigned")
-    const assignedMwrType = mwrType.filter(mwr => mwr.status === "assigned")
-    const completedMwrType = mwrType.filter(mwr => mwr.status === "completed")
+    const mwrType = state.filter((mwr) => mwr.type === type.toLowerCase());
+    const unAssignedMwrType = mwrType.filter(
+      (mwr) => mwr.status === "unassigned"
+    );
+    const assignedMwrType = mwrType.filter((mwr) => mwr.status === "assigned");
+    const completedMwrType = mwrType.filter(
+      (mwr) => mwr.status === "completed"
+    );
 
     return (
       <MwrCard
         key={index}
-        data={data}
-        handleClick={handleClick}
+        // data={data}
+        // handleClick={handleClick}
         mwrType={type}
         unAssigned={unAssignedMwrType}
         assigned={assignedMwrType}
         completed={completedMwrType}
       />
-    )
-  })
+    );
+  });
 
-  return <CardsFlexContainer>{card}</CardsFlexContainer>
-}
+  return <CardsFlexContainer>{card}</CardsFlexContainer>;
+};
 
-export default MwrCards
+export default MwrCards;

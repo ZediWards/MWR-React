@@ -1,5 +1,12 @@
-import * as React from "react"
-import styled from "styled-components"
+import * as React from "react";
+import { useState, useContext } from "react";
+
+import {
+  GlobalDispatchContext,
+  GlobalStateContext
+} from "../context/GlobalContextProvider";
+
+import styled from "styled-components";
 
 // import * as style from "../css_modules/searchBox.module.css"
 
@@ -98,11 +105,11 @@ const SearchBoxContainerStyled = styled.section`
     } */
   }
 
-  @media(hover: hover) and (pointer: fine) {
+  @media (hover: hover) and (pointer: fine) {
     .filter-item:hover {
       background-color: hsl(var(--safety-mwr-hue), 50%, 90%);
     }
-}
+  }
 
   .filter-item-selected {
     text-align: center;
@@ -118,7 +125,6 @@ const SearchBoxContainerStyled = styled.section`
     transition: all 0.35s ease-Out;
     cursor: pointer;
   }
-  
 
   @media (max-width: 786px) {
     .search-input {
@@ -140,15 +146,127 @@ const SearchBoxContainerStyled = styled.section`
       gap: 0.5rem;
     }
   }
-`
-
-
+`;
 
 function updateBtnClassName(e) {
-  e.target.className = "selected-btn"
+  e.target.className = "selected-btn";
 }
 
-const SearchBox = ({ queriedData, searchQuery, updateQuery, updatePrimaryFilter }) => {
+const SearchBox = ({
+  getSearchResults,
+  searchQuery,
+  updateQuery,
+  updatePrimaryFilter
+}) => {
+  // context variables
+  const state = useContext(GlobalStateContext);
+  console.log("state FROM SEARCHBOX");
+  console.table(state);
+
+  // // *********** Search functionality ******************
+
+  // // searching state db
+  // // searching state db
+  // const [searchQuery, setSearchQuery] = useState("");
+
+  // const [
+  //   columnsIncludedWithinSearch,
+  //   setColumnsIncludedWithinSearch
+  // ] = useState(["type", "department", "problem", "status"]);
+  // // source for search https://github.com/devmentorlive/datatable-search-filter/blob/master/src/app/index.jsx
+  // // .filter returns a new array with items that meet our condition.
+  // // .some returns true/false. It does not modify the array
+  // // gives us the keys or our db
+
+  // // plain speak:
+  // // return the {} in the [] from our db IF
+  // // any of that objects keys that is in setColumnsIncludedWithinSearch [] AND
+  // // that keys value gives a positve value with (.indexOf(searchQuery.toLowerCase()) > -1)
+  // // ******** Primary Filter States
+  // const [primaryFilter, setPrimaryFilter] = useState("");
+  // const [primaryFilterBool, setPrimaryFilterBool] = useState(false);
+
+  // // pass this down to the btns in searchbar component
+  // const updatePrimaryFilter = (e) => {
+  //   // setPrimaryFilter("")
+  //   // setPrimaryFilterBool(false)
+  //   e.target.parentElement.parentElement.childNodes.forEach((item) => {
+  //     if (
+  //       e.target.value === item.textContent &&
+  //       e.target.value !== primaryFilter
+  //     ) {
+  //       setPrimaryFilter(e.target.value);
+  //       setPrimaryFilterBool(true);
+  //       item.children[0].className = "filter-item-selected";
+  //     } else if (
+  //       e.target.value === item.textContent &&
+  //       e.target.value === primaryFilter
+  //     ) {
+  //       item.children[0].className = "filter-item";
+  //       setPrimaryFilter("");
+  //       setPrimaryFilterBool(false);
+  //       item.children[0].className = "filter-item";
+  //     } else {
+  //       item.children[0].className = "filter-item";
+  //     }
+  //   });
+  // };
+
+  // // ********** Primary FIlter included in search(db) function  ***WORKS***
+  // function search(state) {
+  //   if (primaryFilterBool === true) {
+  //     const primaryFilteredDb = state.filter(
+  //       (item) => item.status === primaryFilter
+  //     );
+  //     const searchedDb = primaryFilteredDb.filter((dataRow) =>
+  //       columnsIncludedWithinSearch.some(
+  //         (column) =>
+  //           dataRow[column]
+  //             .toString()
+  //             .toLowerCase()
+  //             // positive number if there is a match
+  //             // try and length of value === length of indexOf...
+  //             .indexOf(searchQuery.toLowerCase()) > -1
+  //       )
+  //     );
+  //     return searchedDb;
+  //   } else {
+  //     return state.filter((dataRow) =>
+  //       columnsIncludedWithinSearch.some(
+  //         (column) =>
+  //           dataRow[column]
+  //             .toString()
+  //             .toLowerCase()
+  //             // positive number if there is a match
+  //             // try and length of value === length of indexOf...
+  //             .indexOf(searchQuery.toLowerCase()) > -1
+  //       )
+  //     );
+  //   }
+  // }
+
+  // *******************************works
+  // function search(db) {
+  //   return db.filter(dataRow =>
+  //     columnsIncludedWithinSearch.some(
+  //       column =>
+  //         dataRow[column]
+  //           .toString()
+  //           .toLowerCase()
+  //           // positive number if there is a match
+  //           // try and length of value === length of indexOf...
+  //           .indexOf(searchQuery.toLowerCase()) > -1
+  //     )
+  //   )
+  // }
+
+  // // will pass this as search component prop, calls and update state defined here
+  // const updateQuery = (e) => {
+  //   setSearchQuery(e.target.value);
+  //   getSearchResults(state);
+  // };
+  // getSearchResults(state);
+
   return (
     <SearchBoxContainerStyled>
       <label htmlFor="search" className={"input-container"}>
@@ -187,7 +305,7 @@ const SearchBox = ({ queriedData, searchQuery, updateQuery, updatePrimaryFilter 
         </li>
       </ul>
     </SearchBoxContainerStyled>
-  )
-}
+  );
+};
 
-export default SearchBox
+export default SearchBox;

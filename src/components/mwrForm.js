@@ -1,15 +1,13 @@
-import * as React from "react"
-import { useState, useContext } from "react"
+import * as React from "react";
+import { useState, useContext } from "react";
+import styled from "styled-components";
 
-// import { dbContext } from "../../dbProvider"
-import { ACTIONS } from "../context/GlobalContextProvider"
 import {
-  GlobalDispatchContext, GlobalStateContext
-} from "../context/GlobalContextProvider"
+  GlobalDispatchContext,
+  GlobalStateContext
+} from "../context/GlobalContextProvider";
 
-import styled from "styled-components"
-
-// import { addNewFormDataToState } from "../utils/updatingState"
+import { ACTIONS } from "../context/GlobalContextProvider";
 
 // import * as style from "../css_modules/formStyles.module.css"
 
@@ -48,8 +46,8 @@ const MwrFormStyled = styled.form`
   }
 
   .select-styles {
-  padding-block: 0.12rem;
-}
+    padding-block: 0.12rem;
+  }
 
   .problem-label,
   .solution-label {
@@ -109,25 +107,19 @@ const MwrFormStyled = styled.form`
     color: black;
     margin-bottom: 0.5rem;
   } */
-`
-
-
+`;
 
 // lesson learned: multiple classes
-let problemTextAreaClasses = ["problem-input form-input"]
-let solutionTextAreaClasses = ["solution-input form-input"]
+let problemTextAreaClasses = ["problem-input form-input"];
+let solutionTextAreaClasses = ["solution-input form-input"];
 
 function uniqueID() {
-  return Math.floor(Math.random() * Date.now())
+  return Math.floor(Math.random() * Date.now());
 }
 
-const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
-
-  // now we have access to our global state and reducer function to update it.
-  const { state } = useContext(GlobalStateContext)
-  const { dispatch } = useContext(GlobalDispatchContext)
-
-  // local form data state
+const MwrForm = ({ mwrType, handleClose }) => {
+  const dispatch = useContext(GlobalDispatchContext);
+  const state = useContext(GlobalStateContext);
   const [formData, setFormData] = useState({
     // Employee section
     id: uniqueID(),
@@ -170,73 +162,69 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
       commentsFive: "",
       commentSix: ""
     }
-  })
+  });
 
-  //? firing dispatch function directly from opnSubmit attribute on form
-  // const handleSubmit = e => {
-  //   e.preventDefault()
-  //   // handleClick(formData)
-  //   // addNewFormDataToState(formData, db, setDb)
-  //   // setting alias "mwr" to use in our reducer function as the formData
-  //   dispatchEvent({ type: ACTIONS.NEWMWR, payload: { mwr: formData } })
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch({ type: ACTIONS.NEW_MWR, payload: formData });
+    // handleClick(formData);
+    console.log("handleSubmit fired, actions, imports");
+    console.table(state);
 
-  setFormData({
-    // Employee section
-    id: uniqueID(),
-    type: mwrType.toLowerCase(),
-    date: "",
-    name: "",
-    department: "",
-    problem: "",
-    solution: "",
-    // Maininence Section
-    status: "unassigned",
-    workOrderNum: "",
-    workOrderDate: "",
-    workOrderTime: "",
-    projectNum: "",
-    scheduledDate: "",
-    openHistory: "",
-    problemType: "",
-    daysToCOmplete: "",
-    completedDate: "",
-    dueDate: "",
-    estHours: "",
-    assetId: "",
-    assetDescription: "",
-    downtime: "",
-    actHours: "",
-    site: "",
-    requestNum: "",
-    requestedByEmail: "",
-    assignTo: "",
-    assistant: "",
-    maintenanceTeamMember: "",
-    briefDiscription: "",
-    workDiscription: "",
-    comments: "",
-    employeeComments: {
-      commentOne: "",
-      commentTwo: "",
-      commentThree: "",
-      commentsFive: "",
-      commentSix: ""
-    }
-  })
-
-  console.log(formData)
-  // this does not print the newly added mwr. Just the ones before it
-  console.table(state)
-  handleClose()
-  // pass this as a function to set state from the child
-  // setIsOpen(true)
-
+    setFormData({
+      // Employee section
+      id: uniqueID(),
+      type: mwrType.toLowerCase(),
+      date: "",
+      name: "",
+      department: "",
+      problem: "",
+      solution: "",
+      // Maininence Section
+      status: "unassigned",
+      workOrderNum: "",
+      workOrderDate: "",
+      workOrderTime: "",
+      projectNum: "",
+      scheduledDate: "",
+      openHistory: "",
+      problemType: "",
+      daysToCOmplete: "",
+      completedDate: "",
+      dueDate: "",
+      estHours: "",
+      assetId: "",
+      assetDescription: "",
+      downtime: "",
+      actHours: "",
+      site: "",
+      requestNum: "",
+      requestedByEmail: "",
+      assignTo: "",
+      assistant: "",
+      maintenanceTeamMember: "",
+      briefDiscription: "",
+      workDiscription: "",
+      comments: "",
+      employeeComments: {
+        commentOne: "",
+        commentTwo: "",
+        commentThree: "",
+        commentsFive: "",
+        commentSix: ""
+      }
+    });
+    console.log(formData);
+    handleClose();
+    // pass this as a function to set state from the child
+    // setIsOpen(true)
+  };
 
   //
 
   //
   return (
-    <MwrFormStyled onSubmit={dispatch({ type: ACTIONS.NEW_MWR, payload: formData })}>
+    <MwrFormStyled onSubmit={handleSubmit}>
       <div className="heading-and-close-container">
         <h1 className={"form-heading"}>{mwrType} MWR Form</h1>
         <button onClick={handleClose} className="close-btn">
@@ -248,7 +236,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
       <label htmlFor="date">
         <p className="input-label">Date:</p>
         <input
-          onChange={e => setFormData({ ...formData, date: e.target.value })}
+          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
           value={formData.date}
           type="date"
           name="date"
@@ -261,7 +249,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
       <label htmlFor="name">
         <p className="input-label">Name:</p>
         <input
-          onChange={e => setFormData({ ...formData, name: e.target.value })}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           value={formData.name}
           type="text"
           name="name"
@@ -274,7 +262,9 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
       <label htmlFor="email">
         <p className="input-label">E-mail:</p>
         <input
-          onChange={e => setFormData({ ...formData, requestedByEmail: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, requestedByEmail: e.target.value })
+          }
           value={formData.requestedByEmail}
           type="email"
           name="email"
@@ -287,7 +277,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
       <label htmlFor="department">
         <p className="input-label">Department:</p>
         <select
-          onChange={e =>
+          onChange={(e) =>
             setFormData({ ...formData, department: e.target.value })
           }
           value={formData.department}
@@ -304,7 +294,9 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
       <label htmlFor="problem" className="problem-label">
         <p className="input-label">Problem:</p>
         <textarea
-          onChange={e => setFormData({ ...formData, problem: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, problem: e.target.value })
+          }
           value={formData.problem}
           name="problem"
           id="problem"
@@ -316,7 +308,9 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
       <label htmlFor="solution" className="solution-label">
         <p className="input-label">Solution:</p>
         <textarea
-          onChange={e => setFormData({ ...formData, solution: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, solution: e.target.value })
+          }
           value={formData.solution}
           name="solution"
           id="solution"
@@ -329,7 +323,7 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
       {/* Submit */}
       <input type="submit" value="Submit" className="form-btn" />
     </MwrFormStyled>
-  )
-}
+  );
+};
 
-export default MwrForm
+export default MwrForm;

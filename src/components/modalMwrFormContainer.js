@@ -1,13 +1,13 @@
-import * as React from "react"
-import styled from "styled-components"
+import * as React from "react";
+import styled from "styled-components";
 // for modal
-import { useEffect, useRef } from "react"
-import { CSSTransition } from "react-transition-group"
-import ReactPortal from "./reactPortal"
-import "../css_modules/modalStyles.css"
+import { useEffect, useRef } from "react";
+import { CSSTransition } from "react-transition-group";
+import ReactPortal from "./reactPortal";
+import "../css_modules/modalStyles.css";
 //
 
-import MwrForm from "./mwrForm"
+import MwrForm from "./mwrForm";
 
 const StyledModalContent = styled.div`
   /* width: 70%; */
@@ -27,27 +27,20 @@ const StyledModalContent = styled.div`
     left: 0;
     top: 0;
   }
-`
+`;
 
-function ModalMwrFormContainer({
-  data,
-  handleClick,
-  children,
-  isOpen,
-  handleClose,
-  mwrType
-}) {
+function ModalMwrFormContainer({ children, isOpen, handleClose, mwrType }) {
   // for react-transition-group
-  const nodeRef = useRef(null)
+  const nodeRef = useRef(null);
 
   // to close modal and cleanup afterwards
   useEffect(() => {
-    const closeOnEscapeKey = e => (e.key === "Escape" ? handleClose() : null)
-    document.body.addEventListener("keydown", closeOnEscapeKey)
+    const closeOnEscapeKey = (e) => (e.key === "Escape" ? handleClose() : null);
+    document.body.addEventListener("keydown", closeOnEscapeKey);
     return () => {
-      document.body.removeEventListener("keydown", closeOnEscapeKey)
-    }
-  }, [handleClose])
+      document.body.removeEventListener("keydown", closeOnEscapeKey);
+    };
+  }, [handleClose]);
 
   return (
     <ReactPortal wrapperId="react-portal-modal-container">
@@ -60,16 +53,11 @@ function ModalMwrFormContainer({
       >
         <div className="modal" ref={nodeRef}>
           <StyledModalContent>
-            <MwrForm
-              data={data}
-              handleClick={handleClick}
-              mwrType={mwrType}
-              handleClose={handleClose}
-            />
+            <MwrForm mwrType={mwrType} handleClose={handleClose} />
           </StyledModalContent>
         </div>
       </CSSTransition>
     </ReactPortal>
-  )
+  );
 }
-export default ModalMwrFormContainer
+export default ModalMwrFormContainer;
