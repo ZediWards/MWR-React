@@ -1,8 +1,12 @@
 import * as React from "react"
 import { useState, useEffect, useContext } from "react"
 
-import { dbContext } from "../../dbProvider"
-import { updateStateObject, addNewFormDataToState } from "../utils/updatingState"
+import {
+  GlobalDispatchContext, GlobalStateContext
+} from "../context/GlobalContextProvider"
+
+// import { dbContext } from "../../dbProvider"
+// import { updateStateObject, addNewFormDataToState } from "../utils/updatingState"
 
 
 import Layout from "../components/layout"
@@ -12,6 +16,9 @@ import Leaderboard from "../components/leaderboard"
 import FullTable from "../components/mainTable"
 
 const IndexPage = () => {
+  // state from useContext
+  const value = useContext(GlobalStateContext)
+
   const [db, setDb] = useState([
     {
       id: 1,
@@ -183,9 +190,10 @@ const IndexPage = () => {
 
   // local storage setup storage
   // seocond param set to [db] means it will fire on page/component load & if db updates
+  // ! changed local storage to use state from useContext
   useEffect(() => {
-    window.localStorage.setItem("localDb", JSON.stringify(db))
-  }, [db])
+    window.localStorage.setItem("localDb", JSON.stringify(value))
+  }, [value])
 
   // ***********************************************************
 
@@ -236,11 +244,11 @@ const IndexPage = () => {
     })
   }
 
-
+  //! changed to use state from useContext
   // ********** Primary FIlter included in search(db) function  ***WORKS***
-  function search(db) {
+  function search(value) {
     if (primaryFilterBool === true) {
-      const primaryFilteredDb = db.filter(item => item.status === primaryFilter)
+      const primaryFilteredDb = value.filter(item => item.status === primaryFilter)
       const searchedDb = primaryFilteredDb.filter(dataRow =>
         columnsIncludedWithinSearch.some(
           column =>
@@ -253,18 +261,6 @@ const IndexPage = () => {
         )
       )
       return searchedDb
-    } else {
-      return db.filter(dataRow =>
-        columnsIncludedWithinSearch.some(
-          column =>
-            dataRow[column]
-              .toString()
-              .toLowerCase()
-              // positive number if there is a match
-              // try and length of value === length of indexOf...
-              .indexOf(searchQuery.toLowerCase()) > -1
-        )
-      )
     }
   }
 
@@ -274,10 +270,11 @@ const IndexPage = () => {
   }
 
   return (
+    // !changing all high level components to use state from useContext
     <Layout>
       <div>
-        <MwrCards data={db} handleClick={handleClick} mwrTypes={mwrTypes} />
-        <Leaderboard data={db} />
+        <MwrCards data={value} handleClick={handleClick} mwrTypes={mwrTypes} />
+        <Leaderboard data={value} />
         {/* in search example the search is in the app component with the db */}
         {/* <SearchBox
           queriedData={search(db)}
@@ -286,7 +283,7 @@ const IndexPage = () => {
         /> */}
         {/* passes in the queried db to display in table */}
         <FullTable
-          queriedData={search(db)}
+          queriedData={search(value)}
           searchQuery={searchQuery}
           updateQuery={updateQuery}
           mwrTypes={mwrTypes}

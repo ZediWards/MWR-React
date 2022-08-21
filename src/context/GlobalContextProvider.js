@@ -14,9 +14,9 @@ const initialState = [{
 
 // actions for our dispatch 
 export const ACTIONS = {
-  NEWMWR: 'new',
-  UPDATEMWR: 'update',
-  DELETEMWR: 'delete'
+  NEW_MWR: 'new',
+  UPDATE_MWR: 'update',
+  DELETE_MWR: 'delete'
 }
 
 // *** payload is an object that takesin any variable values needed to perfom the action. 
@@ -26,15 +26,15 @@ function reducer(state, action) {
   switch (action.type) {
     // add new mwr "handleClick"
     // [] works
-    case ACTIONS.NEWMWR: {
+    case ACTIONS.NEW_MWR: {
       return [...state, action.payload.formData]
     }
     // update mwr ""
-    case ACTIONS.UPDATEMWR: {
+    case ACTIONS.UPDATE_MWR: {
       return {}
     }
     // delete mwr
-    case ACTIONS.DELETEMWR: {
+    case ACTIONS.DELETE_MWR: {
       return state.filter(mwr => mwr.id !== action.payload.id)
     }
     default:

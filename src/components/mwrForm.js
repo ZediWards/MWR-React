@@ -1,12 +1,15 @@
 import * as React from "react"
 import { useState, useContext } from "react"
 
-import { dbContext } from "../../dbProvider"
+// import { dbContext } from "../../dbProvider"
 import { ACTIONS } from "../context/GlobalContextProvider"
+import {
+  GlobalDispatchContext, GlobalStateContext
+} from "../context/GlobalContextProvider"
 
 import styled from "styled-components"
 
-import { addNewFormDataToState } from "../utils/updatingState"
+// import { addNewFormDataToState } from "../utils/updatingState"
 
 // import * as style from "../css_modules/formStyles.module.css"
 
@@ -119,8 +122,12 @@ function uniqueID() {
 }
 
 const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
-  const { db, setDb } = useContext(dbContext)
 
+  // now we have access to our global state and reducer function to update it.
+  const { state } = useContext(GlobalStateContext)
+  const { dispatch } = useContext(GlobalDispatchContext)
+
+  // local form data state
   const [formData, setFormData] = useState({
     // Employee section
     id: uniqueID(),
@@ -165,69 +172,71 @@ const MwrForm = ({ data, handleClick, mwrType, handleClose }) => {
     }
   })
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    // handleClick(formData)
-    // addNewFormDataToState(formData, db, setDb)
-    dispatchEvent({ type: ACTIONS.NEWMWR, payload: { mwr: formData } })
+  //? firing dispatch function directly from opnSubmit attribute on form
+  // const handleSubmit = e => {
+  //   e.preventDefault()
+  //   // handleClick(formData)
+  //   // addNewFormDataToState(formData, db, setDb)
+  //   // setting alias "mwr" to use in our reducer function as the formData
+  //   dispatchEvent({ type: ACTIONS.NEWMWR, payload: { mwr: formData } })
 
-    setFormData({
-      // Employee section
-      id: uniqueID(),
-      type: mwrType.toLowerCase(),
-      date: "",
-      name: "",
-      department: "",
-      problem: "",
-      solution: "",
-      // Maininence Section
-      status: "unassigned",
-      workOrderNum: "",
-      workOrderDate: "",
-      workOrderTime: "",
-      projectNum: "",
-      scheduledDate: "",
-      openHistory: "",
-      problemType: "",
-      daysToCOmplete: "",
-      completedDate: "",
-      dueDate: "",
-      estHours: "",
-      assetId: "",
-      assetDescription: "",
-      downtime: "",
-      actHours: "",
-      site: "",
-      requestNum: "",
-      requestedByEmail: "",
-      assignTo: "",
-      assistant: "",
-      maintenanceTeamMember: "",
-      briefDiscription: "",
-      workDiscription: "",
-      comments: "",
-      employeeComments: {
-        commentOne: "",
-        commentTwo: "",
-        commentThree: "",
-        commentsFive: "",
-        commentSix: ""
-      }
-    })
+  setFormData({
+    // Employee section
+    id: uniqueID(),
+    type: mwrType.toLowerCase(),
+    date: "",
+    name: "",
+    department: "",
+    problem: "",
+    solution: "",
+    // Maininence Section
+    status: "unassigned",
+    workOrderNum: "",
+    workOrderDate: "",
+    workOrderTime: "",
+    projectNum: "",
+    scheduledDate: "",
+    openHistory: "",
+    problemType: "",
+    daysToCOmplete: "",
+    completedDate: "",
+    dueDate: "",
+    estHours: "",
+    assetId: "",
+    assetDescription: "",
+    downtime: "",
+    actHours: "",
+    site: "",
+    requestNum: "",
+    requestedByEmail: "",
+    assignTo: "",
+    assistant: "",
+    maintenanceTeamMember: "",
+    briefDiscription: "",
+    workDiscription: "",
+    comments: "",
+    employeeComments: {
+      commentOne: "",
+      commentTwo: "",
+      commentThree: "",
+      commentsFive: "",
+      commentSix: ""
+    }
+  })
 
-    console.log(formData)
-    // this does not print the newly added mwr. Just the ones before it
-    console.table(db)
-    handleClose()
-    // pass this as a function to set state from the child
-    // setIsOpen(true)
-  }
+  console.log(formData)
+  // this does not print the newly added mwr. Just the ones before it
+  console.table(state)
+  handleClose()
+  // pass this as a function to set state from the child
+  // setIsOpen(true)
+
 
   //
 
   //
   return (
-    <MwrFormStyled onSubmit={handleSubmit}>
+    <MwrFormStyled onSubmit={dispatch({ type: ACTIONS.NEW_MWR, payload: formData })}>
       <div className="heading-and-close-container">
         <h1 className={"form-heading"}>{mwrType} MWR Form</h1>
         <button onClick={handleClose} className="close-btn">
