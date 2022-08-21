@@ -2,9 +2,9 @@ import * as React from "react"
 import { useContext } from "react"
 import styled from "styled-components"
 
-// import {
-//   GlobalDispatchContext, GlobalStateContext
-// } from "../context/GlobalContextProvider"
+import {
+  GlobalDispatchContext, GlobalStateContext
+} from "../context/GlobalContextProvider"
 
 import Header from "./header"
 import Footer from "./footer"
@@ -27,10 +27,10 @@ const LayoutDiv = styled.div`
 
 const Layout = ({ children }) => {
 
-  // const dispatch = useContext(GlobalDispatchContext)
-  // const state = useContext(GlobalStateContext)
-  // console.log(state)
-  // console.log(dispatch)
+  const dispatch = useContext(GlobalDispatchContext)
+  const state = useContext(GlobalStateContext)
+  console.log(state)
+  console.log(dispatch)
 
   return (
     <LayoutDiv>
