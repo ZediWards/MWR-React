@@ -5,7 +5,9 @@ import { ACTIONS } from "../context/GlobalContextProvider";
 
 import {
   GlobalDispatchContext,
-  GlobalStateContext
+  GlobalStateContext,
+  GlobalSettingsContext,
+  GlobalSettingsDispatchContext
 } from "../context/GlobalContextProvider";
 
 import styled from "styled-components";
@@ -43,6 +45,8 @@ const ViewDetails = ({
   mwrTypes
 }) => {
   // context variables
+  const settings = useContext(GlobalSettingsContext);
+  const settingsDispatch = useContext(GlobalSettingsDispatchContext);
   const dispatch = useContext(GlobalDispatchContext);
   const state = useContext(GlobalStateContext);
   console.log("state DETAILS");
@@ -52,11 +56,11 @@ const ViewDetails = ({
   // console.table(mwrDetails.id)
 
   // **************** varibles for mapping inside form********************
-  const assignedDepartments = [
-    "Production Maintenance",
-    "Building Maintneance"
-  ];
-  const mappedAssignedDepartments = assignedDepartments.map(
+  // const assignedDepartments = [
+  //   "Production Maintenance",
+  //   "Building Maintneance"
+  // ];
+  const mappedAssignedDepartments = settings.maintenenceDepartments.map(
     (department, index) => {
       return (
         <option key={index} value={department}>
@@ -67,8 +71,8 @@ const ViewDetails = ({
   );
 
   // production maintenance
-  const productionMaintenanceEmployees = ["Jon", "Bob", "Jim"];
-  const mappedProductionMaintenanceEmployees = productionMaintenanceEmployees.map(
+  // const productionMaintenanceEmployees = ["Jon", "Bob", "Jim"];
+  const mappedProductionMaintenanceEmployees = settings.generalMaintenenceEmployees.map(
     (employee, index) => {
       return (
         <option key={index} value={employee}>
@@ -79,8 +83,8 @@ const ViewDetails = ({
   );
 
   // building maintenance
-  const buildingMaintenanceEmployees = ["Matt", "Sara"];
-  const mappedBuildingMaintenanceEmployees = buildingMaintenanceEmployees.map(
+  // const buildingMaintenanceEmployees = ["Matt", "Sara"];
+  const mappedBuildingMaintenanceEmployees = settings.buildingMainteneceEmployees.map(
     (employee, index) => {
       return (
         <option key={index} value={employee}>
@@ -92,8 +96,8 @@ const ViewDetails = ({
 
   // all maintenance
   const allMaintenanceEmployees = [
-    ...productionMaintenanceEmployees,
-    ...buildingMaintenanceEmployees
+    ...settings.buildingMainteneceEmployees,
+    ...settings.generalMaintenenceEmployees
   ];
   const mappedAllMaintenanceEmployees = allMaintenanceEmployees.map(
     (employee, index) => {
@@ -109,13 +113,13 @@ const ViewDetails = ({
   // job status change if department is not undefined
   // open/history?
 
-  const problemType = [
-    "electrical",
-    "structural",
-    "plumbing",
-    "outside contractor"
-  ];
-  const mappedProblemTypes = problemType.map((problemType, index) => {
+  // const problemType = [
+  //   "electrical",
+  //   "structural",
+  //   "plumbing",
+  //   "outside contractor"
+  // ];
+  const mappedProblemTypes = settings.problemType.map((problemType, index) => {
     return (
       <option key={index} value={problemType}>
         {problemType}
@@ -123,20 +127,28 @@ const ViewDetails = ({
     );
   });
 
-  // mwrTypes from props
-  const mappedMwrTypes = mwrTypes.map((type, index) => {
+  // mwrTypes from props CONVERTED TO USING MWR TYPES FROM CONTEXT SETTINGS
+  const mappedMwrTypes = settings.mwrTypes.map((item, index) => {
     return (
-      <option key={index} value={type.toLowerCase()}>
-        {type.toLowerCase()}
+      <option key={index} value={item.type.toLowerCase()}>
+        {item.type.toLowerCase()}
       </option>
     );
   });
 
-  const jobStatus = ["unassigned", "assigned", "completed", "denied"];
-  const mappedJobStatus = jobStatus.map((status, index) => {
+  // const jobStatus = ["unassigned", "assigned", "completed", "denied"];
+  const mappedJobStatus = settings.status.map((status, index) => {
     return (
       <option key={index} value={status}>
         {status}
+      </option>
+    );
+  });
+
+  const mappedDepartments = settings.departments.map((department, index) => {
+    return (
+      <option key={index} value={department}>
+        {department}
       </option>
     );
   });
@@ -148,7 +160,8 @@ const ViewDetails = ({
     ...mwrDetails
   });
   // console.log(`vv this is updateMwr state in viewDetails.js vv`)
-  console.table(updateMwr);
+  console.log("MWR DETAILS!!!!!");
+  console.table(updateMwr.id);
 
   // This will need to locate and update the specific object within the main state
   const handleSubmit = (e) => {
@@ -525,10 +538,11 @@ const ViewDetails = ({
                   <option value="" disabled={true}>
                     -
                   </option>
-                  <option value="shipping">shipping</option>
+                  {mappedDepartments}
+                  {/* <option value="shipping">shipping</option>
                   <option value="production line 1">production line 1</option>
                   <option value="production line 2">production line 2</option>
-                  <option value="compounding">compounding</option>
+                  <option value="compounding">compounding</option> */}
                 </select>
               </label>
 

@@ -4,7 +4,9 @@ import styled from "styled-components";
 
 import {
   GlobalDispatchContext,
-  GlobalStateContext
+  GlobalStateContext,
+  GlobalSettingsContext,
+  GlobalSettingsDispatchContext
 } from "../context/GlobalContextProvider";
 
 import { ACTIONS } from "../context/GlobalContextProvider";
@@ -118,8 +120,18 @@ function uniqueID() {
 }
 
 const MwrForm = ({ mwrType, handleClose }) => {
+  const settings = useContext(GlobalSettingsContext);
+  const settingsDispatch = useContext(GlobalSettingsDispatchContext);
   const dispatch = useContext(GlobalDispatchContext);
   const state = useContext(GlobalStateContext);
+
+  const settingsDepartment = settings.departments.map((department, index) => {
+    return (
+      <option key={index} value={department}>
+        {department}
+      </option>
+    );
+  });
   const [formData, setFormData] = useState({
     // Employee section
     id: uniqueID(),
@@ -285,10 +297,8 @@ const MwrForm = ({ mwrType, handleClose }) => {
           id="department"
           className={`form-input select-styles`}
         >
-          <option value="shipping">shipping</option>
-          <option value="production line 1">production line 1</option>
-          <option value="production line 2">production line 2</option>
-          <option value="compounding">compounding</option>
+          <option value="empty"> </option>
+          {settingsDepartment}
         </select>
       </label>
       <label htmlFor="problem" className="problem-label">

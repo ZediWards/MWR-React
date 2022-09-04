@@ -3,19 +3,32 @@ import { useState } from "react";
 
 export const GlobalStateContext = React.createContext();
 export const GlobalDispatchContext = React.createContext();
+export const GlobalSettingsContext = React.createContext();
+export const GlobalSettingsDispatchContext = React.createContext();
 
 const generalSettings = {
   mwrTypes: [
     { type: "general", color: "green" },
     { type: "urgent", color: "yellow" },
-    { type: "safety", color: "red" }
+    { type: "safety", color: "red" },
+    { type: "TESTING", color: "red" }
   ],
-  departments: ["compounding", "production 1", "production 2", "warehouse"],
-  status: ["assigned", "unassigned", "completed", "denied"],
-  problemType: ["electrical", "plumbing", "machine"],
-  maintenenceDepartments: ["building maintenence", "general maintenence"],
+  departments: [
+    "compounding",
+    "production 1",
+    "production 2",
+    "warehouse",
+    "TESTING"
+  ],
+  status: ["unassigned", "assigned", "completed", "denied", "TESTING"],
+  problemType: ["electrical", "plumbing", "machine", "TESTING"],
+  maintenenceDepartments: [
+    "Building Maintenence",
+    "General Maintenence",
+    "TESTING"
+  ],
   buildingMainteneceEmployees: ["Tod"],
-  generalMaintenenceEmployees: ["Bob", "John"]
+  generalMaintenenceEmployees: ["Bob", "John", "TESTING"]
 };
 
 const initialState = [
@@ -24,7 +37,7 @@ const initialState = [
     // Employee section
     type: "general",
     date: "2021-11-12",
-    name: "Jon Doe",
+    name: "Jane Doe TESTING",
     department: "compounding",
     problem: "details test",
     solution: "fix it",
@@ -191,11 +204,10 @@ const initialState = [
     }
   }
 ];
-
 // actions for our dispatch
 export const ACTIONS = {
-  NEW_MWR: "new",
-  UPDATE_MWR: "update",
+  NEW_MWR: "new", //works
+  UPDATE_MWR: "update", //works
   DELETE_MWR: "delete"
 };
 
@@ -222,7 +234,7 @@ function reducer(state, action) {
       });
       // can I just return updated state?, does initialState need to be "let"?
       state = updatedState;
-      return { state };
+      return state;
     }
     // delete mwr
     // [?] works - need to make delete button with dispatch function onClick
@@ -240,11 +252,19 @@ function reducer(state, action) {
 // wrapping state and reducer providers with GlobalContextProvider, which will wrap Gatsby
 const GlobalContextProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
+  const [settingsState, settingsDispatch] = React.useReducer(
+    reducer,
+    generalSettings
+  );
   return (
     <GlobalStateContext.Provider value={state}>
-      <GlobalDispatchContext.Provider value={dispatch}>
-        {children}
-      </GlobalDispatchContext.Provider>
+      <GlobalSettingsContext.Provider value={settingsState}>
+        <GlobalDispatchContext.Provider value={dispatch}>
+          <GlobalSettingsDispatchContext.Provider value={settingsDispatch}>
+            {children}
+          </GlobalSettingsDispatchContext.Provider>
+        </GlobalDispatchContext.Provider>
+      </GlobalSettingsContext.Provider>
     </GlobalStateContext.Provider>
   );
 };
