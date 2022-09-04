@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 export const GlobalStateContext = React.createContext();
@@ -37,7 +37,7 @@ const initialState = [
     // Employee section
     type: "general",
     date: "2021-11-12",
-    name: "Jane Doe TESTING",
+    name: "Jane Doe TESTING localStorage",
     department: "compounding",
     problem: "details test",
     solution: "fix it",
@@ -250,8 +250,15 @@ function reducer(state, action) {
 }
 
 // wrapping state and reducer providers with GlobalContextProvider, which will wrap Gatsby
+// I think state needs to start as an empty array
 const GlobalContextProvider = ({ children }) => {
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  const [state, dispatch] = React.useReducer(reducer, initialState, () => {
+    const localData = localStorage.getItem('state');
+    return localData ? JSON.parse(localData) : initialState;
+  });
+  useEffect(() => {
+    localStorage.setItem('state', JSON.stringify(state))
+  }, [state])
   const [settingsState, settingsDispatch] = React.useReducer(
     reducer,
     generalSettings
