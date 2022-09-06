@@ -61,18 +61,9 @@ function truncateString(str, num) {
   return str.slice(0, num) + "...";
 }
 
-const FullTable = ({
-  // queriedData,
-  // searchQuery,
-  // updateQuery,
-  mwrTypes,
-  handleUpdate
-  // updatePrimaryFilter
-}) => {
+const FullTable = () => {
   // context variables
   const state = useContext(GlobalStateContext);
-  console.log("state FROM MAINTABLE");
-  console.table(state);
   //
   // const [tableData, setTableData] = useState(state);
 
@@ -184,8 +175,6 @@ const FullTable = ({
           <ViewDetailsBtn
             mwrDetails={mwr}
             mwrIndex={index}
-            mwrTypes={mwrTypes}
-            handleUpdate={handleUpdate}
           />
         </td>
       </tr>

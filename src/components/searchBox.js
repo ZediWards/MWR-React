@@ -160,8 +160,6 @@ const SearchBox = ({
 }) => {
   // context variables
   const state = useContext(GlobalStateContext);
-  console.log("state FROM SEARCHBOX");
-  console.table(state);
 
   // // *********** Search functionality ******************
 

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useEffect, useContext } from "react";
 
 import {
-  GlobalDispatchContext,
+  GlobalSettingsContext,
   GlobalStateContext
 } from "../context/GlobalContextProvider";
 
@@ -16,151 +16,13 @@ import FullTable from "../components/mainTable";
 const IndexPage = () => {
   // context variables
   const state = useContext(GlobalStateContext);
-  console.log("state FROM INDEX");
-  console.table(state);
+  const settings = useContext(GlobalSettingsContext)
+  console.log("settings FROM INDEX");
+  console.table(settings);
 
-  const [db, setDb] = useState([
-    {
-      id: 1,
-      // Employee section
-      type: "general",
-      date: "2021-11-12",
-      name: "Jon Doe",
-      department: "compounding",
-      problem: "details test",
-      solution: "fix it",
-      // Maininence Section
-      status: "assigned",
-      workOrderNum: "001",
-      workOrderDate: "2021-11-21",
-      workOrderTime: "12:00",
-      projectNum: "007",
-      scheduledDate: "2021-11-22",
-      // needs applied to all
-      openHistory: "",
-      problemType: "electrical",
-      //
-      // left
-      daysToCOmplete: "",
-      // right
-      completedDate: "",
-      //
-      // left
-      dueDate: "2022-07-07",
-      estHours: "2",
-      assetId: "123",
-      assetDescription: "a switch!",
-      // right
-      downtime: "1",
-      actHours: "3",
-      //
-      // left
-      // department
-      site: "light switch",
-      //
-      // left
-      requestNum: "",
-      // name: "",
-      // right
-      requestedByEmail: "test@tesing.com",
-      //
-      // left
-      // assignType: "", making just type. No nned to duplicate data
-      assignTo: "Production Maintenance",
-      // right
-      assistant: "Bob",
-      maintenanceTeamMember: "Jon",
-      //
-      // left
-      briefDiscription:
-        "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-
-      workDiscription:
-        "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-      //
-      // left
-      comments: "",
-      //
-      // full (left through right)
-      employeeComments: {
-        commentOne: "",
-        commentTwo: "",
-        commentThree: "",
-        commentsFive: "",
-        commentSix: ""
-      }
-    },
-    {
-      id: 2,
-      // Employee section
-      type: "safety",
-      date: "2021-11-12",
-      name: "Jane Doe",
-      department: "production line 1",
-      problem: "still broke",
-      solution: "please fix it",
-      // Maininence Section
-      status: "unassigned",
-      workOrderNum: "002",
-      workOrderDate: "2021-12-21",
-      workOrderTime: "11:00",
-      projectNum: "008",
-      scheduledDate: "2021-12-22",
-      // needs applied to all
-      openHistory: "",
-      problemType: "",
-      //
-      // left
-      daysToCOmplete: "",
-      // right
-      completedDate: "",
-      //
-      // left
-      dueDate: "",
-      estHours: "",
-      assetId: "",
-      assetDescription: "",
-      // right
-      downtime: "",
-      actHours: "",
-      //
-      // left
-      // department
-      site: "",
-      //
-      // left
-      requestNum: "",
-      // name: "",
-      // right
-      requestedByEmail: "test2@testing.com",
-      //
-      // left
-      // assignType: "", making just type. No nned to duplicate data
-      assignTo: "",
-      // right
-      assistant: "",
-      maintenanceTeamMember: "",
-      //
-      // left
-      briefDiscription: "",
-      workDiscription: "",
-      //
-      // left
-      comments: "",
-      //
-      // full (left through right)
-      employeeComments: {
-        commentOne: "",
-        commentTwo: "",
-        commentThree: "",
-        commentsFive: "",
-        commentSix: ""
-      }
-    }
-  ]);
 
   // Lesson learned: anytime referencing these to data{} need to add .toLowerCase()
-  const [mwrTypes, setMwrTypes] = useState(["General", "Urgent", "Safety"]);
+  // const [mwrTypes, setMwrTypes] = useState(["General", "Urgent", "Safety"]);
 
   // ************************************ MOVED LOCAL STORAGE TO GLOBAL CONTEXT ****************************************
   // local storage persistance setup
@@ -178,22 +40,22 @@ const IndexPage = () => {
   // }, [db]);
 
   // adds object to db state
-  const handleClick = (formData) => {
-    // example of adding item to the state array
-    setDb([...db, formData]);
-  };
+  // const handleClick = (formData) => {
+  //   // example of adding item to the state array
+  //   setDb([...db, formData]);
+  // };
 
   // updates an object already in db state
-  const handleUpdate = (mwrData, mwrIndex) => {
-    // logging correct item
-    const updatedDb = db.map((item) => {
-      if (item.id === mwrData.id) {
-        return mwrData;
-      }
-      return item;
-    });
-    setDb([...updatedDb]);
-  };
+  // const handleUpdate = (mwrData, mwrIndex) => {
+  //   // logging correct item
+  //   const updatedDb = db.map((item) => {
+  //     if (item.id === mwrData.id) {
+  //       return mwrData;
+  //     }
+  //     return item;
+  //   });
+  //   setDb([...updatedDb]);
+  // };
 
   // // searching state db
   // const [searchQuery, setSearchQuery] = useState("");
@@ -297,28 +159,9 @@ const IndexPage = () => {
   return (
     <Layout>
       <div>
-        {/* <MwrCardsCopy data={db} mwrTypes={mwrTypes} handleClick={handleClick} /> */}
-        <MwrCards mwrTypes={mwrTypes} />
-        {/* leaderboard using context */}
+        <MwrCards />
         <Leaderboard />
-        {/* in search example the search is in the app component with the db */}
-        {/* <SearchBox
-          queriedData={search(db)}
-          searchQuery={searchQuery}
-          updateQuery={updateQuery}
-        /> */}
-        {/* passes in the queried db to display in table */}
-        <FullTable
-          // queriedData={search(state)}
-          // searchQuery={searchQuery}
-          // updateQuery={updateQuery}
-          mwrTypes={mwrTypes}
-          handleUpdate={handleUpdate}
-        // updatePrimaryFilter={updatePrimaryFilter}
-        />
-
-        {/* ! checking w/o serch(db) */}
-        {/* <FullTable data={db} handleUpdate={handleUpdate} /> */}
+        <FullTable />
       </div>
     </Layout>
   );

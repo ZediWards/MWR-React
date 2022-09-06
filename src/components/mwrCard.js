@@ -20,9 +20,9 @@ const StyledMwrCard = styled.div`
   padding: 1.5rem;
   background-color: var(--background-body);
   background-color: ${(prop) =>
-    prop.mwrType === "General"
+    prop.mwrType.type === "General"
       ? "var(--background-general)"
-      : prop.mwrType === "Safety"
+      : prop.mwrType.type === "Safety"
         ? "var(--background-safety)"
         : "var(--background-urgent)"};
 `;
@@ -115,7 +115,7 @@ const MwrCard = ({ mwrType, unAssigned, assigned, completed }) => {
 
   return (
     <StyledMwrCard mwrType={mwrType}>
-      <StyledMWRTitle>{mwrType} MWR</StyledMWRTitle>
+      <StyledMWRTitle>{mwrType.type} MWR</StyledMWRTitle>
       <StyledStatsContainer>
         <StyledStatContainer>
           <StyledParagraph>Unassigned:</StyledParagraph>
@@ -138,7 +138,7 @@ const MwrCard = ({ mwrType, unAssigned, assigned, completed }) => {
       </StyledButton>
 
       <ModalMwrFormContainer
-        mwrType={mwrType}
+        mwrType={mwrType.type}
         handleClose={() => setIsOpen(false)}
         isOpen={isOpen}
       />

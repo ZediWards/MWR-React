@@ -8,17 +8,16 @@ export const GlobalSettingsDispatchContext = React.createContext();
 
 const generalSettings = {
   mwrTypes: [
-    { type: "general", color: "green" },
-    { type: "urgent", color: "yellow" },
-    { type: "safety", color: "red" },
-    { type: "TESTING", color: "red" }
+    { type: "General", color: "green" },
+    { type: "Urgent", color: "yellow" },
+    { type: "Safety", color: "red" },
   ],
   departments: [
     "compounding",
     "production 1",
     "production 2",
     "warehouse",
-    "TESTING"
+    // "TESTING"
   ],
   status: ["unassigned", "assigned", "completed", "denied", "TESTING"],
   problemType: ["electrical", "plumbing", "machine", "TESTING"],
@@ -252,6 +251,8 @@ function reducer(state, action) {
 // wrapping state and reducer providers with GlobalContextProvider, which will wrap Gatsby
 // I think state needs to start as an empty array
 const GlobalContextProvider = ({ children }) => {
+
+  // initial state & local storage
   const [state, dispatch] = React.useReducer(reducer, initialState, () => {
     const localData = localStorage.getItem('state');
     return localData ? JSON.parse(localData) : initialState;
@@ -259,9 +260,17 @@ const GlobalContextProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('state', JSON.stringify(state))
   }, [state])
+
+  // settings & Local Storage
   const [settingsState, settingsDispatch] = React.useReducer(
     reducer,
-    generalSettings
+    generalSettings, () => {
+      const localSettings = localStorage.getItem('settingsState');
+      return localSettings ? JSON.parse(localSettings) : generalSettings;
+    });
+  useEffect(() => {
+    localStorage.setItem('settingsState', JSON.stringify(settingsState))
+  }, [settingsState]
   );
   return (
     <GlobalStateContext.Provider value={state}>

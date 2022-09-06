@@ -2,8 +2,8 @@ import * as React from "react";
 import { useContext } from "react";
 
 import {
-  GlobalDispatchContext,
-  GlobalStateContext
+  GlobalStateContext,
+  GlobalSettingsContext,
 } from "../context/GlobalContextProvider";
 
 import styled from "styled-components";
@@ -28,15 +28,14 @@ const CardsFlexContainer = styled.div`
   }
 `;
 
-const MwrCards = ({ mwrTypes, data }) => {
+const MwrCards = () => {
   // context variables
   const state = useContext(GlobalStateContext);
-  console.log("state DOT FILTER");
-  console.table(state);
+  const settings = useContext(GlobalSettingsContext)
 
   // mapping through the different mwrTypes to make corrisponding card
-  const card = mwrTypes.map((type, index) => {
-    const mwrType = state.filter((mwr) => mwr.type === type.toLowerCase());
+  const card = settings.mwrTypes.map((item, index) => {
+    const mwrType = state.filter((mwr) => mwr.type === item.type.toLowerCase());
     const unAssignedMwrType = mwrType.filter(
       (mwr) => mwr.status === "unassigned"
     );
@@ -48,9 +47,7 @@ const MwrCards = ({ mwrTypes, data }) => {
     return (
       <MwrCard
         key={index}
-        // data={data}
-        // handleClick={handleClick}
-        mwrType={type}
+        mwrType={item}
         unAssigned={unAssignedMwrType}
         assigned={assignedMwrType}
         completed={completedMwrType}

@@ -39,18 +39,13 @@ const DetailsFormStyled = styled.form`
 
 const ViewDetails = ({
   mwrDetails,
-  mwrIndex,
-  handleUpdate,
   handleClose,
-  mwrTypes
 }) => {
   // context variables
   const settings = useContext(GlobalSettingsContext);
   const settingsDispatch = useContext(GlobalSettingsDispatchContext);
   const dispatch = useContext(GlobalDispatchContext);
   const state = useContext(GlobalStateContext);
-  console.log("state DETAILS");
-  console.table(state);
   // console.log(`vv this is mwrDetails state in viewDetails.js vv`)
   // console.table(mwrDetails)
   // console.table(mwrDetails.id)
@@ -182,7 +177,8 @@ const ViewDetails = ({
   const handlePdf = (e) => {
     e.stopPropagation();
     console.log("handle pdf is firing");
-    handleUpdate(updateMwr, mwrIndex);
+    dispatch({ type: ACTIONS.UPDATE_MWR, payload: updateMwr });
+    // handleUpdate(updateMwr, mwrIndex);
     handleClose();
   };
 

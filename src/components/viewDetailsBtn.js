@@ -34,7 +34,7 @@ const DetailsBtn = styled.button`
   }
 `;
 
-const ViewDetailsBtn = ({ mwrDetails, mwrTypes, handleUpdate }) => {
+const ViewDetailsBtn = ({ mwrDetails }) => {
   // state for modal
   const [isOpen, setIsOpen] = useState(false);
 
@@ -50,8 +50,6 @@ const ViewDetailsBtn = ({ mwrDetails, mwrTypes, handleUpdate }) => {
 
       <ViewDetailsModalContainer
         mwrDetails={mwrDetails}
-        mwrTypes={mwrTypes}
-        handleUpdate={handleUpdate}
         handleClose={() => setIsOpen(false)}
         isOpen={isOpen}
       />

@@ -40,8 +40,6 @@ const TableStyled = styled.table`
 const Leaderboard = () => {
   // context variables
   const state = useContext(GlobalStateContext);
-  console.log("state from leaderboard");
-  console.table(state);
 
   // making a mutable varible of the db state
   // const mwrEntries = data;
