@@ -34,7 +34,7 @@ const Layout = ({ children }) => {
 
   return (
     <LayoutDiv>
-      <p>{state[0].type}</p>
+      {/* <p>{state[0].type}</p> */}
       <Header />
       <main>{children}</main>
       <Footer />

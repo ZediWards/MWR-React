@@ -32,177 +32,177 @@ const generalSettings = {
 };
 
 const initialState = [
-  {
-    id: 1,
-    // Employee section
-    type: "general",
-    date: "2021-11-12",
-    name: "Jane Doe TESTING localStorage",
-    department: "compounding",
-    problem: "details test",
-    solution: "fix it",
-    // Maininence Section
-    status: "assigned",
-    workOrderNum: "001",
-    workOrderDate: "2021-11-21",
-    workOrderTime: "12:00",
-    projectNum: "007",
-    scheduledDate: "2021-11-22",
-    // needs applied to all
-    openHistory: "",
-    problemType: "electrical",
-    //
-    daysToCOmplete: "",
-    completedDate: "",
-    //
-    dueDate: "2022-07-07",
-    estHours: "2",
-    assetId: "123",
-    assetDescription: "a switch!",
-    downtime: "1",
-    actHours: "3",
-    //
-    site: "light switch",
-    //
-    requestNum: "",
-    requestedByEmail: "test@tesing.com",
-    //
-    assignTo: "Production Maintenance",
-    assistant: "Bob",
-    maintenanceTeamMember: "Jon",
-    //
-    briefDiscription:
-      "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
+  // {
+  //   id: 1,
+  //   // Employee section
+  //   type: "general",
+  //   date: "2021-11-12",
+  //   name: "Jane Doe TESTING localStorage",
+  //   department: "compounding",
+  //   problem: "details test",
+  //   solution: "fix it",
+  //   // Maininence Section
+  //   status: "assigned",
+  //   workOrderNum: "001",
+  //   workOrderDate: "2021-11-21",
+  //   workOrderTime: "12:00",
+  //   projectNum: "007",
+  //   scheduledDate: "2021-11-22",
+  //   // needs applied to all
+  //   openHistory: "",
+  //   problemType: "electrical",
+  //   //
+  //   daysToCOmplete: "",
+  //   completedDate: "",
+  //   //
+  //   dueDate: "2022-07-07",
+  //   estHours: "2",
+  //   assetId: "123",
+  //   assetDescription: "a switch!",
+  //   downtime: "1",
+  //   actHours: "3",
+  //   //
+  //   site: "light switch",
+  //   //
+  //   requestNum: "",
+  //   requestedByEmail: "test@tesing.com",
+  //   //
+  //   assignTo: "Production Maintenance",
+  //   assistant: "Bob",
+  //   maintenanceTeamMember: "Jon",
+  //   //
+  //   briefDiscription:
+  //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
 
-    workDiscription:
-      "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-    //
-    // left
-    comments: "",
-    //
-    // full (left through right)
-    employeeComments: {
-      commentOne: "",
-      commentTwo: "",
-      commentThree: "",
-      commentsFive: "",
-      commentSix: ""
-    }
-  },
-  {
-    id: 2,
-    // Employee section
-    type: "general",
-    date: "2021-11-12",
-    name: "Jon Doe",
-    department: "compounding",
-    problem: "details test",
-    solution: "fix it",
-    // Maininence Section
-    status: "unassigned",
-    workOrderNum: "001",
-    workOrderDate: "2021-11-21",
-    workOrderTime: "12:00",
-    projectNum: "007",
-    scheduledDate: "2021-11-22",
-    // needs applied to all
-    openHistory: "",
-    problemType: "electrical",
-    //
-    daysToCOmplete: "",
-    completedDate: "",
-    //
-    dueDate: "2022-07-07",
-    estHours: "2",
-    assetId: "123",
-    assetDescription: "a switch!",
-    downtime: "1",
-    actHours: "3",
-    //
-    site: "light switch",
-    //
-    requestNum: "",
-    requestedByEmail: "test@tesing.com",
-    //
-    assignTo: "Production Maintenance",
-    assistant: "Bob",
-    maintenanceTeamMember: "Jon",
-    //
-    briefDiscription:
-      "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
+  //   workDiscription:
+  //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
+  //   //
+  //   // left
+  //   comments: "",
+  //   //
+  //   // full (left through right)
+  //   employeeComments: {
+  //     commentOne: "",
+  //     commentTwo: "",
+  //     commentThree: "",
+  //     commentsFive: "",
+  //     commentSix: ""
+  //   }
+  // },
+  // {
+  //   id: 2,
+  //   // Employee section
+  //   type: "general",
+  //   date: "2021-11-12",
+  //   name: "Jon Doe",
+  //   department: "compounding",
+  //   problem: "details test",
+  //   solution: "fix it",
+  //   // Maininence Section
+  //   status: "unassigned",
+  //   workOrderNum: "001",
+  //   workOrderDate: "2021-11-21",
+  //   workOrderTime: "12:00",
+  //   projectNum: "007",
+  //   scheduledDate: "2021-11-22",
+  //   // needs applied to all
+  //   openHistory: "",
+  //   problemType: "electrical",
+  //   //
+  //   daysToCOmplete: "",
+  //   completedDate: "",
+  //   //
+  //   dueDate: "2022-07-07",
+  //   estHours: "2",
+  //   assetId: "123",
+  //   assetDescription: "a switch!",
+  //   downtime: "1",
+  //   actHours: "3",
+  //   //
+  //   site: "light switch",
+  //   //
+  //   requestNum: "",
+  //   requestedByEmail: "test@tesing.com",
+  //   //
+  //   assignTo: "Production Maintenance",
+  //   assistant: "Bob",
+  //   maintenanceTeamMember: "Jon",
+  //   //
+  //   briefDiscription:
+  //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
 
-    workDiscription:
-      "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-    //
-    // left
-    comments: "",
-    //
-    // full (left through right)
-    employeeComments: {
-      commentOne: "",
-      commentTwo: "",
-      commentThree: "",
-      commentsFive: "",
-      commentSix: ""
-    }
-  },
-  {
-    id: 3,
-    // Employee section
-    type: "general",
-    date: "2021-11-12",
-    name: "Jon Doe",
-    department: "compounding",
-    problem: "details test",
-    solution: "fix it",
-    // Maininence Section
-    status: "completed",
-    workOrderNum: "001",
-    workOrderDate: "2021-11-21",
-    workOrderTime: "12:00",
-    projectNum: "007",
-    scheduledDate: "2021-11-22",
-    // needs applied to all
-    openHistory: "",
-    problemType: "electrical",
-    //
-    daysToCOmplete: "",
-    completedDate: "",
-    //
-    dueDate: "2022-07-07",
-    estHours: "2",
-    assetId: "123",
-    assetDescription: "a switch!",
-    downtime: "1",
-    actHours: "3",
-    //
-    site: "light switch",
-    //
-    requestNum: "",
-    requestedByEmail: "test@tesing.com",
-    //
-    assignTo: "Production Maintenance",
-    assistant: "Bob",
-    maintenanceTeamMember: "Jon",
-    //
-    briefDiscription:
-      "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
+  //   workDiscription:
+  //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
+  //   //
+  //   // left
+  //   comments: "",
+  //   //
+  //   // full (left through right)
+  //   employeeComments: {
+  //     commentOne: "",
+  //     commentTwo: "",
+  //     commentThree: "",
+  //     commentsFive: "",
+  //     commentSix: ""
+  //   }
+  // },
+  // {
+  //   id: 3,
+  //   // Employee section
+  //   type: "general",
+  //   date: "2021-11-12",
+  //   name: "Jon Doe",
+  //   department: "compounding",
+  //   problem: "details test",
+  //   solution: "fix it",
+  //   // Maininence Section
+  //   status: "completed",
+  //   workOrderNum: "001",
+  //   workOrderDate: "2021-11-21",
+  //   workOrderTime: "12:00",
+  //   projectNum: "007",
+  //   scheduledDate: "2021-11-22",
+  //   // needs applied to all
+  //   openHistory: "",
+  //   problemType: "electrical",
+  //   //
+  //   daysToCOmplete: "",
+  //   completedDate: "",
+  //   //
+  //   dueDate: "2022-07-07",
+  //   estHours: "2",
+  //   assetId: "123",
+  //   assetDescription: "a switch!",
+  //   downtime: "1",
+  //   actHours: "3",
+  //   //
+  //   site: "light switch",
+  //   //
+  //   requestNum: "",
+  //   requestedByEmail: "test@tesing.com",
+  //   //
+  //   assignTo: "Production Maintenance",
+  //   assistant: "Bob",
+  //   maintenanceTeamMember: "Jon",
+  //   //
+  //   briefDiscription:
+  //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
 
-    workDiscription:
-      "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-    //
-    // left
-    comments: "",
-    //
-    // full (left through right)
-    employeeComments: {
-      commentOne: "",
-      commentTwo: "",
-      commentThree: "",
-      commentsFive: "",
-      commentSix: ""
-    }
-  }
+  //   workDiscription:
+  //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
+  //   //
+  //   // left
+  //   comments: "",
+  //   //
+  //   // full (left through right)
+  //   employeeComments: {
+  //     commentOne: "",
+  //     commentTwo: "",
+  //     commentThree: "",
+  //     commentsFive: "",
+  //     commentSix: ""
+  //   }
+  // }
 ];
 // actions for our dispatch
 export const ACTIONS = {

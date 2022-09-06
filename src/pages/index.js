@@ -162,19 +162,20 @@ const IndexPage = () => {
   // Lesson learned: anytime referencing these to data{} need to add .toLowerCase()
   const [mwrTypes, setMwrTypes] = useState(["General", "Urgent", "Safety"]);
 
+  // ************************************ MOVED LOCAL STORAGE TO GLOBAL CONTEXT ****************************************
   // local storage persistance setup
   // setting second parameter of useEffect as [] means it will only run the first tome the page loads
   // on pageLoad, if lacaDb exists, then setdB to that, if not then setDb will be default
-  useEffect(() => {
-    const localDb = window.localStorage.getItem("localDb");
-    if (localDb !== null) setDb(JSON.parse(localDb));
-  }, []);
+  // useEffect(() => {
+  //   const localDb = window.localStorage.getItem("localDb");
+  //   if (localDb !== null) setDb(JSON.parse(localDb));
+  // }, []);
 
   // local storage setup storage
   // seocond param set to [db] means it will fire on page/component load & if db updates
-  useEffect(() => {
-    window.localStorage.setItem("localDb", JSON.stringify(db));
-  }, [db]);
+  // useEffect(() => {
+  //   window.localStorage.setItem("localDb", JSON.stringify(db));
+  // }, [db]);
 
   // adds object to db state
   const handleClick = (formData) => {
