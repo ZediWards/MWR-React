@@ -8,6 +8,7 @@ import {
   GlobalSettingsContext,
   GlobalSettingsDispatchContext
 } from "../context/GlobalContextProvider";
+import { ACTIONS } from "../context/GlobalContextProvider"
 
 import Layout from "../components/layout";
 
@@ -86,12 +87,21 @@ const SettingsWrapperStyled = styled.div`
 const SettingsPage = () => {
   // context variables
   const settings = useContext(GlobalSettingsContext);
+  const settingsDispatch = useContext(GlobalSettingsDispatchContext)
   console.log("FROM SETTINGS PAGE");
   console.table(settings);
+  console.log(settings);
 
+  // other variables
   const settingsKeys = Object.keys(settings);
+  // copy of localStorage context
+  const [updateSettings, setUpdateSettings] = useState({
+    ...settings
+  });
 
-  // enableing edit function
+  //*************? Edit functionality **************/ 
+
+  // enabling edit function
   const enableEdit = (e) => {
     const category = e.target.closest("li");
 
@@ -118,7 +128,9 @@ const SettingsPage = () => {
 
   // condition ? value if true : value if false
 
-  // mapping mwrType seperate b/c array of objects
+  //? *********** Mapping JSX **********************
+
+  // mapping mwrType separate b/c array of objects
   const mwrTypeSettingsMap = settings.mwrTypes.map((item, index) => {
     return (
       <li key={index}>
@@ -183,13 +195,19 @@ const SettingsPage = () => {
           </div>
           <ul>
             {/* lesson learned: bracket notation use */}
-            {settings[item].map((arrItem) => {
+            {/* mapping over the settings.key[array] */}
+            {/**************************************************************************************************8 */}
+            {settings[item].map((arrItem, index) => {
+              const target = settings[item][index];
+
               return (
-                <li>
+                <li key={index}>
                   <label htmlFor={arrItem} className={"label"}>
                     <input
-                      // onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      value={arrItem}
+                      // onChange={(e) =>
+                      //   setUpdateSettings(e.target.value)
+                      // }
+                      // value={updateSettings}
                       type="text"
                       name={arrItem}
                       id={arrItem}
@@ -201,14 +219,27 @@ const SettingsPage = () => {
                   </label>
                 </li>
               );
-            })}
-          </ul>
-        </li>
+            })
+            }
+          </ul >
+        </li >
       );
     }
   });
   // return <li key={index}>{Object.values(settings[item])}</li>;
   // });
+
+  // ************? Save Changes Function ******************
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // debugging
+    console.log("submit is firing with CONTEXT");
+
+    settingsDispatch({ type: ACTIONS.UPDATE_SETTINGS, payload: updateSettings });
+    // not needed, not a modol like others
+    // handleClose();
+  };
+
 
   console.log(settingsKeys);
 

@@ -205,23 +205,26 @@ const initialState = [
 ];
 // actions for our dispatch
 export const ACTIONS = {
+  // mwr actions
   NEW_MWR: "new", //works
   UPDATE_MWR: "update", //works
-  DELETE_MWR: "delete"
+  DELETE_MWR: "delete",
+  // settings actions
+  UPDATE_SETTINGS: "update_settings"
 };
 
 // *** payload is an object that takesin any variable values needed to perfom the action.
 // "dispatch" reducer function
 // will end up passing dispatch function to whatever component needs it (like formData state)
+
+//*************? MWR REDUCER FUNCTION *****************/
 function reducer(state, action) {
   switch (action.type) {
     // add new mwr "handleClick"
-    // [?] works
     case ACTIONS.NEW_MWR: {
       return [...state, action.payload];
     }
     // update mwr ""
-    // [?] works
     case ACTIONS.UPDATE_MWR: {
       const updatedState = state.map((item) => {
         if (item.id === action.payload.id) {
@@ -248,6 +251,28 @@ function reducer(state, action) {
   }
 }
 
+// *******? SETTINGS REDUCER FUNCTION ************
+// todo: update, delete, add. delete and add might be frontend and save just updates all changes 
+function settingsReducer(state, action) {
+  switch (action.type) {
+    // update mwr ""
+    case ACTIONS.UPDATE_SETTINGS: {
+      console.log(action.payload)
+      state = action.payload
+      return state;
+    }
+
+    // case ACTIONS.DELETE_MWR: {
+    //   return state.filter((mwr) => mwr.id !== action.payload.id);
+    // }
+    default:
+      throw new Error("Bad Action Type");
+    // or return original state
+    // default:
+    // return state
+  }
+}
+
 // wrapping state and reducer providers with GlobalContextProvider, which will wrap Gatsby
 // I think state needs to start as an empty array
 const GlobalContextProvider = ({ children }) => {
@@ -263,7 +288,7 @@ const GlobalContextProvider = ({ children }) => {
 
   // settings & Local Storage
   const [settingsState, settingsDispatch] = React.useReducer(
-    reducer,
+    settingsReducer,
     generalSettings, () => {
       const localSettings = localStorage.getItem('settingsState');
       return localSettings ? JSON.parse(localSettings) : generalSettings;

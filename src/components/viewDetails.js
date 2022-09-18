@@ -151,6 +151,7 @@ const ViewDetails = ({
   // ******************* end of mapping varibles ***************************
 
   // destructured prop incase it was still attatched to original state. Now should be mutable then applied back to original state
+  // *** mwrDetails prop is passed down from mainTable referencing local storage Context
   const [updateMwr, setUpdateMwr] = useState({
     ...mwrDetails
   });
