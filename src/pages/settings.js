@@ -128,10 +128,29 @@ const SettingsPage = () => {
 
   // condition ? value if true : value if false
 
+  //***************? onChange Function **************************/
+  const change = (e, item, index) => {
+    // department.index
+
+    let testing = updateSettings[item]
+
+    console.log("hellooooooo")
+    console.log(`using for onChange = ${testing}`)
+    console.log(e.target.value)
+    // const settingsKeys2 = Object.keys(updateSettings);
+    // console.log(settingsKeys2)
+
+    setUpdateSettings({ ...updateSettings, ...testing, [index]: e.target.value }
+      // setUpdateSettings({ ...updateSettings, [item]: e.target.value }
+
+    )
+    console.table(updateSettings)
+  }
+
   //? *********** Mapping JSX **********************
 
   // mapping mwrType separate b/c array of objects
-  const mwrTypeSettingsMap = settings.mwrTypes.map((item, index) => {
+  const mwrTypeSettingsMap = updateSettings.mwrTypes.map((item, index) => {
     return (
       <li key={index}>
         <label htmlFor={item.type} className={"label"}>
@@ -195,19 +214,27 @@ const SettingsPage = () => {
           </div>
           <ul>
             {/* lesson learned: bracket notation use */}
-            {/* mapping over the settings.key[array] */}
+            {/* mapping over the updateSettings.key[array] */}
             {/**************************************************************************************************8 */}
-            {settings[item].map((arrItem, index) => {
-              const target = settings[item][index];
+            {updateSettings[item].map((arrItem, index) => {
+              {/* const target = updateSettings[item][index]; */ }
+              const tester = updateSettings[item][index]
 
               return (
                 <li key={index}>
                   <label htmlFor={arrItem} className={"label"}>
                     <input
-                      // onChange={(e) =>
-                      //   setUpdateSettings(e.target.value)
-                      // }
-                      // value={updateSettings}
+                      // changing specific value is where I am getting hung up
+                      onChange={(e) =>
+
+                        change(e, item, index)
+                        // item = departments
+                        // index = 0
+                        // arrItem = compounding
+
+                      }
+                      // value={updateSettings[item][index]}
+                      value={tester}
                       type="text"
                       name={arrItem}
                       id={arrItem}
@@ -226,7 +253,7 @@ const SettingsPage = () => {
       );
     }
   });
-  // return <li key={index}>{Object.values(settings[item])}</li>;
+  // return <li key={index}>{Object.values(updateSettings[item])}</li>;
   // });
 
   // ************? Save Changes Function ******************
