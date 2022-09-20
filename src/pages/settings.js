@@ -90,7 +90,6 @@ const SettingsPage = () => {
   const settingsDispatch = useContext(GlobalSettingsDispatchContext)
   console.log("FROM SETTINGS PAGE");
   console.table(settings);
-  console.log(settings);
 
   // other variables
   const settingsKeys = Object.keys(settings);
@@ -111,7 +110,7 @@ const SettingsPage = () => {
 
     // display block on delete btn **all but mwr type**
     for (let listItem of listItems) {
-      console.log(listItem.children[0].children[0].disabled);
+      // console.log(listItem.children[0].children[0].disabled);
 
       let btnTarget = listItem.children[0].children[1].children[0];
       btnTarget.className !== "delete-btn btn-visibile"
@@ -130,21 +129,43 @@ const SettingsPage = () => {
 
   //***************? onChange Function **************************/
   const change = (e, item, index) => {
+    console.log(item) //department
+    console.log(typeof (item))  // string
+    console.log(index)  // 0 
+    console.log(typeof (index))  // number
+
+    // way 1
+    // setUpdateSettings(current => {
+    //   return {
+    //     ...current,
+    //     [item]: {
+    //       ...current[item],
+    //       [index]: e.target.value
+    //     }
+    //   }
+    // })
+
+    // way 2
+    // setUpdateSettings(current => {
+    //   item = { ...current[item] }
+
+    //   [item][index] = e.target.value
+
+    //   return { ...current, item }
+    // })
+
+
     // department.index
 
-    let testing = updateSettings[item]
+    // let testing = updateSettings[item]
 
-    console.log("hellooooooo")
-    console.log(`using for onChange = ${testing}`)
-    console.log(e.target.value)
-    // const settingsKeys2 = Object.keys(updateSettings);
-    // console.log(settingsKeys2)
 
-    setUpdateSettings({ ...updateSettings, ...testing, [index]: e.target.value }
-      // setUpdateSettings({ ...updateSettings, [item]: e.target.value }
 
-    )
-    console.table(updateSettings)
+
+    // setUpdateSettings({ ...updateSettings, ...testing, [index]: e.target.value }
+    // setUpdateSettings({ ...updateSettings, [item]: e.target.value }
+
+    // )
   }
 
   //? *********** Mapping JSX **********************
@@ -226,8 +247,9 @@ const SettingsPage = () => {
                     <input
                       // changing specific value is where I am getting hung up
                       onChange={(e) =>
-
+                        // console.log(updateSettings)
                         change(e, item, index)
+
                         // item = departments
                         // index = 0
                         // arrItem = compounding
@@ -257,18 +279,17 @@ const SettingsPage = () => {
   // });
 
   // ************? Save Changes Function ******************
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // debugging
-    console.log("submit is firing with CONTEXT");
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // debugging
+  //   console.log("submit is firing with CONTEXT");
 
-    settingsDispatch({ type: ACTIONS.UPDATE_SETTINGS, payload: updateSettings });
-    // not needed, not a modol like others
-    // handleClose();
-  };
+  //   settingsDispatch({ type: ACTIONS.UPDATE_SETTINGS, payload: updateSettings });
+  //   // not needed, not a modol like others
+  //   // handleClose();
+  // };
 
 
-  console.log(settingsKeys);
 
   return (
     <Layout>
