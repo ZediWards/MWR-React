@@ -128,11 +128,46 @@ const SettingsPage = () => {
   // condition ? value if true : value if false
 
   //***************? onChange Function **************************/
+  // const generalSettings = {
+  //   mwrTypes: [
+  //     { type: "General", color: "green" },
+  //     { type: "Urgent", color: "yellow" },
+  //     { type: "Safety", color: "red" },
+  //   ],
+  //   departments: [
+  //     "compounding",
+  //     "production 1",
+  //     "production 2",
+  //     "warehouse",
+  //     // "TESTING"
+  //   ],
   const change = (e, item, index) => {
     console.log(item) //department
     console.log(typeof (item))  // string
     console.log(index)  // 0 
     console.log(typeof (index))  // number
+    // console.log(updateSettings[item][index] = "flub") //compounding
+    console.log(updateSettings[item]) // departments array
+    //  books.splice(2, 1, 'JavaScript
+    // console.log({ ...updateSettings, [item]: [...updateSettings[item], updateSettings[item][index] = e.target.value] })
+    const newArr = updateSettings[item].slice()
+    newArr[index] = e.target.value
+    console.log(newArr)
+    // console.log({ ...updateSettings, [item]: updateSettings[item] })
+    console.log({ ...updateSettings, [item]: newArr })
+
+    //! WORKS!!!!!!!!
+    setUpdateSettings(current => {
+      return {
+        ...current, [item]: newArr
+      }
+    })
+    // ...updateSettings, [item]: updateSettings[item]
+    // ...updateSettings, [item]: [...updateSettings[item], [index] = e.target.value]
+
+
+
+
 
     // way 1
     // setUpdateSettings(current => {
@@ -239,7 +274,7 @@ const SettingsPage = () => {
             {/**************************************************************************************************8 */}
             {updateSettings[item].map((arrItem, index) => {
               {/* const target = updateSettings[item][index]; */ }
-              const tester = updateSettings[item][index]
+              const tester = updateSettings[item][index] //updateSettings.departments.0
 
               return (
                 <li key={index}>
