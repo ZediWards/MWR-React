@@ -8,7 +8,7 @@ import {
   GlobalSettingsContext,
   GlobalSettingsDispatchContext
 } from "../context/GlobalContextProvider";
-import { ACTIONS } from "../context/GlobalContextProvider"
+import { ACTIONS } from "../context/GlobalContextProvider";
 
 import Layout from "../components/layout";
 
@@ -87,7 +87,7 @@ const SettingsWrapperStyled = styled.div`
 const SettingsPage = () => {
   // context variables
   const settings = useContext(GlobalSettingsContext);
-  const settingsDispatch = useContext(GlobalSettingsDispatchContext)
+  const settingsDispatch = useContext(GlobalSettingsDispatchContext);
   console.log("FROM SETTINGS PAGE");
   console.table(settings);
 
@@ -98,7 +98,7 @@ const SettingsPage = () => {
     ...settings
   });
 
-  //*************? Edit functionality **************/ 
+  //*************? Edit functionality **************/
 
   // enabling edit function
   const enableEdit = (e) => {
@@ -118,8 +118,10 @@ const SettingsPage = () => {
         : (btnTarget.className = "delete-btn");
 
       // enable inputs for editing
-      let inputTarget = listItem.children[0].children[0]
-      inputTarget.disabled === true ? (inputTarget.disabled = false) : (inputTarget.disabled = true)
+      let inputTarget = listItem.children[0].children[0];
+      inputTarget.disabled === true
+        ? (inputTarget.disabled = false)
+        : (inputTarget.disabled = true);
 
       // *** next step is to allow onChange event to change the settings context
     }
@@ -128,46 +130,45 @@ const SettingsPage = () => {
   // condition ? value if true : value if false
 
   //***************? onChange Function **************************/
-  // const generalSettings = {
-  //   mwrTypes: [
-  //     { type: "General", color: "green" },
-  //     { type: "Urgent", color: "yellow" },
-  //     { type: "Safety", color: "red" },
-  //   ],
-  //   departments: [
-  //     "compounding",
-  //     "production 1",
-  //     "production 2",
-  //     "warehouse",
-  //     // "TESTING"
-  //   ],
   const change = (e, item, index) => {
-    console.log(item) //department
-    console.log(typeof (item))  // string
-    console.log(index)  // 0 
-    console.log(typeof (index))  // number
-    // console.log(updateSettings[item][index] = "flub") //compounding
-    console.log(updateSettings[item]) // departments array
+    const newArr = updateSettings[item].slice();
+    newArr[index] = e.target.value;
+    //! WORKS!!!!!!!!
+    setUpdateSettings((current) => {
+      return {
+        ...current,
+        [item]: newArr
+      };
+    });
+
+    console.log(newArr);
+    console.log({ ...updateSettings, [item]: newArr });
+    // const generalSettings = {
+    //   mwrTypes: [
+    //     { type: "General", color: "green" },
+    //     { type: "Urgent", color: "yellow" },
+    //     { type: "Safety", color: "red" },
+    //   ],
+    //   departments: [
+    //     "compounding",
+    //     "production 1",
+    //     "production 2",
+    //     "warehouse",
+    //     // "TESTING"
+    //   ],
+
+    // NOTES from trying to figure out how to make worke
+    // console.log(item) //department
+    // console.log(typeof (item))  // string
+    // console.log(index)  // 0
+    // console.log(typeof (index))  // number
+    // // console.log(updateSettings[item][index] = "flub") //compounding
+    // console.log(updateSettings[item]) // departments array
     //  books.splice(2, 1, 'JavaScript
     // console.log({ ...updateSettings, [item]: [...updateSettings[item], updateSettings[item][index] = e.target.value] })
-    const newArr = updateSettings[item].slice()
-    newArr[index] = e.target.value
-    console.log(newArr)
-    // console.log({ ...updateSettings, [item]: updateSettings[item] })
-    console.log({ ...updateSettings, [item]: newArr })
 
-    //! WORKS!!!!!!!!
-    setUpdateSettings(current => {
-      return {
-        ...current, [item]: newArr
-      }
-    })
     // ...updateSettings, [item]: updateSettings[item]
     // ...updateSettings, [item]: [...updateSettings[item], [index] = e.target.value]
-
-
-
-
 
     // way 1
     // setUpdateSettings(current => {
@@ -189,19 +190,31 @@ const SettingsPage = () => {
     //   return { ...current, item }
     // })
 
-
     // department.index
 
     // let testing = updateSettings[item]
-
-
-
 
     // setUpdateSettings({ ...updateSettings, ...testing, [index]: e.target.value }
     // setUpdateSettings({ ...updateSettings, [item]: e.target.value }
 
     // )
-  }
+  };
+
+  //***************? Delete Function **************************/
+  //! WORKS
+  const remove = (e, item, index) => {
+    e.stopPropagation();
+    const filtered = updateSettings[item].filter((value) => {
+      // [index] refers to parameter passed into remove()
+      return value !== updateSettings[item][index];
+    });
+    setUpdateSettings((current) => {
+      return {
+        ...current,
+        [item]: filtered
+      };
+    });
+  };
 
   //? *********** Mapping JSX **********************
 
@@ -220,7 +233,12 @@ const SettingsPage = () => {
             disabled={true}
           ></input>
           <div className={"item-controls-container"}>
-            <button className={"delete-btn"}>x</button>
+            <button
+              className={"delete-btn"}
+              onClick={(e) => remove(e, item, index)}
+            >
+              x
+            </button>
           </div>
         </label>
 
@@ -235,7 +253,12 @@ const SettingsPage = () => {
             disabled={true}
           ></input>
           <div className={"item-controls-container"}>
-            <button className={"delete-btn"}>x</button>
+            <button
+              className={"delete-btn"}
+              onClick={(e) => remove(e, item, index)}
+            >
+              x
+            </button>
           </div>
         </label>
       </li>
@@ -273,22 +296,23 @@ const SettingsPage = () => {
             {/* mapping over the updateSettings.key[array] */}
             {/**************************************************************************************************8 */}
             {updateSettings[item].map((arrItem, index) => {
-              {/* const target = updateSettings[item][index]; */ }
-              const tester = updateSettings[item][index] //updateSettings.departments.0
+              /* const target = updateSettings[item][index]; */
+
+              const tester = updateSettings[item][index]; //updateSettings.departments.0
 
               return (
                 <li key={index}>
                   <label htmlFor={arrItem} className={"label"}>
                     <input
                       // changing specific value is where I am getting hung up
-                      onChange={(e) =>
-                        // console.log(updateSettings)
-                        change(e, item, index)
+                      onChange={
+                        (e) =>
+                          // console.log(updateSettings)
+                          change(e, item, index)
 
                         // item = departments
                         // index = 0
                         // arrItem = compounding
-
                       }
                       // value={updateSettings[item][index]}
                       value={tester}
@@ -298,15 +322,19 @@ const SettingsPage = () => {
                       disabled={true}
                     ></input>
                     <div className={"item-controls-container"}>
-                      <button className={"delete-btn"}>x</button>
+                      <button
+                        className={"delete-btn"}
+                        onClick={(e) => remove(e, item, index)}
+                      >
+                        x
+                      </button>
                     </div>
                   </label>
                 </li>
               );
-            })
-            }
-          </ul >
-        </li >
+            })}
+          </ul>
+        </li>
       );
     }
   });
@@ -323,8 +351,6 @@ const SettingsPage = () => {
   //   // not needed, not a modol like others
   //   // handleClose();
   // };
-
-
 
   return (
     <Layout>
