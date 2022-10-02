@@ -55,6 +55,19 @@ const SettingsWrapperStyled = styled.div`
     align-items: center;
   }
 
+  .control-btns {
+    border: 1px solid threedlightshadow;
+    border-radius: 10px;
+    /* box-shadow: 0px 2px 1px var(--gray-light); */
+    padding-inline: 1rem;
+    cursor: pointer;
+  }
+
+  .control-btns:hover{
+    background-color: hsl(var(--safety-mwr-hue),50%,90%);
+  }
+
+  /* --gray-light from global css need a primary-hue declared to work */
   .delete-btn {
     /* align-self: flex-start; */
     background-color: var(--background-safety);
@@ -216,6 +229,32 @@ const SettingsPage = () => {
     });
   };
 
+  //***************? Add New List Item Function **************************/
+  // bug: delete btn gets out of sync with others if adding while edit is clicked
+  // mwrTypes: push an template object into the array of objects
+  const addItem = (e, item) => {
+    e.stopPropagation();
+    const newArr = updateSettings[item].slice()
+    newArr.push("")
+    setUpdateSettings((current) => {
+      return {
+        ...current,
+        [item]: newArr
+      }
+    })
+    console.log(updateSettings[item])
+
+  }
+
+  //***************? Cancel Changes Function **************************/
+
+  //***************? Save to Context Local Storage Function **************************/
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("overriding context local storage");
+  //   settingsDispatch({ type: ACTIONS.UPDATE_SETTINGS, payload: updateSettings });
+  // };
+
   //? *********** Mapping JSX **********************
 
   // mapping mwrType separate b/c array of objects
@@ -274,8 +313,10 @@ const SettingsPage = () => {
           <div className={"category-header-container"}>
             <h2 className={"category-header"}>mwr types</h2>
             <div className={"category-controls-container"}>
-              <span onClick={enableEdit}>edit</span>
-              <span>save</span>
+              <span className={"control-btns"} onClick={enableEdit}>edit</span>
+              <span className={"control-btns"} onClick={(e) => addItem(e, item)}>add new</span>
+              <span className={"control-btns"}>cancel</span>
+              <span className={"control-btns"}>save</span>
             </div>
           </div>
           <ul>{mwrTypeSettingsMap}</ul>
@@ -287,8 +328,10 @@ const SettingsPage = () => {
           <div className={"category-header-container"}>
             <h2 className={"category-header"}>{item}</h2>
             <div className={"category-controls-container"}>
-              <span onClick={enableEdit}>edit</span>
-              <span>save</span>
+              <span className={"control-btns"} onClick={enableEdit}>edit</span>
+              <span className={"control-btns"} onClick={(e) => addItem(e, item)}>add new</span>
+              <span className={"control-btns"}>cancel</span>
+              <span className={"control-btns"}>save</span>
             </div>
           </div>
           <ul>
@@ -341,16 +384,7 @@ const SettingsPage = () => {
   // return <li key={index}>{Object.values(updateSettings[item])}</li>;
   // });
 
-  // ************? Save Changes Function ******************
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // debugging
-  //   console.log("submit is firing with CONTEXT");
 
-  //   settingsDispatch({ type: ACTIONS.UPDATE_SETTINGS, payload: updateSettings });
-  //   // not needed, not a modol like others
-  //   // handleClose();
-  // };
 
   return (
     <Layout>
