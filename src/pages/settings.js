@@ -247,7 +247,7 @@ const SettingsPage = () => {
   };
 
   //***************? Cancel Changes Function **************************/
-  //! WORKSss
+  //! WORKS
   const cancelChanges = (e, item) => {
     e.stopPropagation();
     const newArr = settings[item].slice();
@@ -260,11 +260,18 @@ const SettingsPage = () => {
     });
   };
   //***************? Save to Context Local Storage Function **************************/
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("overriding context local storage");
-  //   settingsDispatch({ type: ACTIONS.UPDATE_SETTINGS, payload: updateSettings });
-  // };
+  const saveSection = (e, item) => {
+    e.preventDefault();
+    const newArr = updateSettings[item].slice();
+    const updatedSettings = {
+      section: item,
+      data: newArr
+    }
+    console.log("overriding context local storage");
+    console.log(updatedSettings)  //payload
+    // settingsDispatch({ type: ACTIONS.UPDATE_SETTINGS, payload: updateSettings });
+    settingsDispatch({ type: ACTIONS.UPDATE_SETTINGS_SECTION, payload: updatedSettings });
+  };
 
   //? *********** Mapping JSX **********************
 
@@ -339,7 +346,7 @@ const SettingsPage = () => {
               >
                 cancel
               </span>
-              <span className={"control-btns"}>save</span>
+              <span className={"control-btns"} onClick={(e) => saveSection(e, item)}>save</span>
             </div>
           </div>
           <ul>{mwrTypeSettingsMap}</ul>
@@ -366,7 +373,7 @@ const SettingsPage = () => {
               >
                 cancel
               </span>
-              <span className={"control-btns"}>save</span>
+              <span className={"control-btns"} onClick={(e) => saveSection(e, item)}>save</span>
             </div>
           </div>
           <ul>

@@ -210,7 +210,7 @@ export const ACTIONS = {
   UPDATE_MWR: "update", //works
   DELETE_MWR: "delete",
   // settings actions
-  UPDATE_SETTINGS: "update_settings"
+  UPDATE_SETTINGS_SECTION: "update_settings",
 };
 
 // *** payload is an object that takesin any variable values needed to perfom the action.
@@ -255,11 +255,12 @@ function reducer(state, action) {
 // todo: update, delete, add. delete and add might be frontend and save just updates all changes 
 function settingsReducer(state, action) {
   switch (action.type) {
-    // update mwr ""
-    case ACTIONS.UPDATE_SETTINGS: {
-      console.log(action.payload)
-      state = action.payload
-      return state;
+    // update settings section
+    case ACTIONS.UPDATE_SETTINGS_SECTION: {
+      return {
+        ...state,
+        [action.payload.section]: action.payload.data
+      }
     }
 
     // case ACTIONS.DELETE_MWR: {
