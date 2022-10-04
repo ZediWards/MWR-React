@@ -63,8 +63,8 @@ const SettingsWrapperStyled = styled.div`
     cursor: pointer;
   }
 
-  .control-btns:hover{
-    background-color: hsl(var(--safety-mwr-hue),50%,90%);
+  .control-btns:hover {
+    background-color: hsl(var(--safety-mwr-hue), 50%, 90%);
   }
 
   /* --gray-light from global css need a primary-hue declared to work */
@@ -230,24 +230,35 @@ const SettingsPage = () => {
   };
 
   //***************? Add New List Item Function **************************/
+  // !WORKS... bugs though
   // bug: delete btn gets out of sync with others if adding while edit is clicked
   // mwrTypes: push an template object into the array of objects
   const addItem = (e, item) => {
     e.stopPropagation();
-    const newArr = updateSettings[item].slice()
-    newArr.push("")
+    const newArr = updateSettings[item].slice();
+    newArr.push("");
     setUpdateSettings((current) => {
       return {
         ...current,
         [item]: newArr
-      }
-    })
-    console.log(updateSettings[item])
-
-  }
+      };
+    });
+    console.log(updateSettings[item]);
+  };
 
   //***************? Cancel Changes Function **************************/
-
+  //! WORKSss
+  const cancelChanges = (e, item) => {
+    e.stopPropagation();
+    const newArr = settings[item].slice();
+    console.table(newArr);
+    setUpdateSettings((current) => {
+      return {
+        ...current,
+        [item]: newArr
+      };
+    });
+  };
   //***************? Save to Context Local Storage Function **************************/
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -313,9 +324,21 @@ const SettingsPage = () => {
           <div className={"category-header-container"}>
             <h2 className={"category-header"}>mwr types</h2>
             <div className={"category-controls-container"}>
-              <span className={"control-btns"} onClick={enableEdit}>edit</span>
-              <span className={"control-btns"} onClick={(e) => addItem(e, item)}>add new</span>
-              <span className={"control-btns"}>cancel</span>
+              <span className={"control-btns"} onClick={enableEdit}>
+                edit
+              </span>
+              <span
+                className={"control-btns"}
+                onClick={(e) => addItem(e, item)}
+              >
+                add new
+              </span>
+              <span
+                className={"control-btns"}
+                onClick={(e) => cancelChanges(e, item)}
+              >
+                cancel
+              </span>
               <span className={"control-btns"}>save</span>
             </div>
           </div>
@@ -328,9 +351,21 @@ const SettingsPage = () => {
           <div className={"category-header-container"}>
             <h2 className={"category-header"}>{item}</h2>
             <div className={"category-controls-container"}>
-              <span className={"control-btns"} onClick={enableEdit}>edit</span>
-              <span className={"control-btns"} onClick={(e) => addItem(e, item)}>add new</span>
-              <span className={"control-btns"}>cancel</span>
+              <span className={"control-btns"} onClick={enableEdit}>
+                edit
+              </span>
+              <span
+                className={"control-btns"}
+                onClick={(e) => addItem(e, item)}
+              >
+                add new
+              </span>
+              <span
+                className={"control-btns"}
+                onClick={(e) => cancelChanges(e, item)}
+              >
+                cancel
+              </span>
               <span className={"control-btns"}>save</span>
             </div>
           </div>
@@ -383,8 +418,6 @@ const SettingsPage = () => {
   });
   // return <li key={index}>{Object.values(updateSettings[item])}</li>;
   // });
-
-
 
   return (
     <Layout>
