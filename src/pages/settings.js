@@ -136,7 +136,7 @@ const SettingsPage = () => {
   // [x] edit: hide when clicked, show other btns
   // [x] cancel, save: hide all btns and show edit
   // [x] make delete btn display: none as well && inputs enabled at the right time
-  // [ ] addNew: enable input for editing and delete btn visiable
+  // [x] addNew: enable input for editing and delete btn visiable
 
   // Show Hide Function
   const showHideBtns = (e, btnType) => {
@@ -219,28 +219,7 @@ const SettingsPage = () => {
 
   // enabling edit function
   const enableEdit = (e) => {
-    // const category = e.target.closest("li");
-    // const categoryList = category.querySelector("ul");
-    // const listItems = categoryList.children;
     showHideBtns(e, "edit");
-
-    // // display block on delete btn **all but mwr type**
-    // for (let listItem of listItems) {
-    //   // console.log(listItem.children[0].children[0].disabled);
-
-    //   let btnTarget = listItem.children[0].children[1].children[0];
-    //   btnTarget.className !== "delete-btn btn-visibile"
-    //     ? (btnTarget.className = "delete-btn btn-visibile")
-    //     : (btnTarget.className = "delete-btn");
-
-    //   // enable inputs for editing
-    //   let inputTarget = listItem.children[0].children[0];
-    //   inputTarget.disabled === true
-    //     ? (inputTarget.disabled = false)
-    //     : (inputTarget.disabled = true);
-
-    //   // *** next step is to allow onChange event to change the settings context
-    // }
   };
 
   // condition ? value if true : value if false
@@ -333,20 +312,29 @@ const SettingsPage = () => {
   };
 
   //***************? Add New List Item Function **************************/
-  // !WORKS... bugs though
-  // bug: delete btn gets out of sync with others if adding while edit is clicked
+  // !WORKS
   // mwrTypes: push an template object into the array of objects
-  const addItem = (e, item) => {
+
+  // async in order to enable lastChild input and delete btn once added
+  async function addItem(e, item) {
     e.stopPropagation();
     const newArr = updateSettings[item].slice();
     newArr.push("");
-    setUpdateSettings((current) => {
+    await setUpdateSettings((current) => {
       return {
         ...current,
         [item]: newArr
       };
     });
-    console.log(updateSettings[item]);
+
+    const targetLi = e.target.parentElement.parentElement.parentElement.children[1].lastChild;
+    const targetDiv = targetLi.children[0].children[1];
+    const targetDeleteBtn = targetDiv.children[0]
+    targetDeleteBtn.className = ("delete-btn btn-visibile")
+
+    const targetInput = targetLi.children[0].children[0]
+    targetInput.disabled = false
+    // console.log(updateSettings[item]);
   };
 
   //***************? Cancel Changes Function **************************/
