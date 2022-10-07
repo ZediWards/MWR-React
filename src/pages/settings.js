@@ -140,45 +140,80 @@ const SettingsPage = () => {
 
   // Show Hide Function
   const showHideBtns = (e, btnType) => {
+    console.log(e.target);
     // DOM variables
+    // control buttons
     const parentDiv = e.target.closest("div");
     const editBtn = parentDiv.querySelector(".edit-btn");
     const addNewBtn = parentDiv.querySelector(".add-new-btn");
     const cancelBtn = parentDiv.querySelector(".cancel-btn");
     const saveBtn = parentDiv.querySelector(".save-btn");
-
+    //  inputs fild
     const category = e.target.closest("li");
     const categoryList = category.querySelector("ul");
     const listItems = categoryList.children;
 
     switch (btnType) {
       // update settings section
+      case "edit-mwrType": {
+        // console.log("showHide is wirking for mwrType edit btn");
+        // console.log(parentDiv); //control-container
+        // console.log(editBtn);
+        // console.log(addNewBtn);
+        // console.log(cancelBtn);
+        // console.log(saveBtn);
+        // console.log(category); //li  (whole category)
+        // console.log(categoryList); //ul  (category list)
+        // console.log(listItems); //li  (list item)
+        // ****************************************
+        editBtn.className = "control-btns edit-btn display-none";
+        addNewBtn.className = "control-btns add-new-btn";
+        cancelBtn.className = "control-btns cancel-btn";
+        saveBtn.className = "control-btns save-btn";
+        // *****************************************
+        for (let listItem of listItems) {
+          let btnTarget = listItem.querySelector(".delete-btn");
+          btnTarget.className !== "delete-btn btn-visibile"
+            ? (btnTarget.className = "delete-btn btn-visibile")
+            : (btnTarget.className = "delete-btn");
+
+          let inputTargets = listItem.querySelectorAll("input");  //nodeList
+          [...inputTargets].forEach((input) => {  // lesson: spreading nodeList out to use array method. could use for loop w/o spreading
+            input.disabled === true
+              ? (input.disabled = false)
+              : (input.disabled = true);
+          });
+        }
+        break;
+      }
       case "edit": {
         editBtn.className = "control-btns edit-btn display-none";
         addNewBtn.className = "control-btns add-new-btn";
         cancelBtn.className = "control-btns cancel-btn";
         saveBtn.className = "control-btns save-btn";
-
         // inputs and delete btns
         // display block on delete btn **all but mwr type**
         for (let listItem of listItems) {
           // console.log(listItem.children[0].children[0].disabled);
 
-          let btnTarget = listItem.children[0].children[1].children[0];
+          // let btnTarget = listItem.children[0].children[1].children[0];  //querySeletor replaced DOM dot notation
+          let btnTarget = listItem.querySelector(".delete-btn");
           btnTarget.className !== "delete-btn btn-visibile"
             ? (btnTarget.className = "delete-btn btn-visibile")
             : (btnTarget.className = "delete-btn");
 
           // enable inputs for editing
-          let inputTarget = listItem.children[0].children[0];
+          // let inputTarget = listItem.children[0].children[0];  //querySelector replaced this
+          let inputTarget = listItem.querySelector("input");  // element, not a nodList since not using querySelectorAll
+          console.log(inputTarget)
           inputTarget.disabled === true
             ? (inputTarget.disabled = false)
             : (inputTarget.disabled = true);
 
-          // *** next step is to allow onChange event to change the settings context
         }
         break;
       }
+      // works for mwrTypes and others
       case "cancel":
       case "save":
         editBtn.className = "control-btns edit-btn";
@@ -189,20 +224,28 @@ const SettingsPage = () => {
         // inputs and delete btns
         // display block on delete btn **all but mwr type**
         for (let listItem of listItems) {
-          // console.log(listItem.children[0].children[0].disabled);
           // Don't really need terniary but am keeping for a reference
-          let btnTarget = listItem.children[0].children[1].children[0];
+          let btnTarget = listItem.querySelector(".delete-btn");
           btnTarget.className !== "delete-btn"
             ? (btnTarget.className = "delete-btn")
             : (btnTarget.className = "delete-btn btn-visibile");
 
           // enable inputs for editing
-          let inputTarget = listItem.children[0].children[0];
-          inputTarget.disabled === false
-            ? (inputTarget.disabled = true)
-            : (inputTarget.disabled = false);
+          // let inputTarget = listItem.querySelector("input");
+          // inputTarget.disabled === false
+          //   ? (inputTarget.disabled = true)
+          //   : (inputTarget.disabled = false);
 
-          // *** next step is to allow onChange event to change the settings context
+
+          let inputTargets = listItem.querySelectorAll("input");  //nodeList
+          [...inputTargets].forEach((input) => {  // lesson: spreading nodeList out to use array method. could use for loop w/o spreading
+            input.disabled === false
+              ? (input.disabled = true)
+              : (input.disabled = false);
+          });
+
+
+
         }
         break;
 
@@ -218,14 +261,35 @@ const SettingsPage = () => {
   };
 
   // enabling edit function
-  const enableEdit = (e) => {
-    showHideBtns(e, "edit");
+  // category will only be defined on mwrType category
+  const enableEdit = (e, category) => {
+    console.log(category); //undefined if not the mwrType category
+
+    category === "mwrType"
+      ? showHideBtns(e, "edit-mwrType")
+      : showHideBtns(e, "edit");
   };
 
-  // condition ? value if true : value if false
 
   //***************? onChange Function **************************/
   const change = (e, item, index) => {
+
+    item === "mwrTypes"
+      ? console.log("Waaaaaaaaaaaaaazuuuuuuuuuup!")
+      : console.log("OTHER")
+
+    console.log(item)  //departments
+    console.log(typeof item)  //departments
+    console.log(index)  // 0 
+    console.log(Object.keys(updateSettings))  //settings keys
+    console.log(Object.values(updateSettings))  //settings key vaules
+
+
+    // item = departments
+    // index = 0
+    // arrItem = compounding
+
+
     const newArr = updateSettings[item].slice();
     newArr[index] = e.target.value;
     //! WORKS!!!!!!!!
@@ -299,8 +363,11 @@ const SettingsPage = () => {
   //! WORKS
   const remove = (e, item, index) => {
     e.stopPropagation();
+    console.log(item); //departments
+    console.log(index); //0
+    console.log(updateSettings[item][index]); //compounding
     const filtered = updateSettings[item].filter((value) => {
-      // [index] refers to parameter passed into remove()
+      // [index] refers to parameter passed into remove() i.e the value
       return value !== updateSettings[item][index];
     });
     setUpdateSettings((current) => {
@@ -327,15 +394,16 @@ const SettingsPage = () => {
       };
     });
 
-    const targetLi = e.target.parentElement.parentElement.parentElement.children[1].lastChild;
+    const targetLi =
+      e.target.parentElement.parentElement.parentElement.children[1].lastChild;
     const targetDiv = targetLi.children[0].children[1];
-    const targetDeleteBtn = targetDiv.children[0]
-    targetDeleteBtn.className = ("delete-btn btn-visibile")
+    const targetDeleteBtn = targetDiv.children[0];
+    targetDeleteBtn.className = "delete-btn btn-visibile";
 
-    const targetInput = targetLi.children[0].children[0]
-    targetInput.disabled = false
+    const targetInput = targetLi.children[0].children[0];
+    targetInput.disabled = false;
     // console.log(updateSettings[item]);
-  };
+  }
 
   //***************? Cancel Changes Function **************************/
   //! WORKS
@@ -372,14 +440,26 @@ const SettingsPage = () => {
   };
 
   //? *********** Mapping JSX **********************
+  // ****** p tag and 2 sets of labels per li is the only difference from mwr type to other typt
 
   // mapping mwrType separate b/c array of objects
   const mwrTypeSettingsMap = updateSettings.mwrTypes.map((item, index) => {
     return (
+      // li is parent of 2 labels and 1 div
       <li key={index}>
         <label htmlFor={item.type} className={"label"}>
+          {/* p tag not present on non mwr type */}
           <p>type:</p>
           <input
+            onChange={
+              (e) =>
+                // console.log(updateSettings)
+                change(e, item, index)
+
+              // item = departments
+              // index = 0
+              // arrItem = compounding
+            }
             // onChange={(e) => setFormData({ ...formData, date: e.target.value })}
             value={item.type}
             type="text"
@@ -387,19 +467,28 @@ const SettingsPage = () => {
             id={item.type}
             disabled={true}
           ></input>
-          <div className={"item-controls-container"}>
+          {/* <div className={"item-controls-container"}>
             <button
               className={"delete-btn"}
               onClick={(e) => remove(e, item, index)}
             >
               x
             </button>
-          </div>
+          </div> */}
         </label>
 
         <label htmlFor={item.color} className={"label"}>
           <p>color:</p>
           <input
+            onChange={
+              (e) =>
+                // console.log(updateSettings)
+                change(e, item, index)
+
+              // item = departments
+              // index = 0
+              // arrItem = compounding
+            }
             // onChange={(e) => setFormData({ ...formData, date: e.target.value })}
             value={item.color}
             type="text"
@@ -407,15 +496,15 @@ const SettingsPage = () => {
             id={item.color}
             disabled={true}
           ></input>
-          <div className={"item-controls-container"}>
-            <button
-              className={"delete-btn"}
-              onClick={(e) => remove(e, item, index)}
-            >
-              x
-            </button>
-          </div>
         </label>
+        <div className={"item-controls-container"}>
+          <button
+            className={"delete-btn"}
+            onClick={(e) => remove(e, item, index)}
+          >
+            x
+          </button>
+        </div>
       </li>
     );
   });
@@ -429,7 +518,10 @@ const SettingsPage = () => {
           <div className={"category-header-container"}>
             <h2 className={"category-header"}>mwr types</h2>
             <div className={"category-controls-container"}>
-              <span className={"control-btns edit-btn"} onClick={enableEdit}>
+              <span
+                className={"control-btns edit-btn"}
+                onClick={(e) => enableEdit(e, "mwrType")}
+              >
                 edit
               </span>
               <span
