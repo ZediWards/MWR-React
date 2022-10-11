@@ -272,36 +272,54 @@ const SettingsPage = () => {
 
 
   //***************? onChange Function **************************/
-  const change = (e, item, index) => {
+  const change = (e, item, index, mwrType) => {
 
-    item === "mwrTypes"
-      ? console.log("Waaaaaaaaaaaaaazuuuuuuuuuup!")
-      : console.log("OTHER")
-
-    console.log(item)  //departments
-    console.log(typeof item)  //departments
-    console.log(index)  // 0 
-    console.log(Object.keys(updateSettings))  //settings keys
-    console.log(Object.values(updateSettings))  //settings key vaules
-
+    mwrType === "mwrType"
+      ? mwrOnChange()
+      // e, item, index, mwrType
+      : othersOnChange()
 
     // item = departments
     // index = 0
     // arrItem = compounding
 
+    // *** mwr types
+    // item = {type: general, color: green}
+    // index = 0
+    // mwrType = boolean
 
-    const newArr = updateSettings[item].slice();
-    newArr[index] = e.target.value;
-    //! WORKS!!!!!!!!
-    setUpdateSettings((current) => {
-      return {
-        ...current,
-        [item]: newArr
-      };
-    });
+    function mwrOnChange() {
+      const newArr = updateSettings.mwrTypes.slice();
+      // need to set newArr[index][inputType] = e.target.value
+      // newArr[index] = e.target.value;
+      // //! WORKS!!!!!!!!
+      // setUpdateSettings((current) => {
+      //   return {
+      //     ...current,
+      //     [mwrType]: newArr[index]
+      //     };
+      // });
 
-    console.log(newArr);
-    console.log({ ...updateSettings, [item]: newArr });
+      // console.log(newArr[index])
+      console.log(newArr);
+    }
+
+    function othersOnChange() {
+      const newArr = updateSettings[item].slice();
+      newArr[index] = e.target.value;
+      //! WORKS!!!!!!!!
+      setUpdateSettings((current) => {
+        return {
+          ...current,
+          [item]: newArr
+        };
+      });
+      console.log(newArr);
+      console.log({ ...updateSettings, [item]: newArr });
+    }
+
+
+
     // const generalSettings = {
     //   mwrTypes: [
     //     { type: "General", color: "green" },
@@ -444,6 +462,7 @@ const SettingsPage = () => {
 
   // mapping mwrType separate b/c array of objects
   const mwrTypeSettingsMap = updateSettings.mwrTypes.map((item, index) => {
+    const mwrType = "mwrType"
     return (
       // li is parent of 2 labels and 1 div
       <li key={index}>
@@ -454,7 +473,7 @@ const SettingsPage = () => {
             onChange={
               (e) =>
                 // console.log(updateSettings)
-                change(e, item, index)
+                change(e, item, index, mwrType)
 
               // item = departments
               // index = 0
@@ -483,7 +502,7 @@ const SettingsPage = () => {
             onChange={
               (e) =>
                 // console.log(updateSettings)
-                change(e, item, index)
+                change(e, item, index, "mwrType")
 
               // item = departments
               // index = 0
