@@ -6,7 +6,7 @@ import { Link } from "gatsby";
 
 import {
   GlobalSettingsContext,
-  GlobalSettingsDispatchContext
+  GlobalSettingsDispatchContext,
 } from "../context/GlobalContextProvider";
 import { ACTIONS } from "../context/GlobalContextProvider";
 
@@ -127,7 +127,7 @@ const SettingsPage = () => {
   const settingsKeys = Object.keys(settings);
   // copy of localStorage context
   const [updateSettings, setUpdateSettings] = useState({
-    ...settings
+    ...settings,
   });
 
   //*************? Edit functionality **************/
@@ -177,8 +177,9 @@ const SettingsPage = () => {
             ? (btnTarget.className = "delete-btn btn-visibile")
             : (btnTarget.className = "delete-btn");
 
-          let inputTargets = listItem.querySelectorAll("input");  //nodeList
-          [...inputTargets].forEach((input) => {  // lesson: spreading nodeList out to use array method. could use for loop w/o spreading
+          let inputTargets = listItem.querySelectorAll("input"); //nodeList
+          [...inputTargets].forEach((input) => {
+            // lesson: spreading nodeList out to use array method. could use for loop w/o spreading
             input.disabled === true
               ? (input.disabled = false)
               : (input.disabled = true);
@@ -204,12 +205,11 @@ const SettingsPage = () => {
 
           // enable inputs for editing
           // let inputTarget = listItem.children[0].children[0];  //querySelector replaced this
-          let inputTarget = listItem.querySelector("input");  // element, not a nodList since not using querySelectorAll
-          console.log(inputTarget)
+          let inputTarget = listItem.querySelector("input"); // element, not a nodList since not using querySelectorAll
+          console.log(inputTarget);
           inputTarget.disabled === true
             ? (inputTarget.disabled = false)
             : (inputTarget.disabled = true);
-
         }
         break;
       }
@@ -236,16 +236,13 @@ const SettingsPage = () => {
           //   ? (inputTarget.disabled = true)
           //   : (inputTarget.disabled = false);
 
-
-          let inputTargets = listItem.querySelectorAll("input");  //nodeList
-          [...inputTargets].forEach((input) => {  // lesson: spreading nodeList out to use array method. could use for loop w/o spreading
+          let inputTargets = listItem.querySelectorAll("input"); //nodeList
+          [...inputTargets].forEach((input) => {
+            // lesson: spreading nodeList out to use array method. could use for loop w/o spreading
             input.disabled === false
               ? (input.disabled = true)
               : (input.disabled = false);
           });
-
-
-
         }
         break;
 
@@ -270,14 +267,12 @@ const SettingsPage = () => {
       : showHideBtns(e, "edit");
   };
 
-
   //***************? onChange Function **************************/
-  const change = (e, item, index, mwrType) => {
-
+  const change = (e, item, index, mwrType, mwrKey) => {
     mwrType === "mwrType"
       ? mwrOnChange()
-      // e, item, index, mwrType
-      : othersOnChange()
+      : // e, item, index, mwrType
+      othersOnChange();
 
     // item = departments
     // index = 0
@@ -291,17 +286,20 @@ const SettingsPage = () => {
     function mwrOnChange() {
       const newArr = updateSettings.mwrTypes.slice();
       // need to set newArr[index][inputType] = e.target.value
-      // newArr[index] = e.target.value;
-      // //! WORKS!!!!!!!!
-      // setUpdateSettings((current) => {
-      //   return {
-      //     ...current,
-      //     [mwrType]: newArr[index]
-      //     };
-      // });
+      newArr[index][mwrKey] = e.target.value;
+      // ! WORKS!!!!!!!!
+      setUpdateSettings((current) => {
+        return {
+          ...current,
+          [mwrType]: newArr[index][mwrKey],
+        };
+      });
 
-      // console.log(newArr[index])
-      console.log(newArr);
+      // console.log([mwrType]);
+      // console.log(newArr);
+      // console.log(newArr[index]);
+      // console.log(newArr[index][key]);
+      // console.log(newArr[index].type);
     }
 
     function othersOnChange() {
@@ -311,14 +309,12 @@ const SettingsPage = () => {
       setUpdateSettings((current) => {
         return {
           ...current,
-          [item]: newArr
+          [item]: newArr,
         };
       });
       console.log(newArr);
       console.log({ ...updateSettings, [item]: newArr });
     }
-
-
 
     // const generalSettings = {
     //   mwrTypes: [
@@ -379,21 +375,31 @@ const SettingsPage = () => {
 
   //***************? Delete Function **************************/
   //! WORKS
-  const remove = (e, item, index) => {
+  const remove = (e, item, index, settingsCategory) => {
     e.stopPropagation();
-    console.log(item); //departments
-    console.log(index); //0
-    console.log(updateSettings[item][index]); //compounding
-    const filtered = updateSettings[item].filter((value) => {
-      // [index] refers to parameter passed into remove() i.e the value
-      return value !== updateSettings[item][index];
-    });
-    setUpdateSettings((current) => {
-      return {
-        ...current,
-        [item]: filtered
-      };
-    });
+    settingsCategory === "mwrType" ? mwrRemove() : othersRemove();
+
+    // console.log(updateSettings[item]); //compounding
+    // console.log(item); //departments AND {type: general, colo: green}
+    // console.log(updateSettings[item][index]); //compounding
+    // console.log(index); //0 (compoundings index within departments array)
+
+    function mwrRemove() {
+      console.log("MWR-REMOVE fired");
+    }
+
+    function othersRemove() {
+      const filtered = updateSettings[item].filter((value) => {
+        // [index] refers to parameter passed into remove() i.e the value
+        return value !== updateSettings[item][index]; //updatedSettings.mwrType[index]
+      });
+      setUpdateSettings((current) => {
+        return {
+          ...current,
+          [item]: filtered,
+        };
+      });
+    }
   };
 
   //***************? Add New List Item Function **************************/
@@ -408,7 +414,7 @@ const SettingsPage = () => {
     await setUpdateSettings((current) => {
       return {
         ...current,
-        [item]: newArr
+        [item]: newArr,
       };
     });
 
@@ -434,7 +440,7 @@ const SettingsPage = () => {
     setUpdateSettings((current) => {
       return {
         ...current,
-        [item]: newArr
+        [item]: newArr,
       };
     });
   };
@@ -446,14 +452,14 @@ const SettingsPage = () => {
     const newArr = updateSettings[item].slice();
     const updatedSettings = {
       section: item,
-      data: newArr
+      data: newArr,
     };
     console.log("overriding context local storage");
     console.log(updatedSettings); //payload
     // settingsDispatch({ type: ACTIONS.UPDATE_SETTINGS, payload: updateSettings });
     settingsDispatch({
       type: ACTIONS.UPDATE_SETTINGS_SECTION,
-      payload: updatedSettings
+      payload: updatedSettings,
     });
   };
 
@@ -462,7 +468,7 @@ const SettingsPage = () => {
 
   // mapping mwrType separate b/c array of objects
   const mwrTypeSettingsMap = updateSettings.mwrTypes.map((item, index) => {
-    const mwrType = "mwrType"
+    const mwrType = "mwrType";
     return (
       // li is parent of 2 labels and 1 div
       <li key={index}>
@@ -473,7 +479,7 @@ const SettingsPage = () => {
             onChange={
               (e) =>
                 // console.log(updateSettings)
-                change(e, item, index, mwrType)
+                change(e, item, index, mwrType, "mwrType")
 
               // item = departments
               // index = 0
@@ -502,7 +508,7 @@ const SettingsPage = () => {
             onChange={
               (e) =>
                 // console.log(updateSettings)
-                change(e, item, index, "mwrType")
+                change(e, item, index, "mwrType", "mwrColor")
 
               // item = departments
               // index = 0
@@ -519,7 +525,7 @@ const SettingsPage = () => {
         <div className={"item-controls-container"}>
           <button
             className={"delete-btn"}
-            onClick={(e) => remove(e, item, index)}
+            onClick={(e) => remove(e, item, index, "mwrType")}
           >
             x
           </button>
