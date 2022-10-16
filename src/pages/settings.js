@@ -140,6 +140,7 @@ const SettingsPage = () => {
   // [x] addNew: enable input for editing and delete btn visiable
 
   // Show Hide Function
+  // ! WORKS for mwrTypes and others
   const showHideBtns = (e, btnType) => {
     console.log(e.target);
     // DOM variables
@@ -375,7 +376,7 @@ const SettingsPage = () => {
   };
 
   //***************? Delete Function **************************/
-  //! WORKS
+  //! WORKS for mwrTypes and others
   const remove = (e, item, index, settingsCategory) => {
     e.stopPropagation();
     settingsCategory === "mwrType" ? mwrRemove() : othersRemove();
@@ -414,7 +415,7 @@ const SettingsPage = () => {
   };
 
   //***************? Add New List Item Function **************************/
-  // !WORKS
+  // !WORKS for mwrTypes and others
   // mwrTypes: push an template object into the array of objects
 
   // async in order to enable lastChild input and delete btn once added
@@ -500,6 +501,7 @@ const SettingsPage = () => {
     });
   };
   //***************? Save to Context Local Storage Function **************************/
+  //! WORKS for mwrTypes and others
   const saveSection = (e, item) => {
     e.preventDefault();
     showHideBtns(e, "save");
