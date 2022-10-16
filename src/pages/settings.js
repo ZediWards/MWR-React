@@ -484,7 +484,7 @@ const SettingsPage = () => {
   }
 
   //***************? Cancel Changes Function **************************/
-  //! WORKS
+  //! WORKS for mwrTypes and others
   const cancelChanges = (e, item) => {
     e.stopPropagation();
     showHideBtns(e, "cancel");
