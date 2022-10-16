@@ -386,6 +386,16 @@ const SettingsPage = () => {
 
     function mwrRemove() {
       console.log("MWR-REMOVE fired");
+      console.log(index)  //index inside of mwrType key
+      const filtered = updateSettings.mwrTypes.filter((obj) => {
+        return obj !== updateSettings.mwrTypes[index];
+      });
+      setUpdateSettings((current) => {
+        return {
+          ...current,
+          mwrTypes: filtered
+        }
+      })
     }
 
     function othersRemove() {
