@@ -417,26 +417,70 @@ const SettingsPage = () => {
   // mwrTypes: push an template object into the array of objects
 
   // async in order to enable lastChild input and delete btn once added
-  async function addItem(e, item) {
+  function addItem(e, item) {
     e.stopPropagation();
-    const newArr = updateSettings[item].slice();
-    newArr.push("");
-    await setUpdateSettings((current) => {
-      return {
-        ...current,
-        [item]: newArr,
-      };
-    });
+    item === "mwrTypes" ? mwrAdd() : othersAdd();
 
-    const targetLi =
-      e.target.parentElement.parentElement.parentElement.children[1].lastChild;
-    const targetDiv = targetLi.children[0].children[1];
-    const targetDeleteBtn = targetDiv.children[0];
-    targetDeleteBtn.className = "delete-btn btn-visibile";
+    async function mwrAdd() {
+      console.log("MWR ADD fired")
+      const newArr = updateSettings.mwrTypes.slice();
+      newArr.push({ type: "", color: "" })
+      await setUpdateSettings((current) => {
 
-    const targetInput = targetLi.children[0].children[0];
-    targetInput.disabled = false;
-    // console.log(updateSettings[item]);
+        return {
+          ...current,
+          mwrTypes: newArr
+        }
+      })
+
+      // variables for following actions
+      // lesson: nice organization
+      const controlContainer = e.target.closest("div")
+      const categoryDiv = controlContainer.parentElement;
+      const categoryLi = categoryDiv.parentElement
+      const listUnorderedList = categoryLi.lastChild;
+      const addedListItem = listUnorderedList.lastChild
+      const deleteBtnDiv = addedListItem.querySelector(".item-controls-container")
+      const deleteBtn = deleteBtnDiv.querySelector(".delete-btn")
+
+      // delete btn visibility 
+      deleteBtn.className = "delete-btn btn-visibile"
+
+      // enable inputs
+      const addedItemChildren = addedListItem.children  //HTML collection object
+      for (let child of addedItemChildren) {
+        if (child.className === "label") {
+          child.querySelector("input").disabled = false
+        }
+        else {
+          return
+        }
+      }
+
+    }
+
+
+    async function othersAdd() {
+      const newArr = updateSettings[item].slice();
+      newArr.push("");
+      await setUpdateSettings((current) => {
+        return {
+          ...current,
+          [item]: newArr,
+        };
+      });
+
+      const targetLi =
+        e.target.parentElement.parentElement.parentElement.children[1].lastChild;
+      const targetDiv = targetLi.children[0].children[1];
+      const targetDeleteBtn = targetDiv.children[0];
+      targetDeleteBtn.className = "delete-btn btn-visibile";
+
+      const targetInput = targetLi.children[0].children[0];
+      targetInput.disabled = false;
+      // console.log(updateSettings[item]);
+    }
+
   }
 
   //***************? Cancel Changes Function **************************/
