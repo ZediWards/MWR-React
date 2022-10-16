@@ -129,6 +129,7 @@ const SettingsPage = () => {
   const [updateSettings, setUpdateSettings] = useState({
     ...settings,
   });
+  console.log(updateSettings)
 
   //*************? Edit functionality **************/
 
@@ -533,7 +534,7 @@ const SettingsPage = () => {
             onChange={
               (e) =>
                 // console.log(updateSettings)
-                change(e, item, index, mwrType, "mwrType")
+                change(e, item, index, mwrType, "type")
 
               // item = departments
               // index = 0
@@ -562,7 +563,7 @@ const SettingsPage = () => {
             onChange={
               (e) =>
                 // console.log(updateSettings)
-                change(e, item, index, "mwrType", "mwrColor")
+                change(e, item, index, "mwrType", "color")
 
               // item = departments
               // index = 0
