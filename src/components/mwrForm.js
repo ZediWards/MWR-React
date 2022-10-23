@@ -89,19 +89,17 @@ const MwrFormStyled = styled.form`
       margin-top: 0.25rem;
     }
   }
-
-  @media (max-width: 670px) {
-    .problem-label,
+  .problem-label,
     .solution-label {
       flex-grow: 1;
     }
+
     .problem-input,
     .solution-input {
       width: 100%;
       /* background: pink; */
       background: #fff;
     }
-  }
 
   /* !!!!!!!!!! Details Style !!!!!!!! */
   /* .input-readable-disabled {
