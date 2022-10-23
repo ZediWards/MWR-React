@@ -152,12 +152,14 @@ const ViewDetails = ({
 
   // destructured prop incase it was still attatched to original state. Now should be mutable then applied back to original state
   // *** mwrDetails prop is passed down from mainTable referencing local storage Context
+  // companyName is added to mwrDeatils here for pdf render. b/c useContext not working on pdf template file.
   const [updateMwr, setUpdateMwr] = useState({
-    ...mwrDetails
+    ...mwrDetails,
+    companyName: settings.companyName
   });
   // console.log(`vv this is updateMwr state in viewDetails.js vv`)
   console.log("MWR DETAILS!!!!!");
-  console.table(updateMwr.id);
+  console.table(updateMwr);
 
   // This will need to locate and update the specific object within the main state
   const handleSubmit = (e) => {

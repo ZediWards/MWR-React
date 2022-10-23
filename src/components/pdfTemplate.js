@@ -1,8 +1,9 @@
 import * as React from "react"
-import { useState } from "react"
-
+import { useState, useContext } from "react"
 
 import { Page, Text, View, Document, StyleSheet, Font } from "@react-pdf/renderer"
+
+
 
 
 // Create styles
@@ -125,8 +126,7 @@ const styles = StyleSheet.create({
 // Create Document Component
 export function PdfDocument({ data }) {
 
-  // State
-  const [companyHeader, setCompanyHeader] = useState("Company Name")
+  // Lesson: useState works but useContext does not. shrug
 
   console.log(`vv this is updateMwr state passed to PDF template vv`)
   // console.table(data)
@@ -139,7 +139,7 @@ export function PdfDocument({ data }) {
         {/* FLEX ROW */}
         <View style={[styles.headerSection, styles.spaceBetween]}>
           {/* FLEX ITEM */}
-          <Text style={styles.header}>{companyHeader}</Text>
+          <Text style={styles.header}>{data.companyName[0]}</Text>
           <Text style={[styles.label, styles.alignBottom]}>Work Order Number: {data.workOrderNum}</Text>
         </View>
 
