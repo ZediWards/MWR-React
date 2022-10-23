@@ -17,6 +17,11 @@ import Layout from "../components/layout";
 const SettingsWrapperStyled = styled.div`
   border: 1px solid red;
 
+  .settings-ul {
+    max-width: 1000px;
+    margin: auto;
+  }
+
   li {
     list-style: none;
     /* border: 1px solid blue; */
@@ -24,6 +29,11 @@ const SettingsWrapperStyled = styled.div`
 
   p {
     margin-block-end: 0;
+  }
+
+  .settings-section-li {
+    margin-block-end: 1.5rem;
+    border: 1px solid blue;
   }
 
   .label {
@@ -42,7 +52,14 @@ const SettingsWrapperStyled = styled.div`
   .category-header-container {
     display: flex;
     gap: 1rem;
-    margin-block-end: 0;
+    margin-block-end: 1.5rem;
+  }
+
+  .category-header-container-wrap {
+    display: flex;
+    gap: 1rem;
+    margin-block-end: 1.5rem;
+    flex-wrap: wrap;
   }
 
   .category-header {
@@ -82,28 +99,55 @@ const SettingsWrapperStyled = styled.div`
     /* display: none; */
   }
 
+  // MWR-type section specific
+
+  .mwr-type-li {
+    display: flex;
+    gap: 2rem;
+    margin-block-end: 0;
+    @media (max-width: 543px) {
+      flex-direction: column;
+      // flex-wrap: wrap;
+      gap: 0rem;
+      border: 1px solid grey;
+    }
+  }
+
+  // **********
+
+  //  {
+  //   if(.edit-btn.disabled === true) {
+  //     .category-header-container {
+  //       flex-direction: column;
+  //       border: 5px solid pink;
+  //     }
+  //   }
+  // }
+
   /* --gray-light from global css need a primary-hue declared to work */
   .delete-btn {
-    /* align-self: flex-start; */
+    align-self: flex-start;
     background-color: var(--background-safety);
     border: 1px solid var(--gray-light);
     box-shadow: 0px 2px 1px var(--gray-light);
-    /* transition: all 0.35s ease-Out; */
+    // transition: all 0.35s ease-Out;
     cursor: pointer;
     padding: 0.25rem 0.5rem;
     border-radius: 10px;
     /* will be visable upon edit btn being clicked */
     display: none;
+    // Lesson: &:hover needed for styled components to use hover
+    &:hover {
+      border: 1px solid var(--background-safety);
+      background-color: var(--light-background);
+    }
   }
 
   /* TODO make hover into downClick */
-  .delte-btn:hover {
+  .delte-btn::hover {
     border: 1px solid var(--background-safety);
-    background-color: var(--light-background);
-  }
-
-  .green {
-    background-color: green;
+    // background-color: var(--light-background);
+    background-color: blue;
   }
 
   .btn-visibile {
@@ -117,10 +161,16 @@ const SettingsWrapperStyled = styled.div`
 `;
 
 const SettingsPage = () => {
+  // logs on first and re-render of page
+  const viewPortWidth = window.innerWidth;
+  useEffect(() => {
+    console.log(viewPortWidth);
+  }, [viewPortWidth]);
+
   // context variables
   const settings = useContext(GlobalSettingsContext);
   const settingsDispatch = useContext(GlobalSettingsDispatchContext);
-  console.log("FROM SETTINGS PAGE");
+  console.log("CONTEXT SETTINGS TABLE");
   console.table(settings);
 
   // other variables
@@ -129,7 +179,8 @@ const SettingsPage = () => {
   const [updateSettings, setUpdateSettings] = useState({
     ...settings,
   });
-  console.log(updateSettings)
+  console.log("UPDATE SETTINGS TABLE");
+  console.table(updateSettings);
 
   //*************? Edit functionality **************/
 
@@ -152,8 +203,20 @@ const SettingsPage = () => {
     const saveBtn = parentDiv.querySelector(".save-btn");
     //  inputs fild
     const category = e.target.closest("li");
+    const headerContainer = category.querySelector("div");
     const categoryList = category.querySelector("ul");
     const listItems = categoryList.children;
+    console.log(headerContainer);
+    console.log(window.innerWidth);
+
+    // switch (innerWidthSection) {
+    //   case [815, "test"]: {
+    //     console.log("hello");
+    //   }
+
+    //   //  default:
+    //   //   throw new Error("Bad Action Type");
+    // }
 
     switch (btnType) {
       // update settings section
@@ -286,17 +349,31 @@ const SettingsPage = () => {
     // mwrType = boolean
 
     function mwrOnChange() {
+      // console.log("MWRchange fired");
+      // console.log(
+      //   `item: ${item}, index: ${index}, mwrType: ${mwrType}, mwrKey: ${mwrKey}`
+      // );
+      // console.log(item); // {type:"general", color: "green"}
+      // const settingsKeyTarget = "mwrTypes";
       const newArr = updateSettings.mwrTypes.slice();
-      // need to set newArr[index][inputType] = e.target.value
+      // console.log(newArr); // mwrTypes array
+      // console.log(index); // index of the object firing the onChange event
+      // console.log(mwrKey); // key inside that object thats value is changing
+      // console.log(newArr[index][mwrKey]); // value before change
+      // // need to set newArr[index][inputType] = e.target.value
       newArr[index][mwrKey] = e.target.value;
+      // console.log(newArr[index][mwrKey]); // value after change ON ARRAY COPY
+      // setUpdateSettings to changed value
       // ! WORKS!!!!!!!!
       setUpdateSettings((current) => {
+        console.table(current);
         return {
           ...current,
-          [mwrType]: newArr[index][mwrKey],
+          // [item]: newArr[index][mwrKey],
+          // [mwrType]: newArr[index],
+          // mwrType: newValue,
         };
       });
-
       // console.log([mwrType]);
       // console.log(newArr);
       // console.log(newArr[index]);
@@ -308,6 +385,11 @@ const SettingsPage = () => {
       const newArr = updateSettings[item].slice();
       newArr[index] = e.target.value;
       //! WORKS!!!!!!!!
+      console.log(updateSettings[item]); //array that is copied before changes
+      console.log(item); // departments
+      console.log(newArr); // array copy
+      console.log(newArr[index]); // value changed on newArr
+
       setUpdateSettings((current) => {
         return {
           ...current,
@@ -388,16 +470,16 @@ const SettingsPage = () => {
 
     function mwrRemove() {
       console.log("MWR-REMOVE fired");
-      console.log(index)  //index inside of mwrType key
+      console.log(index); //index inside of mwrType key
       const filtered = updateSettings.mwrTypes.filter((obj) => {
         return obj !== updateSettings.mwrTypes[index];
       });
       setUpdateSettings((current) => {
         return {
           ...current,
-          mwrTypes: filtered
-        }
-      })
+          mwrTypes: filtered,
+        };
+      });
     }
 
     function othersRemove() {
@@ -424,43 +506,41 @@ const SettingsPage = () => {
     item === "mwrTypes" ? mwrAdd() : othersAdd();
 
     async function mwrAdd() {
-      console.log("MWR ADD fired")
+      console.log("MWR ADD fired");
       const newArr = updateSettings.mwrTypes.slice();
-      newArr.push({ type: "", color: "" })
+      newArr.push({ type: "", color: "" });
       await setUpdateSettings((current) => {
-
         return {
           ...current,
-          mwrTypes: newArr
-        }
-      })
+          mwrTypes: newArr,
+        };
+      });
 
       // variables for following actions
       // lesson: nice organization
-      const controlContainer = e.target.closest("div")
+      const controlContainer = e.target.closest("div");
       const categoryDiv = controlContainer.parentElement;
-      const categoryLi = categoryDiv.parentElement
+      const categoryLi = categoryDiv.parentElement;
       const listUnorderedList = categoryLi.lastChild;
-      const addedListItem = listUnorderedList.lastChild
-      const deleteBtnDiv = addedListItem.querySelector(".item-controls-container")
-      const deleteBtn = deleteBtnDiv.querySelector(".delete-btn")
+      const addedListItem = listUnorderedList.lastChild;
+      const deleteBtnDiv = addedListItem.querySelector(
+        ".item-controls-container"
+      );
+      const deleteBtn = deleteBtnDiv.querySelector(".delete-btn");
 
-      // delete btn visibility 
-      deleteBtn.className = "delete-btn btn-visibile"
+      // delete btn visibility
+      deleteBtn.className = "delete-btn btn-visibile";
 
       // enable inputs
-      const addedItemChildren = addedListItem.children  //HTML collection object
+      const addedItemChildren = addedListItem.children; //HTML collection object
       for (let child of addedItemChildren) {
         if (child.className === "label") {
-          child.querySelector("input").disabled = false
-        }
-        else {
-          return
+          child.querySelector("input").disabled = false;
+        } else {
+          return;
         }
       }
-
     }
-
 
     async function othersAdd() {
       const newArr = updateSettings[item].slice();
@@ -473,7 +553,8 @@ const SettingsPage = () => {
       });
 
       const targetLi =
-        e.target.parentElement.parentElement.parentElement.children[1].lastChild;
+        e.target.parentElement.parentElement.parentElement.children[1]
+          .lastChild;
       const targetDiv = targetLi.children[0].children[1];
       const targetDeleteBtn = targetDiv.children[0];
       targetDeleteBtn.className = "delete-btn btn-visibile";
@@ -482,7 +563,6 @@ const SettingsPage = () => {
       targetInput.disabled = false;
       // console.log(updateSettings[item]);
     }
-
   }
 
   //***************? Cancel Changes Function **************************/
@@ -512,6 +592,7 @@ const SettingsPage = () => {
       data: newArr,
     };
     console.log("overriding context local storage");
+    console.log(item); //settings key
     console.log(updatedSettings); //payload
     // settingsDispatch({ type: ACTIONS.UPDATE_SETTINGS, payload: updateSettings });
     settingsDispatch({
@@ -520,43 +601,71 @@ const SettingsPage = () => {
     });
   };
 
+  // const styleChecker = (e) {
+
+  // }
+
+  // TODO
+  // [] basic settigns STYLES
+  // [] company name displayed on pdf
+  // [] 2 good dummy mwr submitions
+  // [] photo display on details modal
+  // [] photo upload on mwr create modal
+  // [] secure pages
+  // [] sort leaderboad by mwrType and or date range
+
   //? *********** Mapping JSX **********************
-  // ****** p tag and 2 sets of labels per li is the only difference from mwr type to other typt
+  // TODO: building and general maint. are editable under maint. departments but static sections within settings object.
+  const settingsCategorySorter = (item) => {
+    switch (item) {
+      // update settings section
+      case "departments": {
+        return "Departments";
+        break;
+      }
+      case "status": {
+        return "Status";
+        break;
+      }
+      case "problemType": {
+        return "Problem Type";
+        break;
+      }
+      case "maintenenceDepartments": {
+        return "Maintenance Departments";
+        break;
+      }
+      case "buildingMainteneceEmployees": {
+        return "Building Maintenance Employees";
+        break;
+      }
+      case "generalMaintenenceEmployees": {
+        return "General Maintenance Employees";
+        break;
+      }
+    }
+  };
 
   // mapping mwrType separate b/c array of objects
   const mwrTypeSettingsMap = updateSettings.mwrTypes.map((item, index) => {
     const mwrType = "mwrType";
     return (
       // li is parent of 2 labels and 1 div
-      <li key={index}>
+      <li key={index} className={"mwr-type-li"}>
         <label htmlFor={item.type} className={"label"}>
           {/* p tag not present on non mwr type */}
           <p>type:</p>
           <input
-            onChange={
-              (e) =>
-                // console.log(updateSettings)
-                change(e, item, index, mwrType, "type")
-
-              // item = departments
-              // index = 0
-              // arrItem = compounding
+            onChange={(e) =>
+              // console.log(updateSettings)
+              change(e, item, index, mwrType, "type")
             }
-            // onChange={(e) => setFormData({ ...formData, date: e.target.value })}
             value={item.type}
             type="text"
             name={item.type}
             id={item.type}
             disabled={true}
           ></input>
-          {/* <div className={"item-controls-container"}>
-            <button
-              className={"delete-btn"}
-              onClick={(e) => remove(e, item, index)}
-            >
-              x
-            </button>
-          </div> */}
         </label>
 
         <label htmlFor={item.color} className={"label"}>
@@ -571,9 +680,8 @@ const SettingsPage = () => {
               // index = 0
               // arrItem = compounding
             }
-            // onChange={(e) => setFormData({ ...formData, date: e.target.value })}
             value={item.color}
-            type="text"
+            type="color"
             name={item.color}
             id={item.color}
             disabled={true}
@@ -596,9 +704,9 @@ const SettingsPage = () => {
   const settingsMap = settingsKeys.map((item, index) => {
     if (item === "mwrTypes") {
       return (
-        <li key={index}>
+        <li key={index} className={"settings-section-li"}>
           <div className={"category-header-container"}>
-            <h2 className={"category-header"}>mwr types</h2>
+            <h2 className={"category-header"}>MWR Types</h2>
             <div className={"category-controls-container"}>
               <span
                 className={"control-btns edit-btn"}
@@ -630,10 +738,18 @@ const SettingsPage = () => {
         </li>
       );
     } else {
+      //  switch (btnType) {
+      // // update settings section
+      // case "edit-mwrType": {
+
+      // }
+      //  }
       return (
-        <li key={index}>
+        <li key={index} className={"settings-section-li"}>
           <div className={"category-header-container"}>
-            <h2 className={"category-header"}>{item}</h2>
+            <h2 className={"category-header"}>
+              {settingsCategorySorter(item)}
+            </h2>
             <div className={"category-controls-container"}>
               <span className={"control-btns edit-btn"} onClick={enableEdit}>
                 edit
@@ -711,7 +827,7 @@ const SettingsPage = () => {
   return (
     <Layout>
       <SettingsWrapperStyled>
-        <ul>{settingsMap}</ul>
+        <ul className="settings-ul">{settingsMap}</ul>
       </SettingsWrapperStyled>
 
       <Link to="/admin">Go back to ADMIN</Link>
