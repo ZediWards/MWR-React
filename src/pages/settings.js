@@ -216,12 +216,6 @@ const SettingsPage = () => {
 
   //*************? Edit functionality **************/
 
-  // TODO:
-  // [x] edit: hide when clicked, show other btns
-  // [x] cancel, save: hide all btns and show edit
-  // [x] make delete btn display: none as well && inputs enabled at the right time
-  // [x] addNew: enable input for editing and delete btn visiable
-
   // Show Hide Function
   // ! WORKS for mwrTypes and others
   const showHideBtns = (e, btnType) => {
@@ -572,6 +566,10 @@ const SettingsPage = () => {
   const settingsCategorySorter = (item) => {
     switch (item) {
       // update settings section
+      case "companyName": {
+        return "Company Name";
+        break;
+      }
       case "departments": {
         return "Departments";
         break;
@@ -691,6 +689,8 @@ const SettingsPage = () => {
           <ul>{mwrTypeSettingsMap}</ul>
         </li>
       );
+    } else if (item === "maintenenceDepartments") {
+      return
     } else {
       //  switch (btnType) {
       // // update settings section

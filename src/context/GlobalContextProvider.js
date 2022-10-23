@@ -7,6 +7,7 @@ export const GlobalSettingsContext = React.createContext();
 export const GlobalSettingsDispatchContext = React.createContext();
 
 const generalSettings = {
+  companyName: ["Company Name"],
   mwrTypes: [
     { type: "General", color: "#00ff24" },
     { type: "Urgent", color: "#55cd66" },
