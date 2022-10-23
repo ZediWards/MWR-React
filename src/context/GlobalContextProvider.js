@@ -8,9 +8,9 @@ export const GlobalSettingsDispatchContext = React.createContext();
 
 const generalSettings = {
   mwrTypes: [
-    { type: "General", color: "green" },
-    { type: "Urgent", color: "yellow" },
-    { type: "Safety", color: "red" },
+    { type: "General", color: "#00ff24" },
+    { type: "Urgent", color: "#55cd66" },
+    { type: "Safetttty", color: "#444df5" },
   ],
   departments: [
     "compounding",
@@ -24,10 +24,10 @@ const generalSettings = {
   maintenenceDepartments: [
     "Building Maintenence",
     "General Maintenence",
-    "TESTING"
+    "TESTING",
   ],
   buildingMainteneceEmployees: ["Tod"],
-  generalMaintenenceEmployees: ["Bob", "John", "TESTING"]
+  generalMaintenenceEmployees: ["Bob", "John", "TESTING"],
 };
 
 const initialState = [
@@ -72,7 +72,6 @@ const initialState = [
   //   //
   //   briefDiscription:
   //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-
   //   workDiscription:
   //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
   //   //
@@ -129,7 +128,6 @@ const initialState = [
   //   //
   //   briefDiscription:
   //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-
   //   workDiscription:
   //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
   //   //
@@ -186,7 +184,6 @@ const initialState = [
   //   //
   //   briefDiscription:
   //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-
   //   workDiscription:
   //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
   //   //
@@ -252,15 +249,16 @@ function reducer(state, action) {
 }
 
 // *******? SETTINGS REDUCER FUNCTION ************
-// todo: update, delete, add. delete and add might be frontend and save just updates all changes 
+// todo: update, delete, add. delete and add might be frontend and save just updates all changes
 function settingsReducer(state, action) {
   switch (action.type) {
     // update settings section
     case ACTIONS.UPDATE_SETTINGS_SECTION: {
+      console.log("DISPATCH FIRED!!!!!!");
       return {
         ...state,
-        [action.payload.section]: action.payload.data
-      }
+        [action.payload.section]: action.payload.data,
+      };
     }
 
     // case ACTIONS.DELETE_MWR: {
@@ -277,27 +275,27 @@ function settingsReducer(state, action) {
 // wrapping state and reducer providers with GlobalContextProvider, which will wrap Gatsby
 // I think state needs to start as an empty array
 const GlobalContextProvider = ({ children }) => {
-
   // initial state & local storage
   const [state, dispatch] = React.useReducer(reducer, initialState, () => {
-    const localData = localStorage.getItem('state');
+    const localData = localStorage.getItem("state");
     return localData ? JSON.parse(localData) : initialState;
   });
   useEffect(() => {
-    localStorage.setItem('state', JSON.stringify(state))
-  }, [state])
+    localStorage.setItem("state", JSON.stringify(state));
+  }, [state]);
 
   // settings & Local Storage
   const [settingsState, settingsDispatch] = React.useReducer(
     settingsReducer,
-    generalSettings, () => {
-      const localSettings = localStorage.getItem('settingsState');
+    generalSettings,
+    () => {
+      const localSettings = localStorage.getItem("settingsState");
       return localSettings ? JSON.parse(localSettings) : generalSettings;
-    });
-  useEffect(() => {
-    localStorage.setItem('settingsState', JSON.stringify(settingsState))
-  }, [settingsState]
+    }
   );
+  useEffect(() => {
+    localStorage.setItem("settingsState", JSON.stringify(settingsState));
+  }, [settingsState]);
   return (
     <GlobalStateContext.Provider value={state}>
       <GlobalSettingsContext.Provider value={settingsState}>
