@@ -41,8 +41,10 @@ const SettingsWrapperStyled = styled.div`
     flex-direction: row;
     margin-block-end: 1rem;
     gap: 1rem;
-    /* border: 1px solid red; */
   }
+
+ 
+
 
   .item-controls-container {
     display: flex;
@@ -105,15 +107,45 @@ const SettingsWrapperStyled = styled.div`
     display: flex;
     gap: 2rem;
     margin-block-end: 0;
-    @media (max-width: 543px) {
+    
+  }
+
+  .mwr-type-label {
+    display: flex;
+    flex-direction: row;
+    margin-block-end: 1rem;
+    gap: 1rem;
+    /* border: 1px solid red; */
+  }
+
+  @media (max-width: 574px) {
+    .mwr-type-li {
       flex-direction: column;
       // flex-wrap: wrap;
       gap: 0rem;
       border: 1px solid grey;
     }
+/* all settings text-inputs */
+    .input-text {
+    flex-grow: 1;
+  }
+  /* ********* */
+
+    .mwr-type-input-text {
+    margin-inline-end: 1rem;
+  }
+    }
+
+  @media (max-width: 372px) {
+    .mwr-type-label {
+      gap: 0.5rem;
+      flex-direction: column;
+    }
   }
 
-  // **********
+  
+
+  /* // **********
 
   //  {
   //   if(.edit-btn.disabled === true) {
@@ -122,7 +154,7 @@ const SettingsWrapperStyled = styled.div`
   //       border: 5px solid pink;
   //     }
   //   }
-  // }
+  // } */
 
   /* --gray-light from global css need a primary-hue declared to work */
   .delete-btn {
@@ -221,15 +253,6 @@ const SettingsPage = () => {
     switch (btnType) {
       // update settings section
       case "edit-mwrType": {
-        // console.log("showHide is wirking for mwrType edit btn");
-        // console.log(parentDiv); //control-container
-        // console.log(editBtn);
-        // console.log(addNewBtn);
-        // console.log(cancelBtn);
-        // console.log(saveBtn);
-        // console.log(category); //li  (whole category)
-        // console.log(categoryList); //ul  (category list)
-        // console.log(listItems); //li  (list item)
         // ****************************************
         editBtn.className = "control-btns edit-btn display-none";
         addNewBtn.className = "control-btns add-new-btn";
@@ -349,12 +372,6 @@ const SettingsPage = () => {
     // mwrType = boolean
 
     function mwrOnChange() {
-      // console.log("MWRchange fired");
-      // console.log(
-      //   `item: ${item}, index: ${index}, mwrType: ${mwrType}, mwrKey: ${mwrKey}`
-      // );
-      // console.log(item); // {type:"general", color: "green"}
-      // const settingsKeyTarget = "mwrTypes";
       const newArr = updateSettings.mwrTypes.slice();
       // console.log(newArr); // mwrTypes array
       // console.log(index); // index of the object firing the onChange event
@@ -399,62 +416,6 @@ const SettingsPage = () => {
       console.log(newArr);
       console.log({ ...updateSettings, [item]: newArr });
     }
-
-    // const generalSettings = {
-    //   mwrTypes: [
-    //     { type: "General", color: "green" },
-    //     { type: "Urgent", color: "yellow" },
-    //     { type: "Safety", color: "red" },
-    //   ],
-    //   departments: [
-    //     "compounding",
-    //     "production 1",
-    //     "production 2",
-    //     "warehouse",
-    //     // "TESTING"
-    //   ],
-
-    // NOTES from trying to figure out how to make worke
-    // console.log(item) //department
-    // console.log(typeof (item))  // string
-    // console.log(index)  // 0
-    // console.log(typeof (index))  // number
-    // // console.log(updateSettings[item][index] = "flub") //compounding
-    // console.log(updateSettings[item]) // departments array
-    //  books.splice(2, 1, 'JavaScript
-    // console.log({ ...updateSettings, [item]: [...updateSettings[item], updateSettings[item][index] = e.target.value] })
-
-    // ...updateSettings, [item]: updateSettings[item]
-    // ...updateSettings, [item]: [...updateSettings[item], [index] = e.target.value]
-
-    // way 1
-    // setUpdateSettings(current => {
-    //   return {
-    //     ...current,
-    //     [item]: {
-    //       ...current[item],
-    //       [index]: e.target.value
-    //     }
-    //   }
-    // })
-
-    // way 2
-    // setUpdateSettings(current => {
-    //   item = { ...current[item] }
-
-    //   [item][index] = e.target.value
-
-    //   return { ...current, item }
-    // })
-
-    // department.index
-
-    // let testing = updateSettings[item]
-
-    // setUpdateSettings({ ...updateSettings, ...testing, [index]: e.target.value }
-    // setUpdateSettings({ ...updateSettings, [item]: e.target.value }
-
-    // )
   };
 
   //***************? Delete Function **************************/
@@ -605,17 +566,9 @@ const SettingsPage = () => {
 
   // }
 
-  // TODO
-  // [] basic settigns STYLES
-  // [] company name displayed on pdf
-  // [] 2 good dummy mwr submitions
-  // [] photo display on details modal
-  // [] photo upload on mwr create modal
-  // [] secure pages
-  // [] sort leaderboad by mwrType and or date range
+
 
   //? *********** Mapping JSX **********************
-  // TODO: building and general maint. are editable under maint. departments but static sections within settings object.
   const settingsCategorySorter = (item) => {
     switch (item) {
       // update settings section
@@ -652,10 +605,11 @@ const SettingsPage = () => {
     return (
       // li is parent of 2 labels and 1 div
       <li key={index} className={"mwr-type-li"}>
-        <label htmlFor={item.type} className={"label"}>
+        <label htmlFor={item.type} className={"mwr-type-label"}>
           {/* p tag not present on non mwr type */}
           <p>type:</p>
           <input
+            className={"input-text mwr-type-input-text"}
             onChange={(e) =>
               // console.log(updateSettings)
               change(e, item, index, mwrType, "type")
@@ -668,7 +622,7 @@ const SettingsPage = () => {
           ></input>
         </label>
 
-        <label htmlFor={item.color} className={"label"}>
+        <label htmlFor={item.color} className={"mwr-type-label"}>
           <p>color:</p>
           <input
             onChange={
@@ -787,6 +741,7 @@ const SettingsPage = () => {
                 <li key={index}>
                   <label htmlFor={arrItem} className={"label"}>
                     <input
+                      className={"input-text"}
                       // changing specific value is where I am getting hung up
                       onChange={
                         (e) =>
