@@ -13,7 +13,6 @@ import { ACTIONS } from "../context/GlobalContextProvider";
 import Layout from "../components/layout";
 
 // ********* STYLES **************
-// WAAAAAAAZUUUPPPP!!!!!!
 
 const SettingsWrapperStyled = styled.div`
   border: 1px solid red;
@@ -42,10 +41,8 @@ const SettingsWrapperStyled = styled.div`
     flex-direction: row;
     margin-block-end: 1rem;
     gap: 1rem;
+    /* border: 1px solid red; */
   }
-
- 
-
 
   .item-controls-container {
     display: flex;
@@ -108,45 +105,15 @@ const SettingsWrapperStyled = styled.div`
     display: flex;
     gap: 2rem;
     margin-block-end: 0;
-    
-  }
-
-  .mwr-type-label {
-    display: flex;
-    flex-direction: row;
-    margin-block-end: 1rem;
-    gap: 1rem;
-    /* border: 1px solid red; */
-  }
-
-  @media (max-width: 574px) {
-    .mwr-type-li {
+    @media (max-width: 543px) {
       flex-direction: column;
       // flex-wrap: wrap;
       gap: 0rem;
       border: 1px solid grey;
     }
-/* all settings text-inputs */
-    .input-text {
-    flex-grow: 1;
-  }
-  /* ********* */
-
-    .mwr-type-input-text {
-    margin-inline-end: 1rem;
-  }
-    }
-
-  @media (max-width: 372px) {
-    .mwr-type-label {
-      gap: 0.5rem;
-      flex-direction: column;
-    }
   }
 
-  
-
-  /* // **********
+  // **********
 
   //  {
   //   if(.edit-btn.disabled === true) {
@@ -155,7 +122,7 @@ const SettingsWrapperStyled = styled.div`
   //       border: 5px solid pink;
   //     }
   //   }
-  // } */
+  // }
 
   /* --gray-light from global css need a primary-hue declared to work */
   .delete-btn {
@@ -217,6 +184,7 @@ const SettingsPage = () => {
 
   //*************? Edit functionality **************/
 
+
   // Show Hide Function
   // ! WORKS for mwrTypes and others
   const showHideBtns = (e, btnType) => {
@@ -248,6 +216,7 @@ const SettingsPage = () => {
     switch (btnType) {
       // update settings section
       case "edit-mwrType": {
+
         // ****************************************
         editBtn.className = "control-btns edit-btn display-none";
         addNewBtn.className = "control-btns add-new-btn";
@@ -367,6 +336,7 @@ const SettingsPage = () => {
     // mwrType = boolean
 
     function mwrOnChange() {
+
       const newArr = updateSettings.mwrTypes.slice();
       // console.log(newArr); // mwrTypes array
       // console.log(index); // index of the object firing the onChange event
@@ -411,6 +381,7 @@ const SettingsPage = () => {
       console.log(newArr);
       console.log({ ...updateSettings, [item]: newArr });
     }
+
   };
 
   //***************? Delete Function **************************/
@@ -561,11 +532,20 @@ const SettingsPage = () => {
 
   // }
 
-
+  // TODO
+  // [] basic settigns STYLES
+  // [] company name displayed on pdf
+  // [] 2 good dummy mwr submitions
+  // [] photo display on details modal
+  // [] photo upload on mwr create modal
+  // [] secure pages
+  // [] sort leaderboad by mwrType and or date range
 
   //? *********** Mapping JSX **********************
+  // TODO: building and general maint. are editable under maint. departments but static sections within settings object.
   const settingsCategorySorter = (item) => {
     switch (item) {
+      // update settings section
       // update settings section
       case "companyName": {
         return "Company Name";
@@ -604,11 +584,10 @@ const SettingsPage = () => {
     return (
       // li is parent of 2 labels and 1 div
       <li key={index} className={"mwr-type-li"}>
-        <label htmlFor={item.type} className={"mwr-type-label"}>
+        <label htmlFor={item.type} className={"label"}>
           {/* p tag not present on non mwr type */}
           <p>type:</p>
           <input
-            className={"input-text mwr-type-input-text"}
             onChange={(e) =>
               // console.log(updateSettings)
               change(e, item, index, mwrType, "type")
@@ -621,7 +600,7 @@ const SettingsPage = () => {
           ></input>
         </label>
 
-        <label htmlFor={item.color} className={"mwr-type-label"}>
+        <label htmlFor={item.color} className={"label"}>
           <p>color:</p>
           <input
             onChange={
@@ -742,7 +721,6 @@ const SettingsPage = () => {
                 <li key={index}>
                   <label htmlFor={arrItem} className={"label"}>
                     <input
-                      className={"input-text"}
                       // changing specific value is where I am getting hung up
                       onChange={
                         (e) =>
