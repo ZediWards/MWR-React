@@ -13,6 +13,7 @@ import { ACTIONS } from "../context/GlobalContextProvider";
 import Layout from "../components/layout";
 
 // ********* STYLES **************
+// WAAAAAAAZUUUPPPP!!!!!!
 
 const SettingsWrapperStyled = styled.div`
   border: 1px solid red;
