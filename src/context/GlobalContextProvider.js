@@ -13,9 +13,9 @@ const mwrTypeColors = () => {
 const generalSettings = {
   companyName: ["Test Company"],
   mwrTypes: [
-    { type: "General", color: "#00ff24" },
-    { type: "Urgent", color: "#55cd66" },
-    { type: "Safety", color: "#444df5" },
+    { type: "General", color: "#CBECC6" },
+    { type: "Urgent", color: "#ECE7C6" },
+    { type: "Safety", color: "#ECC7C6" },
   ],
   departments: [
     "compounding",
