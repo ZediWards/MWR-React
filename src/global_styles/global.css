@@ -17,7 +17,11 @@
   /*  backgrounds  */
   /* --background-general: hsl(var(--general-mwr-hue), 50%, 85%); */
   /* converted background-general to rgba */
-  --btn-background-based-on-general: rgba(203, 236, 198, 0.25);
+
+
+  /* --btn-background-based-on-general: rgba(203, 236, 198, 0.25); */
+
+
   /* --background-safety: hsl(var(--safety-mwr-hue), 50%, 85%); */
   /* converted background-safety to rgba */
   --table-hover-background-color: rgba(236, 199, 198, 0.25);

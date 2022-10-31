@@ -23,7 +23,8 @@ const DetailsBtn = styled.button`
   border-radius: 10px;
   display: block;
   :hover {
-    background-color: hsl(var(--general-mwr-hue), 50%, 90%);
+    background-color: var(--btn-background-based-on-general);
+    /* background-color: hsl(var(--general-mwr-hue), 50%, 90%); */
     /* border: 1px solid #fff; */
     /* color: var(--light-background); */
     /* border: none; */

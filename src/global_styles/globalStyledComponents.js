@@ -17,6 +17,7 @@ const GlobalStylesDiv = ({ children }) => {
   // Convert hex to hsl and grab the hue
   // could use color picker to get hue then apply that to the background
   // https://stackoverflow.com/questions/3732046/how-do-you-get-the-hue-of-a-xxxxxx-colour
+  // lesson: hex has alpha https://davidwalsh.name/hex-opacity
   const GlobalStyleWrapper = styled.div`
   /* starting hues */
   --general-mwr-hue: 111;
@@ -25,14 +26,13 @@ const GlobalStylesDiv = ({ children }) => {
 
 /* hex convert to hsl: https://stackoverflow.com/questions/46432335/hex-to-hsl-convert-javascript */
   /* colors based on hues */
-  /* --background-general: hsl(var(--general-mwr-hue), 50%, 85%); */
   --background-general: ${settings.mwrTypes[0].color};
-
-  /* --background-urgent: hsl(var(--urgent-mwr-hue), 50%, 85%); */
   --background-urgent: ${settings.mwrTypes[1].color};
+  --background-safety: ${settings.mwrTypes[2].color};
 
-  /* --background-safety: hsl(var(--safety-mwr-hue), 50%, 85%); */
-  --background-safety: ${settings.mwrTypes[2].color}
+  /* btns, hovers, colors based on mwr colors */
+  /* B3 = 70% opacity */
+  --btn-background-based-on-general:${settings.mwrTypes[0].color + "B3"};
   
   `
   return (
