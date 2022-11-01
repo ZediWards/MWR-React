@@ -1,6 +1,13 @@
 import * as React from "react";
 import { useState, useEffect, useContext } from "react";
 
+import {
+  AiOutlineCloseCircle,
+  AiOutlineEdit,
+  AiOutlineCheckCircle,
+  AiOutlinePlusCircle,
+} from "react-icons/ai";
+
 import styled from "styled-components";
 import { Link } from "gatsby";
 
@@ -47,6 +54,7 @@ const SettingsWrapperStyled = styled.div`
   .item-controls-container {
     display: flex;
     gap: 1rem;
+    justify-content: center;
   }
 
   .category-header-container {
@@ -105,24 +113,43 @@ const SettingsWrapperStyled = styled.div`
     display: flex;
     gap: 2rem;
     margin-block-end: 0;
-    @media (max-width: 543px) {
+    // @media (max-width: 543px) {
+    //   flex-direction: column;
+    //   // flex-wrap: wrap;
+    //   gap: 0rem;
+    //   border: 1px solid grey;
+    // }
+  }
+
+  .mwr-type-label {
+    display: flex;
+    flex-direction: row;
+    margin-block-end: 1rem;
+    gap: 1rem;
+    /* border: 1px solid red; */
+  }
+
+  @media (max-width: 574px) {
+    .mwr-type-li {
       flex-direction: column;
       // flex-wrap: wrap;
       gap: 0rem;
       border: 1px solid grey;
     }
+    /* all settings text-inputs */
+    .input-text {
+      flex-grow: 1;
+    }
+    /* ********* */
+
+    .mwr-type-input-text {
+      margin-inline-start: 0.5rem;
+      margin-inline-end: 1rem;
+    }
+    .mwr-type-input-color {
+      margin-inline-end: 1rem;
+    }
   }
-
-  // **********
-
-  //  {
-  //   if(.edit-btn.disabled === true) {
-  //     .category-header-container {
-  //       flex-direction: column;
-  //       border: 5px solid pink;
-  //     }
-  //   }
-  // }
 
   /* --gray-light from global css need a primary-hue declared to work */
   .delete-btn {
@@ -134,6 +161,8 @@ const SettingsWrapperStyled = styled.div`
     cursor: pointer;
     padding: 0.25rem 0.5rem;
     border-radius: 10px;
+    // only effects mwr-types delete btn since they are in columns at a breakpoint
+    min-width: 50%;
     /* will be visable upon edit btn being clicked */
     display: none;
     // Lesson: &:hover needed for styled components to use hover
@@ -144,11 +173,6 @@ const SettingsWrapperStyled = styled.div`
   }
 
   /* TODO make hover into downClick */
-  .delte-btn::hover {
-    border: 1px solid var(--background-safety);
-    // background-color: var(--light-background);
-    background-color: blue;
-  }
 
   .btn-visibile {
     /* background-color: blue; */
@@ -184,6 +208,11 @@ const SettingsPage = () => {
 
   //*************? Edit functionality **************/
 
+  // TODO:
+  // [x] edit: hide when clicked, show other btns
+  // [x] cancel, save: hide all btns and show edit
+  // [x] make delete btn display: none as well && inputs enabled at the right time
+  // [x] addNew: enable input for editing and delete btn visiable
 
   // Show Hide Function
   // ! WORKS for mwrTypes and others
@@ -216,7 +245,15 @@ const SettingsPage = () => {
     switch (btnType) {
       // update settings section
       case "edit-mwrType": {
-
+        // console.log("showHide is wirking for mwrType edit btn");
+        // console.log(parentDiv); //control-container
+        // console.log(editBtn);
+        // console.log(addNewBtn);
+        // console.log(cancelBtn);
+        // console.log(saveBtn);
+        // console.log(category); //li  (whole category)
+        // console.log(categoryList); //ul  (category list)
+        // console.log(listItems); //li  (list item)
         // ****************************************
         editBtn.className = "control-btns edit-btn display-none";
         addNewBtn.className = "control-btns add-new-btn";
@@ -336,7 +373,12 @@ const SettingsPage = () => {
     // mwrType = boolean
 
     function mwrOnChange() {
-
+      // console.log("MWRchange fired");
+      // console.log(
+      //   `item: ${item}, index: ${index}, mwrType: ${mwrType}, mwrKey: ${mwrKey}`
+      // );
+      // console.log(item); // {type:"general", color: "green"}
+      // const settingsKeyTarget = "mwrTypes";
       const newArr = updateSettings.mwrTypes.slice();
       // console.log(newArr); // mwrTypes array
       // console.log(index); // index of the object firing the onChange event
@@ -382,6 +424,61 @@ const SettingsPage = () => {
       console.log({ ...updateSettings, [item]: newArr });
     }
 
+    // const generalSettings = {
+    //   mwrTypes: [
+    //     { type: "General", color: "green" },
+    //     { type: "Urgent", color: "yellow" },
+    //     { type: "Safety", color: "red" },
+    //   ],
+    //   departments: [
+    //     "compounding",
+    //     "production 1",
+    //     "production 2",
+    //     "warehouse",
+    //     // "TESTING"
+    //   ],
+
+    // NOTES from trying to figure out how to make worke
+    // console.log(item) //department
+    // console.log(typeof (item))  // string
+    // console.log(index)  // 0
+    // console.log(typeof (index))  // number
+    // // console.log(updateSettings[item][index] = "flub") //compounding
+    // console.log(updateSettings[item]) // departments array
+    //  books.splice(2, 1, 'JavaScript
+    // console.log({ ...updateSettings, [item]: [...updateSettings[item], updateSettings[item][index] = e.target.value] })
+
+    // ...updateSettings, [item]: updateSettings[item]
+    // ...updateSettings, [item]: [...updateSettings[item], [index] = e.target.value]
+
+    // way 1
+    // setUpdateSettings(current => {
+    //   return {
+    //     ...current,
+    //     [item]: {
+    //       ...current[item],
+    //       [index]: e.target.value
+    //     }
+    //   }
+    // })
+
+    // way 2
+    // setUpdateSettings(current => {
+    //   item = { ...current[item] }
+
+    //   [item][index] = e.target.value
+
+    //   return { ...current, item }
+    // })
+
+    // department.index
+
+    // let testing = updateSettings[item]
+
+    // setUpdateSettings({ ...updateSettings, ...testing, [index]: e.target.value }
+    // setUpdateSettings({ ...updateSettings, [item]: e.target.value }
+
+    // )
   };
 
   //***************? Delete Function **************************/
@@ -546,11 +643,6 @@ const SettingsPage = () => {
   const settingsCategorySorter = (item) => {
     switch (item) {
       // update settings section
-      // update settings section
-      case "companyName": {
-        return "Company Name";
-        break;
-      }
       case "departments": {
         return "Departments";
         break;
@@ -584,10 +676,11 @@ const SettingsPage = () => {
     return (
       // li is parent of 2 labels and 1 div
       <li key={index} className={"mwr-type-li"}>
-        <label htmlFor={item.type} className={"label"}>
+        <label htmlFor={item.type} className={"mwr-type-label"}>
           {/* p tag not present on non mwr type */}
           <p>type:</p>
           <input
+            className="input-text mwr-type-input-text"
             onChange={(e) =>
               // console.log(updateSettings)
               change(e, item, index, mwrType, "type")
@@ -600,9 +693,10 @@ const SettingsPage = () => {
           ></input>
         </label>
 
-        <label htmlFor={item.color} className={"label"}>
+        <label htmlFor={item.color} className={"mwr-type-label"}>
           <p>color:</p>
           <input
+            className="input-text mwr-type-input-color"
             onChange={
               (e) =>
                 // console.log(updateSettings)
@@ -624,7 +718,7 @@ const SettingsPage = () => {
             className={"delete-btn"}
             onClick={(e) => remove(e, item, index, "mwrType")}
           >
-            x
+            Delete
           </button>
         </div>
       </li>
@@ -644,33 +738,31 @@ const SettingsPage = () => {
                 className={"control-btns edit-btn"}
                 onClick={(e) => enableEdit(e, "mwrType")}
               >
-                edit
+                {viewPortWidth > 820 ? "edit" : <AiOutlineEdit />}
               </span>
               <span
                 className={"control-btns add-new-btn display-none"}
                 onClick={(e) => addItem(e, item)}
               >
-                add new
+                {viewPortWidth > 820 ? "add new" : <AiOutlinePlusCircle />}
               </span>
               <span
                 className={"control-btns cancel-btn display-none"}
                 onClick={(e) => cancelChanges(e, item)}
               >
-                cancel
+                {viewPortWidth > 820 ? "cancel" : <AiOutlineCloseCircle />}
               </span>
               <span
                 className={"control-btns save-btn display-none"}
                 onClick={(e) => saveSection(e, item)}
               >
-                save
+                {viewPortWidth > 820 ? "save" : <AiOutlineCheckCircle />}
               </span>
             </div>
           </div>
           <ul>{mwrTypeSettingsMap}</ul>
         </li>
       );
-    } else if (item === "maintenenceDepartments") {
-      return
     } else {
       //  switch (btnType) {
       // // update settings section
@@ -686,25 +778,25 @@ const SettingsPage = () => {
             </h2>
             <div className={"category-controls-container"}>
               <span className={"control-btns edit-btn"} onClick={enableEdit}>
-                edit
+                {viewPortWidth > 820 ? "edit" : "%"}
               </span>
               <span
                 className={"control-btns add-new-btn display-none"}
                 onClick={(e) => addItem(e, item)}
               >
-                add new
+                {viewPortWidth > 820 ? "add new" : "+"}
               </span>
               <span
                 className={"control-btns cancel-btn display-none"}
                 onClick={(e) => cancelChanges(e, item)}
               >
-                cancel
+                {viewPortWidth > 820 ? "cancel" : "x"}
               </span>
               <span
                 className={"control-btns save-btn display-none"}
                 onClick={(e) => saveSection(e, item)}
               >
-                save
+                {viewPortWidth > 820 ? "save" : "*"}
               </span>
             </div>
           </div>
@@ -721,6 +813,7 @@ const SettingsPage = () => {
                 <li key={index}>
                   <label htmlFor={arrItem} className={"label"}>
                     <input
+                      className="input-text"
                       // changing specific value is where I am getting hung up
                       onChange={
                         (e) =>
@@ -743,7 +836,7 @@ const SettingsPage = () => {
                         className={"delete-btn"}
                         onClick={(e) => remove(e, item, index)}
                       >
-                        x
+                        Delete
                       </button>
                     </div>
                   </label>
