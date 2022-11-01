@@ -63,6 +63,12 @@ const SettingsWrapperStyled = styled.div`
     margin-block-end: 1.5rem;
   }
 
+  @media (max-width: 440px) {
+    .category-header-container {
+    flex-wrap: wrap;
+  } 
+  }
+
   .category-header-container-wrap {
     display: flex;
     gap: 1rem;
@@ -84,12 +90,38 @@ const SettingsWrapperStyled = styled.div`
     border: 1px solid threedlightshadow;
     border-radius: 10px;
     /* box-shadow: 0px 2px 1px var(--gray-light); */
-    padding-inline: 1rem;
+    /* padding-inline: 1rem; */
+    /* making icons in centered circle */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    /* border-radius: 50%; */
+    padding: 0.2rem;
     cursor: pointer;
   }
 
   .control-btns:hover {
     background-color: hsl(var(--safety-mwr-hue), 50%, 90%);
+  }
+
+  .control-icon{
+    font-size: 1.5rem;
+  }
+
+  .edit-icon > path{
+    /* color: ; */
+  }
+
+  .add-new-icon > path {
+    color: purple;
+  }
+
+  .cancel-icon > path{
+    color: red;
+  }
+
+  .save-icon > path{  
+    color: green;
   }
 
   .edit-btn {
@@ -107,18 +139,18 @@ const SettingsWrapperStyled = styled.div`
     /* display: none; */
   }
 
-  // MWR-type section specific
+  /* // MWR-type section specific */
 
   .mwr-type-li {
     display: flex;
     gap: 2rem;
     margin-block-end: 0;
-    // @media (max-width: 543px) {
+    /* // @media (max-width: 543px) {
     //   flex-direction: column;
     //   // flex-wrap: wrap;
     //   gap: 0rem;
     //   border: 1px solid grey;
-    // }
+    // } */
   }
 
   .mwr-type-label {
@@ -129,15 +161,22 @@ const SettingsWrapperStyled = styled.div`
     /* border: 1px solid red; */
   }
 
-  @media (max-width: 574px) {
+  @media (max-width: 688px) {
+    .category-header-container {
+    justify-content: space-between;
+    padding-inline-end: 1rem;
+  }
+
     .mwr-type-li {
       flex-direction: column;
       // flex-wrap: wrap;
       gap: 0rem;
       border: 1px solid grey;
+      margin-block-end: 1rem;
     }
     /* all settings text-inputs */
     .input-text {
+      min-width: 6em;  /*lesson: lets input field shrink*/
       flex-grow: 1;
     }
     /* ********* */
@@ -643,6 +682,10 @@ const SettingsPage = () => {
   const settingsCategorySorter = (item) => {
     switch (item) {
       // update settings section
+      case "companyName": {
+        return "Company Name";
+        break;
+      }
       case "departments": {
         return "Departments";
         break;
@@ -738,25 +781,25 @@ const SettingsPage = () => {
                 className={"control-btns edit-btn"}
                 onClick={(e) => enableEdit(e, "mwrType")}
               >
-                {viewPortWidth > 820 ? "edit" : <AiOutlineEdit />}
+                {viewPortWidth > 820 ? "edit" : <AiOutlineEdit className="control-icon edit-icon" />}
               </span>
               <span
                 className={"control-btns add-new-btn display-none"}
                 onClick={(e) => addItem(e, item)}
               >
-                {viewPortWidth > 820 ? "add new" : <AiOutlinePlusCircle />}
+                {viewPortWidth > 820 ? "add new" : <AiOutlinePlusCircle className="control-icon add-new-icon" />}
               </span>
               <span
                 className={"control-btns cancel-btn display-none"}
                 onClick={(e) => cancelChanges(e, item)}
               >
-                {viewPortWidth > 820 ? "cancel" : <AiOutlineCloseCircle />}
+                {viewPortWidth > 820 ? "cancel" : <AiOutlineCloseCircle className="control-icon cancel-icon" />}
               </span>
               <span
                 className={"control-btns save-btn display-none"}
                 onClick={(e) => saveSection(e, item)}
               >
-                {viewPortWidth > 820 ? "save" : <AiOutlineCheckCircle />}
+                {viewPortWidth > 820 ? "save" : <AiOutlineCheckCircle className="control-icon save-icon" />}
               </span>
             </div>
           </div>
@@ -778,25 +821,25 @@ const SettingsPage = () => {
             </h2>
             <div className={"category-controls-container"}>
               <span className={"control-btns edit-btn"} onClick={enableEdit}>
-                {viewPortWidth > 820 ? "edit" : "%"}
+                {viewPortWidth > 820 ? "edit" : <AiOutlineEdit className="control-icon edit-icon" />}
               </span>
               <span
                 className={"control-btns add-new-btn display-none"}
                 onClick={(e) => addItem(e, item)}
               >
-                {viewPortWidth > 820 ? "add new" : "+"}
+                {viewPortWidth > 820 ? "add new" : <AiOutlinePlusCircle className="control-icon add-new-icon" />}
               </span>
               <span
                 className={"control-btns cancel-btn display-none"}
                 onClick={(e) => cancelChanges(e, item)}
               >
-                {viewPortWidth > 820 ? "cancel" : "x"}
+                {viewPortWidth > 820 ? "cancel" : <AiOutlineCloseCircle className="control-icon cancel-icon" />}
               </span>
               <span
                 className={"control-btns save-btn display-none"}
                 onClick={(e) => saveSection(e, item)}
               >
-                {viewPortWidth > 820 ? "save" : "*"}
+                {viewPortWidth > 820 ? "save" : <AiOutlineCheckCircle className="control-icon save-icon" />}
               </span>
             </div>
           </div>
