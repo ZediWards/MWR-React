@@ -5,7 +5,7 @@ import { HexColorPicker } from "react-colorful";
 
 import useClickOutside from "./useClickOutside";
 
-const ColorPickerStyled = styled.button`
+const ColorPickerStyled = styled.div`
   position: relative;
 
   .swatch {
@@ -34,13 +34,20 @@ export const PopoverPicker = ({ color, onChange }) => {
   const close = useCallback(() => toggle(false), []);
   useClickOutside(popover, close);
 
+  const inputDisabled = (e) => {
+    const textInputDisabled = e.target.closest('li').querySelector('.mwr-type-input-text').disabled
+    const enabled = textInputDisabled !== true
+    console.log(enabled)
+    enabled && (toggle(true))
+  }
+
   return (
     <ColorPickerStyled>
       <div
         className="swatch"
         style={{ backgroundColor: color }}
-        onClick={() => toggle(true)}
-        onClick={(e) => console.log(e.target)}
+        // onClick={() => toggle(true)}
+        onClick={(e) => inputDisabled(e)}
       />
 
       {isOpen && (
