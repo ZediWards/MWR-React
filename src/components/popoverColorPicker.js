@@ -37,7 +37,6 @@ export const PopoverPicker = ({ color, onChange }) => {
   const inputDisabled = (e) => {
     const textInputDisabled = e.target.closest('li').querySelector('.mwr-type-input-text').disabled
     const enabled = textInputDisabled !== true
-    console.log(enabled)
     enabled && (toggle(true))
   }
 

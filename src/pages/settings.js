@@ -704,34 +704,12 @@ const SettingsPage = () => {
 
         <label htmlFor={item.color} className={"mwr-type-label"}>
           <p>color:</p>
-          {/* <input
-            className="input-text mwr-type-input-color"
-            onChange={
-              (e) =>
-                // console.log(updateSettings)
-                change(e, item, index, "mwrType", "color")
-
-              // item = departments
-              // index = 0
-              // arrItem = compounding
-            }
-            value={item.color}
-            type="color"
-            name={item.color}
-            id={item.color}
-            disabled={true}
-          ></input> */}
-          {/* <ColorExample></ColorExample>
-          
-           */}
           <PopoverPicker
             className="input-text mwr-type-input-color"
             color={item.color}
             disabled={true}
-            onClick={(e) => console.log(e, "heeeelooooo")}
             onChange={
-              (e) => console.log(e, item, index, "mwrType")
-              // (e) => change(e, item, index, "mwrType", "color")
+              (e) => change(e, item, index, "mwrType", "color")
             }
           />
         </label>
