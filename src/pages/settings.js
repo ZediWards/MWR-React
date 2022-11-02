@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useState, useEffect, useContext } from "react";
 
+import { PopoverPicker } from "../components/popoverColorPicker";
+
 import {
   AiOutlineCloseCircle,
   AiOutlineEdit,
@@ -22,11 +24,14 @@ import Layout from "../components/layout";
 // ********* STYLES **************
 
 const SettingsWrapperStyled = styled.div`
-  border: 1px solid red;
+  border: 1px solid black;
+  max-width: 960px;
+  margin: auto;
 
   .settings-ul {
-    max-width: 1000px;
-    margin: auto;
+    // max-width: 1000px;
+    // margin: auto;
+    margin-inline-start: 1rem;
   }
 
   li {
@@ -40,7 +45,7 @@ const SettingsWrapperStyled = styled.div`
 
   .settings-section-li {
     margin-block-end: 1.5rem;
-    border: 1px solid blue;
+    // border: 1px solid blue;
   }
 
   .label {
@@ -65,8 +70,8 @@ const SettingsWrapperStyled = styled.div`
 
   @media (max-width: 440px) {
     .category-header-container {
-    flex-wrap: wrap;
-  } 
+      flex-wrap: wrap;
+    }
   }
 
   .category-header-container-wrap {
@@ -104,11 +109,11 @@ const SettingsWrapperStyled = styled.div`
     background-color: hsl(var(--safety-mwr-hue), 50%, 90%);
   }
 
-  .control-icon{
+  .control-icon {
     font-size: 1.5rem;
   }
 
-  .edit-icon > path{
+  .edit-icon > path {
     /* color: ; */
   }
 
@@ -116,11 +121,11 @@ const SettingsWrapperStyled = styled.div`
     color: purple;
   }
 
-  .cancel-icon > path{
+  .cancel-icon > path {
     color: red;
   }
 
-  .save-icon > path{  
+  .save-icon > path {
     color: green;
   }
 
@@ -149,7 +154,7 @@ const SettingsWrapperStyled = styled.div`
     //   flex-direction: column;
     //   // flex-wrap: wrap;
     //   gap: 0rem;
-    //   border: 1px solid grey;
+      // border: 1px solid grey;
     // } */
   }
 
@@ -163,20 +168,20 @@ const SettingsWrapperStyled = styled.div`
 
   @media (max-width: 688px) {
     .category-header-container {
-    justify-content: space-between;
-    padding-inline-end: 1rem;
-  }
+      justify-content: space-between;
+      padding-inline-end: 1rem;
+    }
 
     .mwr-type-li {
       flex-direction: column;
       // flex-wrap: wrap;
       gap: 0rem;
-      border: 1px solid grey;
+      // border: 1px solid grey;
       margin-block-end: 1rem;
     }
     /* all settings text-inputs */
     .input-text {
-      min-width: 6em;  /*lesson: lets input field shrink*/
+      min-width: 6em; /*lesson: lets input field shrink*/
       flex-grow: 1;
     }
     /* ********* */
@@ -256,7 +261,8 @@ const SettingsPage = () => {
   // Show Hide Function
   // ! WORKS for mwrTypes and others
   const showHideBtns = (e, btnType) => {
-    console.log(e.target);
+    console.log(e);
+    // edit state
     // DOM variables
     // control buttons
     const parentDiv = e.target.closest("div");
@@ -295,6 +301,8 @@ const SettingsPage = () => {
         // console.log(listItems); //li  (list item)
         // ****************************************
         editBtn.className = "control-btns edit-btn display-none";
+        // setEditState(true);
+        // console.log(editState);
         addNewBtn.className = "control-btns add-new-btn";
         cancelBtn.className = "control-btns cancel-btn";
         saveBtn.className = "control-btns save-btn";
@@ -402,46 +410,18 @@ const SettingsPage = () => {
       : // e, item, index, mwrType
       othersOnChange();
 
-    // item = departments
-    // index = 0
-    // arrItem = compounding
-
-    // *** mwr types
-    // item = {type: general, color: green}
-    // index = 0
-    // mwrType = boolean
-
     function mwrOnChange() {
-      // console.log("MWRchange fired");
-      // console.log(
-      //   `item: ${item}, index: ${index}, mwrType: ${mwrType}, mwrKey: ${mwrKey}`
-      // );
-      // console.log(item); // {type:"general", color: "green"}
-      // const settingsKeyTarget = "mwrTypes";
       const newArr = updateSettings.mwrTypes.slice();
-      // console.log(newArr); // mwrTypes array
-      // console.log(index); // index of the object firing the onChange event
-      // console.log(mwrKey); // key inside that object thats value is changing
-      // console.log(newArr[index][mwrKey]); // value before change
-      // // need to set newArr[index][inputType] = e.target.value
-      newArr[index][mwrKey] = e.target.value;
-      // console.log(newArr[index][mwrKey]); // value after change ON ARRAY COPY
-      // setUpdateSettings to changed value
+      // newArr[index][mwrKey] = e.target.value;
+      newArr[index][mwrKey] = e;
+
       // ! WORKS!!!!!!!!
       setUpdateSettings((current) => {
         console.table(current);
         return {
           ...current,
-          // [item]: newArr[index][mwrKey],
-          // [mwrType]: newArr[index],
-          // mwrType: newValue,
         };
       });
-      // console.log([mwrType]);
-      // console.log(newArr);
-      // console.log(newArr[index]);
-      // console.log(newArr[index][key]);
-      // console.log(newArr[index].type);
     }
 
     function othersOnChange() {
@@ -462,20 +442,6 @@ const SettingsPage = () => {
       console.log(newArr);
       console.log({ ...updateSettings, [item]: newArr });
     }
-
-    // const generalSettings = {
-    //   mwrTypes: [
-    //     { type: "General", color: "green" },
-    //     { type: "Urgent", color: "yellow" },
-    //     { type: "Safety", color: "red" },
-    //   ],
-    //   departments: [
-    //     "compounding",
-    //     "production 1",
-    //     "production 2",
-    //     "warehouse",
-    //     // "TESTING"
-    //   ],
 
     // NOTES from trying to figure out how to make worke
     // console.log(item) //department
@@ -738,7 +704,7 @@ const SettingsPage = () => {
 
         <label htmlFor={item.color} className={"mwr-type-label"}>
           <p>color:</p>
-          <input
+          {/* <input
             className="input-text mwr-type-input-color"
             onChange={
               (e) =>
@@ -754,7 +720,20 @@ const SettingsPage = () => {
             name={item.color}
             id={item.color}
             disabled={true}
-          ></input>
+          ></input> */}
+          {/* <ColorExample></ColorExample>
+          
+           */}
+          <PopoverPicker
+            className="input-text mwr-type-input-color"
+            color={item.color}
+            disabled={true}
+            onClick={(e) => console.log(e, "heeeelooooo")}
+            onChange={
+              (e) => console.log(e, item, index, "mwrType")
+              // (e) => change(e, item, index, "mwrType", "color")
+            }
+          />
         </label>
         <div className={"item-controls-container"}>
           <button
@@ -781,25 +760,41 @@ const SettingsPage = () => {
                 className={"control-btns edit-btn"}
                 onClick={(e) => enableEdit(e, "mwrType")}
               >
-                {viewPortWidth > 820 ? "edit" : <AiOutlineEdit className="control-icon edit-icon" />}
+                {viewPortWidth > 820 ? (
+                  "edit"
+                ) : (
+                  <AiOutlineEdit className="control-icon edit-icon" />
+                )}
               </span>
               <span
                 className={"control-btns add-new-btn display-none"}
                 onClick={(e) => addItem(e, item)}
               >
-                {viewPortWidth > 820 ? "add new" : <AiOutlinePlusCircle className="control-icon add-new-icon" />}
+                {viewPortWidth > 820 ? (
+                  "add new"
+                ) : (
+                  <AiOutlinePlusCircle className="control-icon add-new-icon" />
+                )}
               </span>
               <span
                 className={"control-btns cancel-btn display-none"}
                 onClick={(e) => cancelChanges(e, item)}
               >
-                {viewPortWidth > 820 ? "cancel" : <AiOutlineCloseCircle className="control-icon cancel-icon" />}
+                {viewPortWidth > 820 ? (
+                  "cancel"
+                ) : (
+                  <AiOutlineCloseCircle className="control-icon cancel-icon" />
+                )}
               </span>
               <span
                 className={"control-btns save-btn display-none"}
                 onClick={(e) => saveSection(e, item)}
               >
-                {viewPortWidth > 820 ? "save" : <AiOutlineCheckCircle className="control-icon save-icon" />}
+                {viewPortWidth > 820 ? (
+                  "save"
+                ) : (
+                  <AiOutlineCheckCircle className="control-icon save-icon" />
+                )}
               </span>
             </div>
           </div>
@@ -821,25 +816,41 @@ const SettingsPage = () => {
             </h2>
             <div className={"category-controls-container"}>
               <span className={"control-btns edit-btn"} onClick={enableEdit}>
-                {viewPortWidth > 820 ? "edit" : <AiOutlineEdit className="control-icon edit-icon" />}
+                {viewPortWidth > 820 ? (
+                  "edit"
+                ) : (
+                  <AiOutlineEdit className="control-icon edit-icon" />
+                )}
               </span>
               <span
                 className={"control-btns add-new-btn display-none"}
                 onClick={(e) => addItem(e, item)}
               >
-                {viewPortWidth > 820 ? "add new" : <AiOutlinePlusCircle className="control-icon add-new-icon" />}
+                {viewPortWidth > 820 ? (
+                  "add new"
+                ) : (
+                  <AiOutlinePlusCircle className="control-icon add-new-icon" />
+                )}
               </span>
               <span
                 className={"control-btns cancel-btn display-none"}
                 onClick={(e) => cancelChanges(e, item)}
               >
-                {viewPortWidth > 820 ? "cancel" : <AiOutlineCloseCircle className="control-icon cancel-icon" />}
+                {viewPortWidth > 820 ? (
+                  "cancel"
+                ) : (
+                  <AiOutlineCloseCircle className="control-icon cancel-icon" />
+                )}
               </span>
               <span
                 className={"control-btns save-btn display-none"}
                 onClick={(e) => saveSection(e, item)}
               >
-                {viewPortWidth > 820 ? "save" : <AiOutlineCheckCircle className="control-icon save-icon" />}
+                {viewPortWidth > 820 ? (
+                  "save"
+                ) : (
+                  <AiOutlineCheckCircle className="control-icon save-icon" />
+                )}
               </span>
             </div>
           </div>
