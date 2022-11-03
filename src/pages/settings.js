@@ -708,9 +708,7 @@ const SettingsPage = () => {
             className="input-text mwr-type-input-color"
             color={item.color}
             disabled={true}
-            onChange={
-              (e) => change(e, item, index, "mwrType", "color")
-            }
+            onChange={(e) => change(e, item, index, "mwrType", "color")}
           />
         </label>
         <div className={"item-controls-container"}>

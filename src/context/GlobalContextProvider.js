@@ -34,6 +34,18 @@ const generalSettings = {
   ],
   buildingMainteneceEmployees: ["Tod"],
   generalMaintenenceEmployees: ["Bob", "John", "TESTING"],
+  ThemeSettings: [
+    { fontColor: "Font Color", color: "#CBECC6" },
+    { secondaryFontColor: "Secondary Font Color", color: "#CBECC6" },
+    { lightBackground: "Light Background", color: "#CBECC6" },
+    { primaryBtn: "Primary Button", color: "#CBECC6" },
+    { secondaryBtn: "Secondary Button", color: "#CBECC6" },
+    { tabelHover: "Table Hover", color: "#CBECC6" },
+    { cancelBtn: "Edit Button", color: "#CBECC6" },
+    { cancelBtn: "Save Button", color: "#CBECC6" },
+    { cancelBtn: "Cancel Button", color: "#CBECC6" },
+    { cancelBtn: "Add New Button", color: "#CBECC6" },
+  ],
 };
 
 const initialState = [

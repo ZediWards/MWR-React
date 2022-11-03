@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import styled from "styled-components";
 
-import { HexColorPicker } from "react-colorful";
+import { HslStringColorPicker } from "react-colorful";
 
 import useClickOutside from "./useClickOutside";
 
@@ -35,10 +35,12 @@ export const PopoverPicker = ({ color, onChange }) => {
   useClickOutside(popover, close);
 
   const inputDisabled = (e) => {
-    const textInputDisabled = e.target.closest('li').querySelector('.mwr-type-input-text').disabled
-    const enabled = textInputDisabled !== true
-    enabled && (toggle(true))
-  }
+    const textInputDisabled = e.target
+      .closest("li")
+      .querySelector(".mwr-type-input-text").disabled;
+    const enabled = textInputDisabled !== true;
+    enabled && toggle(true);
+  };
 
   return (
     <ColorPickerStyled>
@@ -51,7 +53,7 @@ export const PopoverPicker = ({ color, onChange }) => {
 
       {isOpen && (
         <div className="popover" ref={popover}>
-          <HexColorPicker color={color} onChange={onChange} />
+          <HslStringColorPicker color={color} onChange={onChange} />
         </div>
       )}
     </ColorPickerStyled>
