@@ -5,18 +5,27 @@ export const GlobalStateContext = React.createContext();
 export const GlobalDispatchContext = React.createContext();
 export const GlobalSettingsContext = React.createContext();
 export const GlobalSettingsDispatchContext = React.createContext();
+export const GlobalThemeContext = React.createContext();
+export const GlobalThemeDispatchContext = React.createContext();
 
-const mwrTypeColors = () => {
 
+
+const themeSettings = {
+  fontColor: "hsl(0, 0%, 18%)", //all but modals and pdf 
+  lightBackground: "hsl(0, 0%, 99%)",
+  // lightBackground: "red",
+
+  // fontColor: "pink",
+
+  // secondaryFontColor
 }
 
 const generalSettings = {
   companyName: ["Test Company"],
   mwrTypes: [
-    { type: "General", color: "#CBECC6" },
-    // { type: "General", color: "#ee3366" },
-    { type: "Urgent", color: "#ECE7C6" },
-    { type: "Safety", color: "#ECC7C6" },
+    { type: "General", color: "hsl(111, 50%, 85%)" },
+    { type: "Urgent", color: "hsl(52, 50%, 85%)" },
+    { type: "Safety", color: "hsl(2, 50%, 85%)" },
   ],
   departments: [
     "compounding",
@@ -34,19 +43,19 @@ const generalSettings = {
   ],
   buildingMainteneceEmployees: ["Tod"],
   generalMaintenenceEmployees: ["Bob", "John", "TESTING"],
-  ThemeSettings: [
-    { fontColor: "Font Color", color: "#CBECC6" },
-    { secondaryFontColor: "Secondary Font Color", color: "#CBECC6" },
-    { lightBackground: "Light Background", color: "#CBECC6" },
-    { primaryBtn: "Primary Button", color: "#CBECC6" },
-    { secondaryBtn: "Secondary Button", color: "#CBECC6" },
-    { tabelHover: "Table Hover", color: "#CBECC6" },
-    { cancelBtn: "Edit Button", color: "#CBECC6" },
-    { cancelBtn: "Save Button", color: "#CBECC6" },
-    { cancelBtn: "Cancel Button", color: "#CBECC6" },
-    { cancelBtn: "Add New Button", color: "#CBECC6" },
-  ],
 };
+
+//       "Font Color", color: "#CBECC6" },
+//      secondaryFontColor: "Secondary Font Color", color: "#CBECC6" },
+//      lightBackground: "Light Background", color: "#CBECC6" },
+//      primaryBtn: "Primary Button", color: "#CBECC6" },
+//      secondaryBtn: "Secondary Button", color: "#CBECC6" },
+//      tableHover: "Table Hover", color: "#CBECC6" },
+//     cancelBtn: "Edit Button", color: "#CBECC6" },
+//      cancelBtn: "Save Button", color: "#CBECC6" },
+//      cancelBtn: "Cancel Button", color: "#CBECC6" },
+//      cancelBtn: "Add New Button", color: "#CBECC6" },
+//   ],
 
 const initialState = [
   // {
@@ -290,9 +299,23 @@ function settingsReducer(state, action) {
   }
 }
 
+// *******? THEME REDUCER FUNCTION ************
+function themeReducer(state, action) {
+  switch (action.type) {
+    case ACTIONS.UPDATE_THEME: {
+      console.log("UPDATING THEME")
+      // return {
+
+      // }
+    }
+  }
+}
+
 // wrapping state and reducer providers with GlobalContextProvider, which will wrap Gatsby
 // I think state needs to start as an empty array
 const GlobalContextProvider = ({ children }) => {
+  // Theme settings
+  const [theme, themeDispatch] = React.useReducer(themeReducer, themeSettings)
   // initial state & local storage
   const [state, dispatch] = React.useReducer(reducer, initialState, () => {
     const localData = localStorage.getItem("state");
@@ -315,15 +338,23 @@ const GlobalContextProvider = ({ children }) => {
     localStorage.setItem("settingsState", JSON.stringify(settingsState));
   }, [settingsState]);
   return (
-    <GlobalStateContext.Provider value={state}>
-      <GlobalSettingsContext.Provider value={settingsState}>
-        <GlobalDispatchContext.Provider value={dispatch}>
-          <GlobalSettingsDispatchContext.Provider value={settingsDispatch}>
-            {children}
-          </GlobalSettingsDispatchContext.Provider>
-        </GlobalDispatchContext.Provider>
-      </GlobalSettingsContext.Provider>
-    </GlobalStateContext.Provider>
+    <GlobalThemeContext.Provider value={theme}>
+      <GlobalStateContext.Provider value={state}>
+        <GlobalSettingsContext.Provider value={settingsState}>
+
+          <GlobalThemeDispatchContext.Provider value={themeDispatch}>
+            <GlobalDispatchContext.Provider value={dispatch}>
+              <GlobalSettingsDispatchContext.Provider value={settingsDispatch}>
+                {children}
+              </GlobalSettingsDispatchContext.Provider>
+            </GlobalDispatchContext.Provider>
+          </GlobalThemeDispatchContext.Provider>
+
+        </GlobalSettingsContext.Provider>
+      </GlobalStateContext.Provider>
+    </GlobalThemeContext.Provider>
+
+
   );
 };
 

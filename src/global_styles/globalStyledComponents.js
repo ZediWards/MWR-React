@@ -4,7 +4,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 
 import {
-  GlobalSettingsContext,
+  GlobalSettingsContext, GlobalThemeContext
 } from "../context/GlobalContextProvider";
 
 // Lesson: Wrapping gatsby with a styled component 
@@ -13,6 +13,7 @@ import {
 
 const GlobalStylesDiv = ({ children }) => {
   const settings = useContext(GlobalSettingsContext)
+  const theme = useContext(GlobalThemeContext)
 
   // Convert hex to hsl and grab the hue
   // could use color picker to get hue then apply that to the background
@@ -30,10 +31,24 @@ const GlobalStylesDiv = ({ children }) => {
   --background-urgent: ${settings.mwrTypes[1].color};
   --background-safety: ${settings.mwrTypes[2].color};
 
-  /* btns, hovers, colors based on mwr colors */
-  /* B3 = 70% opacity */
-  --btn-background-based-on-general:${settings.mwrTypes[0].color + "B3"};
+  /* lesson: transparincy added to hex valueB3 = 70% opacity */
+  /* --btn-background-based-on-general:${settings.mwrTypes[0].color + "B3"}; */
   
+  /* btns, hovers, colors based on mwr colors */
+  --text-black: ${theme.fontColor};
+  --light-background: ${theme.lightBackground}
+
+
+  /* { fontColor: "Font Color", color: "#CBECC6" },
+    { secondaryFontColor: "Secondary Font Color", color: "#CBECC6" },
+    { lightBackground: "Light Background", color: "#CBECC6" },
+    { primaryBtn: "Primary Button", color: "#CBECC6" },
+    { secondaryBtn: "Secondary Button", color: "#CBECC6" },
+    { tableHover: "Table Hover", color: "#CBECC6" },
+    { cancelBtn: "Edit Button", color: "#CBECC6" },
+    { cancelBtn: "Save Button", color: "#CBECC6" },
+    { cancelBtn: "Cancel Button", color: "#CBECC6" },
+    { cancelBtn: "Add New Button", color: "#CBECC6" }, */
   `
   return (
     <GlobalStyleWrapper>
