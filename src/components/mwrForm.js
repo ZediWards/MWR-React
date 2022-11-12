@@ -15,6 +15,9 @@ import { ACTIONS } from "../context/GlobalContextProvider";
 
 // **** Styled Components ****
 const MwrFormStyled = styled.form`
+  * {
+  background-color: var(--light-background) ;
+  }
   display: flex;
   flex-direction: column;
   /* margin: 150px 20px 20px; */

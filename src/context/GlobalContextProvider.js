@@ -12,7 +12,9 @@ export const GlobalThemeDispatchContext = React.createContext();
 
 const themeSettings = {
   fontColor: "hsl(0, 0%, 18%)", //all but modals and pdf 
-  lightBackground: "hsl(0, 0%, 99%)",
+  // lightBackground: "hsl(0, 0%, 99%)",
+  // lightBackground: "purple",
+
   // lightBackground: "red",
 
   // fontColor: "pink",

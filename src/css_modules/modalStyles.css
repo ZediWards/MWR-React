@@ -1,6 +1,7 @@
 .modal {
   position: fixed;
-  inset: 0; /* inset sets all 4 values (top right bottom left) much like how we set padding, margin etc., */
+  inset: 0;
+  /* inset sets all 4 values (top right bottom left) much like how we set padding, margin etc., */
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
@@ -26,6 +27,7 @@
   pointer-events: auto;
   transform: scale(1);
 }
+
 .modal-exit {
   opacity: 0;
   transform: scale(0.4);
@@ -47,7 +49,8 @@
 /* have to use .modal. Seems to be related to attribute nodeRef in javascript */
 .details-modal {
   position: fixed;
-  inset: 0; /* inset sets all 4 values (top right bottom left) much like how we set padding, margin etc., */
+  inset: 0;
+  /* inset sets all 4 values (top right bottom left) much like how we set padding, margin etc., */
   background-color: rgba(0, 0, 0, 1);
   display: flex;
   flex-direction: column;
