@@ -1,5 +1,12 @@
 import * as React from "react";
 import { useState, useContext } from "react";
+import Gallery from "../components/LightGallery";
+
+// import LightGallery from 'lightgallery/react';
+// // import styles
+// import 'lightgallery/css/lightgallery.css';
+// import 'lightgallery/css/lg-zoom.css';
+// import 'lightgallery/css/lg-thumbnail.css';
 
 import { ACTIONS } from "../context/GlobalContextProvider";
 
@@ -7,7 +14,7 @@ import {
   GlobalDispatchContext,
   GlobalStateContext,
   GlobalSettingsContext,
-  GlobalSettingsDispatchContext
+  GlobalSettingsDispatchContext,
 } from "../context/GlobalContextProvider";
 
 import styled from "styled-components";
@@ -37,10 +44,7 @@ const DetailsFormStyled = styled.form`
   }
 `;
 
-const ViewDetails = ({
-  mwrDetails,
-  handleClose,
-}) => {
+const ViewDetails = ({ mwrDetails, handleClose }) => {
   // context variables
   const settings = useContext(GlobalSettingsContext);
   const settingsDispatch = useContext(GlobalSettingsDispatchContext);
@@ -67,32 +71,30 @@ const ViewDetails = ({
 
   // production maintenance
   // const productionMaintenanceEmployees = ["Jon", "Bob", "Jim"];
-  const mappedProductionMaintenanceEmployees = settings.generalMaintenenceEmployees.map(
-    (employee, index) => {
+  const mappedProductionMaintenanceEmployees =
+    settings.generalMaintenenceEmployees.map((employee, index) => {
       return (
         <option key={index} value={employee}>
           {employee}
         </option>
       );
-    }
-  );
+    });
 
   // building maintenance
   // const buildingMaintenanceEmployees = ["Matt", "Sara"];
-  const mappedBuildingMaintenanceEmployees = settings.buildingMainteneceEmployees.map(
-    (employee, index) => {
+  const mappedBuildingMaintenanceEmployees =
+    settings.buildingMainteneceEmployees.map((employee, index) => {
       return (
         <option key={index} value={employee}>
           {employee}
         </option>
       );
-    }
-  );
+    });
 
   // all maintenance
   const allMaintenanceEmployees = [
     ...settings.buildingMainteneceEmployees,
-    ...settings.generalMaintenenceEmployees
+    ...settings.generalMaintenenceEmployees,
   ];
   const mappedAllMaintenanceEmployees = allMaintenanceEmployees.map(
     (employee, index) => {
@@ -152,14 +154,12 @@ const ViewDetails = ({
 
   // destructured prop incase it was still attatched to original state. Now should be mutable then applied back to original state
   // *** mwrDetails prop is passed down from mainTable referencing local storage Context
-  // companyName is added to mwrDeatils here for pdf render. b/c useContext not working on pdf template file.
   const [updateMwr, setUpdateMwr] = useState({
     ...mwrDetails,
-    companyName: settings.companyName
   });
   // console.log(`vv this is updateMwr state in viewDetails.js vv`)
   console.log("MWR DETAILS!!!!!");
-  console.table(updateMwr);
+  console.table(updateMwr.id);
 
   // This will need to locate and update the specific object within the main state
   const handleSubmit = (e) => {
@@ -385,7 +385,7 @@ const ViewDetails = ({
                   onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
-                      workOrderDate: e.target.value
+                      workOrderDate: e.target.value,
                     })
                   }
                   value={updateMwr.workOrderDate}
@@ -405,7 +405,7 @@ const ViewDetails = ({
                   onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
-                      workOrderTime: e.target.value
+                      workOrderTime: e.target.value,
                     })
                   }
                   value={updateMwr.workOrderTime}
@@ -427,7 +427,7 @@ const ViewDetails = ({
                   onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
-                      scheduledDate: e.target.value
+                      scheduledDate: e.target.value,
                     })
                   }
                   value={updateMwr.scheduledDate}
@@ -492,7 +492,7 @@ const ViewDetails = ({
                   onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
-                      status: e.target.value.toLowerCase()
+                      status: e.target.value.toLowerCase(),
                     })
                   }
                   value={updateMwr.status}
@@ -580,7 +580,7 @@ const ViewDetails = ({
                 onChange={(e) =>
                   setUpdateMwr({
                     ...updateMwr,
-                    briefDiscription: e.target.value
+                    briefDiscription: e.target.value,
                   })
                 }
                 // readOnly
@@ -603,7 +603,7 @@ const ViewDetails = ({
                 onChange={(e) =>
                   setUpdateMwr({
                     ...updateMwr,
-                    workDiscription: e.target.value
+                    workDiscription: e.target.value,
                   })
                 }
                 // readOnly
@@ -631,7 +631,7 @@ const ViewDetails = ({
                   onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
-                      assignTo: e.target.value
+                      assignTo: e.target.value,
                     })
                   }
                   value={updateMwr.assignTo}
@@ -657,7 +657,7 @@ const ViewDetails = ({
                   onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
-                      maintenanceTeamMember: e.target.value
+                      maintenanceTeamMember: e.target.value,
                     })
                   }
                   value={updateMwr.maintenanceTeamMember}
@@ -683,7 +683,7 @@ const ViewDetails = ({
                   onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
-                      assistant: e.target.value
+                      assistant: e.target.value,
                     })
                   }
                   value={updateMwr.assistant}
@@ -801,7 +801,7 @@ const ViewDetails = ({
                   onChange={(e) =>
                     setUpdateMwr({
                       ...updateMwr,
-                      assetDescription: e.target.value
+                      assetDescription: e.target.value,
                     })
                   }
                   // readOnly
@@ -819,6 +819,7 @@ const ViewDetails = ({
           </div>
         </fieldset>
       </div>
+      {true ? <Gallery></Gallery> : null}
 
       {/* save btn */}
       <input type="submit" value="Save" className={style.formBtn} />
@@ -832,7 +833,7 @@ const ViewDetails = ({
       >
         <PDFDownloadLink
           className={style.pdfDownloadBtn}
-          document={<PdfDocument data={updateMwr} />}
+          document={<PdfDocument data={updateMwr} companyName={settings.companyName} />}
           fileName="somename.pdf"
         >
           {({ blob, url, loading, error }) =>
