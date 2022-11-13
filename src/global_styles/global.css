@@ -1,10 +1,7 @@
 :root {
   /* fonts */
-  /* font-size: 18px; */
   /* font-family: "montserrat", Arial, Helvetica, sans-serif; */
   /* --serif-font: "rasa", Georgia, "Times New Roman", Times, serif; */
-  /* --main-heading-size: 5.33rem; 96px */
-  /* --secondary-heading-size: 1.33rem; 24px */
   /* --small-copy-size: 0.78rem; 14px */
 
   /*  colors based on adjusting the hue*/
@@ -15,16 +12,11 @@
 
 
   /*  backgrounds  */
-
-
   --btn-background-based-on-general: rgba(203, 236, 198, 0.25);
-
-
   /* converted background-safety to rgba */
   --table-hover-background-color: rgba(236, 199, 198, 0.25);
-  /* --background-urgent: hsl(var(--urgent-mwr-hue), 50%, 85%); */
-  --light-background: #f3f3f3;
-  --transparent-light-background: rgba(243, 243, 243, 80%);
+  --light-background: #ffffff;
+  --transparent-light-background: #ffffff80;
 
   /* --color-light: white; */
   --light-color-text: hsl(var(--color-primary-hue), 5%, 98%);
