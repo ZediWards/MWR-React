@@ -77,7 +77,7 @@ const MwrFormStyled = styled.form`
     display: block;
     padding: 0.75rem;
     width: 100%;
-    margin-block: 1rem;
+    margin-block: 2.5rem;
     text-align: center;
     transition: all 0.35s ease-Out;
     box-shadow: 0px 2px 1px var(--gray-light);
@@ -124,6 +124,10 @@ function uniqueID() {
   return Math.floor(Math.random() * Date.now());
 }
 
+function photoAlert(e) {
+  e.stopPropagation()
+  alert("Feature available in self-hosting branch on Github")
+}
 const MwrForm = ({ mwrType, handleClose }) => {
   const settings = useContext(GlobalSettingsContext);
   const settingsDispatch = useContext(GlobalSettingsDispatchContext);
@@ -333,6 +337,17 @@ const MwrForm = ({ mwrType, handleClose }) => {
           rows="5"
           cols="75"
         ></textarea>
+      </label>
+      <label htmlFor="photos" className="photos-label">
+        <p className="input-label">Photos:</p>
+        <input
+          type="file"
+          onClick={(e) => photoAlert(e)}
+          id="employeePhotoUpload"
+          multiple={true}
+          // capture="environment"
+          accept="image/png, image/jpeg" />
+
       </label>
 
       {/* Submit */}
