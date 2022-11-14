@@ -23,17 +23,14 @@ const TableStyled = styled.table`
     text-align: center;
   }
   th {
-    /* background-color: #04aa6d; */
-    /* background-color: hsl(0, 0%, 85%); */
-    background-color: hsl(var(--general-mwr-hue), 50%, 90%);
-    /* color: white; */
+    background-color: var(--btn-background-based-on-general);
   }
   tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: var(--green-btn-background);
   }
   tr:hover {
     transition: all 0.35s ease-Out;
-    background-color: var(--table-hover-background-color);
+    background-color: var(--red-btn-color);
   }
 `;
 

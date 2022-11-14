@@ -10,12 +10,11 @@ import ViewDetailsModalContainer from "./viewDetailsModalContainer";
 // **** Styled Components ****
 const DetailsBtn = styled.button`
   background-color: var(--light-background);
-  border: 1px solid var(--background-general);
+  border: 1px solid var(--btn-background-based-on-general);
   box-shadow: 0px 2px 1px var(--gray-light);
   color: var(--text-black);
   transition: all 0.35s ease-Out;
   cursor: pointer;
-  /* width: 100%; */
   min-width: min-content;
   padding: 0.5rem;
   margin: auto;
@@ -24,10 +23,6 @@ const DetailsBtn = styled.button`
   display: block;
   :hover {
     background-color: var(--btn-background-based-on-general);
-    /* background-color: hsl(var(--general-mwr-hue), 50%, 90%); */
-    /* border: 1px solid #fff; */
-    /* color: var(--light-background); */
-    /* border: none; */
   }
 
   @media (max-width: 1000px) {
