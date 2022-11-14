@@ -80,6 +80,7 @@ const MwrFormStyled = styled.form`
     margin-block: 1rem;
     text-align: center;
     transition: all 0.35s ease-Out;
+    box-shadow: 0px 2px 1px var(--gray-light);
     background-color: var(--green-btn-background);
     border: 2px solid var(--btn-background-based-on-general);
     border-radius: 10px;

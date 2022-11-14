@@ -83,30 +83,18 @@ const StyledButton = styled.button`
   width: 90%;
   margin-top: 1.5rem;
   background-color: var(--light-background);
-  border: 1px solid var(--gray-light);
+  border: 1px solid var(--light-background);
   border-radius: 10px;
   padding: 0.5rem 0.25rem;
   /*  */
-
-  border: 1px solid var(--gray-light);
   box-shadow: 0px 2px 1px var(--gray-light);
   transition: all 0.35s ease-Out;
   cursor: pointer;
   &:hover {
     background-color: var(--transparent-light-background);
-    border: 1px solid #fff;
-    /* box-shadow: 0px 2px 1px #fff; */
-
-    /* color: var(--light-background); */
-    /* border: none; */
+    border: 1px solid var(--light-background);
   }
 `;
-
-// .details-button:hover {
-// background-color: var(--color-primary);
-// color: var(--light-background);
-// /* border: none; */
-// }
 
 const MwrCard = ({ mwrType, unAssigned, assigned, completed }) => {
   // state for modal

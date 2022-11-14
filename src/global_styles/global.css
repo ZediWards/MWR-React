@@ -20,29 +20,13 @@
   --red-btn-color: rgba(236, 199, 198, 0.2);
   --green-btn-background: rgba(203, 236, 198, 0.2);
 
-
-
-  /* converted background-safety to rgba */
-  --table-hover-background-color: rgba(236, 199, 198, 0.25);
+  /* backgrounds*/
   --light-background: #ffffff;
   --transparent-light-background: #ffffff80;
 
-  /* --color-light: white; */
-  --light-color-text: hsl(var(--color-primary-hue), 5%, 98%);
-  --dark-color-text: hsl(var(--color-primary-hue), 5%, 30%);
-  --color-text: hsl(var(--color-primary-hue), 15%, 30%);
 
   /*card border, shadows*/
   --gray-light: hsl(var(--color-primary-hue), 15%, 90%);
-  --gray-medium: hsl(var(--color-primary-hue), 15%, 75%);
-
-
-
-
-  /* Standard way of declaring colors */
-  /* colors */
-  /* --light-background: hsl(0, 0%, 99%); */
-  /* --text-black: hsl(0, 0%, 18%); */
 }
 
 /********************************* My resets 
