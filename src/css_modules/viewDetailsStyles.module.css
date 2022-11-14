@@ -11,10 +11,10 @@
 
 .close-btn {
   align-self: flex-start;
-  background-color: var(--background-safety);
-  border: 1px solid var(--gray-light);
+  background-color: var(--red-btn-color);
+  border: 2px solid var(--red-btn-color-darker);
   box-shadow: 0px 2px 1px var(--gray-light);
-  /* transition: all 0.35s ease-Out; */
+  transition: all 0.35s ease-Out;
   cursor: pointer;
   padding: 0.25rem 0.5rem;
   border-radius: 10px;
@@ -22,8 +22,7 @@
 
 /* TODO make hover into downClick */
 .close-btn:hover {
-  border: 1px solid var(--background-safety);
-  background-color: var(--light-background);
+  background-color: var(--red-btn-color-darker);
 }
 
 /* ******************************************** */
@@ -121,22 +120,14 @@ select {
 }
 
 .form-btn {
-  /* display: block; */
-  /* padding: 0.75rem; */
   width: 100%;
   margin-bottom: 1rem;
-  /* margin-block: 1rem; */
-  /* text-align: center; */
-  /* background-color: rgb(191, 211, 166); */
-
-  background-color: var(--btn-background-based-on-general);
-  /* background-color: var(--light-background); */
-  border: 1px solid var(--background-general);
+  background-color: var(--green-btn-background);
+  border: 2px solid var(--btn-background-based-on-general);
   box-shadow: 0px 2px 1px var(--gray-light);
   color: var(--text-black);
   transition: all 0.35s ease-Out;
   cursor: pointer;
-  /* width: 100%; */
   min-width: min-content;
   padding: 0.5rem;
   margin-inline: auto;
@@ -146,27 +137,19 @@ select {
 }
 
 .form-btn:hover {
-  background-color: hsl(var(--general-mwr-hue), 50%, 90%);
+  background-color: var(--btn-background-based-on-general);
 }
 
 
 .pdf-form-btn {
-  /* display: block; */
-  /* padding: 0.75rem; */
   width: 100%;
-  /* margin-block: 0.5rem; */
-  /* text-align: center; */
-  /* background-color: rgb(191, 211, 166); */
-
   background-color: var(--light-background);
-  border: 1px solid var(--background-general);
+  border: 2px solid var(--btn-background-based-on-general);
   box-shadow: 0px 2px 1px var(--gray-light);
   color: var(--text-black);
   transition: all 0.35s ease-Out;
   cursor: pointer;
-  /* width: 100%; */
   min-width: min-content;
-  /* padding: 0.5rem; */
   margin: auto;
   font-size: 16px;
   border-radius: 10px;

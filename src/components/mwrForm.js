@@ -32,17 +32,20 @@ const MwrFormStyled = styled.form`
   }
 
   .close-btn {
-    background-color: var(--background-safety);
-    border: 1px solid var(--gray-light);
+    background-color: var(--red-btn-color);
+    border: 2px solid var(--red-btn-color-darker);
+    /* border: 1px solid var(--gray-light); */
     box-shadow: 0px 2px 1px var(--gray-light);
     color: var(--text-black);
     cursor: pointer;
     padding: 0.25rem 0.5rem;
+    transition: all 0.35s ease-Out;
     border-radius: 10px;
     align-self: center;
     :hover {
-      border: 1px solid var(--background-safety);
-      background-color: var(--light-background);
+      /* border: 2px solid var(--red-btn-color); */
+      background-color: var(--red-btn-color-darker);
+      /* /* background-color: var(--light-background); */
     }
   }
 
@@ -77,12 +80,12 @@ const MwrFormStyled = styled.form`
     margin-block: 1rem;
     text-align: center;
     transition: all 0.35s ease-Out;
-    background-color: var(--btn-background-based-on-general);
-    border: 1px solid var(--background-general);
+    background-color: var(--green-btn-background);
+    border: 2px solid var(--btn-background-based-on-general);
     border-radius: 10px;
     :hover {
       cursor: pointer;
-      background-color: var(--background-general);
+      background-color: var(--btn-background-based-on-general);
     }
   }
 

@@ -33,7 +33,7 @@ const DetailsFormStyled = styled.form`
   flex-direction: column;
 
   .legend {
-    background-color: hsl(var(--general-mwr-hue), 50%, 90%);
+    background-color: var(--btn-background-based-on-general);
     padding-inline: 0.5rem;
   }
 

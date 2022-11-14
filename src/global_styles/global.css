@@ -11,8 +11,17 @@
   --urgent-mwr-hue: 52;
 
 
-  /*  backgrounds  */
-  --btn-background-based-on-general: rgba(203, 236, 198, 0.25);
+  /*  green btn hover,border  */
+  --btn-background-based-on-general: rgba(203, 236, 198, 0.85);
+
+
+  /* btns */
+  --red-btn-color-darker: hsl(2, 50%, 85%);
+  --red-btn-color: rgba(236, 199, 198, 0.2);
+  --green-btn-background: rgba(203, 236, 198, 0.2);
+
+
+
   /* converted background-safety to rgba */
   --table-hover-background-color: rgba(236, 199, 198, 0.25);
   --light-background: #ffffff;
