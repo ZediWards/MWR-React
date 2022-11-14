@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: "Courier",
     // flexDirection: "row",
-    backgroundColor: "#E4E4E4",
+    backgroundColor: "#FFFFFF",
     paddingTop: 10
   },
   headerSection: {
