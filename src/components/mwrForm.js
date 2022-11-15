@@ -126,7 +126,7 @@ function uniqueID() {
 
 function photoAlert(e) {
   e.stopPropagation()
-  alert("Feature available in self-hosting branch on Github")
+  alert("Upload feature available in self-hosting branch on Github")
 }
 const MwrForm = ({ mwrType, handleClose }) => {
   const settings = useContext(GlobalSettingsContext);
@@ -346,7 +346,8 @@ const MwrForm = ({ mwrType, handleClose }) => {
           id="employeePhotoUpload"
           multiple={true}
           // capture="environment"
-          accept="image/png, image/jpeg" />
+          accept="image/png, image/jpeg"
+          disabled={true} />
 
       </label>
 

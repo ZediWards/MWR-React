@@ -60,3 +60,17 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+/* Light Gallery Component Styles */
+
+.light-gallery-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.light-gallery-wrapper>a>img {
+  max-width: 100px;
+}

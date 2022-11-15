@@ -185,6 +185,11 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
     handleClose();
   };
 
+  function photoAlert(e) {
+    e.stopPropagation()
+    alert("Upload feature available in self-hosting branch on Github")
+  }
+
   // ******************************* JSX ************************************
   return (
     <DetailsFormStyled value="form" onSubmit={handleSubmit}>
@@ -290,6 +295,12 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                 rows="5"
               // cols="75"
               ></textarea>
+            </label>
+
+            {/* Employee Photo Uploads */}
+            <label className={style.empInputSectTwoBlocks} htmlFor="employeePhotos">
+              <p className={style.inputLabel}>Employee Photos:</p>
+              {true ? <Gallery></Gallery> : null}
             </label>
           </div>
 
@@ -815,11 +826,32 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                 // cols="50"
                 ></textarea>
               </label>
+
             </div>
+            <div>
+              <label htmlFor="maint-photos">
+                <p className={style.inputLabel}>Maintenance Photos:</p>
+                <input
+                  // onChange={(e) =>
+                  //   setUpdateMwr({ ...updateMwr, assetId: e.target.value })
+                  // }
+                  name="maint-photos"
+                  id="maint-photos"
+                  type="file"
+                  onClick={(e) => photoAlert(e)}
+                  multiple={true}
+                  // capture="environment"
+                  accept="image/png, image/jpeg"
+                  disabled={true}
+                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                />
+              </label>
+              {true ? <Gallery></Gallery> : null}
+            </div>
+
           </div>
         </fieldset>
       </div>
-      {true ? <Gallery></Gallery> : null}
 
       {/* save btn */}
       <input type="submit" value="Save" className={style.formBtn} />
