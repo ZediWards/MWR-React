@@ -30,10 +30,10 @@ function Gallery() {
       elementClassNames="light-gallery-wrapper"
       // onInit={onInit}
       // onBeforeSlide={onBeforeSlide}
-      // speed="4000"
+      speed={400}
       plugins={[lgZoom]}
-      // mode="lg-fade"
-      mode="lg-slide-skew-cross"
+      zoomFromOrigin={false}
+      mode="lg-fade"
     >
       {/* <a href="img/img1.jpg">
           <img alt="img1" src="img/thumb1.jpg" />
@@ -84,8 +84,7 @@ function Gallery() {
           src="https://picsum.photos/id/1060/5000/3333.jpg"
         />
       </a>
-      {/* img styles: width: 100%; height: 100px; object-fit: cover;
-      object-position: bottom; cursor: pointer */}
+
       {/* ******************** */}
     </LightGallery>
   );
