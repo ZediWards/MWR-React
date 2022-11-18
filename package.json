@@ -4,6 +4,7 @@
   "description": "1. give users the ability to submit Maintenance Work      Requests to the database.   2. Display a \"leader board\" that shows submitters name and number of submits they have completed.    3. Display a MWR dashboard that shows all submitted MWR's and their status (in progress, denied, pending).",
   "main": "index.js",
   "scripts": {
+    "start": "gatsby develop",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

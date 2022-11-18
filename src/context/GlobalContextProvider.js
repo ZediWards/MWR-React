@@ -8,10 +8,8 @@ export const GlobalSettingsDispatchContext = React.createContext();
 export const GlobalThemeContext = React.createContext();
 export const GlobalThemeDispatchContext = React.createContext();
 
-
-
 const themeSettings = {
-  fontColor: "hsl(0, 0%, 18%)", //all but modals and pdf 
+  fontColor: "hsl(0, 0%, 18%)", //all but modals and pdf
   // lightBackground: "hsl(0, 0%, 99%)",
   // lightBackground: "purple",
 
@@ -20,7 +18,7 @@ const themeSettings = {
   // fontColor: "pink",
 
   // secondaryFontColor
-}
+};
 
 const generalSettings = {
   companyName: ["Test Company"],
@@ -29,93 +27,70 @@ const generalSettings = {
     { type: "Urgent", color: "hsl(52, 50%, 85%)" },
     { type: "Safety", color: "hsl(2, 50%, 85%)" },
   ],
-  departments: [
-    "compounding",
-    "production 1",
-    "production 2",
-    "warehouse",
-    // "TESTING"
-  ],
-  status: ["unassigned", "assigned", "completed", "denied", "TESTING"],
-  problemType: ["electrical", "plumbing", "machine", "TESTING"],
-  maintenenceDepartments: [
-    "Building Maintenence",
-    "General Maintenence",
-    "TESTING",
-  ],
+  departments: ["compounding", "production 1", "production 2", "warehouse"],
+  status: ["unassigned", "assigned", "completed", "denied"],
+  problemType: ["electrical", "plumbing", "machine"],
+  maintenenceDepartments: ["Building Maintenence", "General Maintenence"],
   buildingMainteneceEmployees: ["Tod"],
-  generalMaintenenceEmployees: ["Bob", "John", "TESTING"],
+  generalMaintenenceEmployees: ["Bob", "John", "Paul"],
 };
 
-//       "Font Color", color: "#CBECC6" },
-//      secondaryFontColor: "Secondary Font Color", color: "#CBECC6" },
-//      lightBackground: "Light Background", color: "#CBECC6" },
-//      primaryBtn: "Primary Button", color: "#CBECC6" },
-//      secondaryBtn: "Secondary Button", color: "#CBECC6" },
-//      tableHover: "Table Hover", color: "#CBECC6" },
-//     cancelBtn: "Edit Button", color: "#CBECC6" },
-//      cancelBtn: "Save Button", color: "#CBECC6" },
-//      cancelBtn: "Cancel Button", color: "#CBECC6" },
-//      cancelBtn: "Add New Button", color: "#CBECC6" },
-//   ],
-
 const initialState = [
-  // {
-  //   id: 1,
-  //   // Employee section
-  //   type: "general",
-  //   date: "2021-11-12",
-  //   name: "Jane Doe TESTING localStorage",
-  //   department: "compounding",
-  //   problem: "details test",
-  //   solution: "fix it",
-  //   // Maininence Section
-  //   status: "assigned",
-  //   workOrderNum: "001",
-  //   workOrderDate: "2021-11-21",
-  //   workOrderTime: "12:00",
-  //   projectNum: "007",
-  //   scheduledDate: "2021-11-22",
-  //   // needs applied to all
-  //   openHistory: "",
-  //   problemType: "electrical",
-  //   //
-  //   daysToCOmplete: "",
-  //   completedDate: "",
-  //   //
-  //   dueDate: "2022-07-07",
-  //   estHours: "2",
-  //   assetId: "123",
-  //   assetDescription: "a switch!",
-  //   downtime: "1",
-  //   actHours: "3",
-  //   //
-  //   site: "light switch",
-  //   //
-  //   requestNum: "",
-  //   requestedByEmail: "test@tesing.com",
-  //   //
-  //   assignTo: "Production Maintenance",
-  //   assistant: "Bob",
-  //   maintenanceTeamMember: "Jon",
-  //   //
-  //   briefDiscription:
-  //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-  //   workDiscription:
-  //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-  //   //
-  //   // left
-  //   comments: "",
-  //   //
-  //   // full (left through right)
-  //   employeeComments: {
-  //     commentOne: "",
-  //     commentTwo: "",
-  //     commentThree: "",
-  //     commentsFive: "",
-  //     commentSix: ""
-  //   }
-  // },
+  {
+    id: 1,
+    // Employee section
+    type: "general",
+    date: "2022-11-12",
+    name: "Jane Doe",
+    department: "compounding",
+    problem: "The pump in the corner of the trench is not working properly",
+    solution: "Seems like it is related to the air side of the pump.",
+    // Maininence Section
+    status: "assigned",
+    workOrderNum: "001",
+    workOrderDate: "2022-11-21",
+    workOrderTime: "12:00",
+    projectNum: "007",
+    scheduledDate: "2022-11-22",
+    // needs applied to all
+    openHistory: "",
+    problemType: "plumbing",
+    //
+    daysToCOmplete: "1",
+    completedDate: "2022-11-22",
+    //
+    dueDate: "2022-11-25",
+    estHours: "3",
+    assetId: "123",
+    assetDescription: "Trench pump",
+    downtime: "0",
+    actHours: "2",
+    //
+    site: "Compounding trench",
+    //
+    requestNum: "1",
+    requestedByEmail: "janeDoe@tesing.com",
+    //
+    assignTo: "Building Maintenence",
+    assistant: "",
+    maintenanceTeamMember: "Tod",
+    //
+    briefDiscription:
+      "The shaft on the sir side of the diaphragm pump was broken. Replace with spare.",
+    workDiscription: "Replaced broken part. Pumps works now.",
+    //
+    // left
+    comments: "",
+    //
+    // full (left through right)
+    employeeComments: {
+      commentOne: "",
+      commentTwo: "",
+      commentThree: "",
+      commentsFive: "",
+      commentSix: "",
+    },
+  },
   // {
   //   id: 2,
   //   // Employee section
@@ -305,7 +280,7 @@ function settingsReducer(state, action) {
 function themeReducer(state, action) {
   switch (action.type) {
     case ACTIONS.UPDATE_THEME: {
-      console.log("UPDATING THEME")
+      console.log("UPDATING THEME");
       // return {
 
       // }
@@ -317,7 +292,7 @@ function themeReducer(state, action) {
 // I think state needs to start as an empty array
 const GlobalContextProvider = ({ children }) => {
   // Theme settings
-  const [theme, themeDispatch] = React.useReducer(themeReducer, themeSettings)
+  const [theme, themeDispatch] = React.useReducer(themeReducer, themeSettings);
   // initial state & local storage
   const [state, dispatch] = React.useReducer(reducer, initialState, () => {
     const localData = localStorage.getItem("state");
@@ -343,7 +318,6 @@ const GlobalContextProvider = ({ children }) => {
     <GlobalThemeContext.Provider value={theme}>
       <GlobalStateContext.Provider value={state}>
         <GlobalSettingsContext.Provider value={settingsState}>
-
           <GlobalThemeDispatchContext.Provider value={themeDispatch}>
             <GlobalDispatchContext.Provider value={dispatch}>
               <GlobalSettingsDispatchContext.Provider value={settingsDispatch}>
@@ -351,12 +325,9 @@ const GlobalContextProvider = ({ children }) => {
               </GlobalSettingsDispatchContext.Provider>
             </GlobalDispatchContext.Provider>
           </GlobalThemeDispatchContext.Provider>
-
         </GlobalSettingsContext.Provider>
       </GlobalStateContext.Provider>
     </GlobalThemeContext.Provider>
-
-
   );
 };
 

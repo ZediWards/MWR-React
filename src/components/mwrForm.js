@@ -6,7 +6,7 @@ import {
   GlobalDispatchContext,
   GlobalStateContext,
   GlobalSettingsContext,
-  GlobalSettingsDispatchContext
+  GlobalSettingsDispatchContext,
 } from "../context/GlobalContextProvider";
 
 import { ACTIONS } from "../context/GlobalContextProvider";
@@ -16,7 +16,7 @@ import { ACTIONS } from "../context/GlobalContextProvider";
 // **** Styled Components ****
 const MwrFormStyled = styled.form`
   * {
-  background-color: var(--light-background) ;
+    background-color: var(--light-background);
   }
   display: flex;
   flex-direction: column;
@@ -97,16 +97,16 @@ const MwrFormStyled = styled.form`
     }
   }
   .problem-label,
-    .solution-label {
-      flex-grow: 1;
-    }
+  .solution-label {
+    flex-grow: 1;
+  }
 
-    .problem-input,
-    .solution-input {
-      width: 100%;
-      /* background: pink; */
-      background: #fff;
-    }
+  .problem-input,
+  .solution-input {
+    width: 100%;
+    /* background: pink; */
+    background: #fff;
+  }
 
   /* !!!!!!!!!! Details Style !!!!!!!! */
   /* .input-readable-disabled {
@@ -125,8 +125,8 @@ function uniqueID() {
 }
 
 function photoAlert(e) {
-  e.stopPropagation()
-  alert("Upload feature available in self-hosting branch on Github")
+  e.stopPropagation();
+  alert("Upload feature available in self-hosting branch on Github");
 }
 const MwrForm = ({ mwrType, handleClose }) => {
   const settings = useContext(GlobalSettingsContext);
@@ -181,8 +181,8 @@ const MwrForm = ({ mwrType, handleClose }) => {
       commentTwo: "",
       commentThree: "",
       commentsFive: "",
-      commentSix: ""
-    }
+      commentSix: "",
+    },
   });
 
   const handleSubmit = (e) => {
@@ -190,6 +190,7 @@ const MwrForm = ({ mwrType, handleClose }) => {
     dispatch({ type: ACTIONS.NEW_MWR, payload: formData });
     // handleClick(formData);
     console.log("handleSubmit fired, actions, imports");
+    console.log(e.target);
     console.table(state);
 
     setFormData({
@@ -232,13 +233,23 @@ const MwrForm = ({ mwrType, handleClose }) => {
         commentTwo: "",
         commentThree: "",
         commentsFive: "",
-        commentSix: ""
-      }
+        commentSix: "",
+      },
     });
     console.log(formData);
-    handleClose();
+
+    // handleClose();
     // pass this as a function to set state from the child
     // setIsOpen(true)
+  };
+
+  // Close without saving
+  // lesson: closing would submit the form and fire the handle submit..
+  // FIX: <button> defaults to <button type="submit"> which submits the parent form, you can instead use <button type="button"> which does not submit the form.
+  // ALSO: if not a btn element onClick you can return false at end of function to not fire the submit function
+  const closeNoSave = (e) => {
+    e.stopPropagation();
+    handleClose();
   };
 
   //
@@ -248,7 +259,11 @@ const MwrForm = ({ mwrType, handleClose }) => {
     <MwrFormStyled onSubmit={handleSubmit}>
       <div className="heading-and-close-container">
         <h1 className={"form-heading"}>{mwrType} MWR Form</h1>
-        <button onClick={handleClose} className="close-btn">
+        <button
+          type="button"
+          onClick={(e) => closeNoSave(e)}
+          className="close-btn"
+        >
           X
         </button>
       </div>
@@ -347,8 +362,8 @@ const MwrForm = ({ mwrType, handleClose }) => {
           multiple={true}
           // capture="environment"
           accept="image/png, image/jpeg"
-          disabled={true} />
-
+          disabled={true}
+        />
       </label>
 
       {/* Submit */}
