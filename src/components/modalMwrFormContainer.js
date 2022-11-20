@@ -21,6 +21,9 @@ const StyledModalContent = styled.div`
   justify-content: center;
   /* font-size: 1.5rem; */
   padding: 1.5rem;
+  position: absolute;
+  // left: 0;
+  top: 0;
 
   @media (max-width: 670px) {
     position: absolute;

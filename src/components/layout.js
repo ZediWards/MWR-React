@@ -16,7 +16,8 @@ const LayoutDiv = styled.div`
   grid-template-rows: auto 1fr auto;
   padding: 0rem 3rem 0rem 3rem;
   margin: auto;
-  overflow: scroll;
+  overflow: hidden;
+  /* lesson: overflow hidden takes care of double scroll bar */
   background-color: var(--light-background) ;
   @media (max-width: 888px) {
     padding: 0rem 1rem 0rem 1rem;
