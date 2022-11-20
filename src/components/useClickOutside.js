@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+// Lesson: awesome function to use with useRef hook to close modals by clicking outside of reference element
+
 // Improved version of https://usehooks.com/useOnClickOutside/
 const useClickOutside = (ref, handler) => {
   useEffect(() => {
