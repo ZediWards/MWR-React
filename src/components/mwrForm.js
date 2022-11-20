@@ -1,6 +1,8 @@
 import * as React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useCallback, useRef } from "react";
 import styled from "styled-components";
+
+import useClickOutside from "./useClickOutside";
 
 import {
   GlobalDispatchContext,
@@ -243,6 +245,17 @@ const MwrForm = ({ mwrType, handleClose }) => {
     // setIsOpen(true)
   };
 
+  // Close w/o saving by clicking outside of form element
+  // Lesson: give the jsx DOM element the formRef attribute, then can access it with formRef.current
+  // This application is using it with useClickOutside to close form on click outside
+  const formRef = useRef();
+
+  // lesson: This way fires the handleClose function w/o error
+  // const close = handleClose(); Throw error
+  const close = useCallback(() => handleClose(), []);
+
+  useClickOutside(formRef, close);
+
   // Close without saving
   // lesson: closing would submit the form and fire the handle submit..
   // FIX: <button> defaults to <button type="submit"> which submits the parent form, you can instead use <button type="button"> which does not submit the form.
@@ -256,7 +269,7 @@ const MwrForm = ({ mwrType, handleClose }) => {
 
   //
   return (
-    <MwrFormStyled onSubmit={handleSubmit}>
+    <MwrFormStyled onSubmit={handleSubmit} ref={formRef}>
       <div className="heading-and-close-container">
         <h1 className={"form-heading"}>{mwrType} MWR Form</h1>
         <button

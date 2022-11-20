@@ -34,17 +34,15 @@ const generalSettings = {
     "production 1",
     "production 2",
     "warehouse",
-    // "TESTING"
   ],
-  status: ["unassigned", "assigned", "completed", "denied", "TESTING"],
-  problemType: ["electrical", "plumbing", "machine", "TESTING"],
+  status: ["unassigned", "assigned", "completed", "denied"],
+  problemType: ["electrical", "plumbing", "machine"],
   maintenenceDepartments: [
     "Building Maintenence",
     "General Maintenence",
-    "TESTING",
   ],
   buildingMainteneceEmployees: ["Tod"],
-  generalMaintenenceEmployees: ["Bob", "John", "TESTING"],
+  generalMaintenenceEmployees: ["Bob", "John"],
 };
 
 //       "Font Color", color: "#CBECC6" },

@@ -1,6 +1,8 @@
 import * as React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useCallback, useRef } from "react";
 import Gallery from "../components/LightGallery";
+
+import useClickOutside from "./useClickOutside";
 
 // import LightGallery from 'lightgallery/react';
 // // import styles
@@ -53,6 +55,12 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
   // console.log(`vv this is mwrDetails state in viewDetails.js vv`)
   // console.table(mwrDetails)
   // console.table(mwrDetails.id)
+
+  // Closing Modal by clicking outside of form element
+  const formRef = useRef();
+  const close = useCallback(() => handleClose(), []);
+
+  useClickOutside(formRef, close);
 
   // **************** varibles for mapping inside form********************
   // const assignedDepartments = [
@@ -192,7 +200,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
 
   // ******************************* JSX ************************************
   return (
-    <DetailsFormStyled value="form" onSubmit={handleSubmit}>
+    <DetailsFormStyled value="form" onSubmit={handleSubmit} ref={formRef}>
       <header className={style.formHeaderFlex}>
         <h1 className={style.textCenter}>MWR Submition</h1>
         <button onClick={handleClose} className={style.closeBtn}>
