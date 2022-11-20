@@ -24,9 +24,10 @@ import Layout from "../components/layout";
 // ********* STYLES **************
 
 const SettingsWrapperStyled = styled.div`
-  border: 1px solid black;
+  border: 1px solid ThreeDLightShadow;
   max-width: 960px;
   margin: auto;
+  padding-block-start: 1.5rem;
 
   .settings-ul {
     // max-width: 1000px;
@@ -70,7 +71,10 @@ const SettingsWrapperStyled = styled.div`
 
   @media (max-width: 440px) {
     .category-header-container {
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+    }
+    .category-header-container > h2 {
+      font-size: 1.25rem;
     }
   }
 
@@ -198,7 +202,8 @@ const SettingsWrapperStyled = styled.div`
   /* --gray-light from global css need a primary-hue declared to work */
   .delete-btn {
     align-self: flex-start;
-    background-color: var(--background-safety);
+    /* background-color: var(--background-safety); */
+    background-color: var(--red-btn-color-darker);
     border: 1px solid var(--gray-light);
     box-shadow: 0px 2px 1px var(--gray-light);
     // transition: all 0.35s ease-Out;
@@ -211,7 +216,7 @@ const SettingsWrapperStyled = styled.div`
     display: none;
     // Lesson: &:hover needed for styled components to use hover
     &:hover {
-      border: 1px solid var(--background-safety);
+      border: 1px solid var(--red-btn-color-darker);
       background-color: var(--light-background);
     }
   }
@@ -585,6 +590,7 @@ const SettingsPage = () => {
         e.target.parentElement.parentElement.parentElement.children[1]
           .lastChild;
       const targetDiv = targetLi.children[0].children[1];
+      console.log(targetLi)
       const targetDeleteBtn = targetDiv.children[0];
       targetDeleteBtn.className = "delete-btn btn-visibile";
 
@@ -883,11 +889,11 @@ const SettingsPage = () => {
 
   return (
     <Layout>
+      <Link to="/admin" style={{ display: "inlineBlock", textAlign: "end", marginBlockEnd: "0.5rem" }}>Return to Admin. Page</Link>
       <SettingsWrapperStyled>
         <ul className="settings-ul">{settingsMap}</ul>
       </SettingsWrapperStyled>
 
-      <Link to="/admin">Go back to ADMIN</Link>
     </Layout>
   );
 };
