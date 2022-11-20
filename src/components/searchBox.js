@@ -50,7 +50,11 @@ const SearchBoxContainerStyled = styled.section`
 
     @media (max-width: 1294px) {
       flex-grow: 1;
-    }
+    };
+  }
+
+  .search-input:focus {
+    color: inherit;
   }
 
   .filter-container {
