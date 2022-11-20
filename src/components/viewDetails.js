@@ -31,7 +31,8 @@ import * as style from "../css_modules/viewDetailsStyles.module.css";
 // **** Styled Components ****
 const DetailsFormStyled = styled.form`
   display: flex;
-  max-width: 100%;
+  /* max-width: 100%; */
+  max-width: 1060px;
   flex-direction: column;
 
   .legend {
