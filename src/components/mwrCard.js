@@ -23,8 +23,8 @@ const StyledMwrCard = styled.div`
     prop.mwrType.type === "General"
       ? "var(--background-general)"
       : prop.mwrType.type === "Safety"
-        ? "var(--background-safety)"
-        : "var(--background-urgent)"};
+      ? "var(--background-safety)"
+      : "var(--background-urgent)"};
 `;
 
 const StyledMWRTitle = styled.h2`

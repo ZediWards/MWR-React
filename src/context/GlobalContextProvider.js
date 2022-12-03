@@ -41,7 +41,6 @@ const generalSettings = {
   ],
   buildingMainteneceEmployees: ["Tod"],
   generalMaintenenceEmployees: ["Bob", "John"],
-
 };
 
 const initialState = [

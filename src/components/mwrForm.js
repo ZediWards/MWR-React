@@ -241,6 +241,7 @@ const MwrForm = ({ mwrType, handleClose }) => {
     console.log(formData);
 
     handleClose();
+    // handleClose();
     // pass this as a function to set state from the child
     // setIsOpen(true)
   };
