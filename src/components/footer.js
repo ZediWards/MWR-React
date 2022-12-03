@@ -11,5 +11,5 @@ const Footer = () => (
     {/* This is the footer */}
   </FooterStyled>
 )
-// testing a commit
+// testing a commit aggain
 export default Footer
