@@ -414,11 +414,22 @@ const SettingsPage = () => {
       ? mwrOnChange()
       : // e, item, index, mwrType
       othersOnChange();
+    console.log(mwrKey)
+    // mwrKey = type OR color
+    // text input = event object
+    // color picker = hsl value only
+
+
+
 
     function mwrOnChange() {
       const newArr = updateSettings.mwrTypes.slice();
       // newArr[index][mwrKey] = e.target.value;
-      newArr[index][mwrKey] = e;
+      if (mwrKey === "type") {
+        newArr[index][mwrKey] = e.target.value;
+      } else if (mwrKey === "color") {
+        newArr[index][mwrKey] = e;
+      }
 
       // ! WORKS!!!!!!!!
       setUpdateSettings((current) => {
@@ -437,6 +448,7 @@ const SettingsPage = () => {
       console.log(item); // departments
       console.log(newArr); // array copy
       console.log(newArr[index]); // value changed on newArr
+      console.log(e)  //onChange object
 
       setUpdateSettings((current) => {
         return {
@@ -702,13 +714,14 @@ const SettingsPage = () => {
             className="input-text mwr-type-input-text"
             onChange={(e) =>
               // console.log(updateSettings)
-              change(e, item, index, mwrType, "type")
+              change(e, item, index, "mwrType", "type")
             }
             value={item.type}
             type="text"
             name={item.type}
             id={item.type}
             disabled={true}
+            data-key="type"
           ></input>
         </label>
 
@@ -719,6 +732,7 @@ const SettingsPage = () => {
             color={item.color}
             disabled={true}
             onChange={(e) => change(e, item, index, "mwrType", "color")}
+            data-key="color"
           />
         </label>
         <div className={"item-controls-container"}>
