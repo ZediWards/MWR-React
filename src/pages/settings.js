@@ -567,9 +567,13 @@ const SettingsPage = () => {
 
       // enable inputs
       const addedItemChildren = addedListItem.children; //HTML collection object
+      console.log(addedItemChildren)
       for (let child of addedItemChildren) {
-        if (child.className === "label") {
-          child.querySelector("input").disabled = false;
+        if (child.className === "mwr-type-label") {
+          // let input = child.querySelector("input")
+          let input = child.children[1]
+          input.disabled = false;
+          // console.log(input)
         } else {
           return;
         }
