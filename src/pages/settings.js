@@ -313,7 +313,9 @@ const SettingsPage = () => {
         // !!!addNewBtn.className = "control-btns add-new-btn";
         cancelBtn.className = "control-btns cancel-btn";
         saveBtn.className = "control-btns save-btn";
+
         // *****************************************
+
         for (let listItem of listItems) {
           let btnTarget = listItem.querySelector(".delete-btn");
           btnTarget.className !== "delete-btn btn-visibile"
@@ -356,11 +358,49 @@ const SettingsPage = () => {
         }
         break;
       }
-      // works for mwrTypes and others
+
+      // *******************************************************
+
+      case "cancel-companyName":
+      case "save-companyName":
+      case "cancel-mwrType":
+      case "save-mwrType":
+        editBtn.className = "control-btns edit-btn";
+        // !! addNewBtn.className = "control-btns add-new-btn display-none";
+        cancelBtn.className = "control-btns cancel-btn display-none";
+        saveBtn.className = "control-btns save-btn display-none";
+
+        // inputs and delete btns
+        // display block on delete btn **all but mwr type**
+        for (let listItem of listItems) {
+          // Don't really need terniary but am keeping for a reference
+          let btnTarget = listItem.querySelector(".delete-btn");
+          btnTarget.className !== "delete-btn"
+            ? (btnTarget.className = "delete-btn")
+            : (btnTarget.className = "delete-btn btn-visibile");
+
+          // enable inputs for editing
+          // let inputTarget = listItem.querySelector("input");
+          // inputTarget.disabled === false
+          //   ? (inputTarget.disabled = true)
+          //   : (inputTarget.disabled = false);
+
+          let inputTargets = listItem.querySelectorAll("input"); //nodeList
+          [...inputTargets].forEach((input) => {
+            // lesson: spreading nodeList out to use array method. could use for loop w/o spreading
+            input.disabled === false
+              ? (input.disabled = true)
+              : (input.disabled = false);
+          });
+        }
+        break;
+
+      // *****************************************************
+
       case "cancel":
       case "save":
         editBtn.className = "control-btns edit-btn";
-        // !!addNewBtn.className = "control-btns add-new-btn display-none";
+        addNewBtn.className = "control-btns add-new-btn display-none";
         cancelBtn.className = "control-btns cancel-btn display-none";
         saveBtn.className = "control-btns save-btn display-none";
 
@@ -623,9 +663,14 @@ const SettingsPage = () => {
 
   //***************? Cancel Changes Function **************************/
   //! WORKS for mwrTypes and others
-  const cancelChanges = (e, item) => {
+  const cancelChanges = (e, item, category) => {
     e.stopPropagation();
-    showHideBtns(e, "cancel");
+    category === "mwrType" ? showHideBtns(e, "cancel-mwrType") :
+      category === "companyName" ? showHideBtns(e, "cancel-companyName") :
+        showHideBtns(e, "cancel");
+
+
+
 
     const newArr = settings[item].slice();
     console.table(newArr);
@@ -638,9 +683,11 @@ const SettingsPage = () => {
   };
   //***************? Save to Context Local Storage Function **************************/
   //! WORKS for mwrTypes and others
-  const saveSection = (e, item) => {
+  const saveSection = (e, item, category) => {
     e.preventDefault();
-    showHideBtns(e, "save");
+    category === "mwrType" ? showHideBtns(e, "save-mwrType") :
+      category === "companyName" ? showHideBtns(e, "save-companyName") :
+        showHideBtns(e, "save");
 
     const newArr = updateSettings[item].slice();
     const updatedSettings = {
@@ -784,7 +831,7 @@ const SettingsPage = () => {
               </span> */}
               <span
                 className={"control-btns cancel-btn display-none"}
-                onClick={(e) => cancelChanges(e, item)}
+                onClick={(e) => cancelChanges(e, item, "mwrType")}
               >
                 {viewPortWidth > 820 ? (
                   "cancel"
@@ -794,7 +841,7 @@ const SettingsPage = () => {
               </span>
               <span
                 className={"control-btns save-btn display-none"}
-                onClick={(e) => saveSection(e, item)}
+                onClick={(e) => saveSection(e, item, "mwrType")}
               >
                 {viewPortWidth > 820 ? (
                   "save"
@@ -840,7 +887,7 @@ const SettingsPage = () => {
               </span> */}
               <span
                 className={"control-btns cancel-btn display-none"}
-                onClick={(e) => cancelChanges(e, item)}
+                onClick={(e) => cancelChanges(e, item, "companyName")}
               >
                 {viewPortWidth > 820 ? (
                   "cancel"
@@ -850,7 +897,7 @@ const SettingsPage = () => {
               </span>
               <span
                 className={"control-btns save-btn display-none"}
-                onClick={(e) => saveSection(e, item)}
+                onClick={(e) => saveSection(e, item, "companyName")}
               >
                 {viewPortWidth > 820 ? (
                   "save"
