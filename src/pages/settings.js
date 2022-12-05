@@ -294,7 +294,8 @@ const SettingsPage = () => {
 
     switch (btnType) {
       // update settings section
-      case "edit-mwrType": {
+      case ("edit-mwrType"):
+      case ("edit-companyName"): {
         // console.log("showHide is wirking for mwrType edit btn");
         // console.log(parentDiv); //control-container
         // console.log(editBtn);
@@ -357,8 +358,7 @@ const SettingsPage = () => {
       }
       // works for mwrTypes and others
       case "cancel":
-        // !! uncomment out "case save" if implimenting addNew function
-        // case "save":
+      case "save":
         editBtn.className = "control-btns edit-btn";
         // !!addNewBtn.className = "control-btns add-new-btn display-none";
         cancelBtn.className = "control-btns cancel-btn display-none";
@@ -407,7 +407,8 @@ const SettingsPage = () => {
 
     category === "mwrType"
       ? showHideBtns(e, "edit-mwrType")
-      : showHideBtns(e, "edit");
+      : category === "companyName" ? showHideBtns(e, "edit-companyName")
+        : showHideBtns(e, "edit");
   };
 
   //***************? onChange Function **************************/
@@ -820,14 +821,14 @@ const SettingsPage = () => {
               {settingsCategorySorter(item)}
             </h2>
             <div className={"category-controls-container"}>
-              <span className={"control-btns edit-btn"} onClick={enableEdit}>
+              <span className={"control-btns edit-btn"} onClick={(e) => enableEdit(e, "companyName")}>
                 {viewPortWidth > 820 ? (
                   "edit"
                 ) : (
                   <AiOutlineEdit className="control-icon edit-icon" />
                 )}
               </span>
-              <span
+              {/* <span
                 className={"control-btns add-new-btn display-none"}
                 onClick={(e) => addItem(e, item)}
               >
@@ -836,7 +837,7 @@ const SettingsPage = () => {
                 ) : (
                   <AiOutlinePlusCircle className="control-icon add-new-icon" />
                 )}
-              </span>
+              </span> */}
               <span
                 className={"control-btns cancel-btn display-none"}
                 onClick={(e) => cancelChanges(e, item)}
