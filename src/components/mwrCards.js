@@ -33,6 +33,21 @@ const MwrCards = () => {
   const state = useContext(GlobalStateContext);
   const settings = useContext(GlobalSettingsContext)
 
+  // default 3 mwr types
+  const mwrType1 = settings.mwrTypes[0].index
+  const mwrType2 = settings.mwrTypes[1].type
+  const mwrType3 = settings.mwrTypes[2].type
+  const mwrTypeArr = settings.mwrTypes
+
+  const tyop = mwrTypeArr.indexOf([0])
+  console.log(tyop)
+
+  mwrTypeArr.map((item, index) => {
+    console.log(index)
+  })
+  // text.indexOf("welcome")
+
+
   // mapping through the different mwrTypes to make corrisponding card
   const card = settings.mwrTypes.map((item, index) => {
     const mwrType = state.filter((mwr) => mwr.type === item.type.toLowerCase());
@@ -43,14 +58,19 @@ const MwrCards = () => {
     const completedMwrType = mwrType.filter(
       (mwr) => mwr.status === "completed"
     );
+    console.log(index)
 
     return (
       <MwrCard
         key={index}
+        index={index}
         mwrType={item}
         unAssigned={unAssignedMwrType}
         assigned={assignedMwrType}
         completed={completedMwrType}
+        mwrType1={mwrType1}
+        mwrType2={mwrType2}
+        mwrType3={mwrType3}
       />
     );
   });

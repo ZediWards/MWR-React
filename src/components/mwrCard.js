@@ -3,6 +3,10 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import ModalMwrFormContainer from "./modalMwrFormContainer";
+
+// import {
+//   GlobalSettingsContext,
+// } from "../context/GlobalContextProvider";
 // import MwrForm from "./mwrForm"
 
 // import * as style from "../css_modules/mwr-cards.module.css"
@@ -20,12 +24,22 @@ const StyledMwrCard = styled.div`
   padding: 1.5rem;
   background-color: var(--background-body);
   background-color: ${(prop) =>
-    prop.mwrType.type === "General"
+    prop.index === 0
       ? "var(--background-general)"
-      : prop.mwrType.type === "Safety"
-      ? "var(--background-safety)"
-      : "var(--background-urgent)"};
+      : prop.index === 1
+        ? "var(--background-safety)"
+        : prop.index === 2
+          ? "var(--background-urgent)"
+          : "#fff"
+  };
+      
 `;
+
+// prop.mwrType.type === "General"
+// ? "var(--background-general)"
+// : prop.mwrType.type === "Safety"
+// ? "var(--background-safety)"
+// : "var(--background-urgent)"};
 
 const StyledMWRTitle = styled.h2`
   text-align: center;
@@ -96,13 +110,17 @@ const StyledButton = styled.button`
   }
 `;
 
-const MwrCard = ({ mwrType, unAssigned, assigned, completed }) => {
+const MwrCard = ({ index, mwrType, unAssigned, assigned, completed, mwrType1, mwrType2, mwrType3 }) => {
   // state for modal
   // this needs to be added to each card, not the container
   const [isOpen, setIsOpen] = useState(false);
 
+  // settings context
+  // const settings = useContext(GlobalSettingsContext);
+
   return (
-    <StyledMwrCard mwrType={mwrType}>
+    // Lesson: props passed into styled components can be used in js in CSS i.e backgroundColors via ternary operations
+    <StyledMwrCard mwrType={mwrType} index={index}>
       <StyledMWRTitle>{mwrType.type} MWR</StyledMWRTitle>
       <StyledStatsContainer>
         <StyledStatContainer>
