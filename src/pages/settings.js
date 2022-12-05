@@ -769,7 +769,7 @@ const SettingsPage = () => {
                   <AiOutlineEdit className="control-icon edit-icon" />
                 )}
               </span>
-              <span
+              {/* <span
                 className={"control-btns add-new-btn display-none"}
                 onClick={(e) => addItem(e, item)}
               >
@@ -778,7 +778,7 @@ const SettingsPage = () => {
                 ) : (
                   <AiOutlinePlusCircle className="control-icon add-new-icon" />
                 )}
-              </span>
+              </span> */}
               <span
                 className={"control-btns cancel-btn display-none"}
                 onClick={(e) => cancelChanges(e, item)}
