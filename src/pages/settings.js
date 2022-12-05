@@ -308,7 +308,8 @@ const SettingsPage = () => {
         editBtn.className = "control-btns edit-btn display-none";
         // setEditState(true);
         // console.log(editState);
-        addNewBtn.className = "control-btns add-new-btn";
+        // !! uncomment out addNewBtn className if implimenting fuction
+        // !!!addNewBtn.className = "control-btns add-new-btn";
         cancelBtn.className = "control-btns cancel-btn";
         saveBtn.className = "control-btns save-btn";
         // *****************************************
@@ -356,9 +357,10 @@ const SettingsPage = () => {
       }
       // works for mwrTypes and others
       case "cancel":
-      case "save":
+        // !! uncomment out "case save" if implimenting addNew function
+        // case "save":
         editBtn.className = "control-btns edit-btn";
-        addNewBtn.className = "control-btns add-new-btn display-none";
+        // !!addNewBtn.className = "control-btns add-new-btn display-none";
         cancelBtn.className = "control-btns cancel-btn display-none";
         saveBtn.className = "control-btns save-btn display-none";
 
@@ -802,6 +804,105 @@ const SettingsPage = () => {
             </div>
           </div>
           <ul>{mwrTypeSettingsMap}</ul>
+        </li>
+      );
+    } else if (item === "companyName") {
+      //  switch (btnType) {
+      // // update settings section
+      // case "edit-mwrType": {
+
+      // }
+      //  }
+      return (
+        <li key={index} className={"settings-section-li"}>
+          <div className={"category-header-container"}>
+            <h2 className={"category-header"}>
+              {settingsCategorySorter(item)}
+            </h2>
+            <div className={"category-controls-container"}>
+              <span className={"control-btns edit-btn"} onClick={enableEdit}>
+                {viewPortWidth > 820 ? (
+                  "edit"
+                ) : (
+                  <AiOutlineEdit className="control-icon edit-icon" />
+                )}
+              </span>
+              <span
+                className={"control-btns add-new-btn display-none"}
+                onClick={(e) => addItem(e, item)}
+              >
+                {viewPortWidth > 820 ? (
+                  "add new"
+                ) : (
+                  <AiOutlinePlusCircle className="control-icon add-new-icon" />
+                )}
+              </span>
+              <span
+                className={"control-btns cancel-btn display-none"}
+                onClick={(e) => cancelChanges(e, item)}
+              >
+                {viewPortWidth > 820 ? (
+                  "cancel"
+                ) : (
+                  <AiOutlineCloseCircle className="control-icon cancel-icon" />
+                )}
+              </span>
+              <span
+                className={"control-btns save-btn display-none"}
+                onClick={(e) => saveSection(e, item)}
+              >
+                {viewPortWidth > 820 ? (
+                  "save"
+                ) : (
+                  <AiOutlineCheckCircle className="control-icon save-icon" />
+                )}
+              </span>
+            </div>
+          </div>
+          <ul>
+            {/* lesson learned: bracket notation use */}
+            {/* mapping over the updateSettings.key[array] */}
+            {/**************************************************************************************************8 */}
+            {updateSettings[item].map((arrItem, index) => {
+              /* const target = updateSettings[item][index]; */
+
+              const tester = updateSettings[item][index]; //updateSettings.departments.0
+
+              return (
+                <li key={index}>
+                  <label htmlFor={arrItem} className={"label"}>
+                    <input
+                      className="input-text"
+                      // changing specific value is where I am getting hung up
+                      onChange={
+                        (e) =>
+                          // console.log(updateSettings)
+                          change(e, item, index)
+
+                        // item = departments
+                        // index = 0
+                        // arrItem = compounding
+                      }
+                      // value={updateSettings[item][index]}
+                      value={tester}
+                      type="text"
+                      name={arrItem}
+                      id={arrItem}
+                      disabled={true}
+                    ></input>
+                    <div className={"item-controls-container"}>
+                      <button
+                        className={"delete-btn"}
+                        onClick={(e) => remove(e, item, index)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
         </li>
       );
     } else {
