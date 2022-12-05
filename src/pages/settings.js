@@ -594,6 +594,8 @@ const SettingsPage = () => {
 
     async function othersAdd() {
       const newArr = updateSettings[item].slice();
+      console.log(item); // departments
+
       newArr.push("");
       await setUpdateSettings((current) => {
         return {
@@ -704,6 +706,7 @@ const SettingsPage = () => {
   // mapping mwrType separate b/c array of objects
   const mwrTypeSettingsMap = updateSettings.mwrTypes.map((item, index) => {
     const mwrType = "mwrType";
+    console.log(`WWAAAAAAA ${index}`)
     return (
       // li is parent of 2 labels and 1 div
       <li key={index} className={"mwr-type-li"}>
@@ -721,7 +724,7 @@ const SettingsPage = () => {
             name={item.type}
             id={item.type}
             disabled={true}
-            data-key="type"
+            data-index={index}
           ></input>
         </label>
 
