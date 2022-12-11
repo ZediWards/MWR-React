@@ -20,6 +20,7 @@ import {
 import { ACTIONS } from "../context/GlobalContextProvider";
 
 import Layout from "../components/layout";
+import Header from "../components/header";
 
 // ********* STYLES **************
 
@@ -63,6 +64,22 @@ const SettingsWrapperStyled = styled.div`
     justify-content: center;
   }
 
+  svg.edit-icon {
+    fill: var(--text-black);
+  }
+
+  svg.save-icon {
+    fill: orange;
+  }
+
+  svg.cancel-icon {
+    fill: salmon;
+  }
+
+  svg.add-new-icon {
+    fill: yellow;
+  }
+
   .category-header-container {
     display: flex;
     gap: 1rem;
@@ -98,7 +115,7 @@ const SettingsWrapperStyled = styled.div`
   .control-btns {
     border: 1px solid threedlightshadow;
     border-radius: 10px;
-    /* box-shadow: 0px 2px 1px var(--gray-light); */
+    box-shadow: 0px 2px 1px var(--gray-light);
     /* padding-inline: 1rem; */
     /* making icons in centered circle */
     display: flex;
@@ -117,21 +134,21 @@ const SettingsWrapperStyled = styled.div`
     font-size: 1.5rem;
   }
 
-  .edit-icon > path {
-    /* color: ; */
-  }
+  // .edit-icon > path {
+  //   /* color: ; */
+  // }
 
-  .add-new-icon > path {
-    color: purple;
-  }
+  // .add-new-icon > path {
+  //   color: purple;
+  // }
 
-  .cancel-icon > path {
-    color: red;
-  }
+  // .cancel-icon > path {
+  //   color: red;
+  // }
 
-  .save-icon > path {
-    color: green;
-  }
+  // .save-icon > path {
+  //   color: green;
+  // }
 
   .edit-btn {
   }
@@ -294,8 +311,7 @@ const SettingsPage = () => {
 
     switch (btnType) {
       // update settings section
-      case ("edit-mwrType"):
-      case ("edit-companyName"): {
+      case "edit-mwrType": {
         // console.log("showHide is wirking for mwrType edit btn");
         // console.log(parentDiv); //control-container
         // console.log(editBtn);
@@ -321,6 +337,43 @@ const SettingsPage = () => {
           btnTarget.className !== "delete-btn btn-visibile"
             ? (btnTarget.className = "delete-btn btn-visibile")
             : (btnTarget.className = "delete-btn");
+
+          let inputTargets = listItem.querySelectorAll("input"); //nodeList
+          [...inputTargets].forEach((input) => {
+            // lesson: spreading nodeList out to use array method. could use for loop w/o spreading
+            input.disabled === true
+              ? (input.disabled = false)
+              : (input.disabled = true);
+          });
+        }
+        break;
+      }
+      case "edit-companyName": {
+        // console.log("showHide is wirking for mwrType edit btn");
+        // console.log(parentDiv); //control-container
+        // console.log(editBtn);
+        // console.log(addNewBtn);
+        // console.log(cancelBtn);
+        // console.log(saveBtn);
+        // console.log(category); //li  (whole category)
+        // console.log(categoryList); //ul  (category list)
+        // console.log(listItems); //li  (list item)
+        // ****************************************
+        editBtn.className = "control-btns edit-btn display-none";
+        // setEditState(true);
+        // console.log(editState);
+        // !! uncomment out addNewBtn className if implimenting fuction
+        // !!!addNewBtn.className = "control-btns add-new-btn";
+        cancelBtn.className = "control-btns cancel-btn";
+        saveBtn.className = "control-btns save-btn";
+
+        // *****************************************
+
+        for (let listItem of listItems) {
+          // let btnTarget = listItem.querySelector(".delete-btn");
+          // btnTarget.className !== "delete-btn btn-visibile"
+          //   ? (btnTarget.className = "delete-btn btn-visibile")
+          //   : (btnTarget.className = "delete-btn");
 
           let inputTargets = listItem.querySelectorAll("input"); //nodeList
           [...inputTargets].forEach((input) => {
@@ -361,8 +414,6 @@ const SettingsPage = () => {
 
       // *******************************************************
 
-      case "cancel-companyName":
-      case "save-companyName":
       case "cancel-mwrType":
       case "save-mwrType":
         editBtn.className = "control-btns edit-btn";
@@ -378,6 +429,38 @@ const SettingsPage = () => {
           btnTarget.className !== "delete-btn"
             ? (btnTarget.className = "delete-btn")
             : (btnTarget.className = "delete-btn btn-visibile");
+
+          // enable inputs for editing
+          // let inputTarget = listItem.querySelector("input");
+          // inputTarget.disabled === false
+          //   ? (inputTarget.disabled = true)
+          //   : (inputTarget.disabled = false);
+
+          let inputTargets = listItem.querySelectorAll("input"); //nodeList
+          [...inputTargets].forEach((input) => {
+            // lesson: spreading nodeList out to use array method. could use for loop w/o spreading
+            input.disabled === false
+              ? (input.disabled = true)
+              : (input.disabled = false);
+          });
+        }
+        break;
+      // ******************************************************************
+      case "cancel-companyName":
+      case "save-companyName":
+        editBtn.className = "control-btns edit-btn";
+        // !! addNewBtn.className = "control-btns add-new-btn display-none";
+        cancelBtn.className = "control-btns cancel-btn display-none";
+        saveBtn.className = "control-btns save-btn display-none";
+
+        // inputs and delete btns
+        // display block on delete btn **all but mwr type**
+        for (let listItem of listItems) {
+          // Don't really need terniary but am keeping for a reference
+          // let btnTarget = listItem.querySelector(".delete-btn");
+          // btnTarget.className !== "delete-btn"
+          //   ? (btnTarget.className = "delete-btn")
+          //   : (btnTarget.className = "delete-btn btn-visibile");
 
           // enable inputs for editing
           // let inputTarget = listItem.querySelector("input");
@@ -447,7 +530,8 @@ const SettingsPage = () => {
 
     category === "mwrType"
       ? showHideBtns(e, "edit-mwrType")
-      : category === "companyName" ? showHideBtns(e, "edit-companyName")
+      : category === "companyName"
+        ? showHideBtns(e, "edit-companyName")
         : showHideBtns(e, "edit");
   };
 
@@ -457,13 +541,10 @@ const SettingsPage = () => {
       ? mwrOnChange()
       : // e, item, index, mwrType
       othersOnChange();
-    console.log(mwrKey)
+    console.log(mwrKey);
     // mwrKey = type OR color
     // text input = event object
     // color picker = hsl value only
-
-
-
 
     function mwrOnChange() {
       const newArr = updateSettings.mwrTypes.slice();
@@ -491,7 +572,7 @@ const SettingsPage = () => {
       console.log(item); // departments
       console.log(newArr); // array copy
       console.log(newArr[index]); // value changed on newArr
-      console.log(e)  //onChange object
+      console.log(e); //onChange object
 
       setUpdateSettings((current) => {
         return {
@@ -622,11 +703,11 @@ const SettingsPage = () => {
 
       // enable inputs
       const addedItemChildren = addedListItem.children; //HTML collection object
-      console.log(addedItemChildren)
+      console.log(addedItemChildren);
       for (let child of addedItemChildren) {
         if (child.className === "mwr-type-label") {
           // let input = child.querySelector("input")
-          let input = child.children[1]
+          let input = child.children[1];
           input.disabled = false;
           // console.log(input)
         } else {
@@ -647,17 +728,30 @@ const SettingsPage = () => {
         };
       });
 
-      const targetLi =
-        e.target.parentElement.parentElement.parentElement.children[1]
-          .lastChild;
-      const targetDiv = targetLi.children[0].children[1];
-      console.log(targetLi)
-      const targetDeleteBtn = targetDiv.children[0];
-      targetDeleteBtn.className = "delete-btn btn-visibile";
+      // new organization test! WORKS!
+      const controlContainer = e.target.closest("div");
+      console.log(controlContainer);
+      const categoryDiv = controlContainer.parentElement;
+      console.log(categoryDiv);
+      const categoryLi = categoryDiv.parentElement;
+      console.log(categoryLi);
+      const listUnorderedList = categoryLi.lastChild;
+      console.log(listUnorderedList);
+      const addedListItem = listUnorderedList.lastChild;
+      console.log(addedListItem);
+      const addedInputField = addedListItem.querySelector(".input-text");
+      console.log(addedInputField);
+      // input enabled
+      addedInputField.disabled = false;
+      const deleteBtnDiv = addedListItem.querySelector(
+        ".item-controls-container"
+      );
+      console.log(deleteBtnDiv);
+      const deleteBtn = deleteBtnDiv.querySelector(".delete-btn");
+      console.log(deleteBtn);
 
-      const targetInput = targetLi.children[0].children[0];
-      targetInput.disabled = false;
-      // console.log(updateSettings[item]);
+      // delete btn visibility
+      deleteBtn.className = "delete-btn btn-visibile";
     }
   }
 
@@ -665,12 +759,11 @@ const SettingsPage = () => {
   //! WORKS for mwrTypes and others
   const cancelChanges = (e, item, category) => {
     e.stopPropagation();
-    category === "mwrType" ? showHideBtns(e, "cancel-mwrType") :
-      category === "companyName" ? showHideBtns(e, "cancel-companyName") :
-        showHideBtns(e, "cancel");
-
-
-
+    category === "mwrType"
+      ? showHideBtns(e, "cancel-mwrType")
+      : category === "companyName"
+        ? showHideBtns(e, "cancel-companyName")
+        : showHideBtns(e, "cancel");
 
     const newArr = settings[item].slice();
     console.table(newArr);
@@ -685,9 +778,11 @@ const SettingsPage = () => {
   //! WORKS for mwrTypes and others
   const saveSection = (e, item, category) => {
     e.preventDefault();
-    category === "mwrType" ? showHideBtns(e, "save-mwrType") :
-      category === "companyName" ? showHideBtns(e, "save-companyName") :
-        showHideBtns(e, "save");
+    category === "mwrType"
+      ? showHideBtns(e, "save-mwrType")
+      : category === "companyName"
+        ? showHideBtns(e, "save-companyName")
+        : showHideBtns(e, "save");
 
     const newArr = updateSettings[item].slice();
     const updatedSettings = {
@@ -756,7 +851,7 @@ const SettingsPage = () => {
   // mapping mwrType separate b/c array of objects
   const mwrTypeSettingsMap = updateSettings.mwrTypes.map((item, index) => {
     const mwrType = "mwrType";
-    console.log(`WWAAAAAAA ${index}`)
+    console.log(`WWAAAAAAA ${index}`);
     return (
       // li is parent of 2 labels and 1 div
       <li key={index} className={"mwr-type-li"}>
@@ -796,6 +891,16 @@ const SettingsPage = () => {
             Delete
           </button>
         </div>
+        {viewPortWidth <= 688 && (
+          <hr
+            style={{
+              backgroundColor: "ThreeDLightShadow",
+              marginBlockStart: "1rem",
+              marginBlockEnd: "1rem",
+              marginInlineEnd: "1rem",
+            }}
+          ></hr>
+        )}
       </li>
     );
   });
@@ -868,7 +973,10 @@ const SettingsPage = () => {
               {settingsCategorySorter(item)}
             </h2>
             <div className={"category-controls-container"}>
-              <span className={"control-btns edit-btn"} onClick={(e) => enableEdit(e, "companyName")}>
+              <span
+                className={"control-btns edit-btn"}
+                onClick={(e) => enableEdit(e, "companyName")}
+              >
                 {viewPortWidth > 820 ? (
                   "edit"
                 ) : (
@@ -938,14 +1046,14 @@ const SettingsPage = () => {
                       id={arrItem}
                       disabled={true}
                     ></input>
-                    <div className={"item-controls-container"}>
+                    {/* <div className={"item-controls-container"}>
                       <button
                         className={"delete-btn"}
                         onClick={(e) => remove(e, item, index)}
                       >
                         Delete
                       </button>
-                    </div>
+                    </div> */}
                   </label>
                 </li>
               );
@@ -1059,11 +1167,50 @@ const SettingsPage = () => {
 
   return (
     <Layout>
-      <Link to="/admin" style={{ display: "inlineBlock", textAlign: "end", marginBlockEnd: "0.5rem" }}>Return to Admin. Page</Link>
+      <header>
+        <nav>
+          <ul
+            style={{
+              display: "flex",
+              gap: "2rem",
+              justifyContent: "end",
+              listStyleType: "none",
+              maxWidth: "963px",
+              margin: "auto",
+            }}
+          >
+            <li
+              style={{
+                padding: "0.25rem 0.5rem",
+                margin: "0",
+              }}
+            >
+              <Link to="/">MWR Submition Page</Link>
+            </li>
+            <li
+              style={{
+                padding: "0.25rem 0.5rem",
+                margin: "0",
+              }}
+            >
+              <Link to="/admin">Admin. Page</Link>
+            </li>
+            <li
+              style={{
+                textDecoration: "underline var(--red-btn-color-darker) 2px",
+                padding: "0.25rem 0.5rem",
+                margin: "0",
+              }}
+            >
+              <Link to="/settings">Settings Page</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
       <SettingsWrapperStyled>
         <ul className="settings-ul">{settingsMap}</ul>
       </SettingsWrapperStyled>
-
     </Layout>
   );
 };
