@@ -251,6 +251,31 @@ const SettingsWrapperStyled = styled.div`
 `;
 
 const SettingsPage = () => {
+  // testing
+  // Lesson: using state to hold the innderWidth instead of variable. All other components will rerender 
+  // when state changes rather than on refresh, like variable method does
+  const [windowDimension, setWindowDimension] = useState(null);
+
+  useEffect(() => {
+    setWindowDimension(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimension(window.innerWidth);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = windowDimension <= 640;
+  console.log(isMobile)
+
+  //  end of test
+
+
+
   // logs on first and re-render of page
   const viewPortWidth = window.innerWidth;
   useEffect(() => {
@@ -1167,7 +1192,10 @@ const SettingsPage = () => {
 
   return (
     <Layout>
-      <header>
+      <header style={{
+        // to counter header in layout component bottom margin
+        marginTop: "-1.45rem",
+      }}>
         <nav>
           <ul
             style={{
@@ -1185,7 +1213,7 @@ const SettingsPage = () => {
                 margin: "0",
               }}
             >
-              <Link to="/">MWR Submition Page</Link>
+              <Link to="/">Submit MWR</Link>
             </li>
             <li
               style={{
@@ -1193,7 +1221,7 @@ const SettingsPage = () => {
                 margin: "0",
               }}
             >
-              <Link to="/admin">Admin. Page</Link>
+              <Link to="/admin">Admin.</Link>
             </li>
             <li
               style={{
@@ -1202,7 +1230,7 @@ const SettingsPage = () => {
                 margin: "0",
               }}
             >
-              <Link to="/settings">Settings Page</Link>
+              <Link to="/settings">Settings</Link>
             </li>
           </ul>
         </nav>
