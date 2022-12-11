@@ -265,6 +265,8 @@ const SettingsPage = () => {
       setWindowDimension(window.innerWidth);
     }
 
+    // TODO In production, debouncing the handleResize would be a good idea.
+    // reference article: https://dev.to/joserfelix/create-a-mobile-friendly-navigation-with-react-4930
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -916,7 +918,7 @@ const SettingsPage = () => {
             Delete
           </button>
         </div>
-        {viewPortWidth <= 688 && (
+        {windowDimension <= 688 && (
           <hr
             style={{
               backgroundColor: "ThreeDLightShadow",
@@ -943,7 +945,7 @@ const SettingsPage = () => {
                 className={"control-btns edit-btn"}
                 onClick={(e) => enableEdit(e, "mwrType")}
               >
-                {viewPortWidth > 820 ? (
+                {windowDimension > 820 ? (
                   "edit"
                 ) : (
                   <AiOutlineEdit className="control-icon edit-icon" />
@@ -953,7 +955,7 @@ const SettingsPage = () => {
                 className={"control-btns add-new-btn display-none"}
                 onClick={(e) => addItem(e, item)}
               >
-                {viewPortWidth > 820 ? (
+                {windowDimension > 820 ? (
                   "add new"
                 ) : (
                   <AiOutlinePlusCircle className="control-icon add-new-icon" />
@@ -963,7 +965,7 @@ const SettingsPage = () => {
                 className={"control-btns cancel-btn display-none"}
                 onClick={(e) => cancelChanges(e, item, "mwrType")}
               >
-                {viewPortWidth > 820 ? (
+                {windowDimension > 820 ? (
                   "cancel"
                 ) : (
                   <AiOutlineCloseCircle className="control-icon cancel-icon" />
@@ -973,7 +975,7 @@ const SettingsPage = () => {
                 className={"control-btns save-btn display-none"}
                 onClick={(e) => saveSection(e, item, "mwrType")}
               >
-                {viewPortWidth > 820 ? (
+                {windowDimension > 820 ? (
                   "save"
                 ) : (
                   <AiOutlineCheckCircle className="control-icon save-icon" />
@@ -1002,7 +1004,7 @@ const SettingsPage = () => {
                 className={"control-btns edit-btn"}
                 onClick={(e) => enableEdit(e, "companyName")}
               >
-                {viewPortWidth > 820 ? (
+                {windowDimension > 820 ? (
                   "edit"
                 ) : (
                   <AiOutlineEdit className="control-icon edit-icon" />
@@ -1012,7 +1014,7 @@ const SettingsPage = () => {
                 className={"control-btns add-new-btn display-none"}
                 onClick={(e) => addItem(e, item)}
               >
-                {viewPortWidth > 820 ? (
+                {windowDimension > 820 ? (
                   "add new"
                 ) : (
                   <AiOutlinePlusCircle className="control-icon add-new-icon" />
@@ -1022,7 +1024,7 @@ const SettingsPage = () => {
                 className={"control-btns cancel-btn display-none"}
                 onClick={(e) => cancelChanges(e, item, "companyName")}
               >
-                {viewPortWidth > 820 ? (
+                {windowDimension > 820 ? (
                   "cancel"
                 ) : (
                   <AiOutlineCloseCircle className="control-icon cancel-icon" />
@@ -1032,7 +1034,7 @@ const SettingsPage = () => {
                 className={"control-btns save-btn display-none"}
                 onClick={(e) => saveSection(e, item, "companyName")}
               >
-                {viewPortWidth > 820 ? (
+                {windowDimension > 820 ? (
                   "save"
                 ) : (
                   <AiOutlineCheckCircle className="control-icon save-icon" />
@@ -1101,7 +1103,7 @@ const SettingsPage = () => {
             </h2>
             <div className={"category-controls-container"}>
               <span className={"control-btns edit-btn"} onClick={enableEdit}>
-                {viewPortWidth > 820 ? (
+                {windowDimension > 820 ? (
                   "edit"
                 ) : (
                   <AiOutlineEdit className="control-icon edit-icon" />
@@ -1111,7 +1113,7 @@ const SettingsPage = () => {
                 className={"control-btns add-new-btn display-none"}
                 onClick={(e) => addItem(e, item)}
               >
-                {viewPortWidth > 820 ? (
+                {windowDimension > 820 ? (
                   "add new"
                 ) : (
                   <AiOutlinePlusCircle className="control-icon add-new-icon" />
@@ -1121,7 +1123,7 @@ const SettingsPage = () => {
                 className={"control-btns cancel-btn display-none"}
                 onClick={(e) => cancelChanges(e, item)}
               >
-                {viewPortWidth > 820 ? (
+                {windowDimension > 820 ? (
                   "cancel"
                 ) : (
                   <AiOutlineCloseCircle className="control-icon cancel-icon" />
@@ -1131,7 +1133,7 @@ const SettingsPage = () => {
                 className={"control-btns save-btn display-none"}
                 onClick={(e) => saveSection(e, item)}
               >
-                {viewPortWidth > 820 ? (
+                {windowDimension > 820 ? (
                   "save"
                 ) : (
                   <AiOutlineCheckCircle className="control-icon save-icon" />
