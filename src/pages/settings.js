@@ -279,10 +279,11 @@ const SettingsPage = () => {
 
 
   // logs on first and re-render of page
-  const viewPortWidth = window.innerWidth;
-  useEffect(() => {
-    console.log(viewPortWidth);
-  }, [viewPortWidth]);
+  // the way I did it here required page to be reloaded for variable values to be recognized by DOM components
+  // const viewPortWidth = window.innerWidth;
+  // useEffect(() => {
+  //   console.log(viewPortWidth);
+  // }, [viewPortWidth]);
 
   // context variables
   const settings = useContext(GlobalSettingsContext);
