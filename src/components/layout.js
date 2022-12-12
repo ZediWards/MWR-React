@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
     <LayoutDiv>
       {/* <p>{state[0].type}</p> */}
       <Header />
-      <main>{children}</main>
+      <main style={{ marginBlockStart: "65px", paddingBlockStart: "2rem" }}>{children}</main>
       <Footer />
     </LayoutDiv>
   );
