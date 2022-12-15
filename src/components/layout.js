@@ -2,6 +2,7 @@ import * as React from "react";
 import { useContext } from "react";
 import styled from "styled-components";
 
+import Nav from "./nav";
 import Header from "./header";
 import Footer from "./footer";
 
@@ -28,8 +29,8 @@ const Layout = ({ children }) => {
   return (
     <LayoutDiv>
       {/* <p>{state[0].type}</p> */}
-      <Header />
-      <main style={{ marginBlockStart: "65px", paddingBlockStart: "2rem" }}>{children}</main>
+      <Nav />
+      <main style={{ paddingBlockStart: "10rem" }}>{children}</main>
       <Footer />
     </LayoutDiv>
   );
