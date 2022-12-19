@@ -856,7 +856,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   // capture="environment"
                   accept="image/png, image/jpeg"
                   disabled={false}
-                  className={`${style.inputReadableDisabled} ${style.growOne}`}
+                  className={`${style.inputReadableDisabled} ${style.growOne} ${style.cursor}`}
                 />
               </label>
               {true ? <Gallery></Gallery> : null}

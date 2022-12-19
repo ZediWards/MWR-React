@@ -110,6 +110,10 @@ const MwrFormStyled = styled.form`
     background: #fff;
   }
 
+  .cursor {
+    cursor: pointer;
+  }
+
   /* !!!!!!!!!! Details Style !!!!!!!! */
   /* .input-readable-disabled {
     background-color: white;
@@ -128,8 +132,11 @@ function uniqueID() {
 
 function photoAlert(e) {
   e.stopPropagation();
+  e.preventDefault();
   alert("Upload feature available in self-hosting branch on Github");
 }
+
+
 const MwrForm = ({ mwrType, handleClose }) => {
   const settings = useContext(GlobalSettingsContext);
   const settingsDispatch = useContext(GlobalSettingsDispatchContext);
@@ -370,13 +377,14 @@ const MwrForm = ({ mwrType, handleClose }) => {
       <label htmlFor="photos" className="photos-label">
         <p className="input-label">Photos:</p>
         <input
+          className="cursor"
           type="file"
           onClick={(e) => photoAlert(e)}
           id="employeePhotoUpload"
           multiple={true}
           // capture="environment"
           accept="image/png, image/jpeg"
-          disabled={true}
+          disabled={false}
         />
       </label>
 
