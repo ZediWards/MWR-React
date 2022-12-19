@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useContext, useCallback, useRef } from "react";
 import Gallery from "../components/LightGallery";
 
-import useClickOutside from "./useClickOutside";
+// import useClickOutside from "./useClickOutside";
 
 // import LightGallery from 'lightgallery/react';
 // // import styles
@@ -61,7 +61,8 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
   const formRef = useRef();
   const close = useCallback(() => handleClose(), []);
 
-  useClickOutside(formRef, close);
+  // commented out b/c it was closing the lighbox when clicked as well.
+  // useClickOutside(formRef, close);
 
   // **************** varibles for mapping inside form********************
   // const assignedDepartments = [
@@ -287,7 +288,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                 className={style.empSecTwoTextAreaInputReadableDisabled}
                 disabled={true}
                 rows="5"
-                // cols="75"
+              // cols="75"
               ></textarea>
             </label>
 
@@ -303,7 +304,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                 className={style.empSecTwoTextAreaInputReadableDisabled}
                 disabled={true}
                 rows="5"
-                // cols="75"
+              // cols="75"
               ></textarea>
             </label>
 
@@ -379,7 +380,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   id="project-num"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
 
-                  // disabled={true}
+                // disabled={true}
                 />
               </label>
             </div>
@@ -398,7 +399,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   name="work-order-num"
                   id="work-order-num"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  // disabled={true}
+                // disabled={true}
                 />
               </label>
 
@@ -418,7 +419,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   id="work-order-date"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
 
-                  // disabled={true}
+                // disabled={true}
                 />
               </label>
 
@@ -437,7 +438,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   name="work-order-time"
                   id="work-order-time"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  // disabled={true}
+                // disabled={true}
                 />
               </label>
             </div>
@@ -460,7 +461,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   id="scheduled-date"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
 
-                  // disabled={true}
+                // disabled={true}
                 />
               </label>
 
@@ -583,7 +584,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   // className={style.empSecTwoTextAreaInputReadableDisabled}
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
                   rows="1"
-                  // cols="50"
+                // cols="50"
                 ></textarea>
               </label>
             </div>
@@ -613,7 +614,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                 id="brief-discription"
                 className={style.empSecTwoTextAreaInputReadableDisabled}
                 rows="5"
-                // cols="75"
+              // cols="75"
               ></textarea>
             </label>
 
@@ -636,7 +637,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                 id="work-discription"
                 className={style.empSecTwoTextAreaInputReadableDisabled}
                 rows="5"
-                // cols="75"
+              // cols="75"
               ></textarea>
             </label>
           </div>
@@ -662,7 +663,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   name="assign-to"
                   id="assign-to"
                   className={`${style.inputReadableDisabled} ${style.growOne} ${style.selectStyles}`}
-                  // disabled={true}
+                // disabled={true}
                 >
                   <option
                     value={updateMwr.assignTo}
@@ -688,7 +689,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   name="maintenance-team-member"
                   id="maintenance-team-member"
                   className={`${style.inputReadableDisabled} ${style.growOne} ${style.selectStyles}`}
-                  // disabled={true}
+                // disabled={true}
                 >
                   <option
                     value={updateMwr.maintenanceTeamMember}
@@ -714,7 +715,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   name="assistant"
                   id="assistant"
                   className={`${style.inputReadableDisabled} ${style.growOne} ${style.selectStyles}`}
-                  // disabled={true}
+                // disabled={true}
                 >
                   <option
                     value={updateMwr.assistant}
@@ -747,7 +748,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   name="due-date"
                   id="due-date"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  // disabled={true}
+                // disabled={true}
                 />
               </label>
 
@@ -763,7 +764,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   name="est-hours"
                   id="est-hours"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  // disabled={true}
+                // disabled={true}
                 />
               </label>
 
@@ -779,7 +780,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   name="act-hours"
                   id="act-hours"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  // disabled={true}
+                // disabled={true}
                 />
               </label>
 
@@ -795,7 +796,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   name="downtime"
                   id="downtime"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  // disabled={true}
+                // disabled={true}
                 />
               </label>
             </div>
@@ -814,7 +815,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   name="asset-id"
                   id="asset-id"
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
-                  // disabled={true}
+                // disabled={true}
                 />
               </label>
 
@@ -836,7 +837,7 @@ const ViewDetails = ({ mwrDetails, handleClose }) => {
                   // lesson learned: multiple classes
                   className={`${style.inputReadableDisabled} ${style.growOne}`}
                   rows="1"
-                  // cols="50"
+                // cols="50"
                 ></textarea>
               </label>
             </div>
