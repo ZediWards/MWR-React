@@ -31,6 +31,8 @@ const Navbar = {
     align-items: center;
 
     background-color: white;
+    /* lesson: ternary works but only on manual refresh since its not updating a state */
+    /* background: ${isLoggedIn() ? "pink" : "transparent"}; */
     width: 100vw;
     // 40em == 640px
     @media only screen and (max-width: 40em) {
@@ -158,7 +160,7 @@ const Nav = () => {
   return (
     <Navbar.Wrapper>
       <Navbar.Logo>Logo</Navbar.Logo>
-      <span>{greetingMessage}</span>
+      {/* <span>{greetingMessage}</span> */}
 
       <HamburgerButton.Wrapper onClick={() => toggleDrawer(true)}>
         <HamburgerButton.Lines />
@@ -168,12 +170,11 @@ const Nav = () => {
         <Navbar.Item>
           <Link to="/">Home</Link>
         </Navbar.Item>
-        <Navbar.Item>
-          <Link to="/admin">Maintenance</Link>
-        </Navbar.Item>
-        <Navbar.Item>
-          <Link to="/settings">Settings</Link>
-        </Navbar.Item>
+        {isLoggedIn() ?
+          <Navbar.Item>
+            <Link to="/settings">Settings</Link>
+          </Navbar.Item>
+          : null}
         <Navbar.Item>
           {isLoggedIn() ? (
             <a
@@ -187,6 +188,9 @@ const Nav = () => {
             </a>
           ) : <Link to="/app/login">Maint. Log In</Link>}
         </Navbar.Item>
+        {/* <Navbar.Item>
+          <Link to="/admin">Maintenance</Link>
+        </Navbar.Item> */}
       </Navbar.Items>
     </Navbar.Wrapper>
   );
