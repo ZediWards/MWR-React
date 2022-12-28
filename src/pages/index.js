@@ -165,9 +165,9 @@ const IndexPage = () => {
     <Layout>
       <div>
         {/* ************** gatsby AUTH tutorial */}
-        <h1>Hello {isLoggedIn() ? getUser().name : "world"}!</h1>
+        {/* <h1>Hello {isLoggedIn() ? getUser().name : "world"}!</h1> */}
         {/* lesson: using ternary operator to render different components or jsx */}
-        <p>
+        {/* <p>
           {isLoggedIn() ? (
             <>
               You are logged in, so check your{" "}
@@ -179,7 +179,7 @@ const IndexPage = () => {
               content
             </>
           )}
-        </p>
+        </p> */}
 
         {/* ***************** end of Gatsby auth tutorial */}
         <MwrCards />
