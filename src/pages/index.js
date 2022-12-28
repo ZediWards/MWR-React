@@ -1,6 +1,11 @@
 import * as React from "react";
 import { useState, useEffect, useContext } from "react";
 
+// *************** gatsby auth tutorial
+import { Link } from "gatsby"
+import { getUser, isLoggedIn } from "../services/auth"
+// ******************** end of gatsby auth tutorial
+
 import {
   GlobalSettingsContext,
   GlobalStateContext
@@ -159,6 +164,24 @@ const IndexPage = () => {
   return (
     <Layout>
       <div>
+        {/* ************** gatsby AUTH tutorial */}
+        <h1>Hello {isLoggedIn() ? getUser().name : "world"}!</h1>
+        {/* lesson: using ternary operator to render different components or jsx */}
+        <p>
+          {isLoggedIn() ? (
+            <>
+              You are logged in, so check your{" "}
+              <Link to="/app/profile">profile</Link>
+            </>
+          ) : (
+            <>
+              You should <Link to="/app/login">log in</Link> to see restricted
+              content
+            </>
+          )}
+        </p>
+
+        {/* ***************** end of Gatsby auth tutorial */}
         <MwrCards />
         <Leaderboard />
         <FullTable />

@@ -2,7 +2,9 @@ import * as React from "react";
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
+import { getUser, isLoggedIn, logout } from "../services/auth"
+
 
 const HeaderStyled = styled.header`
   // ********************************** Company Name
@@ -126,6 +128,17 @@ const HamburgerButton = {
 };
 
 const Nav = () => {
+  // ******** gatsby auth test
+  let greetingMessage = ""
+  if (isLoggedIn()) {
+    greetingMessage = `Hello ${getUser().name}`
+  } else {
+    greetingMessage = "You are not logged in"
+  }
+
+  // ******** end gatsby auth test
+
+
   const [openDrawer, toggleDrawer] = useState(false);
   const drawerRef = useRef(null);
 
@@ -145,6 +158,7 @@ const Nav = () => {
   return (
     <Navbar.Wrapper>
       <Navbar.Logo>Logo</Navbar.Logo>
+      <span>{greetingMessage}</span>
 
       <HamburgerButton.Wrapper onClick={() => toggleDrawer(true)}>
         <HamburgerButton.Lines />
@@ -159,6 +173,19 @@ const Nav = () => {
         </Navbar.Item>
         <Navbar.Item>
           <Link to="/settings">Settings</Link>
+        </Navbar.Item>
+        <Navbar.Item>
+          {isLoggedIn() ? (
+            <a
+              href="/"
+              onClick={event => {
+                event.preventDefault()
+                logout(() => navigate(`/app/login`))
+              }}
+            >
+              Logout
+            </a>
+          ) : <Link to="/app/login">Maint. Log In</Link>}
         </Navbar.Item>
       </Navbar.Items>
     </Navbar.Wrapper>
