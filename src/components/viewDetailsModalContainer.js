@@ -4,9 +4,13 @@ import { useEffect, useRef } from "react"
 import { CSSTransition } from "react-transition-group"
 import ReactPortal from "./reactPortal"
 
+import { isLoggedIn } from "../services/auth"
+
+
 import "../css_modules/modalStyles.css"
 //
 
+import Details from "./details"
 import ViewDetails from "./viewDetails"
 
 function ViewDetailsModalContainer({
@@ -41,10 +45,19 @@ function ViewDetailsModalContainer({
             {/* <button onClick={handleClose} className="close-btn">
               X
             </button> */}
-            <ViewDetails
+            {isLoggedIn() ?
+              <ViewDetails
+                mwrDetails={mwrDetails}
+                handleClose={handleClose}
+              /> :
+              <Details
+                mwrDetails={mwrDetails}
+                handleClose={handleClose}
+              />}
+            {/* <ViewDetails
               mwrDetails={mwrDetails}
               handleClose={handleClose}
-            />
+            /> */}
           </div>
         </div>
       </CSSTransition>
