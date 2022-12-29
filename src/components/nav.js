@@ -161,7 +161,7 @@ const Nav = () => {
   return (
     // lesson: changing bg upon logged on status. works like this, OR pass in same function no Nav component as a prop and do prop.isLoggedIn ? "pink"
     // : "red"... It seems that you can use props in styled components but I couldn't get it to work :shrug
-    <Navbar.Wrapper style={{ backgroundColor: isLoggedIn() ? "pink" : "red" }}>
+    <Navbar.Wrapper style={{ backgroundColor: isLoggedIn() ? "var(--green-btn-background)" : "white" }}>
       <Navbar.Logo>Logo</Navbar.Logo>
       {/* <span>{greetingMessage}</span> */}
 
