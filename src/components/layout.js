@@ -2,6 +2,9 @@ import * as React from "react";
 import { useContext } from "react";
 import styled from "styled-components";
 
+import { isLoggedIn } from "../services/auth"
+
+
 import Nav from "./nav";
 import Header from "./header";
 import Footer from "./footer";

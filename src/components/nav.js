@@ -30,7 +30,7 @@ const Navbar = {
     justify-content: space-between;
     align-items: center;
 
-    background-color: white;
+    /* background-color: white; */
     /* lesson: ternary works but only on manual refresh since its not updating a state */
     /* background: ${isLoggedIn() ? "pink" : "transparent"}; */
     width: 100vw;
@@ -157,8 +157,11 @@ const Nav = () => {
     return () => document.removeEventListener("mousedown", closeDrawer);
   }, []);
 
+
   return (
-    <Navbar.Wrapper>
+    // lesson: changing bg upon logged on status. works like this, OR pass in same function no Nav component as a prop and do prop.isLoggedIn ? "pink"
+    // : "red"... It seems that you can use props in styled components but I couldn't get it to work :shrug
+    <Navbar.Wrapper style={{ backgroundColor: isLoggedIn() ? "pink" : "red" }}>
       <Navbar.Logo>Logo</Navbar.Logo>
       {/* <span>{greetingMessage}</span> */}
 
