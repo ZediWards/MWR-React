@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState, useEffect, useContext } from "react";
 
-import { PopoverPicker } from "../components/popoverColorPicker";
+import { PopoverPicker } from "./popoverColorPicker";
 
 import {
   AiOutlineCloseCircle,
@@ -19,8 +19,8 @@ import {
 } from "../context/GlobalContextProvider";
 import { ACTIONS } from "../context/GlobalContextProvider";
 
-import Layout from "../components/layout";
-import Header from "../components/header";
+import Layout from "./layout";
+import Header from "./header";
 
 // ********* STYLES **************
 
@@ -28,6 +28,7 @@ const SettingsWrapperStyled = styled.div`
   border: 1px solid ThreeDLightShadow;
   max-width: 960px;
   margin: auto;
+  margin-block-start: -10rem;
   padding-block-start: 1.5rem;
 
   .settings-ul {
@@ -252,7 +253,7 @@ const SettingsWrapperStyled = styled.div`
 
 
 
-const SettingsPage = () => {
+const SettingsComponent = () => {
   // testing
   // Lesson: using state to hold the innderWidth instead of variable. All other components will rerender 
   // when state changes rather than on refresh, like variable method does
@@ -1204,4 +1205,4 @@ const SettingsPage = () => {
   );
 };
 
-export default SettingsPage;
+export default SettingsComponent;

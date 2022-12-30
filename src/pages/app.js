@@ -5,14 +5,14 @@ import PrivateRoute from "../components/privateRoute"
 import Profile from "../components/profile"
 import Login from "../components/login"
 
-import IndexPage from "./index"
+import SettingsComponent from "../components/settings"
 
 const App = () => (
   <Layout>
     <Router>
       <PrivateRoute path="/app/profile" component={Profile} />
       <Login path="/app/login" />
-      <PrivateRoute path="/app/index" component={IndexPage} />
+      <PrivateRoute path="/app/SettingsComponent" component={SettingsComponent} />
     </Router>
   </Layout>
 )
