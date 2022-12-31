@@ -298,7 +298,7 @@ function themeReducer(state, action) {
 
 
 const GlobalContextProvider = ({ children }) => {
-  if (window) {
+  if (process.isClient) {
     // Theme settings
     const [theme, themeDispatch] = React.useReducer(themeReducer, themeSettings);
     // initial state & local storage
