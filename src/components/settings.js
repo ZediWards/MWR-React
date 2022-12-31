@@ -70,7 +70,7 @@ const SettingsWrapperStyled = styled.div`
   }
 
   svg.save-icon {
-    fill: orange;
+    fill: DarkSeaGreen;
   }
 
   svg.cancel-icon {
@@ -78,7 +78,7 @@ const SettingsWrapperStyled = styled.div`
   }
 
   svg.add-new-icon {
-    fill: yellow;
+    fill: MediumPurple;
   }
 
   .category-header-container {

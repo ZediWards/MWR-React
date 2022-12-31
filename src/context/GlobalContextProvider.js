@@ -24,7 +24,7 @@ const generalSettings = {
   companyName: ["Test Company"],
   mwrTypes: [
     { type: "General", color: "hsl(111, 50%, 85%)" },
-    { type: "Urgent", color: "hsl(52, 50%, 85%)" },
+    { type: "Urgent", color: "hsl(52, 84%, 77%)" },
     { type: "Safety", color: "hsl(2, 50%, 85%)" },
   ],
   departments: [
