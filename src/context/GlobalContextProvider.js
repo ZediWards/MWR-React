@@ -46,171 +46,168 @@ const generalSettings = {
 const initialState = [
   {
     id: 1,
-    // Employee section
     type: "general",
     date: "2022-11-12",
     name: "Jane Doe",
     department: "compounding",
     problem: "The pump in the corner of the trench is not working properly",
     solution: "Seems like it is related to the air side of the pump.",
-    // Maininence Section
     status: "assigned",
     workOrderNum: "001",
     workOrderDate: "2022-11-21",
     workOrderTime: "12:00",
     projectNum: "007",
     scheduledDate: "2022-11-22",
-    // needs applied to all
     openHistory: "",
     problemType: "plumbing",
-    //
     daysToCOmplete: "1",
     completedDate: "2022-11-22",
-    //
     dueDate: "2022-11-25",
     estHours: "3",
     assetId: "123",
     assetDescription: "Trench pump",
     downtime: "0",
     actHours: "2",
-    //
     site: "Compounding trench",
-    //
     requestNum: "1",
     requestedByEmail: "janeDoe@tesing.com",
-    //
     assignTo: "Building Maintenence",
     assistant: "",
     maintenanceTeamMember: "Tod",
-    //
-    briefDiscription:
-      "The shaft on the sir side of the diaphragm pump was broken. Replace with spare.",
+    briefDiscription: "The shaft on the sir side of the diaphragm pump was broken. Replace with spare.",
     workDiscription: "Replaced broken part. Pumps works now.",
-    //
-    // left
     comments: "",
-    //
-    // full (left through right)
     employeeComments: {
       commentOne: "",
       commentTwo: "",
       commentThree: "",
       commentsFive: "",
-      commentSix: "",
-    },
+      commentSix: ""
+    }
   },
-  // {
-  //   id: 2,
-  //   // Employee section
-  //   type: "general",
-  //   date: "2021-11-12",
-  //   name: "Jon Doe",
-  //   department: "compounding",
-  //   problem: "details test",
-  //   solution: "fix it",
-  //   // Maininence Section
-  //   status: "unassigned",
-  //   workOrderNum: "001",
-  //   workOrderDate: "2021-11-21",
-  //   workOrderTime: "12:00",
-  //   projectNum: "007",
-  //   scheduledDate: "2021-11-22",
-  //   // needs applied to all
-  //   openHistory: "",
-  //   problemType: "electrical",
-  //   //
-  //   daysToCOmplete: "",
-  //   completedDate: "",
-  //   //
-  //   dueDate: "2022-07-07",
-  //   estHours: "2",
-  //   assetId: "123",
-  //   assetDescription: "a switch!",
-  //   downtime: "1",
-  //   actHours: "3",
-  //   //
-  //   site: "light switch",
-  //   //
-  //   requestNum: "",
-  //   requestedByEmail: "test@tesing.com",
-  //   //
-  //   assignTo: "Production Maintenance",
-  //   assistant: "Bob",
-  //   maintenanceTeamMember: "Jon",
-  //   //
-  //   briefDiscription:
-  //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-  //   workDiscription:
-  //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-  //   //
-  //   // left
-  //   comments: "",
-  //   //
-  //   // full (left through right)
-  //   employeeComments: {
-  //     commentOne: "",
-  //     commentTwo: "",
-  //     commentThree: "",
-  //     commentsFive: "",
-  //     commentSix: ""
-  //   }
-  // },
-  // {
-  //   id: 3,
-  //   // Employee section
-  //   type: "general",
-  //   date: "2021-11-12",
-  //   name: "Jon Doe",
-  //   department: "compounding",
-  //   problem: "details test",
-  //   solution: "fix it",
-  //   // Maininence Section
-  //   status: "completed",
-  //   workOrderNum: "001",
-  //   workOrderDate: "2021-11-21",
-  //   workOrderTime: "12:00",
-  //   projectNum: "007",
-  //   scheduledDate: "2021-11-22",
-  //   // needs applied to all
-  //   openHistory: "",
-  //   problemType: "electrical",
-  //   //
-  //   daysToCOmplete: "",
-  //   completedDate: "",
-  //   //
-  //   dueDate: "2022-07-07",
-  //   estHours: "2",
-  //   assetId: "123",
-  //   assetDescription: "a switch!",
-  //   downtime: "1",
-  //   actHours: "3",
-  //   //
-  //   site: "light switch",
-  //   //
-  //   requestNum: "",
-  //   requestedByEmail: "test@tesing.com",
-  //   //
-  //   assignTo: "Production Maintenance",
-  //   assistant: "Bob",
-  //   maintenanceTeamMember: "Jon",
-  //   //
-  //   briefDiscription:
-  //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-  //   workDiscription:
-  //     "adf';dfjakdfja;dlkfjd;flk adlfkjdf;lkajdfk adlfkjdalk alfkja peroqeporiq[p erqe./,m/.z,vm dfa';e]pqoeid';fl.zd,mv a'f;la'e]pqoef ad';ma.v,m'af'ap4.",
-  //   //
-  //   // left
-  //   comments: "",
-  //   //
-  //   // full (left through right)
-  //   employeeComments: {
-  //     commentOne: "",
-  //     commentTwo: "",
-  //     commentThree: "",
-  //     commentsFive: "",
-  //     commentSix: ""
-  //   }
-  // }
+  {
+    id: 1440550440360,
+    type: "urgent",
+    date: "2022-12-30",
+    name: "Bobby Bones",
+    department: "warehouse",
+    problem: "The bay doors are leaking when it rains heavily.",
+    solution: "Weather stripping on bay doors need replaced.",
+    status: "completed",
+    workOrderNum: "1122",
+    workOrderDate: "2023-01-02",
+    workOrderTime: "14:50",
+    projectNum: "1234",
+    scheduledDate: "2023-01-03",
+    openHistory: "",
+    problemType: "machine",
+    daysToCOmplete: "",
+    completedDate: "",
+    dueDate: "2022-12-09",
+    estHours: "2",
+    assetId: "",
+    assetDescription: "",
+    downtime: "0",
+    actHours: "1",
+    site: "bay door 1",
+    requestNum: "",
+    requestedByEmail: "bones@email.com",
+    assignTo: "Building Maintenence",
+    assistant: "",
+    maintenanceTeamMember: "Tod",
+    briefDiscription: "Weather stripping was dry rotted.\nReplaced with new.",
+    workDiscription: "",
+    comments: "",
+    employeeComments: {
+      commentOne: "",
+      commentTwo: "",
+      commentThree: "",
+      commentsFive: "",
+      commentSix: ""
+    }
+  },
+  {
+    id: 353615989101,
+    type: "safety",
+    date: "2022-12-27",
+    name: "Sarah Conner",
+    department: "production 1",
+    problem: "The new case packer machine needs a safety guard at the first opening.\nYour fingers can get caught inside.",
+    solution: "Fabricate a guard to keep fingers out.",
+    status: "assigned",
+    workOrderNum: "1123",
+    workOrderDate: "2023-01-02",
+    workOrderTime: "15:30",
+    projectNum: "2344",
+    scheduledDate: "2023-01-03",
+    openHistory: "",
+    problemType: "machine",
+    daysToCOmplete: "",
+    completedDate: "",
+    dueDate: "2023-01-05",
+    estHours: "2",
+    assetId: "444",
+    assetDescription: "new case packer",
+    downtime: "0.5",
+    actHours: "2",
+    site: "new case packer",
+    requestNum: "",
+    requestedByEmail: "singularity@email.com",
+    assignTo: "General Maintenence",
+    assistant: "John",
+    maintenanceTeamMember: "Bob",
+    briefDiscription: "Entry one needs a guard fabricated.",
+    workDiscription: "",
+    comments: "",
+    employeeComments: {
+      commentOne: "",
+      commentTwo: "",
+      commentThree: "",
+      commentsFive: "",
+      commentSix: ""
+    }
+  },
+  {
+    id: 426076240042,
+    type: "general",
+    date: "2022-12-26",
+    name: "Sarah Conner",
+    department: "production 2",
+    problem: "The fan at station 1 is not working.",
+    solution: "Fuse might be blown.",
+    status: "unassigned",
+    workOrderNum: "1124",
+    workOrderDate: "2023-01-09",
+    workOrderTime: "10:00",
+    projectNum: "",
+    scheduledDate: "2023-01-10",
+    openHistory: "",
+    problemType: "electrical",
+    daysToCOmplete: "",
+    completedDate: "",
+    dueDate: "",
+    estHours: "",
+    assetId: "",
+    assetDescription: "",
+    downtime: "",
+    actHours: "",
+    site: "",
+    requestNum: "",
+    requestedByEmail: "singularity@email.com",
+    assignTo: "",
+    assistant: "",
+    maintenanceTeamMember: "",
+    briefDiscription: "",
+    workDiscription: "",
+    comments: "",
+    employeeComments: {
+      commentOne: "",
+      commentTwo: "",
+      commentThree: "",
+      commentsFive: "",
+      commentSix: ""
+    }
+  }
 ];
 // actions for our dispatch
 export const ACTIONS = {
