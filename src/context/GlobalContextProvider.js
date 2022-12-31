@@ -295,45 +295,51 @@ function themeReducer(state, action) {
 
 // wrapping state and reducer providers with GlobalContextProvider, which will wrap Gatsby
 // I think state needs to start as an empty array
-const GlobalContextProvider = ({ children }) => {
-  // Theme settings
-  const [theme, themeDispatch] = React.useReducer(themeReducer, themeSettings);
-  // initial state & local storage
-  const [state, dispatch] = React.useReducer(reducer, initialState, () => {
-    const localData = window.localStorage.getItem("state");
-    return localData ? JSON.parse(localData) : initialState;
-  });
-  useEffect(() => {
-    localStorage.setItem("state", JSON.stringify(state));
-  }, [state]);
 
-  // settings & Local Storage
-  const [settingsState, settingsDispatch] = React.useReducer(
-    settingsReducer,
-    generalSettings,
-    () => {
-      const localSettings = window.localStorage.getItem("settingsState");
-      return localSettings ? JSON.parse(localSettings) : generalSettings;
-    }
-  );
-  useEffect(() => {
-    window.localStorage.setItem("settingsState", JSON.stringify(settingsState));
-  }, [settingsState]);
-  return (
-    <GlobalThemeContext.Provider value={theme}>
-      <GlobalStateContext.Provider value={state}>
-        <GlobalSettingsContext.Provider value={settingsState}>
-          <GlobalThemeDispatchContext.Provider value={themeDispatch}>
-            <GlobalDispatchContext.Provider value={dispatch}>
-              <GlobalSettingsDispatchContext.Provider value={settingsDispatch}>
-                {children}
-              </GlobalSettingsDispatchContext.Provider>
-            </GlobalDispatchContext.Provider>
-          </GlobalThemeDispatchContext.Provider>
-        </GlobalSettingsContext.Provider>
-      </GlobalStateContext.Provider>
-    </GlobalThemeContext.Provider>
-  );
+
+const GlobalContextProvider = ({ children }) => {
+  if (window) {
+    // Theme settings
+    const [theme, themeDispatch] = React.useReducer(themeReducer, themeSettings);
+    // initial state & local storage
+    const [state, dispatch] = React.useReducer(reducer, initialState, () => {
+      const localData = window.localStorage.getItem("state");
+      return localData ? JSON.parse(localData) : initialState;
+    });
+    useEffect(() => {
+      localStorage.setItem("state", JSON.stringify(state));
+    }, [state]);
+
+    // settings & Local Storage
+    const [settingsState, settingsDispatch] = React.useReducer(
+      settingsReducer,
+      generalSettings,
+      () => {
+        const localSettings = window.localStorage.getItem("settingsState");
+        return localSettings ? JSON.parse(localSettings) : generalSettings;
+      }
+    );
+    useEffect(() => {
+      window.localStorage.setItem("settingsState", JSON.stringify(settingsState));
+    }, [settingsState]);
+    return (
+      <GlobalThemeContext.Provider value={theme}>
+        <GlobalStateContext.Provider value={state}>
+          <GlobalSettingsContext.Provider value={settingsState}>
+            <GlobalThemeDispatchContext.Provider value={themeDispatch}>
+              <GlobalDispatchContext.Provider value={dispatch}>
+                <GlobalSettingsDispatchContext.Provider value={settingsDispatch}>
+                  {children}
+                </GlobalSettingsDispatchContext.Provider>
+              </GlobalDispatchContext.Provider>
+            </GlobalThemeDispatchContext.Provider>
+          </GlobalSettingsContext.Provider>
+        </GlobalStateContext.Provider>
+      </GlobalThemeContext.Provider>
+    );
+  } else {
+    return true
+  }
 };
 
 export default GlobalContextProvider;
