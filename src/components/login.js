@@ -98,7 +98,8 @@ class Login extends React.Component {
               className="input"
               type="text"
               name="username"
-              onChange={this.handleUpdate} />
+              onChange={this.handleUpdate}
+              placeholder="test" />
           </label>
 
           <label>
@@ -108,6 +109,7 @@ class Login extends React.Component {
               type="password"
               name="password"
               onChange={this.handleUpdate}
+              placeholder="123"
             />
           </label>
           <input
