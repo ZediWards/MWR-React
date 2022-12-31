@@ -300,7 +300,7 @@ const GlobalContextProvider = ({ children }) => {
   const [theme, themeDispatch] = React.useReducer(themeReducer, themeSettings);
   // initial state & local storage
   const [state, dispatch] = React.useReducer(reducer, initialState, () => {
-    const localData = localStorage.getItem("state");
+    const localData = window.localStorage.getItem("state");
     return localData ? JSON.parse(localData) : initialState;
   });
   useEffect(() => {
@@ -312,12 +312,12 @@ const GlobalContextProvider = ({ children }) => {
     settingsReducer,
     generalSettings,
     () => {
-      const localSettings = localStorage.getItem("settingsState");
+      const localSettings = window.localStorage.getItem("settingsState");
       return localSettings ? JSON.parse(localSettings) : generalSettings;
     }
   );
   useEffect(() => {
-    localStorage.setItem("settingsState", JSON.stringify(settingsState));
+    window.localStorage.setItem("settingsState", JSON.stringify(settingsState));
   }, [settingsState]);
   return (
     <GlobalThemeContext.Provider value={theme}>
