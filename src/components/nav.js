@@ -25,7 +25,8 @@ const Navbar = {
     box-shadow: 0 1px 1px rgba(47, 47, 47, 10%);
     flex: 1;
     align-self: flex-start;
-    padding: 1rem 3rem;
+    /* padding: 1rem 3rem; */
+    padding: 1rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,16 +45,20 @@ const Navbar = {
   Logo: styled.h1`
     border: 1px solid gray;
     padding: 0.5rem 1rem;
+    margin-block-end: 0;
   `,
   Items: styled.ul`
     display: flex;
     list-style: none;
+    margin: 0;
+    align-self: end;
 
     @media only screen and (max-width: 40em) {
       position: fixed;
       right: 0;
       top: 0;
-      background-color: pink;
+      background-color: hsl(2,50%,85%);
+      box-shadow: 0 1px 1px rgba(47, 47, 47, 10%);
       height: 100%;
       flex-direction: column;
       padding: 1rem 2rem;
@@ -176,7 +181,7 @@ const Nav = () => {
         </Navbar.Item>
         {isLoggedIn() ?
           <Navbar.Item>
-            <Link to="/settings">Settings</Link>
+            <Link to="/app/SettingsComponent">Settings</Link>
           </Navbar.Item>
           : null}
         <Navbar.Item>
