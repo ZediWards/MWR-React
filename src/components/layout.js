@@ -34,7 +34,7 @@ const Layout = ({ children }) => {
       {/* <p>{state[0].type}</p> */}
       <Nav />
       <main style={{ paddingBlockStart: "10rem" }}>{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </LayoutDiv>
   );
 };

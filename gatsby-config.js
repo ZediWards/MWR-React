@@ -4,6 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   plugins: [
-    `gatsby-plugin-styled-components`
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-netlify`
   ],
 };
