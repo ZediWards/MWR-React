@@ -24,7 +24,7 @@ const LayoutDiv = styled.div`
   background-color: var(--light-background) ;
 
   @media (max-width: 888px) {
-    padding: 0rem 1rem 0rem 1rem;
+    padding: 0rem 0.5rem 0rem 0.5rem;
   }
 `;
 
