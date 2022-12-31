@@ -298,48 +298,69 @@ function themeReducer(state, action) {
 
 
 const GlobalContextProvider = ({ children }) => {
-  if (process.isClient) {
-    // Theme settings
-    const [theme, themeDispatch] = React.useReducer(themeReducer, themeSettings);
-    // initial state & local storage
-    const [state, dispatch] = React.useReducer(reducer, initialState, () => {
+  // Theme settings
+  const [theme, themeDispatch] = React.useReducer(themeReducer, themeSettings);
+
+
+  // initial state & local storage
+  const [state, dispatch] = React.useReducer(reducer, initialState, () => {
+    if (process.isClient) {
       const localData = window.localStorage.getItem("state");
       return localData ? JSON.parse(localData) : initialState;
-    });
-    useEffect(() => {
-      localStorage.setItem("state", JSON.stringify(state));
-    }, [state]);
+    } else {
+      return true
+    }
+  });
 
-    // settings & Local Storage
-    const [settingsState, settingsDispatch] = React.useReducer(
-      settingsReducer,
-      generalSettings,
-      () => {
+
+  useEffect(() => {
+    if (process.isClient) {
+      localStorage.setItem("state", JSON.stringify(state));
+    } else {
+      return true
+    }
+  }, [state]);
+
+
+  // settings & Local Storage
+  const [settingsState, settingsDispatch] = React.useReducer(
+    settingsReducer,
+    generalSettings,
+    () => {
+      if (process.isClient) {
         const localSettings = window.localStorage.getItem("settingsState");
         return localSettings ? JSON.parse(localSettings) : generalSettings;
+      } else {
+        return true
       }
-    );
-    useEffect(() => {
+    }
+  );
+
+
+  useEffect(() => {
+    if (process.isClient) {
       window.localStorage.setItem("settingsState", JSON.stringify(settingsState));
-    }, [settingsState]);
-    return (
-      <GlobalThemeContext.Provider value={theme}>
-        <GlobalStateContext.Provider value={state}>
-          <GlobalSettingsContext.Provider value={settingsState}>
-            <GlobalThemeDispatchContext.Provider value={themeDispatch}>
-              <GlobalDispatchContext.Provider value={dispatch}>
-                <GlobalSettingsDispatchContext.Provider value={settingsDispatch}>
-                  {children}
-                </GlobalSettingsDispatchContext.Provider>
-              </GlobalDispatchContext.Provider>
-            </GlobalThemeDispatchContext.Provider>
-          </GlobalSettingsContext.Provider>
-        </GlobalStateContext.Provider>
-      </GlobalThemeContext.Provider>
-    );
-  } else {
-    return true
-  }
+    } else {
+      return true
+    }
+  }, [settingsState]);
+
+
+  return (
+    <GlobalThemeContext.Provider value={theme}>
+      <GlobalStateContext.Provider value={state}>
+        <GlobalSettingsContext.Provider value={settingsState}>
+          <GlobalThemeDispatchContext.Provider value={themeDispatch}>
+            <GlobalDispatchContext.Provider value={dispatch}>
+              <GlobalSettingsDispatchContext.Provider value={settingsDispatch}>
+                {children}
+              </GlobalSettingsDispatchContext.Provider>
+            </GlobalDispatchContext.Provider>
+          </GlobalThemeDispatchContext.Provider>
+        </GlobalSettingsContext.Provider>
+      </GlobalStateContext.Provider>
+    </GlobalThemeContext.Provider>
+  );
 };
 
 export default GlobalContextProvider;
