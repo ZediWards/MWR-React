@@ -8,6 +8,9 @@ export const GlobalSettingsDispatchContext = React.createContext();
 export const GlobalThemeContext = React.createContext();
 export const GlobalThemeDispatchContext = React.createContext();
 
+// testing to see if in browser
+const isBrowser = typeof window !== "undefined"
+
 const themeSettings = {
   fontColor: "hsl(0, 0%, 18%)", //all but modals and pdf
   // lightBackground: "hsl(0, 0%, 99%)",
@@ -306,7 +309,7 @@ const GlobalContextProvider = ({ children }) => {
 
   // initial state & local storage
   const [state, dispatch] = React.useReducer(reducer, initialState, () => {
-    if (process.isClient) {
+    if (isBrowser) {
       const localData = window.localStorage.getItem("state");
       return localData ? JSON.parse(localData) : initialState;
     } else {
@@ -317,7 +320,7 @@ const GlobalContextProvider = ({ children }) => {
 
 
   useEffect(() => {
-    if (process.isClient) {
+    if (isBrowser) {
       localStorage.setItem("state", JSON.stringify(state));
     } else {
       return true
@@ -330,7 +333,7 @@ const GlobalContextProvider = ({ children }) => {
     settingsReducer,
     generalSettings,
     () => {
-      if (process.isClient) {
+      if (isBrowser) {
         const localSettings = window.localStorage.getItem("settingsState");
         return localSettings ? JSON.parse(localSettings) : generalSettings;
       } else {
@@ -342,7 +345,7 @@ const GlobalContextProvider = ({ children }) => {
 
 
   useEffect(() => {
-    if (process.isClient) {
+    if (isBrowser) {
       window.localStorage.setItem("settingsState", JSON.stringify(settingsState));
     } else {
       return true
