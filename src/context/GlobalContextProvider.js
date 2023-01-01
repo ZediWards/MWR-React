@@ -308,7 +308,8 @@ const GlobalContextProvider = ({ children }) => {
       const localData = window.localStorage.getItem("state");
       return localData ? JSON.parse(localData) : initialState;
     } else {
-      return true
+      const localData = initialState
+      return localData
     }
   });
 
@@ -331,7 +332,8 @@ const GlobalContextProvider = ({ children }) => {
         const localSettings = window.localStorage.getItem("settingsState");
         return localSettings ? JSON.parse(localSettings) : generalSettings;
       } else {
-        return true
+        const localSettings = generalSettings
+        return localSettings
       }
     }
   );

@@ -1,6 +1,16 @@
 import React from 'react'
-import GlobalContextProvider from './src/context/GlobalContextProvider'
-import GlobalStylesDiv from './src/global_styles/globalStyledComponents'
+
+// Wrap the require in check for window
+if (typeof window !== `undefined`) {
+  const GlobalContextProvider = require("./src/context/GlobalContextProvider")
+}
+
+if (typeof window !== `undefined`) {
+  const GlobalStylesDiv = require("./src/global_styles/globalStyledComponents")
+}
+
+// import GlobalContextProvider from './src/context/GlobalContextProvider'
+// import GlobalStylesDiv from './src/global_styles/globalStyledComponents'
 
 import "./src/global_styles/global.css"
 

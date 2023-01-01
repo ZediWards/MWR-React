@@ -257,7 +257,11 @@ const SettingsComponent = () => {
   // testing
   // Lesson: using state to hold the innderWidth instead of variable. All other components will rerender 
   // when state changes rather than on refresh, like variable method does
-  const [windowDimension, setWindowDimension] = useState(null);
+  if (process.isClient) {
+    const [windowDimension, setWindowDimension] = useState(null);
+  } else {
+    const [windowDimension, setWindowDimension] = useState(900);
+  }
 
   useEffect(() => {
     setWindowDimension(window.innerWidth);

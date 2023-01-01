@@ -7,7 +7,7 @@ import { isLoggedIn } from "../services/auth"
 
 import Nav from "./nav";
 import Header from "./header";
-import Footer from "./footer";
+// import Footer from "./footer";
 
 import "../css_global/layout.css";
 
