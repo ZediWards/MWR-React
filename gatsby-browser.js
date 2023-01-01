@@ -1,9 +1,13 @@
 import React from 'react'
 
 // Wrap the require in check for window
-const GlobalContextProvider = require("./src/context/GlobalContextProvider")
+if (process.isClient) {
+  const GlobalContextProvider = require("./src/context/GlobalContextProvider")
+}
 
-const GlobalStylesDiv = require("./src/global_styles/globalStyledComponents")
+if (process.isClient) {
+  const GlobalStylesDiv = require("./src/global_styles/globalStyledComponents")
+}
 
 // import GlobalContextProvider from './src/context/GlobalContextProvider'
 // import GlobalStylesDiv from './src/global_styles/globalStyledComponents'
