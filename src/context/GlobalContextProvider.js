@@ -9,6 +9,7 @@ export const GlobalThemeContext = React.createContext();
 export const GlobalThemeDispatchContext = React.createContext();
 
 // testing to see if in browser
+// LESSON: checking if in browser and hardcoding if not so build doesn't fail
 const isBrowser = typeof window !== "undefined"
 
 const themeSettings = {
@@ -27,7 +28,7 @@ const themeSettings = {
 const generalSettings = {
   companyName: ["Test Company"],
   mwrTypes: [
-    { type: "General", color: "hsl(111, 50%, 85%)" },
+    { type: "General", color: "hsl(203,70%,79%)" },
     { type: "Urgent", color: "hsl(52, 84%, 77%)" },
     { type: "Safety", color: "hsl(2, 50%, 85%)" },
   ],
