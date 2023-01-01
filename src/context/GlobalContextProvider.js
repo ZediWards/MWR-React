@@ -20,6 +20,7 @@ const themeSettings = {
   // secondaryFontColor
 };
 
+// ******************************************** General Settings *********************************
 const generalSettings = {
   companyName: ["Test Company"],
   mwrTypes: [
@@ -43,6 +44,7 @@ const generalSettings = {
   generalMaintenenceEmployees: ["Bob", "John"],
 };
 
+// ******************************************** Initial State *********************************
 const initialState = [
   {
     id: 1,
@@ -308,8 +310,8 @@ const GlobalContextProvider = ({ children }) => {
       const localData = window.localStorage.getItem("state");
       return localData ? JSON.parse(localData) : initialState;
     } else {
-      const localData = initialState
-      return localData
+      // const localData = initialState
+      return initialState
     }
   });
 
@@ -332,8 +334,8 @@ const GlobalContextProvider = ({ children }) => {
         const localSettings = window.localStorage.getItem("settingsState");
         return localSettings ? JSON.parse(localSettings) : generalSettings;
       } else {
-        const localSettings = generalSettings
-        return localSettings
+        // const localSettings = generalSettings
+        return generalSettings
       }
     }
   );

@@ -257,12 +257,12 @@ const SettingsComponent = () => {
   // testing
   // Lesson: using state to hold the innderWidth instead of variable. All other components will rerender 
   // when state changes rather than on refresh, like variable method does
-  if (process.isClient) {
-    const [windowDimension, setWindowDimension] = useState(null);
-  } else {
-    const [windowDimension, setWindowDimension] = useState(900);
-  }
+  // if (process.isClient) {
+  //   const [windowDimension, setWindowDimension] = useState(null);
+  // } else {
+  // }
 
+  const [windowDimension, setWindowDimension] = useState(null);
   useEffect(() => {
     setWindowDimension(window.innerWidth);
   }, []);
@@ -274,8 +274,10 @@ const SettingsComponent = () => {
 
     // TODO In production, debouncing the handleResize would be a good idea.
     // reference article: https://dev.to/joserfelix/create-a-mobile-friendly-navigation-with-react-4930
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    if (process.isClient) {
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
   }, []);
 
   const isMobile = windowDimension <= 640;

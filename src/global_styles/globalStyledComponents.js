@@ -27,7 +27,6 @@ const GlobalStylesDiv = ({ children }) => {
   --background-safety: ${settings.mwrTypes[2].color};
 
 
-
   /* lesson: transparincy added to hex valueB3 = 70% opacity */
   /* --btn-background-based-on-general:${settings.mwrTypes[0].color + "B3"}; */
   

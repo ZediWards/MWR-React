@@ -31,6 +31,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions, plugins }) => {
   //     }
   //   })
   // }
+  // if (stage === "build-html" || stage === "develop-html") {
   actions.setWebpackConfig({
     resolve: {
       fallback: {
@@ -58,6 +59,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions, plugins }) => {
     ]
   })
 }
+// }
 
 // ***************** Gatsby Auth **********************************
 // What this does: defines that any route that starts with /app/
