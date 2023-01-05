@@ -11,6 +11,25 @@ padding: 1rem;
 margin: auto;
 /* border: 1px solid black; */
 `
+const ErrorAlert = styled.div`
+    font-size: 0.75rem;
+    text-align: center;
+    background-color: var(--red-btn-color);
+    padding: 0.75rem 0.75rem;
+    border: 1px solid var(--red-btn-color-darker);
+    border-radius: 10px;
+    margin-block-end: 1rem;
+    transition: all 0.35s ease-Out;
+    /* display: none; */
+
+    .block {
+      display: block;
+    }
+
+    .no-error {
+      display: none;
+    }
+`
 
 const FormStyled = styled.form` 
 display: flex;
@@ -60,6 +79,8 @@ class Login extends React.Component {
   state = {
     username: ``,
     password: ``,
+    // put all state under the state object, then update keys 
+    error: false,
   };
 
   handleUpdate = (event) => {
@@ -74,6 +95,23 @@ class Login extends React.Component {
     handleLogin(this.state);
   };
 
+
+  fireError = async () => {
+    const shortTimeOut = delay => new Promise(resolve => setTimeout(resolve, delay));
+
+    console.log("fire error fired!")
+    this.setState.error = true
+    console.log(`pre setTimeout ${this.setState.error}`)
+
+    await shortTimeOut(3000)
+    console.log(`post setTimeout ${this.setState.error}`)
+
+    this.setState.error = false
+    console.log(`error reset ${this.state.error}`)
+
+
+  }
+
   render() {
     if (isLoggedIn()) {
       // navigate(`/app/profile`);
@@ -81,17 +119,32 @@ class Login extends React.Component {
     }
 
 
+
+
     return (
       <LoginContainerStyled>
         <h1>Log in</h1>
+        <div>{!this.setState.error ? <ErrorAlert /> : null}</div>
+        {/* <ErrorAlert className={this.setState.error ? "block" : "no-error"}>Wrong username or password</ErrorAlert> */}
         <FormStyled
           method="post"
           onSubmit={(event) => {
             this.handleSubmit(event);
-            // navigate(`/app/index`);
-            navigate(`/`);
-          }}
+            if (isLoggedIn()) {
+              navigate(`/`);
+            } else if (!isLoggedIn()) {
+              console.log("WRONG PASSWORD!!!")
+              // lesson: needed to use this.fireError() to be defined. w/o this. it was undefined. 
+              this.fireError()
+            }
+          }
+          }
         >
+
+
+
+
+
           <label>
             Username
             <input
@@ -117,7 +170,7 @@ class Login extends React.Component {
             type="submit"
             value="Log In" />
         </FormStyled>
-      </LoginContainerStyled>
+      </LoginContainerStyled >
     );
   }
 }
