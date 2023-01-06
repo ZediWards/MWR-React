@@ -76,6 +76,7 @@ label {
 }
 `
 class Login extends React.Component {
+  // lesson: class components have a special method state and setState. This is where the state goes
   state = {
     username: ``,
     password: ``,
@@ -95,26 +96,21 @@ class Login extends React.Component {
     handleLogin(this.state);
   };
 
-
+  // lesson proper async await
   fireError = async () => {
     const shortTimeOut = delay => new Promise(resolve => setTimeout(resolve, delay));
 
     console.log("fire error fired!")
-    this.setState.error = true
-    console.log(`pre setTimeout ${this.setState.error}`)
-
+    // lesson: how I was able to change the state, changing just the one object within the state. rest stays same
+    this.setState((state) => (state.error = true));
     await shortTimeOut(3000)
-    console.log(`post setTimeout ${this.setState.error}`)
-
-    this.setState.error = false
-    console.log(`error reset ${this.state.error}`)
+    this.setState((state) => (state.error = false));
 
 
   }
 
   render() {
     if (isLoggedIn()) {
-      // navigate(`/app/profile`);
       navigate(`/`);
     }
 
@@ -124,8 +120,8 @@ class Login extends React.Component {
     return (
       <LoginContainerStyled>
         <h1>Log in</h1>
-        <div>{!this.setState.error ? <ErrorAlert /> : null}</div>
-        {/* <ErrorAlert className={this.setState.error ? "block" : "no-error"}>Wrong username or password</ErrorAlert> */}
+        {/* lesson conditional rendering of an element over another */}
+        <div>{this.state.error ? <ErrorAlert>Wrong username or password</ErrorAlert> : null}</div>
         <FormStyled
           method="post"
           onSubmit={(event) => {
@@ -133,7 +129,6 @@ class Login extends React.Component {
             if (isLoggedIn()) {
               navigate(`/`);
             } else if (!isLoggedIn()) {
-              console.log("WRONG PASSWORD!!!")
               // lesson: needed to use this.fireError() to be defined. w/o this. it was undefined. 
               this.fireError()
             }
