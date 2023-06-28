@@ -1,15 +1,26 @@
-### This will be a React app that will 
-  1. give users the ability to submit Maintenance Work      Requests to the database.
-  2. Display a "leader board" that shows submitters name and number of submits they have completed. 
-  3. Display a MWR dashboard that shows all submitted MWR's and their status (in progress, denied, pending). 
+
+# Maintenance Work Order Request App  [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
+An app to submit, store, and review employee submitted Maintenance Requests.
+</br>
+</br>
+
+## Features
+Right now this only uses local storage. After it takes full form it will be able to be hosted on a local server attatched to a database. Once hosted that way, all employees will be able to:
+
+- Submit Maintenace Work Orders (MWR)
+- Attach photos to their request
+- Search / filter previously submitted MWRs
+- View a leaderboard of top three employees with the most yearly submissions
+
+The Maintenace Department will have a secure login page that comes with it's own set of features:
+
+- Details screen showing employee submission and Maintenace departments notes
+- Maintenace Lead can assign team members to specific MWRs
+- Generate a pdf work order from the submitted MWR
 
 
-### Storage
-At first the app will store all information from React state into the browsers local storage. 
-
-After getting a good grasp on that method of storing data, the app will be adjusted to save the data on a serverless database. 
-
-If not a serverless database, then it will utilize Express.js for API and Postgres for database. This way a company can host everything within their local servers. 
+## Screenshots
 
 ![Screenshot 2023-06-27 at 03-33-31 https __mwr-project netlify app](https://github.com/ZediWards/Maintenance-Work-Order-Request-App/assets/33021719/dfec4890-aa58-4b87-9c00-b0202f132f9f)
 </br>
@@ -59,4 +70,18 @@ If not a serverless database, then it will utilize Express.js for API and Postgr
 </br>
 </br>
 </br>
+
+
+## Roadmap
+
+- Switch from storing data in local storage to a Postgres database
+
+- Create sever and API with Express.js and Node.js
+
+- Bundle it all up in a Docker container to run on a local server
+
+
+
+
+
 
